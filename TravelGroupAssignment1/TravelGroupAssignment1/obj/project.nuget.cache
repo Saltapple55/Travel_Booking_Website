@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qx82PAKhbbWncihkOtfxECb0VCCKgAzLCR6NYba386ya5DS5t4kG6PFM1Ze3/b546GHhJlcL6UC5KLvE14eq/A==",
+  "dgSpecHash": "L6SGmo/PwHTlSReweAJkJDByQFUF7C3ktbIL25jRiyj6MqQQdkP7GYa1fSjnNRI+s6OoB00LI8y4PEHubLYDdA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\CM\\Source\\Repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\TravelGroupAssignment1.csproj",
+  "projectFilePath": "C:\\Users\\CM\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\TravelGroupAssignment1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CM\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\CM\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
