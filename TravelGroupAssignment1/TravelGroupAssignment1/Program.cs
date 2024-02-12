@@ -1,7 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using TravelGroupAssignment1.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// ** Add DbContext file to the app config **
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+// see appsettings.json for default connection string
 
 var app = builder.Build();
 
