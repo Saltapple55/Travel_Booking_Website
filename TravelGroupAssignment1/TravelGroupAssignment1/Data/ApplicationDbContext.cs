@@ -8,7 +8,7 @@ namespace TravelGroupAssignment1.Data
 
         public DbSet<Hotel> Hotels { get; set; }
         public DbSet<Room> Rooms { get; set; }
-
+        public DbSet<CarRentalCompany> CarRentalCompanies { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
