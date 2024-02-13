@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\TravelGroupAssignment1.props" />
+</Project>
