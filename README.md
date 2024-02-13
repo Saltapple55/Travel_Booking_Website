@@ -1,3 +1,7 @@
+130224 Changelog
+- Added CarRentalCompany Model & Controller
+- CarRentalCompany location property: separate entity or not?
+
 120224 Changelog
 - Added Hotel model
 - Added Room model
