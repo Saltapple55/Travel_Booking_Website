@@ -11,6 +11,8 @@ namespace TravelGroupAssignment1.Models
         [Required]
         public string? Location { get; set; } // !multiple locations?
         public double Rating { get; set; }
+
+        public ICollection<Car>? Cars { get; set; }
         
     }
 }

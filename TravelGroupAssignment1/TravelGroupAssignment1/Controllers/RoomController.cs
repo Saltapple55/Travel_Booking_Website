@@ -111,7 +111,7 @@ namespace TravelGroupAssignment1.Controllers
             return View(room);
         }
 
-        // POST: RoomController/Delete/5
+        // POST: RoomController/DeleteConfirmed/5
         [HttpPost, ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int roomId)
