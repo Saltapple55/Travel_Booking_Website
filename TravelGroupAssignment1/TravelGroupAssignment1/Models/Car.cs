@@ -12,12 +12,13 @@ namespace TravelGroupAssignment1.Models
         public string? Mode {  get; set; }
         [Required]
         public double PricePerDay { get; set; }
-        [Required]
-        public int CompanyId { get; set; }
-        public CarRentalCompany? Company { get; set; }
         public int MaxPassengers { get; set; }
         public string? Transmission { get; set; }
         public bool HasAirConditioning { get; set; }
         public bool HasUnlimitedMileage { get; set; }
+        [Required]
+        public int CompanyId { get; set; }
+        public CarRentalCompany? Company { get; set; }
+        public ICollection<CarBooking>? Bookings { get; set; }
     }
 }
