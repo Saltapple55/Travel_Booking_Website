@@ -1,3 +1,7 @@
+130224 Changelog
+- Added CarRentalCompany Model & Controller
+- Added Car Model & Controller
+
 120224 Changelog
 - Added Hotel model
 - Added Room model
