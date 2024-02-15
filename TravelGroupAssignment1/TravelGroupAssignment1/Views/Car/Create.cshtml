@@ -1,0 +1,82 @@
+﻿@model Car // bound to an empty Project (no attributes set)
+
+@{
+    // Razor block
+    ViewData["Title"] = "Create Car"; // set title of view
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<!-- post method calls the form submission action -->
+<form asp-action="Create" method="post">
+    <!-- Warning if input validation fails -->
+    <div asp-validation-summary="ModelOnly" class="text-warning"></div>
+
+    <div>
+        <label asp-for="Make" class="control-label"></label>
+        <input asp-for="Make" class="form-control" />
+        <span asp-validation-for="Make" class="text-danger"></span> 
+   </div>
+
+    <div>
+        <label asp-for="Model" class="control-label"></label>
+        <input asp-for="Model" class="form-control" />
+        <span asp-validation-for="Model" class="text-danger"></span> 
+    </div>
+    
+    <div>
+        <label asp-for="PricePerDay" class="control-label">Price / Day</label>
+        <input asp-for="PricePerDay" class="form-control" />
+        <span asp-validation-for="PricePerDay" class="text-danger"></span> 
+    </div>
+    
+    <div>
+        <label asp-for="MaxPassengers" class="control-label">Max Passengers</label>
+        <select asp-for="MaxPassengers" class="form-control">
+            <option value="">Select Max Passengers</option>
+                @for(int i = 1; i <= 10; i++)
+                {
+                    <option value="@i">@i</option>
+                }
+        </select>
+    </div>
+
+    <div>
+        <label asp-for="CompanyId" class="control-label">Rental Company</label>
+        <select asp-for="CompanyId" asp-items="ViewBag.Companies" class="form-control"></select>
+        @Html.HiddenFor(car => car.Company)
+    </div>
+
+    <div>
+        <label asp-for="Transmission" class="control-label">Transmission</label>
+        <input type="radio" name="Transmission" value="Automatic" checked />Automatic
+        <input type="radio" name="Transmission" value="Manual" />Manual
+    </div>
+
+    <div>
+        <label asp-for="HasAirConditioning" class="control-label">Air Conditioning</label>
+        <input type="radio" name="HasAirConditioning" value="true" checked />Yes
+        <input type="radio" name="HasAirConditioning" value="false" />No
+    </div>
+
+    <div>
+        <label asp-for="HasUnlimitedMileage" class="control-label">Unlimited Mileage</label>
+        <input type="radio" name="HasUnlimitedMileage" value="true" checked />Yes
+        <input type="radio" name="HasUnlimitedMileage" value="false" />No
+    </div>
+
+    <!-- submit button -->
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+
+
+</form>
+
+<!-- Validation scripts (if any) -->
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

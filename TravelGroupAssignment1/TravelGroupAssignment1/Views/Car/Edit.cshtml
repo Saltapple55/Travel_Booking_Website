@@ -1,0 +1,98 @@
+﻿@model Car
+
+@{
+    // Razor block
+    ViewData["Title"] = "Edit Car"; // set title of view
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<!-- post method calls the form submission action -->
+<form asp-action="Edit" method="post">
+
+    <div asp-validation-summary="ModelOnly" class="text-warning"></div>
+
+    <div>
+        <label asp-for="Make" class="control-label"></label>
+        <input asp-for="Make" class="form-control" />
+        <span asp-validation-for="Make" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Model" class="control-label"></label>
+        <input asp-for="Model" class="form-control" />
+        <span asp-validation-for="Model" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="PricePerDay" class="control-label">Price / Day</label>
+        <input asp-for="PricePerDay" class="form-control" />
+        <span asp-validation-for="PricePerDay" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="MaxPassengers" class="control-label">Max Passengers</label>
+        <select asp-for="MaxPassengers" class="form-control">
+            <option value="">Select Max Passengers</option>
+            @for (int i = 1; i <= 10; i++)
+            {
+                @if (i == Model.MaxPassengers)
+                {
+                    <option value="@i" selected>@i</option>
+                }
+                else
+                {
+                    <option value="@i">@i</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div>
+        <label asp-for="CompanyId" class="control-label">Rental Company</label>
+        <select asp-for="CompanyId" class="form-control">
+            @foreach (var company in ViewBag.CompanyList)
+            {
+                @if (company.Value == Model.CompanyId.ToString())
+                {
+                    <option value="@company.Value" selected >@company.Text</option>
+                }
+                else
+                {
+                    <option value="@company.Value">@company.Text</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div>
+        <label asp-for="Transmission" class="control-label">Transmission</label>
+        <input type="radio" name="Transmission" value="Automatic" @(Model.Transmission == "Automatic"? "checked" : "") />Automatic
+        <input type="radio" name="Transmission" value="Manual" @(Model.Transmission == "Manual" ? "checked" : "") />Manual
+    </div>
+
+    <div>
+        <label asp-for="HasAirConditioning" class="control-label">Air Conditioning</label>
+        <input type="radio" name="HasAirConditioning" value="true" @(Model.HasAirConditioning? "checked" : "") />Yes
+        <input type="radio" name="HasAirConditioning" value="false" @(!Model.HasAirConditioning ? "checked" : "") />No
+    </div>
+
+    <div>
+        <label asp-for="HasUnlimitedMileage" class="control-label">Unlimited Mileage</label>
+        <input type="radio" name="HasUnlimitedMileage" value="true" @(Model.HasUnlimitedMileage ? "checked" : "") />Yes
+        <input type="radio" name="HasUnlimitedMileage" value="false" @(!Model.HasUnlimitedMileage ? "checked" : "") />No
+    </div>
+
+    <div class="form-group">
+        @Html.HiddenFor(Model => Model.CarId)
+        <input type="submit" value="Edit" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-secondary">Return to List</a>
+    </div>
+
+</form>
+<!-- Validation scripts (if any) -->
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

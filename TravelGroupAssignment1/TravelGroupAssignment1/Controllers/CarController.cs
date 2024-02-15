@@ -22,7 +22,9 @@ namespace TravelGroupAssignment1.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var cars = _context.Cars.ToList();
+            var cars = _context.Cars
+                        .Include(cars => cars.Company)
+                        .ToList();
             if (cars == null) return NotFound();
             return View(cars);
         }
@@ -34,33 +36,45 @@ namespace TravelGroupAssignment1.Controllers
             var car = _context.Cars
                         .Include(c => c.Company)
                         .FirstOrDefault(c => c.CarId == carId);
-            return View();
+            if (car == null) return NotFound();
+            return View(car);
         }
 
         // GET: CarController/Create
         [HttpGet]
-        public IActionResult Create(int carId)
+        public IActionResult Create()
         {
-            var company = _context.CarRentalCompanies.Find(carId);
-            if (company == null) return NotFound();
-            
-            var car = new Car { CarId = carId };
-            return View(car);
+            ViewBag.Companies = new SelectList(_context.CarRentalCompanies, "CarRentalCompanyId", "CompanyName");
+            var companyObjects = _context.CarRentalCompanies
+                                        .ToDictionary(c => c.CarRentalCompanyId, c => c);
+            ViewBag.CompanyObjects = companyObjects;
+            return View();
         }
 
         // POST: CarController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Make", "Model", "PricePerDay", "CompanyId",
-            "Company", "MaxPassenger", "Transmission", "HasAirConditioning", "HasUnlimitedMileage")] Car car)
+        public IActionResult Create([Bind("Make", "Model", "PricePerDay", "MaxPassengers",
+            "CompanyId", "Company", "Transmission", "HasAirConditioning", "HasUnlimitedMileage")] Car car)
         {
             if (ModelState.IsValid)
             {
-                _context.Cars.Add(car);
+                CarRentalCompany company = _context.CarRentalCompanies.FirstOrDefault(cr => cr.CarRentalCompanyId == car.CompanyId);
+                Car newCar = new Car { 
+                    Make = car.Make, 
+                    Model = car.Model, 
+                    PricePerDay = car.PricePerDay, 
+                    MaxPassengers = car.MaxPassengers, 
+                    Transmission = car.Transmission, 
+                    HasAirConditioning = car.HasAirConditioning,
+                    HasUnlimitedMileage = car.HasUnlimitedMileage, 
+                    CompanyId = car.CompanyId, 
+                    Company = company }; 
+                _context.Cars.Add(newCar);
                 _context.SaveChanges();
-                return RedirectToAction("Index", new { carId = car.CarId });
+                return RedirectToAction("Index");
             }
-            ViewBag.CompanyList = new SelectList(_context.CarRentalCompanies, "CarId", "CompanyName", car.CarId);
+            ViewBag.Companies = new SelectList(_context.CarRentalCompanies, "CarRentalCompanyId", "CompanyName", car.CarId);
             return View(car);
 
         }
@@ -74,15 +88,15 @@ namespace TravelGroupAssignment1.Controllers
                         .FirstOrDefault(c => c.CarId == carId);
             if (car == null) return NotFound();
 
-            ViewBag.CompanyList = new SelectList(_context.CarRentalCompanies, "CarId", "CompanyName", car.CarId);
+            ViewBag.CompanyList = new SelectList(_context.CarRentalCompanies, "CarRentalCompanyId", "CompanyName", car.CarId);
             return View(car);
         }
 
         // POST: CarController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int carId, [Bind("CarId", "Make", "Model", "PricePerDay", "CompanyId",
-            "Company", "MaxPassenger", "Transmission", "HasAirConditioning", "HasUnlimitedMileage")] Car car)
+        public IActionResult Edit(int carId, [Bind("CarId", "Make", "Model", "PricePerDay", "MaxPassengers",
+            "CompanyId", "Company", "Transmission", "HasAirConditioning", "HasUnlimitedMileage")] Car car)
         {
             if (carId != car.CarId) return NotFound();
 
@@ -90,9 +104,9 @@ namespace TravelGroupAssignment1.Controllers
             {
                 _context.Cars.Update(car);
                 _context.SaveChanges();
-                return RedirectToAction("Index", new { carId = car.CarId });
+                return RedirectToAction("Index");
             }
-            ViewBag.CompanyList = new SelectList(_context.CarRentalCompanies, "CarId", "CompanyName", car.CarId);
+            ViewBag.CompanyList = new SelectList(_context.CarRentalCompanies, "CompanyId", "CompanyName");
             return View();
         }
 
@@ -117,7 +131,7 @@ namespace TravelGroupAssignment1.Controllers
             {
                 _context.Cars.Remove(car);
                 _context.SaveChanges();
-                return RedirectToAction("Index", new { carId = car.CarId });
+                return RedirectToAction("Index");
             }
             return NotFound();
         }
