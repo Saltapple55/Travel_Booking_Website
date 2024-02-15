@@ -9,7 +9,7 @@ namespace TravelGroupAssignment1.Models
         [Required]
         public string? Make { get; set; }
         [Required]
-        public string? Mode {  get; set; }
+        public string? Model {  get; set; }
         [Required]
         public double PricePerDay { get; set; }
         public int MaxPassengers { get; set; }

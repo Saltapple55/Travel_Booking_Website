@@ -1,0 +1,50 @@
+﻿@model List<Car>
+@{
+    ViewData["Title"] = "List of All Cars";
+}
+
+<h2>@ViewData["Title"]</h2>
+<a asp-action="Create" class="btn btn-primary">Create Car <i class="fa-solid fa-plus"></i></a>
+
+@if (Model.Any()) // check if Model is null. 'Model' is reserved keyword to access the model
+{
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>Car ID</th>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Price/Day</th>
+                <th>Max Passengers</th>
+                <th>Transmission</th>
+                <th>Air Conditioning</th>
+                <th>Unlimited Mileage</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var car in Model)
+            {
+                <tr>
+                    <td>@car.CarId</td>
+                    <td>@car.Make</td>
+                    <td>@car.Model</td>
+                    <td>
+                        <a asp-controller="ProjectTask" asp-action="Index" asp-route-CarId="@car.CarId" class="btn btn.sm btn-secondary" role="button">Tasks <i class="fa-solid fa-list-check"></i></a>
+                        <a asp-action="Details" asp-route-CarId="@car.CarId" class="btn btn.sm btn-secondary" role="button">Details <i class="fa-solid fa-circle-info"></i></a>
+                        <a asp-action="Edit" asp-route-id="@car.CarId" class="btn btn.sm btn-secondary" role="button">Edit <i class="fa-regular fa-pen-to-square"></i></a>
+                        <a asp-action="Delete" asp-route-id="@car.CarId" class="btn btn.sm btn-danger" role="button">Delete <i class="fa-solid fa-circle-xmark"></i></a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+}
+else
+{
+    <p>No cars available</p>
+}

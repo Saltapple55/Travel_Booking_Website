@@ -20,14 +20,10 @@ namespace TravelGroupAssignment1.Controllers
 
         // GET: CarController
         [HttpGet]
-        public IActionResult Index(int carId)
+        public IActionResult Index()
         {
-            var cars = _context.Cars
-            .Where(h => h.CarId == carId)
-            .ToList();
+            var cars = _context.Cars.ToList();
             if (cars == null) return NotFound();
-            ViewBag.CarId = carId;
-            ViewBag.CompanyName = _context.CarRentalCompanies.Find(carId).CompanyName;
             return View(cars);
         }
 
