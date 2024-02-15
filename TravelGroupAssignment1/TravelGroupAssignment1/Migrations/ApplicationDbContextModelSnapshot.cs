@@ -17,10 +17,25 @@ namespace TravelGroupAssignment1.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.1")
+                .HasAnnotation("ProductVersion", "8.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("RoomRoomBooking", b =>
+                {
+                    b.Property<int>("BookingsBookingId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoomsRoomId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BookingsBookingId", "RoomsRoomId");
+
+                    b.HasIndex("RoomsRoomId");
+
+                    b.ToTable("Room_RoomBookings", (string)null);
+                });
 
             modelBuilder.Entity("TravelGroupAssignment1.Models.Car", b =>
                 {
@@ -46,7 +61,7 @@ namespace TravelGroupAssignment1.Migrations
                     b.Property<int>("MaxPassengers")
                         .HasColumnType("int");
 
-                    b.Property<string>("Mode")
+                    b.Property<string>("Model")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -61,6 +76,38 @@ namespace TravelGroupAssignment1.Migrations
                     b.HasIndex("CompanyId");
 
                     b.ToTable("Cars");
+                });
+
+            modelBuilder.Entity("TravelGroupAssignment1.Models.CarBooking", b =>
+                {
+                    b.Property<int>("BookingId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingId"));
+
+                    b.Property<string>("BookingReference")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("EndDate")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("StartDate")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("TripFKId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BookingId");
+
+                    b.HasIndex("CarId");
+
+                    b.ToTable("CarBookings");
                 });
 
             modelBuilder.Entity("TravelGroupAssignment1.Models.CarRentalCompany", b =>
@@ -148,6 +195,48 @@ namespace TravelGroupAssignment1.Migrations
                     b.ToTable("Rooms");
                 });
 
+            modelBuilder.Entity("TravelGroupAssignment1.Models.RoomBooking", b =>
+                {
+                    b.Property<int>("BookingId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingId"));
+
+                    b.Property<string>("BookingReference")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CheckInDate")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("CheckOutDate")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("TripFKId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BookingId");
+
+                    b.ToTable("RoomBookings");
+                });
+
+            modelBuilder.Entity("RoomRoomBooking", b =>
+                {
+                    b.HasOne("TravelGroupAssignment1.Models.RoomBooking", null)
+                        .WithMany()
+                        .HasForeignKey("BookingsBookingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TravelGroupAssignment1.Models.Room", null)
+                        .WithMany()
+                        .HasForeignKey("RoomsRoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("TravelGroupAssignment1.Models.Car", b =>
                 {
                     b.HasOne("TravelGroupAssignment1.Models.CarRentalCompany", "Company")
@@ -159,6 +248,17 @@ namespace TravelGroupAssignment1.Migrations
                     b.Navigation("Company");
                 });
 
+            modelBuilder.Entity("TravelGroupAssignment1.Models.CarBooking", b =>
+                {
+                    b.HasOne("TravelGroupAssignment1.Models.Car", "Car")
+                        .WithMany("Bookings")
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Car");
+                });
+
             modelBuilder.Entity("TravelGroupAssignment1.Models.Room", b =>
                 {
                     b.HasOne("TravelGroupAssignment1.Models.Hotel", "Hotel")
@@ -168,6 +268,11 @@ namespace TravelGroupAssignment1.Migrations
                         .IsRequired();
 
                     b.Navigation("Hotel");
+                });
+
+            modelBuilder.Entity("TravelGroupAssignment1.Models.Car", b =>
+                {
+                    b.Navigation("Bookings");
                 });
 
             modelBuilder.Entity("TravelGroupAssignment1.Models.CarRentalCompany", b =>
