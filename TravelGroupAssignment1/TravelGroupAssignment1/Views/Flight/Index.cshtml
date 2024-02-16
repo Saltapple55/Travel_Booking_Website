@@ -1,0 +1,54 @@
+﻿@model List<Flight> //collection of tasks
+@{
+    ViewData["Title"] = "Bookings List";
+}
+<h2>@ViewData["Title"]</h2>
+
+<a asp-action="create" class="btn btn-primary">Create</a>
+
+@if (Model.Any())
+{
+
+    <table class=" table">
+        <thead>
+            <tr>
+                <th>Airline</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Departure Time</th>
+                <th>Arrival Time</th>
+
+
+
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var fbooking in Model)
+            {
+
+                <tr>
+                    <td>@fbooking.Airline</td>
+                    <td>@fbooking.Departure</td>
+                    <td>@fbooking.Destination</td>
+                    <td>@fbooking.DepartTime</td>
+                    <td>@fbooking.ArrivalTime</td>
+
+
+                    <td>
+                        <a class="nav-link text-dark  btn btn-info" asp-action="Details" asp-route-id="@fbooking.FlightId">Details</a> <!-- don't need to specify controller if same as default index' -->
+                        <a class="nav-link text-dark  btn btn-secondary" asp-action="Edit" asp-route-id="@fbooking.FlightId">Edit</a>
+                        <a class="nav-link text-dark  btn btn-warning" asp-action="Delete" asp-route-id="@fbooking.FlightId">Delete</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+
+    </table>
+}
+else
+{
+
+    <p>No Bookings have been made</p>
+}

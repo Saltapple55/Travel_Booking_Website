@@ -17,7 +17,9 @@ namespace TravelGroupAssignment1.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            var fs=_context.FlightBookings.ToList();
+            if(fs==null) return NotFound();
+            return View(fs);
         }
         [HttpGet]
         public IActionResult Create()

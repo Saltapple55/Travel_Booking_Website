@@ -1,14 +1,17 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TravelGroupAssignment1.Models
 {
     public abstract class Booking
     {
         [Key]
-        public int bookingId { get; set; }
+        public int BookingId { get; set; }
 
-        public string bookingReference { get; set; }
+        public string BookingReference { get; set; }
 
-        public int tripId { get; set; }
+
+        [ForeignKey("Trip")]
+        public int TripId { get; set; }
     }
-}
+}  
