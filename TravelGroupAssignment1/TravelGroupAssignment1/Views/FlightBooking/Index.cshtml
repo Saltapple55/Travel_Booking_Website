@@ -1,0 +1,56 @@
+﻿@*
+
+                //to access @model, use Model keyword
+For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<FlightBooking> //collection of tasks
+@{
+    ViewData["Title"] = "Bookings List";
+}
+<h2>@ViewData["Title"]</h2>
+
+<a asp-action="create" class="btn btn-primary">Create</a>
+
+
+
+<table class=" table">
+    <thead>
+        <tr>
+            <th>Airline</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Departure Time</th>
+            <th>Arrival Time</th>
+
+
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var fbooking in Model)
+        {
+
+            <tr>
+                <td>@fbooking.Flight.Airline</td>
+                <td>@fbooking.Flight.Departure</td>
+                <td>@fbooking.Flight.Destination</td>
+                <td>@fbooking.Flight.DepartTime</td>
+                <td>@fbooking.Flight.ArrivalTime</td>
+
+
+                <td>
+                    <a class="nav-link text-dark  btn btn-info" asp-action="Details" asp-route-id="@fbooking.BookingId">Details</a> <!-- don't need to specify controller if same as default index' -->
+                    <a class="nav-link text-dark  btn btn-secondary" asp-action="Edit" asp-route-id="@fbooking.BookingId">Edit</a>
+                    <a class="nav-link text-dark  btn btn-warning" asp-action="Delete" asp-route-id="@fbooking.BookingId">Delete</a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+
+</table>
+<!-- Button to create a new task-->
+<a asp-action="create" asp-route-projectId="@ViewBag.ProjectId" class="btn btn-primary">Create New Task</a>
+
+<a asp-controller="Project" asp-action="action=" index" class="btn btn-secondary"></a>
