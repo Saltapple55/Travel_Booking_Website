@@ -82,6 +82,7 @@ namespace TravelGroupAssignment1.Controllers
                             .Include(cb => cb.Car)
                             .FirstOrDefault(cb => cb.BookingId == id);
             if (carBooking == null) return NotFound();
+
             return View(carBooking);
         }
 
