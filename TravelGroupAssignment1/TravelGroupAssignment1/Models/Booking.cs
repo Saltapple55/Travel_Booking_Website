@@ -6,13 +6,12 @@ namespace TravelGroupAssignment1.Models
     {
         [Key]
         public int BookingId { get; set; }
-        [Required]
-        public int TripFKId { get; set; } // rename and add navigation property
-        public String? BookingReference { get; set; }
+        public int TripId { get; set; } // rename and add navigation property
+        public string? BookingReference { get; set; }
 
         protected Booking() 
         {
-            BookingReference = "";
+            BookingReference = GenerateBookingReference();
         }
 
         protected virtual String GenerateBookingReference()

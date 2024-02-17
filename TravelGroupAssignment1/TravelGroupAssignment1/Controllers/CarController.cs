@@ -54,7 +54,7 @@ namespace TravelGroupAssignment1.Controllers
         // POST: CarController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Make", "Model", "PricePerDay", "MaxPassengers",
+        public IActionResult Create([Bind("Make", "Model", "Type", "PricePerDay", "MaxPassengers",
             "CompanyId", "Company", "Transmission", "HasAirConditioning", "HasUnlimitedMileage")] Car car)
         {
             if (ModelState.IsValid)
@@ -63,6 +63,7 @@ namespace TravelGroupAssignment1.Controllers
                 Car newCar = new Car { 
                     Make = car.Make, 
                     Model = car.Model, 
+                    Type = car.Type,
                     PricePerDay = car.PricePerDay, 
                     MaxPassengers = car.MaxPassengers, 
                     Transmission = car.Transmission, 
@@ -95,7 +96,7 @@ namespace TravelGroupAssignment1.Controllers
         // POST: CarController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int carId, [Bind("CarId", "Make", "Model", "PricePerDay", "MaxPassengers",
+        public IActionResult Edit(int carId, [Bind("CarId", "Make", "Model", "Type", "PricePerDay", "MaxPassengers",
             "CompanyId", "Company", "Transmission", "HasAirConditioning", "HasUnlimitedMileage")] Car car)
         {
             if (carId != car.CarId) return NotFound();
