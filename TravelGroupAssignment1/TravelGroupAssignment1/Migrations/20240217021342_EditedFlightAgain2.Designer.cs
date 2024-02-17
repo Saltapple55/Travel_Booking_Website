@@ -12,8 +12,8 @@ using TravelGroupAssignment1.Data;
 namespace TravelGroupAssignment1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240216191013_FlightBooking")]
-    partial class FlightBooking
+    [Migration("20240217021342_EditedFlightAgain2")]
+    partial class EditedFlightAgain2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -113,18 +113,12 @@ namespace TravelGroupAssignment1.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ArrivalTime")
-                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DepartTime")
-                        .IsRequired()
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Departure")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Destination")
+                    b.Property<string>("From")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -135,6 +129,10 @@ namespace TravelGroupAssignment1.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("Stops")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("To")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

@@ -5,7 +5,8 @@ namespace TravelGroupAssignment1.Models
     public class Flight
     {
 
-        [Key] public int FlightId { get; set; }
+        [Key] 
+        public int FlightId { get; set; }
         [Required]
         public string Airline { get; set;}
         [Required]
@@ -14,22 +15,19 @@ namespace TravelGroupAssignment1.Models
         [Required]
 
         public int MaxPassenger { get; set;}
-        public IEnumerable<Passenger> PassengerList { get; set;}
+        public IEnumerable<Passenger>? PassengerList { get; set;}
         [Required]
-
-        public string From { get; set;}
+        public string? From { get; set;}
         [Required]
+        public string? To { get; set;}
 
-        public string To { get; set;}
         [Required]
-
 
         public DateTime? DepartTime { get; set;}
         [Required]
 
         public DateTime? ArrivalTime { get; set; }
-        [Required]
-        public string[] Stops { get; set; }
+        public string[]? Stops { get; set; }
 
 
 

@@ -46,18 +46,17 @@ namespace TravelGroupAssignment1.Controllers
 
         }
         [HttpGet]
-        public IActionResult Edit(int id)
+        public IActionResult Edit(int flightId)
 
         {
-            var flight = _context.Flights.Find(id);
+            var flight = _context.Flights.Find(flightId);
             return View(flight);
 
 
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-
-        public IActionResult Edit(int id, [Bind("Airline, Price, From, To, DepartTime, ArrivalTime ")] Flight flight)
+        public IActionResult Edit(int id, [Bind("FlightId", "Airline", "Price", "MaxPassenger", "From", "To", "DepartTime", "ArrivalTime")] Flight flight)
         {
             if (id != flight.FlightId)
             {
@@ -66,24 +65,27 @@ namespace TravelGroupAssignment1.Controllers
             }
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Flights.Update(flight);                 //add new project - only in memory, nothing in database yet
-                    _context.SaveChanges(); //commits changes to memory
+                Console.WriteLine("isValid");
+                ///try
+                //{
+                    _context.Flights.Update(flight);             
+                    _context.SaveChanges(); 
                     return RedirectToAction("Index");
-                }
+               /* }
                 catch (DbUpdateConcurrencyException ex)
-                { //for when two updates at the same time-rarely will happen with our form
+                { 
                     if (!FlightExists(flight.FlightId))
                     {
                         return NotFound();
-                    }
+                     }
 
                     throw;
-                }
+                }*/
 
             }
-            return View(flight);
+            
+            Console.WriteLine("not valid");
+            return RedirectToAction("Index", "Home");
 
         }
         public IActionResult Delete(int id)

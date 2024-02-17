@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TravelGroupAssignment1.Migrations
 {
     /// <inheritdoc />
-    public partial class FlightBooking : Migration
+    public partial class EditedFlight : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -37,8 +37,8 @@ namespace TravelGroupAssignment1.Migrations
                     Airline = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false),
                     MaxPassenger = table.Column<int>(type: "int", nullable: false),
-                    Departure = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Destination = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    From = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    To = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DepartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ArrivalTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Stops = table.Column<string>(type: "nvarchar(max)", nullable: false)

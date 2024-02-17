@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using TravelGroupAssignment1.Data;
-using TravelGroupAssignment1.Migrations;
 using TravelGroupAssignment1.Models;
 using FlightBooking = TravelGroupAssignment1.Models.FlightBooking;
 
