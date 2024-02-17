@@ -17,10 +17,10 @@ namespace TravelGroupAssignment1.Models
         public IEnumerable<Passenger> PassengerList { get; set;}
         [Required]
 
-        public string Departure { get; set;}
+        public string From { get; set;}
         [Required]
 
-        public string Destination { get; set;}
+        public string To { get; set;}
         [Required]
 
 

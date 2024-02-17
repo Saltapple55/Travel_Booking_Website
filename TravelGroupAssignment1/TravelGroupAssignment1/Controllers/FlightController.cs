@@ -57,7 +57,7 @@ namespace TravelGroupAssignment1.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public IActionResult Edit(int id, [Bind("Airline, Price, Departure, Destination, DepartTime, ArrivalTime ")] Flight flight)
+        public IActionResult Edit(int id, [Bind("Airline, Price, From, To, DepartTime, ArrivalTime ")] Flight flight)
         {
             if (id != flight.FlightId)
             {

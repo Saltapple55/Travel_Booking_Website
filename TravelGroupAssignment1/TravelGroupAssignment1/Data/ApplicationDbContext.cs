@@ -29,15 +29,7 @@ namespace TravelGroupAssignment1.Data
                 new Customer { CustomerId = 1, Username="username", Password="password", FirstName = "Guest", LastName="User", Email = "Comp2319@gmail.com" }
 
                 );
-            /*modelBuilder.Entity<Booking>()
-            .HasOne(b => b.CarBooking)
-            .WithMany(cb => cb.Bookings)
-            .HasForeignKey(b => b.TripId); // Assuming TripId is the foreign key for CarBookings relationship
 
-            modelBuilder.Entity<Booking>()
-                .HasOne(b => b.FlightBooking)
-                .WithMany(fb => fb.Bookings)
-                .HasForeignKey(b => b.TripId); */
             modelBuilder.Entity<Trip>().HasData(
                 new Trip { TripId = 1, CustomerId = 1}
                  );

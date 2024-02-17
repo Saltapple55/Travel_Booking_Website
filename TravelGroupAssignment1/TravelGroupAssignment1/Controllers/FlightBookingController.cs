@@ -2,7 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using TravelGroupAssignment1.Data;
+using TravelGroupAssignment1.Migrations;
 using TravelGroupAssignment1.Models;
+using FlightBooking = TravelGroupAssignment1.Models.FlightBooking;
 
 namespace TravelGroupAssignment1.Controllers
 {
@@ -18,18 +20,29 @@ namespace TravelGroupAssignment1.Controllers
         public IActionResult Index()
         {
             var fs=_context.FlightBookings.ToList();
-            if(fs==null) return NotFound();
             return View(fs);
         }
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult Create(int flightId)
         {
-            return View();
+            var flight = _context.Flights.Find(flightId);
+            if (flight==null)
+            {
+                return NotFound();
+
+            }
+            var flightbooking = new FlightBooking
+            {
+                FlightId = flightId
+            };
+
+
+            return View(flight);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public IActionResult Create(FlightBooking booking)
+        public IActionResult Create([Bind("FlightId, FlightClass, Passengers")] FlightBooking booking)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +72,7 @@ namespace TravelGroupAssignment1.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public IActionResult Edit(int id, [Bind("Flight, FlightClass, Passengers")] FlightBooking flightbooking)
+        public IActionResult Edit(int id, [Bind("Flight, FlightClass, Passengers")] Models.FlightBooking flightbooking)
         {
             if (id != flightbooking.BookingId)
             {

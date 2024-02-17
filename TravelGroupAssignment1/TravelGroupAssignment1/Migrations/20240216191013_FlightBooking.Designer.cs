@@ -12,8 +12,8 @@ using TravelGroupAssignment1.Data;
 namespace TravelGroupAssignment1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240213163207_FlightPassengerCustomer")]
-    partial class FlightPassengerCustomer
+    [Migration("20240216191013_FlightBooking")]
+    partial class FlightBooking
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,6 +25,37 @@ namespace TravelGroupAssignment1.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("TravelGroupAssignment1.Models.Booking", b =>
+                {
+                    b.Property<int>("BookingId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingId"));
+
+                    b.Property<string>("BookingReference")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
+
+                    b.Property<int>("TripId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BookingId");
+
+                    b.HasIndex("TripId");
+
+                    b.ToTable("Booking");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Booking");
+
+                    b.UseTphMappingStrategy();
+                });
+
             modelBuilder.Entity("TravelGroupAssignment1.Models.Customer", b =>
                 {
                     b.Property<int>("CustomerId")
@@ -33,34 +64,40 @@ namespace TravelGroupAssignment1.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerId"));
 
-                    b.Property<int?>("FlightId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("email")
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("firstName")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("lastName")
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("password")
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("username")
+                    b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CustomerId");
 
-                    b.HasIndex("FlightId");
-
                     b.ToTable("Customers");
+
+                    b.HasData(
+                        new
+                        {
+                            CustomerId = 1,
+                            Email = "Comp2319@gmail.com",
+                            FirstName = "Guest",
+                            LastName = "User",
+                            Password = "password",
+                            Username = "username"
+                        });
                 });
 
             modelBuilder.Entity("TravelGroupAssignment1.Models.Flight", b =>
@@ -71,31 +108,33 @@ namespace TravelGroupAssignment1.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FlightId"));
 
-                    b.Property<string>("airline")
+                    b.Property<string>("Airline")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("arrivalTime")
+                    b.Property<DateTime?>("ArrivalTime")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("departTime")
+                    b.Property<DateTime?>("DepartTime")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("departure")
+                    b.Property<string>("Departure")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("destination")
+                    b.Property<string>("Destination")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("maxPassenger")
+                    b.Property<int>("MaxPassenger")
                         .HasColumnType("int");
 
-                    b.Property<double>("price")
+                    b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<string>("stops")
+                    b.Property<string>("Stops")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -136,6 +175,12 @@ namespace TravelGroupAssignment1.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PassengerId"));
 
+                    b.Property<int?>("FlightBookingBookingId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("FlightId")
+                        .HasColumnType("int");
+
                     b.Property<string>("firstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -153,6 +198,10 @@ namespace TravelGroupAssignment1.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PassengerId");
+
+                    b.HasIndex("FlightBookingBookingId");
+
+                    b.HasIndex("FlightId");
 
                     b.ToTable("Passengers");
                 });
@@ -194,10 +243,62 @@ namespace TravelGroupAssignment1.Migrations
                     b.ToTable("Rooms");
                 });
 
-            modelBuilder.Entity("TravelGroupAssignment1.Models.Customer", b =>
+            modelBuilder.Entity("TravelGroupAssignment1.Models.Trip", b =>
                 {
+                    b.Property<int>("TripId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TripId"));
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("TripId");
+
+                    b.ToTable("Trips");
+
+                    b.HasData(
+                        new
+                        {
+                            TripId = 1,
+                            CustomerId = 1
+                        });
+                });
+
+            modelBuilder.Entity("TravelGroupAssignment1.Models.FlightBooking", b =>
+                {
+                    b.HasBaseType("TravelGroupAssignment1.Models.Booking");
+
+                    b.Property<string>("FlightClass")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("FlightId")
+                        .HasColumnType("int");
+
+                    b.HasIndex("FlightId");
+
+                    b.HasDiscriminator().HasValue("FlightBooking");
+                });
+
+            modelBuilder.Entity("TravelGroupAssignment1.Models.Booking", b =>
+                {
+                    b.HasOne("TravelGroupAssignment1.Models.Trip", null)
+                        .WithMany("Bookings")
+                        .HasForeignKey("TripId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TravelGroupAssignment1.Models.Passenger", b =>
+                {
+                    b.HasOne("TravelGroupAssignment1.Models.FlightBooking", null)
+                        .WithMany("Passengers")
+                        .HasForeignKey("FlightBookingBookingId");
+
                     b.HasOne("TravelGroupAssignment1.Models.Flight", null)
-                        .WithMany("passengerList")
+                        .WithMany("PassengerList")
                         .HasForeignKey("FlightId");
                 });
 
@@ -212,14 +313,35 @@ namespace TravelGroupAssignment1.Migrations
                     b.Navigation("Hotel");
                 });
 
+            modelBuilder.Entity("TravelGroupAssignment1.Models.FlightBooking", b =>
+                {
+                    b.HasOne("TravelGroupAssignment1.Models.Flight", "Flight")
+                        .WithMany()
+                        .HasForeignKey("FlightId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Flight");
+                });
+
             modelBuilder.Entity("TravelGroupAssignment1.Models.Flight", b =>
                 {
-                    b.Navigation("passengerList");
+                    b.Navigation("PassengerList");
                 });
 
             modelBuilder.Entity("TravelGroupAssignment1.Models.Hotel", b =>
                 {
                     b.Navigation("Rooms");
+                });
+
+            modelBuilder.Entity("TravelGroupAssignment1.Models.Trip", b =>
+                {
+                    b.Navigation("Bookings");
+                });
+
+            modelBuilder.Entity("TravelGroupAssignment1.Models.FlightBooking", b =>
+                {
+                    b.Navigation("Passengers");
                 });
 #pragma warning restore 612, 618
         }

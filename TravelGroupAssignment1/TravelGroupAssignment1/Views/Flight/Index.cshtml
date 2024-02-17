@@ -1,44 +1,47 @@
-﻿@model List<Flight> //collection of tasks
+﻿@model List<Flight>
 @{
-    ViewData["Title"] = "Bookings List";
+    ViewData["Title"] = "List of Flights";
 }
+
 <h2>@ViewData["Title"]</h2>
+<a asp-action="Create" class="btn btn-primary">Create Flight <i class="fa-solid fa-plus"></i></a>
+<a asp-controller="Flight" asp-action="Index" class="btn btn-primary">Flights<i class="fa-solid fa-plus"></i></a>
 
-<a asp-action="create" class="btn btn-primary">Create</a>
-
-@if (Model.Any())
+@if (Model.Any()) // check if Model is null. 'Model' is reserved keyword to access the model
 {
+    <table class="table">
 
-    <table class=" table">
         <thead>
             <tr>
-                <th>Airline</th>
+                <th>Flight ID</th>
+                <th>AirLine</th>
+                <th>Price</th>
                 <th>From</th>
                 <th>To</th>
-                <th>Departure Time</th>
-                <th>Arrival Time</th>
-
-
-
+                <th>DepartTime</th>
+                <th>ArrivalTime</th>
             </tr>
         </thead>
 
         <tbody>
-            @foreach (var fbooking in Model)
+            @foreach (var flight in Model)
             {
-
                 <tr>
-                    <td>@fbooking.Airline</td>
-                    <td>@fbooking.Departure</td>
-                    <td>@fbooking.Destination</td>
-                    <td>@fbooking.DepartTime</td>
-                    <td>@fbooking.ArrivalTime</td>
-
+                    <td>@flight.FlightId</td>
+                    <td>@flight.Airline</td>
+                    <td>@flight.Price</td>
+                    <td>@flight.From</td>
+                    <td>@flight.To</td>
+                    <td>@flight.DepartTime</td>
+                    <td>@flight.ArrivalTime</td>
 
                     <td>
-                        <a class="nav-link text-dark  btn btn-info" asp-action="Details" asp-route-id="@fbooking.FlightId">Details</a> <!-- don't need to specify controller if same as default index' -->
-                        <a class="nav-link text-dark  btn btn-secondary" asp-action="Edit" asp-route-id="@fbooking.FlightId">Edit</a>
-                        <a class="nav-link text-dark  btn btn-warning" asp-action="Delete" asp-route-id="@fbooking.FlightId">Delete</a>
+                        <a asp-controller="FlightBooking" asp-action="Index" asp-route-flightId="@flight.FlightId" class="btn btn.sm btn-secondary" role="button">Bookings<i class="fa-solid fa-list-check"></i></a>
+                        <a asp-controller="FlightBooking" asp-action="Create" asp-route-flightId="@flight.FlightId" class="btn btn.sm btn-secondary" role="button">Bookings<i class="fa-solid fa-list-check"></i></a>
+
+                        <a asp-action="Details" asp-route-flightId="@flight.FlightId" class="btn btn.sm btn-secondary" role="button">Details <i class="fa-solid fa-circle-info"></i></a>
+                        <a asp-action="Edit" asp-route-flightId="@flight.FlightId" class="btn btn.sm btn-secondary" role="button">Edit <i class="fa-regular fa-pen-to-square"></i></a>
+                        <a asp-action="Delete" asp-route-flightId="@flight.FlightId" class="btn btn.sm btn-danger" role="button">Delete <i class="fa-solid fa-circle-xmark"></i></a>
                     </td>
 
                 </tr>
@@ -46,9 +49,9 @@
         </tbody>
 
     </table>
+
 }
 else
 {
-
-    <p>No Bookings have been made</p>
+    <p>No flights available</p>
 }
