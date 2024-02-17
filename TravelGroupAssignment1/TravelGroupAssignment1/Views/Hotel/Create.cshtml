@@ -1,0 +1,54 @@
+﻿@model Hotel // bound to an empty Project (no attributes set)
+
+@{
+    // Razor block
+    ViewData["Title"] = "Create Hotel"; // set title of view
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<!-- post method calls the form submission action -->
+<form asp-action="Create" method="post">
+    <!-- Warning if input validation fails -->
+    <div asp-validation-summary="ModelOnly" class="text-warning"></div>
+
+    <div>
+        <label asp-for="HotelName" class="control-label">Hotel Name</label>
+        <input asp-for="HotelName" class="form-control" />
+        <span asp-validation-for="HotelName" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Location" class="control-label"></label>
+        <input asp-for="Location" class="form-control" />
+        <span asp-validation-for="Location" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Description" class="control-label"></label>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+
+    <div>
+        <label asp-for="Amenities" class="control-label"></label>
+        <input asp-for="Amenities" class="form-control" />
+        <span asp-validation-for="Amenities" class="text-danger"></span>
+    </div>
+
+    <!-- submit button -->
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+
+
+</form>
+
+<!-- Validation scripts (if any) -->
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

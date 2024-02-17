@@ -23,22 +23,22 @@ namespace TravelGroupAssignment1.Controllers
         public IActionResult Index(int hotelId)
         {
             var rooms = _context.Rooms
-            .Where(h => h.HotelId == hotelId)
-            .ToList();
+                        .Where(h => h.HotelId == hotelId)
+                        .ToList();
             if (rooms == null) return NotFound();
             ViewBag.HotelId = hotelId;
-            ViewBag.HotelName = _context.Hotels.Find(hotelId).HotelName;
+            ViewBag.HotelName = _context.Hotels.Find(hotelId)?.HotelName;
             return View(rooms);
         }
 
         // GET: RoomController/Details/5
         [HttpGet]
-        public IActionResult Details(int roomId)
+        public IActionResult Details(int id)
         {
             var room = _context.Rooms
                         .Include(r => r.Hotel)
-                        .FirstOrDefault(r => r.RoomId == roomId);
-            return View();
+                        .FirstOrDefault(r => r.RoomId == id);
+            return View(room);
         }
 
         // GET: RoomController/Create
@@ -47,7 +47,8 @@ namespace TravelGroupAssignment1.Controllers
         {
             var hotel = _context.Hotels.Find(hotelId);
             if (hotel == null) return NotFound();
-            
+            ViewBag.HotelName = _context.Hotels.Find(hotelId)?.HotelName;
+
             var room = new Room { HotelId = hotelId };
             return View(room);
         }
@@ -55,8 +56,8 @@ namespace TravelGroupAssignment1.Controllers
         // POST: RoomController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Name", "HotelId", "Hotel",
-            "Capacity", "BedDescription", "PricePerNight", "RoomSize")] Room room)
+        public IActionResult Create([Bind("Name", "Capacity", "BedDescription", "RoomSize",
+             "PricePerNight", "Amenities", "HotelId")] Room room)
         {
             if (ModelState.IsValid)
             {
@@ -71,11 +72,11 @@ namespace TravelGroupAssignment1.Controllers
 
         // GET: RoomController/Edit/5
         [HttpGet]
-        public IActionResult Edit(int roomId)
+        public IActionResult Edit(int id)
         {
             var room = _context.Rooms
                         .Include(r => r.Hotel)
-                        .FirstOrDefault(r => r.RoomId == roomId);
+                        .FirstOrDefault(r => r.RoomId == id);
             if (room == null) return NotFound();
 
             ViewBag.HotelList = new SelectList(_context.Hotels, "HotelId", "HotelName", room.HotelId);
@@ -85,10 +86,10 @@ namespace TravelGroupAssignment1.Controllers
         // POST: RoomController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int roomId, [Bind("RoomId", "Name", "HotelId", "Hotel",
-            "Capacity", "BedDescription", "PricePerNight", "RoomSize")] Room room)
+        public IActionResult Edit(int id, [Bind("RoomId", "Name", "Capacity", "BedDescription", "RoomSize",
+             "PricePerNight", "Amenities", "HotelId")] Room room)
         {
-            if (roomId != room.RoomId) return NotFound();
+            if (id != room.RoomId) return NotFound();
 
             if (ModelState.IsValid)
             {
@@ -102,11 +103,11 @@ namespace TravelGroupAssignment1.Controllers
 
         // GET: RoomController/Delete/5
         [HttpGet]
-        public IActionResult Delete(int roomId)
+        public IActionResult Delete(int id)
         {
             var room = _context.Rooms
                         .Include(r => r.Hotel)
-                        .FirstOrDefault(r => r.RoomId == roomId);
+                        .FirstOrDefault(r => r.RoomId == id);
             if (room == null) return NotFound();
             return View(room);
         }
@@ -114,9 +115,9 @@ namespace TravelGroupAssignment1.Controllers
         // POST: RoomController/DeleteConfirmed/5
         [HttpPost, ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int roomId)
+        public IActionResult DeleteConfirmed(int id)
         {
-            var room = _context.Rooms.Find(roomId);
+            var room = _context.Rooms.Find(id);
             if (room != null)
             {
                 _context.Rooms.Remove(room);

@@ -29,7 +29,7 @@ namespace TravelGroupAssignment1.Controllers
         {
             var hotel = _context.Hotels.FirstOrDefault(h => h.HotelId == id);
             if(hotel == null) return NotFound();
-            return View();
+            return View(hotel);
         }
 
         // GET: HotelController/Create
@@ -64,7 +64,7 @@ namespace TravelGroupAssignment1.Controllers
         // POST: HotelController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("HotelId", "HotelName", "Location", "Amenities")] Hotel hotel)
+        public IActionResult Edit(int id, [Bind("HotelId", "HotelName", "Location", "Description","Amenities")] Hotel hotel)
         {
             if(id != hotel.HotelId) return NotFound();
             if (ModelState.IsValid)
@@ -89,7 +89,7 @@ namespace TravelGroupAssignment1.Controllers
         {
             var hotel = _context.Hotels.FirstOrDefault(h => h.HotelId == id);
             if (hotel == null) return NotFound();
-            return View();
+            return View(hotel);
         }
 
         // POST: HotelController/DeleteConfirmed/5

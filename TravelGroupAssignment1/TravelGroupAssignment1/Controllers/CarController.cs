@@ -59,7 +59,7 @@ namespace TravelGroupAssignment1.Controllers
         {
             if (ModelState.IsValid)
             {
-                CarRentalCompany company = _context.CarRentalCompanies.FirstOrDefault(cr => cr.CarRentalCompanyId == car.CompanyId);
+                CarRentalCompany? company = _context.CarRentalCompanies.FirstOrDefault(cr => cr.CarRentalCompanyId == car.CompanyId);
                 Car newCar = new Car { 
                     Make = car.Make, 
                     Model = car.Model, 
