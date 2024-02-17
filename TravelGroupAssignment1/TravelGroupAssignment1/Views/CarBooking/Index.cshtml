@@ -1,0 +1,51 @@
+﻿@model IEnumerable<CarBooking>
+@{
+    ViewData["Title"] = "List of Car Bookings";
+    string carName = ViewBag.CarName as string;
+}
+
+<h2>@ViewData["Title"]: @carName</h2>
+<a asp-action="Create" class="btn btn-primary">Create Booking<i class="fa-solid fa-plus"></i></a>
+
+@if (Model.Any()) // check if Model is null. 'Model' is reserved keyword to access the model
+{
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>Booking ID</th>
+                <th>Trip ID</th>
+                <th>Booking Reference</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var booking in Model)
+            {
+                <tr>
+                    <td>@booking.BookingId</td>
+                    <td>@booking.TripId</td>
+                    <td>@booking.BookingReference</td>
+                    <td>@booking.StartDate.ToString()</td>
+                    <td>@booking.EndDate.ToString()</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@booking.CarId" class="btn btn.sm btn-secondary" role="button">Details <i class="fa-solid fa-circle-info"></i></a>
+                        <a asp-action="Edit" asp-route-id="@booking.CarId" class="btn btn.sm btn-secondary" role="button">Edit <i class="fa-regular fa-pen-to-square"></i></a>
+                        <a asp-action="Delete" asp-route-id="@booking.CarId" class="btn btn.sm btn-danger" role="button">Delete <i class="fa-solid fa-circle-xmark"></i></a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+}
+else
+{
+    <p>No cars available</p>
+}
+<a asp-controller="Car" asp-action="Index" class="btn btn.sm btn-secondary" role="button">Return to Cars<i class="fa-solid fa-list-check"></i></a>

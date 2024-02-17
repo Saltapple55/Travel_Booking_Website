@@ -25,6 +25,17 @@
     </div>
 
     <div>
+        <label asp-for="Type" class="control-label"></label>
+        <select asp-for="Type" class="form-control">
+            <option value="">Select Car Type</option>
+            @foreach (var type in Enum.GetValues(typeof(CarType)))
+            {
+                <option value="@type">@type</option>
+            }
+        </select>
+    </div>
+
+    <div>
         <label asp-for="PricePerDay" class="control-label">Price / Day</label>
         <input asp-for="PricePerDay" class="form-control" />
         <span asp-validation-for="PricePerDay" class="text-danger"></span>

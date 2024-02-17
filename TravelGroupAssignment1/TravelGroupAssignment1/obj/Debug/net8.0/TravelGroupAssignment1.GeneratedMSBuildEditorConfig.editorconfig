@@ -26,6 +26,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\CM\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment1
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/CM/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Views/CarBooking/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyQm9va2luZ1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/CM/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Views/CarRentalCompany/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyUmVudGFsQ29tcGFueVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

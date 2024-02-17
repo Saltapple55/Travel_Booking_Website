@@ -9,7 +9,9 @@ namespace TravelGroupAssignment1.Models
         [Required]
         public string? Make { get; set; }
         [Required]
-        public string? Model {  get; set; }
+        public string? Model { get; set; }
+        [Required]
+        public string? Type { get; set; }
         [Required]
         public double PricePerDay { get; set; }
         public int MaxPassengers { get; set; }
@@ -19,6 +21,17 @@ namespace TravelGroupAssignment1.Models
         [Required]
         public int CompanyId { get; set; }
         public CarRentalCompany? Company { get; set; }
-        public ICollection<CarBooking>? Bookings { get; set; }
+        public ICollection<CarBooking>? Bookings { get; set; } 
     }
+
+    public enum CarType
+    {
+        Sedan,
+        Hatchback,
+        SUV,
+        Minivan,
+        Van,
+        Luxury,
+        Sport
+    };
 }
