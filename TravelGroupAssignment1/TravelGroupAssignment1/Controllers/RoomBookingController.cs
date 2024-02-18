@@ -7,55 +7,54 @@ using TravelGroupAssignment1.Models;
 
 namespace TravelGroupAssignment1.Controllers
 {
-    public class CarBookingController : Controller
+    public class RoomBookingController : Controller
     {
         // required
         private readonly ApplicationDbContext _context;
 
         // required for DI 
-        public CarBookingController(ApplicationDbContext context)
+        public RoomBookingController(ApplicationDbContext context)
         {
             this._context = context;
         }
 
-        // GET: CarBookingController/5
+        // GET: RoomBookingController/5
         [HttpGet]
-        public IActionResult Index(int carId)
+        public IActionResult Index(int roomId)
         {
-            var bookings = _context.CarBookings
-                        .Include(c => c.Car)
-                        .Where(c => c.CarId == carId)
+            var roomBookings = _context.RoomBookings
+                        .Where(rb => rb.Rooms.Any(room => room.RoomId == roomId))
                         .ToList();
-            if (bookings == null) return NotFound();
-            Car? car = _context.Cars.Find(carId);
-            if (car == null) return NotFound();
-            ViewBag.CarName = car.Make + " " + car.Model;
-            ViewBag.CarType = car.Type;
-            ViewBag.CarId = carId;
-            return View(bookings);
+            if (roomBookings == null) return NotFound();
+            var room = _context.Rooms.Find(roomId);
+            if (room == null) return NotFound();
+
+            ViewBag.RoomName = room.Name;
+            ViewBag.RoomId = roomId;
+            return View(roomBookings);
         }
 
         // GET: CarBookingController/Details/5
         [HttpGet]
         public IActionResult Details(int id)
         {
-            var booking = _context.CarBookings
-                        .Include(cb => cb.Car)
-                        .FirstOrDefault(cb => cb.BookingId == id);
+            var booking = _context.RoomBookings
+                        .Include(rb => rb.Rooms)
+                        .FirstOrDefault(rb => rb.BookingId == id);
             return View(booking);
         }
 
         // GET: CarBookingController/Create/5
         [HttpGet]
-        public IActionResult Create(int carId)
+        public IActionResult Create(int roomId)
         {
-            var car = _context.Cars.Find(carId);
-            if (car == null) return NotFound();
-            var carBooking = new CarBooking { CarId = carId };
-            ViewBag.CarName = car.Make + " " + car.Model;
-            ViewBag.CarType = car.Type;
-            ViewBag.Car = car;
-            return View(carBooking);
+            var room = _context.Rooms.Find(roomId);
+            if (room == null) return NotFound();
+            ViewBag.RoomName = room.Name;
+            ViewBag.RoomId = roomId;
+
+            //var roomBooking = new Room_RoomBooking { };
+            return View();
         }
 
         // POST: CarBookingController/Create
@@ -98,7 +97,7 @@ namespace TravelGroupAssignment1.Controllers
             {
                 _context.CarBookings.Update(carBooking);
                 _context.SaveChanges();
-                return RedirectToAction("Index", new { carId = carBooking.CarId});
+                return RedirectToAction("Index", new { carId = carBooking.CarId });
             }
             return View();
         }

@@ -126,5 +126,27 @@ namespace TravelGroupAssignment1.Controllers
             }
             return NotFound();
         }
+
+        // search by location and capacity (search bar same for hotel and room)
+        public async Task<IActionResult> Search(int hotelId, int capacity)
+        {
+            var roomQuery = from p in _context.Rooms
+                             select p;
+            // Keeping Location for future possible Hotel recommendations
+            bool searchValid = hotelId >= 0 && capacity >= 0;
+            if (searchValid)
+            {
+                roomQuery = roomQuery.Where(r => r.HotelId == hotelId)
+                                .Where(r => r.Capacity >= capacity);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+            var rooms = await roomQuery.ToListAsync();
+            ViewBag.SearchValid = searchValid;
+            ViewBag.Capacity = capacity;
+            return View("Index", rooms);
+        }
     }
 }

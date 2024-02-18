@@ -107,6 +107,29 @@ namespace TravelGroupAssignment1.Controllers
             return NotFound();
         }
 
+        public async Task<IActionResult> Search(string location, int capacity)
+        {
+            var hotelQuery = from p in _context.Hotels
+                             select p;
+            bool searchValid = !String.IsNullOrEmpty(location) && capacity > 0;
+            if (searchValid)
+            {
+                hotelQuery = hotelQuery.Where(h => !String.IsNullOrEmpty(h.Location) && 
+                                        h.Location.Contains(location) || !String.IsNullOrEmpty(h.Description) && h.Description.Contains(location));
+                hotelQuery = hotelQuery.Where(h => h.Rooms != null 
+                                        && h.Rooms.Any(r => r.Capacity >= capacity));
+            } 
+            else
+            {
+                return RedirectToAction("Index");
+            }
+            var hotels = await hotelQuery.ToListAsync();
+            ViewBag.SearchValid = searchValid;
+            ViewBag.Location = location;
+            ViewBag.Capacity = capacity;
+            return View("Index", hotels);
+        }
+
         public bool HotelExists(int id)
         {
             return _context.Hotels.Any(h => h.HotelId == id);
