@@ -23,7 +23,7 @@ namespace TravelGroupAssignment1.Controllers
         public IActionResult Index(int roomId)
         {
             var roomBookings = _context.RoomBookings
-                        .Where(rb => rb.Rooms.Any(room => room.RoomId == roomId))
+                        .Where(rb => rb.Room_RoomBooking.Any(room => room.RoomId == roomId))
                         .ToList();
             if (roomBookings == null) return NotFound();
             var room = _context.Rooms.Find(roomId);
@@ -34,17 +34,17 @@ namespace TravelGroupAssignment1.Controllers
             return View(roomBookings);
         }
 
-        // GET: CarBookingController/Details/5
+        // GET: RoomBookingControllers/Details/5
         [HttpGet]
         public IActionResult Details(int id)
         {
             var booking = _context.RoomBookings
-                        .Include(rb => rb.Rooms)
+                        .Include(rb => rb.Room_RoomBooking)
                         .FirstOrDefault(rb => rb.BookingId == id);
             return View(booking);
         }
 
-        // GET: CarBookingController/Create/5
+        // GET: RoomBookingController/Create/5
         [HttpGet]
         public IActionResult Create(int roomId)
         {
@@ -54,26 +54,26 @@ namespace TravelGroupAssignment1.Controllers
             ViewBag.RoomId = roomId;
 
             //var roomBooking = new Room_RoomBooking { };
-            return View();
+            return View(room);
         }
 
-        // POST: CarBookingController/Create
+        // POST: RoomBookingController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create([Bind("TripId", "BookingReference",
-            "CarId", "Car", "StartDate", "EndDate")] CarBooking carBooking)
+            "RoomId", "Room_RoomBooking", "CheckInDate", "CheckOutDate")] RoomBooking roomBooking)
         {
             if (ModelState.IsValid)
             {
-                _context.CarBookings.Add(carBooking);
+                _context.RoomBookings.Add(roomBooking);
                 _context.SaveChanges();
-                return RedirectToAction("Index", new { carId = carBooking.CarId });
+                return RedirectToAction("Index", new {});
             }
-            return View(carBooking);
+            return View();
 
         }
 
-        // GET: CarBookingController/Edit/5
+        // GET: RoomBookingController/Edit/5
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -85,7 +85,7 @@ namespace TravelGroupAssignment1.Controllers
             return View(carBooking);
         }
 
-        // POST: CarBookingController/Edit/5
+        // POST: RoomBookingController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, [Bind("BookingId", "TripId", "BookingReference",
@@ -102,7 +102,7 @@ namespace TravelGroupAssignment1.Controllers
             return View();
         }
 
-        // GET: CarBookingController/Delete/5
+        // GET: RoomBookingController/Delete/5
         [HttpGet]
         public IActionResult Delete(int id)
         {
@@ -113,7 +113,7 @@ namespace TravelGroupAssignment1.Controllers
             return View(carBooking);
         }
 
-        // POST: CarBookingController/DeleteConfirmed/5
+        // POST: RoomBookingController/DeleteConfirmed/5
         [HttpPost, ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)

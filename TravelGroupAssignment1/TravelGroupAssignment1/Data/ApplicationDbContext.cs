@@ -12,6 +12,8 @@ namespace TravelGroupAssignment1.Data
         public DbSet<Car> Cars { get; set; }
         public DbSet<CarBooking> CarBookings { get; set; }
         public DbSet<RoomBooking> RoomBookings { get; set; }
+        public DbSet<Room_RoomBooking> Room_RoomBookings { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -31,9 +33,22 @@ namespace TravelGroupAssignment1.Data
                 .HasForeignKey(c => c.CarId);
 
             modelBuilder.Entity<Room>()
-                .HasMany(r => r.Bookings)
-                .WithMany(rb => rb.Rooms)
-                .UsingEntity(j => j.ToTable("Room_RoomBookings"));
+                .HasMany(r => r.Room_RoomBooking)
+                .WithOne(h => h.Room)
+                .HasForeignKey(r => r.RoomId);
+
+            modelBuilder.Entity<RoomBooking>()
+                .HasMany(r => r.Room_RoomBooking)
+                .WithOne(h => h.RoomBooking)
+                .HasForeignKey(r => r.BookingId);
+
+            modelBuilder.Entity<Room_RoomBooking>()
+                .HasKey(rb => new { rb.BookingId, rb.RoomId });
+
+            /*            modelBuilder.Entity<Room>()
+                            .HasMany(r => r.Bookings)
+                            .WithMany(rb => rb.Room_RoomBooking)
+                            .UsingEntity(j => j.ToTable("Room_RoomBookings"));*/
         }
     }
 }

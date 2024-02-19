@@ -20,7 +20,7 @@ namespace TravelGroupAssignment1.Models
         [Required]
         public int HotelId { get; set; }
         public Hotel? Hotel { get; set; }
-        public ICollection<RoomBooking>? Bookings { get; set; }
+        public ICollection<Room_RoomBooking>? Room_RoomBooking { get; set; }
 
     }
 }

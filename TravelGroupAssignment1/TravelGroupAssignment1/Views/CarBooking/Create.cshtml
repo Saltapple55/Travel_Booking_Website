@@ -1,25 +1,69 @@
-﻿@model CarBooking
+﻿@using System.Globalization
+@model CarBooking
 
 @{
-    ViewData["Title"] = "Create Car Booking"; 
+    ViewData["Title"] = "Confirm Car Booking"; 
     string carName = ViewBag.CarName as string;
     string carType = ViewBag.CarType as string;
 }
 
 <h2>@ViewData["Title"]</h2>
 <h4>@carName (@carType)</h4>
+
+<dl class="row">
+    <dt class="col-sm-3">Price/Day</dt>
+    <dd class="col-sm-9">$@ViewBag.Car.PricePerDay</dd>
+
+    <dt class="col-sm-3">Max Passengers</dt>
+    <dd class="col-sm-9">@ViewBag.Car.MaxPassengers</dd>
+
+    <dt class="col-sm-3">Transmission</dt>
+    <dd class="col-sm-9">@ViewBag.Car.Transmission</dd>
+
+    <dt class="col-sm-3">Air Conditioning</dt>
+    <dd class="col-sm-9">@(ViewBag.Car.HasAirConditioning ? "Yes" : "No")</dd>
+
+    <dt class="col-sm-3">Unlimited Mileage</dt>
+    <dd class="col-sm-9">@(ViewBag.Car.HasUnlimitedMileage ? "Yes" : "No")</dd>
+
+    <dt class="col-sm-3">Rental Company</dt>
+    <dd class="col-sm-9">
+        @(ViewBag.Company != null ? ViewBag.Company.CompanyName : "")
+    </dd>
+
+    <dt class="col-sm-3">Pickup Location</dt>
+    <dd class="col-sm-9">
+        @(ViewBag.Company != null ? ViewBag.Company.Location : "")
+    </dd>
+
+</dl>
+
 <form asp-action="Create" method="post">
     <!-- Warning if input validation fails -->
     <div asp-validation-summary="ModelOnly" class="text-warning"></div>
-
+        
     <div>
-        <label asp-for="StartDate" class="control-label"></label>
-        <input asp-for="StartDate" type="date" class="form-control" />
+        <label asp-for="StartDate" class="control-label">Start Date</label>
+        @if (ViewBag.EndDate != null)
+        {
+            <input asp-for="StartDate" value="@ViewBag.StartDate.ToString("yyyy-MM-dd")" type="date" class="form-control" readonly />
+        }
+        else
+        {
+            <input asp-for="StartDate" value="@(DateTime.Now.AddDays(2).ToString("yyyy-MM-dd"))" type="date" class="form-control" />
+        }
     </div>
 
     <div>
-        <label asp-for="EndDate" class="control-label"></label>
-        <input asp-for="EndDate" type="date" class="form-control" />
+        <label asp-for="EndDate" class="control-label">Return Date</label>
+        @if (ViewBag.EndDate != null)
+        {
+            <input asp-for="EndDate" value="@ViewBag.EndDate.ToString("yyyy-MM-dd")" type="date" class="form-control" readonly/>
+        }
+        else
+        {
+            <input asp-for="EndDate" value="@(DateTime.Now.AddDays(2).ToString("yyyy-MM-dd"))" type="date" class="form-control"/>
+        }
     </div>
 
     <div class="form-group">

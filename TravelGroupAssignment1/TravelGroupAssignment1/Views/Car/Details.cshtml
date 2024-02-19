@@ -29,7 +29,11 @@
             <dd class="col-sm-9">@(Model.HasUnlimitedMileage? "Yes" : "No")</dd>
 
             <dt class="col-sm-3">Rental Company</dt>
-            <dd class="col-sm-9">@(Model.Company != null? @Model.Company.CompanyName : "")</dd>
+            <dd class="col-sm-9">
+                <a asp-controller="CarRentalCompany" asp-action="Details" asp-route-id="@Model.CompanyId" class="btn btn-outline-info">
+                    @(Model.Company != null ? @Model.Company.CompanyName : "")
+                </a>
+            </dd>
 
         </dl>
 

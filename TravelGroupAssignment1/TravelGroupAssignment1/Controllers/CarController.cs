@@ -136,5 +136,28 @@ namespace TravelGroupAssignment1.Controllers
             }
             return NotFound();
         }
+
+        public async Task<IActionResult> Search(string location, DateTime startDate, DateTime endDate)
+        {
+            var carQuery = from p in _context.Cars
+                             select p;
+            bool searchValid = !String.IsNullOrEmpty(location);
+            if (searchValid)
+            {
+                carQuery = carQuery.Where(c => c.Company != null && c.Company.Location.Contains(location))
+                                .Where(c => !c.Bookings.Any(b => b.EndDate >= startDate && b.EndDate <= endDate 
+                                    || b.StartDate >= startDate && b.StartDate <= endDate));
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+            var cars = await carQuery.Include(c => c.Company).ToListAsync();
+            ViewBag.SearchValid = searchValid;
+            ViewBag.Location = location;
+            ViewBag.StartDate = startDate;
+            ViewBag.EndDate = endDate;
+            return View("Index", cars);
+        }
     }
 }

@@ -47,15 +47,19 @@ namespace TravelGroupAssignment1.Controllers
 
         // GET: CarBookingController/Create/5
         [HttpGet]
-        public IActionResult Create(int carId)
+        public IActionResult Create(int carId, DateTime? startDate, DateTime? endDate)
         {
             var car = _context.Cars.Find(carId);
             if (car == null) return NotFound();
-            var carBooking = new CarBooking { CarId = carId };
+            var company = _context.CarRentalCompanies.Find(car.CompanyId);
             ViewBag.CarName = car.Make + " " + car.Model;
             ViewBag.CarType = car.Type;
             ViewBag.Car = car;
-            return View(carBooking);
+            ViewBag.Company = company;
+            ViewBag.StartDate = startDate;
+            ViewBag.EndDate = endDate;
+
+            return View(new CarBooking { CarId = carId });
         }
 
         // POST: CarBookingController/Create
