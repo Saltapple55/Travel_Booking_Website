@@ -1,0 +1,58 @@
+﻿@model List<Room>
+@{
+    ViewData["Title"] = "List of Rooms";
+    string hotelName = ViewBag.HotelName;
+    int hotelId = ViewBag.HotelId as int? ?? 0;
+}
+
+<h2>@ViewData["Title"]</h2>
+<h4>@hotelName</h4>
+<a asp-action="Create" asp-route-hotelId="@ViewBag.HotelId" class="btn btn-primary">Create Room<i class="fa-solid fa-plus"></i></a>
+
+@if (Model.Any()) // check if Model is null. 'Model' is reserved keyword to access the model
+{
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>Room ID</th>
+                <th>Name</th>
+                <th>Capacity</th>
+                <th>Price / Night</th>
+                <th>Beds</th>
+                <th>Room Size</th>
+                <th>Amenities</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var room in Model)
+            {
+                <tr>
+                    <td>@room.RoomId</td>
+                    <td>@room.Name</td>
+                    <td>@room.Capacity</td>
+                    <td>$@room.PricePerNight</td>
+                    <td>@room.BedDescription</td>
+                    <td>@room.RoomSize sq ft</td>
+                    <td>@room.Amenities</td>
+                    <td>
+                        <a asp-controller="RoomBooking" asp-action="Index" asp-route-roomId="@room.RoomId" class="btn btn.sm btn-secondary" role="button">Bookings<i class="fa-solid fa-list-check"></i></a>
+                        <a asp-action="Details" asp-route-id="@room.RoomId" class="btn btn.sm btn-secondary" role="button">Details <i class="fa-solid fa-circle-info"></i></a>
+                        <a asp-action="Edit" asp-route-id="@room.RoomId" class="btn btn.sm btn-secondary" role="button">Edit <i class="fa-regular fa-pen-to-square"></i></a>
+                        <a asp-action="Delete" asp-route-id="@room.RoomId" class="btn btn.sm btn-danger" role="button">Delete <i class="fa-solid fa-circle-xmark"></i></a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+}
+else
+{
+    <p>No rooms available</p>
+}
+<a asp-controller="Hotel" asp-action="Index" class="btn btn-secondary">Return to Hotels<i class="fa-solid fa-plus"></i></a>

@@ -1,0 +1,84 @@
+﻿@model List<Car>
+@{
+    ViewData["Title"] = "List of Cars";
+    string? searchLocation = ViewBag.Location as string;
+    DateTime searchStartDate = ViewBag.StartDate != null ? ViewBag.StartDate : DateTime.Now;
+    DateTime searchEndDate = ViewBag.EndDate != null ? ViewBag.EndDate : DateTime.Now.AddDays(2);
+    bool searchValid = ViewBag.SearchValid != null? ViewBag.SearchValid : false;
+}
+
+<div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+    <form asp-action="Search" class="form" method="get">
+        <div asp-validation-summary="ModelOnly" class="text-warning"></div>
+
+        <div class="form-group mb-2 d-inline-block">
+            <label for="location" class="control-label">Location</label>
+            <input required id="location" name="location" value="@(!String.IsNullOrEmpty(searchLocation) ? searchLocation : "")" class="form-control" />
+        </div>
+
+        <div class="form-group mb-2 d-inline-block">
+            <label for="startDate" class="control-label">Start Date</label>
+            <input required id="startDate" name="startDate" type="date" value="@searchStartDate.ToString("yyyy-MM-dd")" class="form-control" />
+        </div>
+
+        <div class="form-group mb-2 d-inline-block">
+            <label for="endDate" class="control-label">End Date</label>
+            <input required id="endDate" name="endDate" type="date" value="@searchEndDate.ToString("yyyy-MM-dd")" class="form-control" />
+        </div>
+
+        <input type="submit" value="Search and Book" class="btn btn-warning" />
+    </form>
+</div>
+
+<h2>@ViewData["Title"]</h2>
+<a asp-action="Create" class="btn btn-primary">Create Car <i class="fa-solid fa-plus"></i></a>
+<a asp-controller="CarRentalCompany" asp-action="Index" class="btn btn-primary">Rental Companies<i class="fa-solid fa-plus"></i></a>
+
+@if (Model.Any()) // check if Model is null. 'Model' is reserved keyword to access the model
+{
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>Car ID</th>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Price/Day</th>
+                <th>Max Passengers</th>
+                <th>Rental Company</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var car in Model)
+            {
+                <tr>
+                    <td>@car.CarId</td>
+                    <td>@car.Make</td>
+                    <td>@car.Model</td>
+                    <td>@car.PricePerDay</td>
+                    <td>@car.MaxPassengers</td>
+                    <td>@(car.Company == null ? "None" : car.Company.CompanyName)</td>
+                    <td>
+                        @if(searchValid)
+                        {
+                            <a asp-controller="CarBooking" asp-action="Create" asp-route-carId="@car.CarId" asp-route-startDate="@searchStartDate.ToString("yyyy-MM-dd")" asp-route-endDate="@searchEndDate.ToString("yyyy-MM-dd")" class="btn btn.sm btn-warning" role="button">Book Car<i class="fa-solid fa-list-check"></i></a>
+                        }
+                        <a asp-controller="CarBooking" asp-action="Index" asp-route-carId="@car.CarId" class="btn btn.sm btn-secondary" role="button">All Bookings<i class="fa-solid fa-list-check"></i></a>
+                        <a asp-action="Details" asp-route-carId="@car.CarId" class="btn btn.sm btn-secondary" role="button">Details <i class="fa-solid fa-circle-info"></i></a>
+                        <a asp-action="Edit" asp-route-carId="@car.CarId" class="btn btn.sm btn-secondary" role="button">Edit <i class="fa-regular fa-pen-to-square"></i></a>
+                        <a asp-action="Delete" asp-route-carId="@car.CarId" class="btn btn.sm btn-danger" role="button">Delete <i class="fa-solid fa-circle-xmark"></i></a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+}
+else
+{
+    <p>No cars available</p>
+}

@@ -10,10 +10,11 @@ namespace TravelGroupAssignment1.Models
         public string? HotelName { get; set; }
         [Required]
         public string? Location { get; set; }
+        public string? Description { get; set; }
         
         // Consider changing Amenities to a separate entity
         // Amentities:Hotel = M:M
-        public string? Amentities { get; set; }
+        public string? Amenities { get; set; }
 
         public ICollection<Room>? Rooms { get; set; }
     }
