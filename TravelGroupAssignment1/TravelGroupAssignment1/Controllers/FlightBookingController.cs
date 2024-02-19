@@ -16,17 +16,24 @@ namespace TravelGroupAssignment1.Controllers
             _context = context;
         }
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(int flightId)
         {
-            var fs=_context.FlightBookings.ToList();
-            return View(fs);
+            var flight = _context.FlightBookings.Where(t => t.FlightId == flightId).ToList();
+            ViewBag.FlightId = flightId;
+            System.Diagnostics.Debug.WriteLine(flightId);
+
+            return View(flight);
         }
         [HttpGet]
         public IActionResult Create(int flightId)
         {
+
             var flight = _context.Flights.Find(flightId);
-            if (flight==null)
+
+            if (flight == null)
             {
+                System.Diagnostics.Debug.WriteLine(flightId);
+
                 return NotFound();
 
             }
@@ -36,13 +43,24 @@ namespace TravelGroupAssignment1.Controllers
             };
 
 
-            return View(flight);
+            var viewModel = new PassengerBooking
+            {
+                FBooking = flightbooking
+        };
+            return View(flightbooking);
         }
+        [HttpGet]
+        public IActionResult AddPassenger()
+        {
+            return PartialView("_AddPassenger");
+        }
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
 
         public IActionResult Create([Bind("FlightId, FlightClass, Passengers")] FlightBooking booking)
         {
+            ViewBag["Index"] = 1;
             if (ModelState.IsValid)
             {
                 _context.FlightBookings.Add(booking);
@@ -54,9 +72,9 @@ namespace TravelGroupAssignment1.Controllers
         [HttpGet]
         public IActionResult Details(int id)
         {
-            var flight = _context.FlightBookings.Find(id);
+            var flightBooking = _context.FlightBookings.Find(id);
 
-            return View(flight);
+            return View(flightBooking);
 
         }
         [HttpGet]

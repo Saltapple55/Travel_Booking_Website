@@ -8,14 +8,14 @@ namespace TravelGroupAssignment1.Models
         public int PassengerId { get; set; }
 
         [Required]
-        public string firstName { get; set; }
+        public string FirstName { get; set; }
         [Required]
-        public string lastName { get; set; }
+        public string LastName { get; set; }
 
         [Required]
-        public string phone { get; set; }
+        public string Phone { get; set; }
         [Required]
-        public string passportNo { get; set; }
+        public string PassportNo { get; set; }
 
     }
 }

@@ -5,8 +5,7 @@ namespace TravelGroupAssignment1.Models
     public class Flight
     {
 
-        [Key] 
-        public int FlightId { get; set; }
+        [Key]  public int FlightId { get; set; }
         [Required]
         public string Airline { get; set;}
         [Required]
@@ -27,7 +26,6 @@ namespace TravelGroupAssignment1.Models
         [Required]
 
         public DateTime? ArrivalTime { get; set; }
-        public string[]? Stops { get; set; }
 
 
 

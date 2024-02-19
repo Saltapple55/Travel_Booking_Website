@@ -10,7 +10,7 @@
 
 <div class="card">
 
-    <h3 class="card-title"> @Model.FlightId    </h3>
+    <h3 class="card-title"> The Flight </h3>
 
     <p class=" = " card-text>@Model.Airline </p>
 
@@ -26,7 +26,7 @@
         <dt class="col-sm-3">Arrival Time </dt>
         <dd class=" col-sm-9">@Model.ArrivalTime</dd>        
     </dl>
-    <a asp-action="Edit" asp-route-id="@Model.FlightId" class=" btn btn-primary">Edit</a>
+    <a asp-action="Edit" asp-route-flightid="@Model.FlightId" class=" btn btn-primary">Edit</a>
     <a asp-action="Index" class=" btn btn-secondary">Back</a>
 
 

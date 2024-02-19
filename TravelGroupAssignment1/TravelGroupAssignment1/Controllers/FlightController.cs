@@ -39,8 +39,8 @@ namespace TravelGroupAssignment1.Controllers
             return View(newFlight);
         }
         [HttpGet]
-        public IActionResult Details(int id) {
-            var flight = _context.Flights.Find(id);
+        public IActionResult Details(int flightId) {
+            var flight = _context.Flights.Find(flightId);
 
             return View(flight);
 
@@ -58,40 +58,39 @@ namespace TravelGroupAssignment1.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, [Bind("FlightId", "Airline", "Price", "MaxPassenger", "From", "To", "DepartTime", "ArrivalTime")] Flight flight)
         {
+
             if (id != flight.FlightId)
             {
-                return NotFound();
+                System.Diagnostics.Debug.WriteLine(id);
+                System.Diagnostics.Debug.WriteLine(flight.FlightId);
+                Console.WriteLine(flight.FlightId);
+                 // return RedirectToAction("Index", "Flight", id, flight.FlightId);
+                 return RedirectToAction("Index");
 
             }
             if (ModelState.IsValid)
             {
-                Console.WriteLine("isValid");
-                ///try
-                //{
                     _context.Flights.Update(flight);             
                     _context.SaveChanges(); 
                     return RedirectToAction("Index");
-               /* }
-                catch (DbUpdateConcurrencyException ex)
-                { 
-                    if (!FlightExists(flight.FlightId))
-                    {
-                        return NotFound();
-                     }
-
-                    throw;
-                }*/
+              
 
             }
             
-            Console.WriteLine("not valid");
-            return RedirectToAction("Index", "Home");
+            return View(flight);
 
         }
-        public IActionResult Delete(int id)
+        [HttpGet]
+        public IActionResult WhatsWrong(int id, int id2)
+        {
+            ViewData["Id"]=id;
+            ViewData["Second"]=id2;
+            return View();
+        }
+        public IActionResult Delete(int flightId)
 
         {
-            var flight = _context.Flights.Find(id);
+            var flight = _context.Flights.Find(flightId);
             if (flight == null) return NotFound();
             return View(flight);
 
@@ -99,9 +98,9 @@ namespace TravelGroupAssignment1.Controllers
         }
         [HttpPost, ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int flightId)
         {
-            var flight = _context.Flights.Find(id);
+            var flight = _context.Flights.Find(flightId);
             if (flight != null)
             {
                 _context.Remove(flight);

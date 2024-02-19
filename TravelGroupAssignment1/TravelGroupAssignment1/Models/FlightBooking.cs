@@ -12,7 +12,7 @@ namespace TravelGroupAssignment1.Models
         public Flight Flight { get; set; }
         [Required]
         public string FlightClass { get; set; }
-        public ICollection<Passenger>? Passengers { get; set; }
+        public IList<Passenger>? Passengers { get; set; }
 
     }
 }

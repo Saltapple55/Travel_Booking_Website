@@ -14,14 +14,14 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @Html.HiddenFor(Model => Model.BookingId)
             <div class="form-group">
-                <label asp-for="FlightId" class="control-label">Flight Number</label>
-                <input asp-for="FlightId" class="form-control" />
-                <span asp-validation-for="FlightId" class="text-danger"></span>
+                <label asp-for="@Model.FlightId" class="control-label">Flight Number</label>
+                <input asp-for="@Model.FlightId" class="form-control" />
+                <span asp-validation-for="@Model.FlightId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FlightClass" class="control-label">Class Seat</label>
-                <input asp-for="FlightClass" class="form-control" />
-                <span asp-validation-for="FlightClass" class="text-danger"></span>
+                <label asp-for="@Model.FlightClass" class="control-label">Class Seat</label>
+                <input asp-for="@Model.FlightClass" class="form-control" />
+                <span asp-validation-for="@Model.FlightClass" class="text-danger"></span>
             </div>
             <label  class="control-label"></label>
                 <select aclass="form-control">
@@ -33,6 +33,18 @@
                     </select>
 
                 <span class="text-danger"></span>
+            <script>
+                let i = 1
+                function raiseIndex() {
+                    i++;
+                }
+            </script>
+            <div id="add-passengers">
+                <button type="button" class="btn btn-success" onclick="newField(i);raiseIndex();">+</button>
+                @Html.Partial("_AddPassenger", Model)
+                
+                <!--<partial name="_AddPassenger"></partial> -->
+            </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
                 <a asp-action="Index" class=" btn btn-secondary">Back</a>
