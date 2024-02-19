@@ -1,3 +1,11 @@
+190224 Merge Change log
+- Base Classes (Car, Car Rental Company, Hotel, Room, Booking, CarBooking)
+- All basic CRUD for above classes
+- Incomplete: Room Booking
+- Hotel Search by location and capacity
+- Car search by location, start and end date
+- Car booking
+
 130224 Changelog
 - Added CarRentalCompany Model & Controller
 - Added Car Model & Controller
