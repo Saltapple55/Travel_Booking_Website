@@ -39,3 +39,19 @@ function newField(index) {
 	//let html="<p>clicked</p>"
     document.getElementById("add-passengers").innerHTML += html;
 }
+/*
+jQuery(function ($)){
+    $(#newPass).click(function () {
+        $.ajax({
+            url: '/FlightBooking/_AddPassenger',
+            type: 'GET',
+            success: function (result) {
+                $(#add - passengers).append("<partial name=\"_AddPassenger\"></partial>")
+            }
+            error: function (xhr, status, error) {
+                console.log(shr.responseText)
+            }
+        })
+    })
+}*/
+

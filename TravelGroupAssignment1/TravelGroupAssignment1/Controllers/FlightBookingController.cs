@@ -50,17 +50,18 @@ namespace TravelGroupAssignment1.Controllers
             return View(flightbooking);
         }
         [HttpGet]
-        public IActionResult AddPassenger()
+        public IActionResult AddPassenger(int index)
         {
+            ViewBag["Index"]= index;
             return PartialView("_AddPassenger");
         }
         
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public IActionResult Create([Bind("FlightId, FlightClass, Passengers")] FlightBooking booking)
+        public IActionResult Create( [Bind("BookingId, BookingReference, TripId, FlightClass, Passengers, FlightId")] FlightBooking booking)
         {
-            ViewBag["Index"] = 1;
+
             if (ModelState.IsValid)
             {
                 _context.FlightBookings.Add(booking);

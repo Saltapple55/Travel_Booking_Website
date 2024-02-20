@@ -8,7 +8,6 @@ namespace TravelGroupAssignment1.Models
         
         [ForeignKey("Flight")]
         public int FlightId { get; set; }
-        [Required]
         public Flight Flight { get; set; }
         [Required]
         public string FlightClass { get; set; }

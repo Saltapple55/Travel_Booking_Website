@@ -2,6 +2,9 @@
 
 @{
     ViewData["Title"] = "Create Flight Booking";
+    int i = 1;
+    //
+
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -13,6 +16,7 @@
             <!-- Displays mode-lreated validation errors here -->
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @Html.HiddenFor(Model => Model.BookingId)
+            @Html.HiddenFor(Model => Model.TripId, 1);
             <div class="form-group">
                 <label asp-for="@Model.FlightId" class="control-label">Flight Number</label>
                 <input asp-for="@Model.FlightId" class="form-control" />
@@ -23,25 +27,16 @@
                 <input asp-for="@Model.FlightClass" class="form-control" />
                 <span asp-validation-for="@Model.FlightClass" class="text-danger"></span>
             </div>
-            <label  class="control-label"></label>
-                <select aclass="form-control">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-
-                    </select>
-
-                <span class="text-danger"></span>
+            
             <script>
-                let i = 1
                 function raiseIndex() {
-                    i++;
+                    @i++;
                 }
             </script>
             <div id="add-passengers">
-                <button type="button" class="btn btn-success" onclick="newField(i);raiseIndex();">+</button>
+                <button type="button" class="btn btn-success" id="newPass" onclick="newField(@i);raiseIndex();">+</button>
                 @Html.Partial("_AddPassenger", Model)
+                @Html.EditorFor(model => model.Passengers, new { htmlAttributes = new { @class = "form-control" } })
                 
                 <!--<partial name="_AddPassenger"></partial> -->
             </div>
