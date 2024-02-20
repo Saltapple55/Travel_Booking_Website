@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using TravelGroupAssignment1.Data;
+using TravelGroupAssignment1.Models;
 
 namespace TravelGroupAssignment1.Controllers
 {
@@ -13,14 +14,18 @@ namespace TravelGroupAssignment1.Controllers
         {
             this._context = context;
         }
-        public IActionResult Index(int numpass, int fbookingId)
+        public IActionResult Index( int fbookingId)
         {
-            var fbooking = _context.FlightBookings.Find(fbookingId);
+            /*var fbooking = _context.Passengers.Where(t => t.BookingId == fbookingId).ToList();
+            ViewBag.FlightId = flightId;
+            System.Diagnostics.Debug.WriteLine(flightId);
 
+            return View(flight);
             ViewBag.BookingId = fbookingId;
-            ViewBag.NumPassengers = numpass;
 
             return View(fbooking);
+            */
+            return View();
         }
 
     }

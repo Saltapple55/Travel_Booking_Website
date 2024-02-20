@@ -1,5 +1,30 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model FlightBooking
 @{
+    ViewData["Title"] = "Booking Details";
+
 }
+<h1>@ViewData["Title"]</h1>
+
+<div class="card">
+
+    <h3 class="card-title"> @Model.BookingReference</h3>
+
+    <p class=" = " card-text>@Model.BookingId </p>
+    <p class=" = " card-text>@Model.Passengers[0].FirstName </p>
+
+    <dl class="row">
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Passengers[0].FirstName) </dt>
+        <dd class=" col-sm-9">@Html.DisplayFor(model => model.Passengers[0].FirstName)</dd>
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Passengers[0].LastName) </dt>
+        <dd class=" col-sm-9">@Html.DisplayFor(model => model.Passengers[0].LastName)</dd>
+
+       
+
+
+    </dl>
+    <a asp-action="Edit" asp-route-id="@Model.BookingId" class=" btn btn-primary">Edit</a>
+    <a asp-action="Index" asp-route-flightId="@Model.FlightId" class=" btn btn-secondary">Back</a>
+
+</div>
+
+

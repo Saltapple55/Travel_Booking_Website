@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TravelGroupAssignment1.Data;
 
@@ -11,9 +12,11 @@ using TravelGroupAssignment1.Data;
 namespace TravelGroupAssignment1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240220020725_ChangeTrip")]
+    partial class ChangeTrip
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -166,14 +169,11 @@ namespace TravelGroupAssignment1.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PassengerId"));
 
-                    b.Property<int>("BookingId")
-                        .HasColumnType("int");
-
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("FlightBookingBookingId")
+                    b.Property<int>("FlightBookingId")
                         .HasColumnType("int");
 
                     b.Property<int?>("FlightId")
@@ -193,7 +193,7 @@ namespace TravelGroupAssignment1.Migrations
 
                     b.HasKey("PassengerId");
 
-                    b.HasIndex("FlightBookingBookingId");
+                    b.HasIndex("FlightBookingId");
 
                     b.HasIndex("FlightId");
 
@@ -273,13 +273,17 @@ namespace TravelGroupAssignment1.Migrations
 
             modelBuilder.Entity("TravelGroupAssignment1.Models.Passenger", b =>
                 {
-                    b.HasOne("TravelGroupAssignment1.Models.FlightBooking", null)
-                        .WithMany("Passengers")
-                        .HasForeignKey("FlightBookingBookingId");
+                    b.HasOne("TravelGroupAssignment1.Models.FlightBooking", "FlightBooking")
+                        .WithMany()
+                        .HasForeignKey("FlightBookingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("TravelGroupAssignment1.Models.Flight", null)
                         .WithMany("PassengerList")
                         .HasForeignKey("FlightId");
+
+                    b.Navigation("FlightBooking");
                 });
 
             modelBuilder.Entity("TravelGroupAssignment1.Models.Room", b =>
@@ -296,11 +300,6 @@ namespace TravelGroupAssignment1.Migrations
             modelBuilder.Entity("TravelGroupAssignment1.Models.Flight", b =>
                 {
                     b.Navigation("PassengerList");
-                });
-
-            modelBuilder.Entity("TravelGroupAssignment1.Models.FlightBooking", b =>
-                {
-                    b.Navigation("Passengers");
                 });
 
             modelBuilder.Entity("TravelGroupAssignment1.Models.Hotel", b =>

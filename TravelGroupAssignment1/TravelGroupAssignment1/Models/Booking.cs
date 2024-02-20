@@ -10,8 +10,6 @@ namespace TravelGroupAssignment1.Models
 
         public string BookingReference { get; set; }
 
-
-        [ForeignKey("Trip")]
         public int TripId { get; set; }
         protected Booking()
         {

@@ -9,7 +9,7 @@ namespace TravelGroupAssignment1.Models
         public int TripId { get; set; }
         [Required]
         public int CustomerId { get; set; }
-        public Booking[] Bookings {  get; set; }
+        //public Booking[]? Bookings {  get; set; }
 
         
 

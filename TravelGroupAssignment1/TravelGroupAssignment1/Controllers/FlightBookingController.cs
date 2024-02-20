@@ -18,11 +18,11 @@ namespace TravelGroupAssignment1.Controllers
         [HttpGet]
         public IActionResult Index(int flightId)
         {
-            var flight = _context.FlightBookings.Where(t => t.FlightId == flightId).ToList();
+            var bookings = _context.FlightBookings.Where(t => t.FlightId == flightId).ToList();
             ViewBag.FlightId = flightId;
-            System.Diagnostics.Debug.WriteLine(flightId);
+           // System.Diagnostics.Debug.WriteLine(flightId);
 
-            return View(flight);
+            return View(bookings);
         }
         [HttpGet]
         public IActionResult Create(int flightId)
@@ -50,7 +50,7 @@ namespace TravelGroupAssignment1.Controllers
             return View(flightbooking);
         }
         [HttpGet]
-        public IActionResult AddPassenger(int index)
+        public IActionResult AddPassenger(int index) 
         {
             ViewBag["Index"]= index;
             return PartialView("_AddPassenger");
@@ -59,23 +59,51 @@ namespace TravelGroupAssignment1.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public IActionResult Create( [Bind("BookingId, BookingReference, TripId, FlightClass, Passengers, FlightId")] FlightBooking booking)
+        public IActionResult Create( [Bind("BookingId, BookingReference, TripId, FlightClass,Flight, FlightId, Passengers")] FlightBooking booking)
         {
+            System.Diagnostics.Debug.WriteLine(booking.Passengers[0]);
+
 
             if (ModelState.IsValid)
             {
+                System.Diagnostics.Debug.WriteLine("Model is Valid");
+                System.Diagnostics.Debug.WriteLine(booking.Passengers[0].FirstName);
+
+                if (booking.Passengers.Any())
+                {
+                    foreach(Passenger p in booking.Passengers)
+                    {
+                        _context.Passengers.Add(p);
+
+                    }
+                    _context.SaveChanges();
+
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("No passengers");
+                    return NotFound(); }
                 _context.FlightBookings.Add(booking);
                 _context.SaveChanges();
-                return RedirectToAction("Index");
+                // return RedirectToAction("Index", "Passenger", new {fbookingId= booking.BookingId });
+                return RedirectToAction("Index", new{flightId = booking.FlightId});
             }
+            System.Diagnostics.Debug.WriteLine(booking.BookingId);
+            System.Diagnostics.Debug.WriteLine(booking.TripId);
+            System.Diagnostics.Debug.WriteLine(booking.FlightClass);
+            System.Diagnostics.Debug.WriteLine(booking.FlightId);
+
+
             return View(booking);
         }
         [HttpGet]
         public IActionResult Details(int id)
         {
-            var flightBooking = _context.FlightBookings.Find(id);
+            var flightbooking = _context.FlightBookings.Include(t => t.Flight).FirstOrDefault(booking => booking.BookingId == id);
+            if(flightbooking == null) return NotFound();
+            //var flightBooking = _context.FlightBookings.Find(id);
 
-            return View(flightBooking);
+            return View(flightbooking);
 
         }
         [HttpGet]

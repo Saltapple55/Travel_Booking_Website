@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TravelGroupAssignment1.Models
 {
@@ -16,6 +17,9 @@ namespace TravelGroupAssignment1.Models
         public string Phone { get; set; }
         [Required]
         public string PassportNo { get; set; }
+        
+        public int BookingId { get; set; }
+        public FlightBooking? FlightBooking { get; set; }
 
     }
 }

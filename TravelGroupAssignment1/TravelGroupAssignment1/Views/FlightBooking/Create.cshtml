@@ -3,7 +3,10 @@
 @{
     ViewData["Title"] = "Create Flight Booking";
     int i = 1;
-    //
+
+    //                       @Html.HiddenFor(Model => Model.Passengers[0].BookingId);
+    //@Html.Partial("_AddPassenger", Model)
+
 
 }
 
@@ -12,10 +15,10 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create" method="post">
+        <form asp-action="Create" asp-route-id="@Model.TripId" method="post">
             <!-- Displays mode-lreated validation errors here -->
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @Html.HiddenFor(Model => Model.BookingId)
+
             @Html.HiddenFor(Model => Model.TripId, 1);
             <div class="form-group">
                 <label asp-for="@Model.FlightId" class="control-label">Flight Number</label>
@@ -27,24 +30,45 @@
                 <input asp-for="@Model.FlightClass" class="form-control" />
                 <span asp-validation-for="@Model.FlightClass" class="text-danger"></span>
             </div>
-            
-            <script>
-                function raiseIndex() {
-                    @i++;
-                }
-            </script>
-            <div id="add-passengers">
-                <button type="button" class="btn btn-success" id="newPass" onclick="newField(@i);raiseIndex();">+</button>
-                @Html.Partial("_AddPassenger", Model)
-                @Html.EditorFor(model => model.Passengers, new { htmlAttributes = new { @class = "form-control" } })
-                
-                <!--<partial name="_AddPassenger"></partial> -->
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-                <a asp-action="Index" class=" btn btn-secondary">Back</a>
 
-            </div>
+             <script>
+                function raiseIndex() {
+                @i++;
+                 }
+             </script>
+             <div id="add-passengers">
+                <button type="button" class="btn btn-success" id="newPass" onclick="newField(@i);raiseIndex();">+</button>
+                <div class="passenger">
+
+                    <div class="form-group">
+                        <label asp-for="@Model.Passengers[0].FirstName" class="control-label"></label>
+                        <input asp-for="@Model.Passengers[0].FirstName" class="form-control" />
+                        <span asp-validation-for="@Model.Passengers[0].FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Passengers[0].LastName" class="control-label"></label>
+                        <input asp-for="@Model.Passengers[0].LastName" class="form-control" />
+                        <span asp-validation-for="@Model.Passengers[0].LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Passengers[0].Phone" class="control-label"></label>
+                        <input asp-for="@Model.Passengers[0].Phone" class="form-control" />
+                        <span asp-validation-for="@Model.Passengers[0].Phone" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Passengers[0].PassportNo" class="control-label"></label>
+                        <input asp-for="@Model.Passengers[0].PassportNo" class="form-control" />
+                        <span asp-validation-for="@Model.Passengers[0].PassportNo" class="text-danger"></span>
+                    </div>
+                </div>
+                </div>
+
+
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                    <a asp-action="Index" asp-route-flightId="@Model.FlightId" class=" btn btn-secondary">Back</a>
+    
+                 </div>
         </form>
     </div>
 </div>
