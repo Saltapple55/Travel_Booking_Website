@@ -9,9 +9,6 @@ namespace TravelGroupAssignment1.Models
         [Required]
         public string? Name { get; set; }
         [Required]
-        public int HotelId { get; set;}
-        public Hotel? Hotel { get; set; }
-        [Required]
         public int Capacity { get; set; }
         public string? BedDescription { get; set; }
         [Required]
@@ -20,6 +17,10 @@ namespace TravelGroupAssignment1.Models
 
         // change amenities to class (Amenities:Room = M:M)
         public string? Amenities { get; set; }
+        [Required]
+        public int HotelId { get; set; }
+        public Hotel? Hotel { get; set; }
+        public ICollection<Room_RoomBooking>? Room_RoomBooking { get; set; }
 
     }
 }

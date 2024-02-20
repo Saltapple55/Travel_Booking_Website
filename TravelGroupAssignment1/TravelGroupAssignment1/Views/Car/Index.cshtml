@@ -1,0 +1,80 @@
+﻿@model List<Car>
+@{
+    ViewData["Title"] = "List of Cars";
+    string? searchLocation = ViewBag.Location as string;
+    DateTime searchStartDate = ViewBag.StartDate != null ? ViewBag.StartDate : DateTime.Now;
+    DateTime searchEndDate = ViewBag.EndDate != null ? ViewBag.EndDate : DateTime.Now.AddDays(2);
+    bool searchValid = ViewBag.SearchValid != null? ViewBag.SearchValid : false;
+}
+
+
+<h2>@ViewData["Title"]</h2>
+<a asp-action="Create" class="btn btn-primary">Create Car <i class="fa-solid fa-plus"></i></a>
+<a asp-controller="CarRentalCompany" asp-action="Index" class="btn btn-primary">Rental Companies<i class="fa-solid fa-plus"></i></a>
+
+@if (Model.Any()) 
+{
+    <!-- Car Card -->
+    <div class="row">
+        @foreach (var car in Model)
+        {
+            <div class="col-12 col-sm-4">
+                <div class="card" style="width: 18rem;">
+                    <a asp-action="Details" asp-route-carId="@car.CarId" class="card-link">
+                        <img src="https://www.kbb.com/wp-content/uploads/2022/10/2023-toyota-rav4-prime-frt-3qtr.jpg?w=918" class="card-img-top" alt="Car" style="width: 100%; height: 100%;">
+                        <div class="card-body">
+                            <h5 class="card-title">@car.Make</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <i class="fa-solid fa-user-group"></i> @car.MaxPassengers
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fa-solid fa-code-branch"></i> @car.Transmission
+                            </li>
+                            <li class="list-group-item">
+                                @if (car.HasAirConditioning)
+                                {
+                                    <i class="fa-solid fa-fan"></i> <span>Air Conditioner</span>
+
+                                }
+                                else
+                                {
+                                    <i class="fa-solid fa-fan"></i> <span>No Air Conditioner</span>
+                                }
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fa-solid fa-globe"></i> Model @car.Model
+                            </li>
+                            <li class="list-group-item">
+                                @if (car.HasUnlimitedMileage)
+                                {
+                                    <i class="fa-solid fa-gauge-high"></i> <span>Unlimited Mileage</span>
+                                    
+                                }
+                                else
+                                {
+                                    <i class="fa-solid fa-gauge-high"></i> <span>Limited Mileage</span>
+                                }
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fa-solid fa-building"></i> @(car.Company == null ? "None" : car.Company.CompanyName)
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fa-solid fa-tag"></i> $@car.PricePerDay
+                            </li>
+                        </ul>
+                        <a asp-controller="CarBooking" asp-action="Index" asp-route-carId="@car.CarId" class="btn btn.sm btn-primary" role="button">Booking</a>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>No cars available</p>
+}
+
+
+

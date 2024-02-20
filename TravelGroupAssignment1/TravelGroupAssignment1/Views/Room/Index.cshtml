@@ -1,0 +1,52 @@
+﻿@model List<Room>
+@{
+    ViewData["Title"] = "List of Rooms";
+    string hotelName = ViewBag.HotelName;
+    int hotelId = ViewBag.HotelId as int? ?? 0;
+}
+
+<h2>@ViewData["Title"]</h2>
+<br />
+<h4>@hotelName</h4>
+<br />
+@if (Model.Any())
+{
+    <!-- Room Card -->
+    <div class="row">
+        @foreach (var room in Model)
+        {
+            <div class="col-12 col-sm-4">
+                <div class="card" style="width: 18rem;">
+                    <a asp-action="Details" asp-route-id="@room.RoomId" class="card-link">
+                        <img src="https://assets-global.website-files.com/5c6d6c45eaa55f57c6367749/65045f093c166fdddb4a94a5_x-65045f0266217.webp" class="card-img-top" alt="Hotel Room" style="width: 100%; height: 100%;">
+                        <div class="card-body">
+                            <h5 class="card-title">@room.Name</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <i class="fa-solid fa-user-group"></i> @room.Capacity
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fa-solid fa-bed"></i> @room.BedDescription
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fa-solid fa-expand"></i> @room.RoomSize sq ft
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fa-solid fa-tag"></i> $450
+                            </li>
+                        </ul>
+                        <a asp-controller="RoomBooking" asp-action="Index" asp-route-roomId="@room.RoomId" class="btn btn.sm btn-primary" role="button">Bookings</a>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+
+}
+else
+{
+    <p>No rooms available</p>
+}
+
+

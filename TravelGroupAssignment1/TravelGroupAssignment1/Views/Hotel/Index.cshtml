@@ -1,0 +1,45 @@
+﻿@model List<Hotel>
+
+@{
+    ViewData["Title"] = "List of Hotels";
+    string? searchLocation = ViewBag.Location as string;
+    int searchCapacity = ViewBag.Capacity as int? ?? 0;
+    bool searchValid = ViewBag.SearchValid as bool? ?? false;
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+<br />
+<h3>List of Hotels</h3>
+<!-- Hotel Card -->
+@if (Model.Any()) 
+{
+    <div class="row">
+    @foreach (var hotel in Model)
+    {
+
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="card" style="width: 18rem;">
+                <a asp-controller="Room" asp-action="Index" asp-route-hotelId="@hotel.HotelId" class="card-link">
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750" class="card-img-top" alt="Hotel Room" style="width: 100%; height: 100%;">
+                    <div class="card-body">
+                        <h5 class="card-title">@hotel.HotelName</h5>
+                        <p class="card-text">@hotel.Description</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <i class="fa-solid fa-location-dot"></i> @hotel.Location
+                        </li>
+                    </ul>
+                </a>
+            </div>
+        </div>
+    }
+    </div>
+}
+else
+{
+    <br />
+    <h3>No hotels available</h3>
+}
+

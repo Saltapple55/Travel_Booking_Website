@@ -29,7 +29,7 @@ namespace TravelGroupAssignment1.Controllers
         {
             var hotel = _context.Hotels.FirstOrDefault(h => h.HotelId == id);
             if(hotel == null) return NotFound();
-            return View();
+            return View(hotel);
         }
 
         // GET: HotelController/Create
@@ -64,7 +64,7 @@ namespace TravelGroupAssignment1.Controllers
         // POST: HotelController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("HotelId", "HotelName", "Location", "Amenities")] Hotel hotel)
+        public IActionResult Edit(int id, [Bind("HotelId", "HotelName", "Location", "Description","Amenities")] Hotel hotel)
         {
             if(id != hotel.HotelId) return NotFound();
             if (ModelState.IsValid)
@@ -89,7 +89,7 @@ namespace TravelGroupAssignment1.Controllers
         {
             var hotel = _context.Hotels.FirstOrDefault(h => h.HotelId == id);
             if (hotel == null) return NotFound();
-            return View();
+            return View(hotel);
         }
 
         // POST: HotelController/DeleteConfirmed/5
@@ -105,6 +105,29 @@ namespace TravelGroupAssignment1.Controllers
                 return RedirectToAction("Index");
             }
             return NotFound();
+        }
+
+        public async Task<IActionResult> Search(string location, int capacity)
+        {
+            var hotelQuery = from p in _context.Hotels
+                             select p;
+            bool searchValid = !String.IsNullOrEmpty(location) && capacity > 0;
+            if (searchValid)
+            {
+                hotelQuery = hotelQuery.Where(h => !String.IsNullOrEmpty(h.Location) && 
+                                        h.Location.Contains(location) || !String.IsNullOrEmpty(h.Description) && h.Description.Contains(location));
+                hotelQuery = hotelQuery.Where(h => h.Rooms != null 
+                                        && h.Rooms.Any(r => r.Capacity >= capacity));
+            } 
+            else
+            {
+                return RedirectToAction("Index");
+            }
+            var hotels = await hotelQuery.ToListAsync();
+            ViewBag.SearchValid = searchValid;
+            ViewBag.Location = location;
+            ViewBag.Capacity = capacity;
+            return View("Index", hotels);
         }
 
         public bool HotelExists(int id)
