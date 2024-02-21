@@ -1,13 +1,13 @@
-﻿@model IEnumerable<CarBooking>
+﻿@model List<RoomBooking>
 @{
-    ViewData["Title"] = "List of Car Bookings";
-    string carName = ViewBag.CarName as string;
-    string carType = ViewBag.CarType as string;
+    ViewData["Title"] = "List of Room Bookings";
+    string? roomName = ViewBag.RoomName as string;
+    int roomId = ViewBag.RoomId as int? ?? 0;
 }
 
 <h2>@ViewData["Title"]</h2>
-<h4>@carName (@carType)</h4>
-<a asp-action="Create" asp-route-carId="@ViewBag.CarId" class="btn btn-primary">Create Booking<i class="fa-solid fa-plus"></i></a>
+<h4>@roomName</h4>
+<a asp-action="Create" asp-route-roomId="@ViewBag.RoomId" class="btn btn-primary">Make Booking<i class="fa-solid fa-plus"></i></a>
 
 @if (Model.Any()) // check if Model is null. 'Model' is reserved keyword to access the model
 {
@@ -18,8 +18,8 @@
                 <th>Booking ID</th>
                 <th>Trip ID</th>
                 <th>Booking Reference</th>
-                <th>Start Date</th>
-                <th>End Date</th>
+                <th>Check In Date</th>
+                <th>Check Out Date</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -31,8 +31,8 @@
                     <td>@booking.BookingId</td>
                     <td>@booking.TripId</td>
                     <td>@booking.BookingReference</td>
-                    <td>@booking.StartDate?.ToShortDateString()</td>
-                    <td>@booking.EndDate?.ToShortDateString()</td>
+                    <td>@booking.CheckInDate?.ToShortDateString()</td>
+                    <td>@booking.CheckOutDate?.ToShortDateString()</td>
                     <td>
                         <a asp-action="Details" asp-route-id="@booking.BookingId" class="btn btn.sm btn-secondary" role="button">Details</a>
                         <a asp-action="Edit" asp-route-id="@booking.BookingId" class="btn btn.sm btn-secondary" role="button">Edit</a>
@@ -48,6 +48,6 @@
 }
 else
 {
-    <p>No bookings available</p>
+    <p>No rooms available</p>
 }
-<a asp-controller="Car" asp-action="Index" class="btn btn.sm btn-secondary" role="button">Return to Cars<i class="fa-solid fa-list-check"></i></a>
+<a asp-controller="Room" asp-action="Index" asp-route-hotelId="@ViewBag.HotelId" class="btn btn-secondary">Return to Rooms<i class="fa-solid fa-plus"></i></a>

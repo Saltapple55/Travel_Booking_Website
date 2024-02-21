@@ -23,14 +23,15 @@ namespace TravelGroupAssignment1.Controllers
         public IActionResult Index(int roomId)
         {
             var roomBookings = _context.RoomBookings
-                        .Where(rb => rb.Room_RoomBooking.Any(room => room.RoomId == roomId))
-                        .ToList();
-            if (roomBookings == null) return NotFound();
-            var room = _context.Rooms.Find(roomId);
-            if (room == null) return NotFound();
-
+                                .Include(rb => rb.Room)
+                                .Where(rb => rb.RoomId == roomId)
+                                .ToList();
+            
+            var room = _context.Rooms.FirstOrDefault(r => r.RoomId == roomId);
+            if(room == null) return NotFound();
             ViewBag.RoomName = room.Name;
-            ViewBag.RoomId = roomId;
+            ViewBag.RoomId = room.RoomId;
+            ViewBag.HotelId = room.HotelId;
             return View(roomBookings);
         }
 
@@ -39,65 +40,77 @@ namespace TravelGroupAssignment1.Controllers
         public IActionResult Details(int id)
         {
             var booking = _context.RoomBookings
-                        .Include(rb => rb.Room_RoomBooking)
+                        .Include(rb => rb.Room)
                         .FirstOrDefault(rb => rb.BookingId == id);
+            if (booking == null) return NotFound();
+            var room = _context.Rooms.Find(booking.RoomId);
+            if (room == null) return NotFound();
+            var hotel = _context.Hotels.Find(room.HotelId);
+            if (hotel == null) return NotFound();
+            ViewBag.Hotel = hotel;
             return View(booking);
         }
 
         // GET: RoomBookingController/Create/5
         [HttpGet]
-        public IActionResult Create(int roomId)
+        public IActionResult Create(int roomId, DateTime? checkInDate, DateTime? checkOutDate)
         {
             var room = _context.Rooms.Find(roomId);
             if (room == null) return NotFound();
-            ViewBag.RoomName = room.Name;
-            ViewBag.RoomId = roomId;
+            var hotel = _context.Hotels.Find(room.HotelId);
+            if (hotel == null) return NotFound();
 
-            //var roomBooking = new Room_RoomBooking { };
-            return View(room);
+            ViewBag.Room = room;
+            ViewBag.Hotel = hotel;
+            ViewBag.CheckInDate = checkInDate;
+            ViewBag.CheckOutDate = checkOutDate;
+            return View(new RoomBooking { RoomId = roomId });
         }
 
         // POST: RoomBookingController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create([Bind("TripId", "BookingReference",
-            "RoomId", "Room_RoomBooking", "CheckInDate", "CheckOutDate")] RoomBooking roomBooking)
+            "RoomId", "Room", "CheckInDate", "CheckOutDate")] RoomBooking roomBooking)
         {
             if (ModelState.IsValid)
             {
                 _context.RoomBookings.Add(roomBooking);
                 _context.SaveChanges();
-                return RedirectToAction("Index", new {});
+                return RedirectToAction("Index", new { roomId = roomBooking.RoomId });
             }
-            return View();
-
+            return View(roomBooking);
         }
 
         // GET: RoomBookingController/Edit/5
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var carBooking = _context.CarBookings
-                            .Include(cb => cb.Car)
+            var booking = _context.RoomBookings
+                            .Include(rb => rb.Room)
                             .FirstOrDefault(cb => cb.BookingId == id);
-            if (carBooking == null) return NotFound();
-
-            return View(carBooking);
+            if (booking == null) return NotFound();
+            var room = _context.Rooms.Find(booking.RoomId);
+            if (room == null) return NotFound();
+            var hotel = _context.Hotels.Find(room.HotelId);
+            if (hotel == null) return NotFound();
+            if (booking == null) return NotFound();
+            return View(booking);
         }
 
         // POST: RoomBookingController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, [Bind("BookingId", "TripId", "BookingReference",
-            "CarId", "Car", "StartDate", "EndDate")] CarBooking carBooking)
+            "RoomId", "Room", "CheckInDate", "CheckOutDate")] RoomBooking roomBooking)
         {
-            if (id != carBooking.BookingId) return NotFound();
+            if (id != roomBooking.BookingId) return NotFound();
 
             if (ModelState.IsValid)
             {
-                _context.CarBookings.Update(carBooking);
+                _context.RoomBookings.Update(roomBooking);
                 _context.SaveChanges();
-                return RedirectToAction("Index", new { carId = carBooking.CarId });
+                return RedirectToAction("Index", new { roomId = roomBooking.RoomId });
             }
             return View();
         }
@@ -106,11 +119,17 @@ namespace TravelGroupAssignment1.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var carBooking = _context.CarBookings
-                        .Include(cb => cb.Car)
-                        .FirstOrDefault(cb => cb.BookingId == id);
-            if (carBooking == null) return NotFound();
-            return View(carBooking);
+            var booking = _context.RoomBookings
+                        .Include(rb => rb.Room)
+                        .FirstOrDefault(rb => rb.BookingId == id);
+            if (booking == null) return NotFound();
+            var room = _context.Rooms.Find(booking.RoomId);
+            if (room == null) return NotFound();
+            var hotel = _context.Hotels.Find(room.HotelId);
+            if (hotel == null) return NotFound();
+            ViewBag.Hotel = hotel;
+
+            return View(booking);
         }
 
         // POST: RoomBookingController/DeleteConfirmed/5
@@ -118,12 +137,12 @@ namespace TravelGroupAssignment1.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-            var carBooking = _context.CarBookings.Find(id);
-            if (carBooking != null)
+            var roomBooking = _context.RoomBookings.Find(id);
+            if (roomBooking != null)
             {
-                _context.CarBookings.Remove(carBooking);
+                _context.RoomBookings.Remove(roomBooking);
                 _context.SaveChanges();
-                return RedirectToAction("Index", new { carId = carBooking.CarId });
+                return RedirectToAction("Index", new { roomId = roomBooking.RoomId });
             }
             return NotFound();
         }

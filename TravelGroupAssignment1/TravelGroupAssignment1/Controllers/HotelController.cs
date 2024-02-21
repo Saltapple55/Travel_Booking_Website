@@ -107,17 +107,19 @@ namespace TravelGroupAssignment1.Controllers
             return NotFound();
         }
 
-        public async Task<IActionResult> Search(string location, int capacity)
+        public async Task<IActionResult> Search(string location, int capacity, DateTime checkInDate, DateTime checkOutDate)
         {
             var hotelQuery = from p in _context.Hotels
                              select p;
             bool searchValid = !String.IsNullOrEmpty(location) && capacity > 0;
             if (searchValid)
             {
-                hotelQuery = hotelQuery.Where(h => !String.IsNullOrEmpty(h.Location) && 
-                                        h.Location.Contains(location) || !String.IsNullOrEmpty(h.Description) && h.Description.Contains(location));
-                hotelQuery = hotelQuery.Where(h => h.Rooms != null 
-                                        && h.Rooms.Any(r => r.Capacity >= capacity));
+                hotelQuery = hotelQuery.Where(h => !String.IsNullOrEmpty(h.Location) && h.Location.Contains(location)
+                                        || !String.IsNullOrEmpty(h.Description) && h.Description.Contains(location));
+                hotelQuery = hotelQuery.Where(h => h.Rooms != null && h.Rooms.Any(r => r.Capacity >= capacity));
+                hotelQuery = hotelQuery.Where(h => h.Rooms != null && h.Rooms.Any(r => !r.RoomBookings.Any(rb => rb.CheckInDate >= checkInDate && rb.CheckOutDate <= checkOutDate
+                                        || rb.CheckInDate >= checkInDate && rb.CheckInDate <= checkOutDate)));
+                                            
             } 
             else
             {

@@ -3,7 +3,39 @@
     ViewData["Title"] = "List of Rooms";
     string hotelName = ViewBag.HotelName;
     int hotelId = ViewBag.HotelId as int? ?? 0;
+    string? searchLocation = ViewBag.Location as string;
+    int searchCapacity = ViewBag.Capacity as int? ?? 0;
+    bool searchValid = ViewBag.SearchValid as bool? ?? false;
+    DateTime searchCheckInDate = ViewBag.CheckInDate != null ? ViewBag.CheckInDate : DateTime.Now;
+    DateTime searchCheckOutDate = ViewBag.CheckOutDate != null ? ViewBag.CheckOutDate : DateTime.Now.AddDays(2);
 }
+<div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+    <form asp-action="Search" class="form" method="get">
+        <div asp-validation-summary="ModelOnly" class="text-warning"></div>
+         <input hidden required id="hotelId" name="hotelId" value="@hotelId" class="form-control" />
+
+        <div class="form-group mb-2 d-inline-block">
+            <label for="capacity" class="control-label">Travellers</label>
+            <input required id="capacity" name="capacity" type="number" value="@(searchCapacity == 0 ? 2 : searchCapacity)" class="form-control" />
+        </div>
+
+        <div class="form-group mb-2 d-inline-block">
+            <label for="checkInDate" class="control-label">Start Date</label>
+            <input required id="checkInDate" name="checkInDate" type="date" value="@searchCheckInDate.ToString("yyyy-MM-dd")" class="form-control" />
+        </div>
+
+        <div class="form-group mb-2 d-inline-block">
+            <label for="checkOutDate" class="control-label">End Date</label>
+            <input required id="checkOutDate" name="checkOutDate" type="date" value="@searchCheckOutDate.ToString("yyyy-MM-dd")" class="form-control" />
+        </div>
+
+        <input type="submit" value="Search and Book" class="btn btn-warning" />
+        @if (searchValid)
+        {
+            <a asp-action="Index" asp-route-hotelId="@hotelId" class="btn btn-secondary">Clear Search</a>
+        }
+    </form>
+</div>
 
 <h2>@ViewData["Title"]</h2>
 <h4>@hotelName</h4>
@@ -38,10 +70,16 @@
                     <td>@room.RoomSize sq ft</td>
                     <td>@room.Amenities</td>
                     <td>
-                        <a asp-controller="RoomBooking" asp-action="Index" asp-route-roomId="@room.RoomId" class="btn btn.sm btn-secondary" role="button">Bookings<i class="fa-solid fa-list-check"></i></a>
-                        <a asp-action="Details" asp-route-id="@room.RoomId" class="btn btn.sm btn-secondary" role="button">Details <i class="fa-solid fa-circle-info"></i></a>
-                        <a asp-action="Edit" asp-route-id="@room.RoomId" class="btn btn.sm btn-secondary" role="button">Edit <i class="fa-regular fa-pen-to-square"></i></a>
-                        <a asp-action="Delete" asp-route-id="@room.RoomId" class="btn btn.sm btn-danger" role="button">Delete <i class="fa-solid fa-circle-xmark"></i></a>
+                        @if(searchValid)
+                        {
+                            <a asp-controller="RoomBooking" asp-action="Create" asp-route-roomId="@room.RoomId"
+                               asp-route-checkInDate="@searchCheckInDate.ToString("yyyy-MM-dd")" asp-route-checkOutDate="@searchCheckOutDate.ToString("yyyy-MM-dd")"
+                                class="btn btn.sm btn-warning" role="button">Book Room</a>
+                        }
+                        <a asp-controller="RoomBooking" asp-action="Index" asp-route-roomId="@room.RoomId" class="btn btn.sm btn-secondary" role="button">Bookings</a>
+                        <a asp-action="Details" asp-route-id="@room.RoomId" class="btn btn.sm btn-secondary" role="button">Details</a>
+                        <a asp-action="Edit" asp-route-id="@room.RoomId" class="btn btn.sm btn-secondary" role="button">Edit </a>
+                        <a asp-action="Delete" asp-route-id="@room.RoomId" class="btn btn.sm btn-danger" role="button">Delete </a>
                     </td>
 
                 </tr>
