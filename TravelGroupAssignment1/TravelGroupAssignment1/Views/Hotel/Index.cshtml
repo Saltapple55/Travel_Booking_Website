@@ -1,0 +1,92 @@
+﻿@model List<Hotel>
+@{
+    ViewData["Title"] = "List of Hotels";
+    string? searchLocation = ViewBag.Location as string;
+    int searchCapacity = ViewBag.Capacity as int? ?? 0;
+    bool searchValid = ViewBag.SearchValid as bool? ?? false;
+    DateTime searchCheckInDate = ViewBag.CheckInDate != null ? ViewBag.CheckInDate : DateTime.Now;
+    DateTime searchCheckOutDate = ViewBag.CheckOutDate != null ? ViewBag.CheckOutDate : DateTime.Now.AddDays(2);
+}
+<div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+    <form asp-action="Search" class="form" method="get">
+        <div asp-validation-summary="ModelOnly" class="text-warning"></div>
+
+        <div class="form-group mb-2 d-inline-block">
+            <label for="location" class="control-label">Location</label>
+            <input required id="location" name="location" value="@(!String.IsNullOrEmpty(searchLocation) ? searchLocation : "")" class="form-control" />
+        </div>
+    
+        <div class="form-group mb-2 d-inline-block">
+            <label for="capacity" class="control-label">Travellers</label>
+            <input required id="capacity" name="capacity" type="number" value="@(searchCapacity == 0 ? 2 : searchCapacity)" class="form-control" />
+        </div>
+
+        <div class="form-group mb-2 d-inline-block">
+            <label for="checkInDate" class="control-label">Start Date</label>
+            <input required id="checkInDate" name="checkInDate" type="date" value="@searchCheckInDate.ToString("yyyy-MM-dd")" class="form-control" />
+        </div>
+
+        <div class="form-group mb-2 d-inline-block">
+            <label for="checkOutDate" class="control-label">End Date</label>
+            <input required id="checkOutDate" name="checkOutDate" type="date" value="@searchCheckOutDate.ToString("yyyy-MM-dd")" class="form-control" />
+        </div>
+
+        <input type="submit" value="Search" class="btn btn-warning" />
+        @if (searchValid)
+        {
+            <a asp-action="Index" class="btn btn-secondary">Clear Search</a>
+        }
+    </form>
+</div>
+<h2>@ViewData["Title"]</h2>
+<a asp-action="Create" class="btn btn-primary">Create Hotel<i class="fa-solid fa-plus"></i></a>
+
+@if (Model.Any()) // check if Model is null. 'Model' is reserved keyword to access the model
+{
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>Hotel ID</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Description</th>
+                <th>Amenities</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var hotel in Model)
+            {
+                <tr>
+                    <td>@hotel.HotelId</td>
+                    <td>@hotel.HotelName</td>
+                    <td>@hotel.Location</td>
+                    <td>@hotel.Description</td>
+                    <td>@hotel.Amenities</td>
+
+                    <td>
+                        @if (searchValid)
+                        {
+                            <a asp-controller="Room" asp-action="Search" asp-route-hotelId="@hotel.HotelId" 
+                                asp-route-capacity="@searchCapacity" asp-route-checkInDate="@searchCheckInDate.ToString("yyyy-MM-dd")" asp-route-checkOutDate="@searchCheckOutDate.ToString("yyyy-MM-dd")" 
+                                class="btn btn.sm btn-warning" role="button">Matching Rooms<i class="fa-solid fa-circle-info"></i></a>
+                        }
+                        <a asp-controller="Room" asp-action="Index" asp-route-hotelId="@hotel.HotelId" class="btn btn.sm btn-secondary" role="button">All Rooms</a>
+                        <a asp-action="Details" asp-route-id="@hotel.HotelId" class="btn btn.sm btn-secondary" role="button">Details </a>
+                        <a asp-action="Edit" asp-route-id="@hotel.HotelId" class="btn btn.sm btn-secondary" role="button">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@hotel.HotelId" class="btn btn.sm btn-danger" role="button">Delete</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+}
+else
+{
+    <p>No hotels available</p>
+}

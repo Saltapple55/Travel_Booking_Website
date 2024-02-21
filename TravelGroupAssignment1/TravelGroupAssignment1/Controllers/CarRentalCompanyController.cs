@@ -27,9 +27,9 @@ namespace TravelGroupAssignment1.Controllers
         [HttpGet]
         public IActionResult Details(int id)
         {
-            var hotel = _context.CarRentalCompanies.FirstOrDefault(c => c.CarRentalCompanyId == id);
-            if (hotel == null) return NotFound();
-            return View();
+            var company = _context.CarRentalCompanies.FirstOrDefault(c => c.CarRentalCompanyId == id);
+            if (company == null) return NotFound();
+            return View(company);
         }
 
         // GET: CarRentalCompanyController/Create
@@ -56,9 +56,9 @@ namespace TravelGroupAssignment1.Controllers
         // GET: CarRentalCompanyController/Edit/5
         public IActionResult Edit(int id)
         {
-            var hotel = _context.CarRentalCompanies.Find(id);
-            if (hotel == null) return NotFound();
-            return View(hotel);
+            var company = _context.CarRentalCompanies.Find(id);
+            if (company == null) return NotFound();
+            return View(company);
         }
 
         // POST: CarRentalCompanyController/Edit/5
@@ -81,7 +81,7 @@ namespace TravelGroupAssignment1.Controllers
                     else throw;
                 }
             }
-            return View();
+            return View(company);
         }
 
         // GET: CarRentalCompanyController/Delete/5
@@ -89,7 +89,7 @@ namespace TravelGroupAssignment1.Controllers
         {
             var company = _context.CarRentalCompanies.FirstOrDefault(c => c.CarRentalCompanyId == id);
             if (company == null) return NotFound();
-            return View();
+            return View(company);
         }
 
         // POST: CarRentalCompanyController/DeleteConfirmed/5

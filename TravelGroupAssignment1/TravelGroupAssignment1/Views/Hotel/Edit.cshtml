@@ -1,0 +1,51 @@
+﻿@model Hotel // bound to an empty Project (no attributes set)
+
+@{
+    // Razor block
+    ViewData["Title"] = "Edit Hotel"; // set title of view
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Edit" method="post">
+    <!-- Warning if input validation fails -->
+    <div asp-validation-summary="ModelOnly" class="text-warning"></div>
+
+    <div>
+        <label asp-for="HotelName" class="control-label"></label>
+        <input asp-for="HotelName" class="form-control" />
+        <span asp-validation-for="HotelName" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Location" class="control-label"></label>
+        <input asp-for="Location" class="form-control" />
+        <span asp-validation-for="Location" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Description" class="control-label"></label>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+
+    <div>
+        <label asp-for="Amenities" class="control-label"></label>
+        <input asp-for="Amenities" class="form-control" />
+        <span asp-validation-for="Amenities" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        @Html.HiddenFor(h => h.HotelId)
+        <input type="submit" value="Edit" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-secondary">Return</a>
+    </div>
+
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
