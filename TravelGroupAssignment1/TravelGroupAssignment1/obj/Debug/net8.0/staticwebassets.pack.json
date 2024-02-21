@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\CM\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\wwwroot\\js\\dynamicButton.js",
+      "PackagePath": "staticwebassets\\js\\dynamicButton.js"
+    },
+    {
       "Id": "C:\\Users\\CM\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

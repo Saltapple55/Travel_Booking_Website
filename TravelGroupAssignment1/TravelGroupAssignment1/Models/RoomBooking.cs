@@ -5,7 +5,8 @@ namespace TravelGroupAssignment1.Models
     public class RoomBooking : Booking
     {
         [Required]
-        public ICollection<Room_RoomBooking>? Room_RoomBooking { get; set; }
+        public int RoomId { get; set; }
+        public Room? Room { get; set; }
         [Required]
         public DateTime? CheckInDate { get; set; }
         [Required]

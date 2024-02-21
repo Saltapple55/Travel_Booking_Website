@@ -45,14 +45,14 @@ namespace TravelGroupAssignment1.Controllers
         [HttpGet]
         public IActionResult Create(int hotelId)
         {
-            var hotel = _context.Hotels.Find(hotelId);
+            var hotel = _context.Hotels.Include(h => h.Rooms).FirstOrDefault(h => h.HotelId == hotelId);
             if (hotel == null) return NotFound();
             ViewBag.HotelName = _context.Hotels.Find(hotelId)?.HotelName;
 
-            var room = new Room { HotelId = hotelId };
+            var room = new Room { HotelId = hotelId, Hotel = hotel };
             return View(room);
-        }
 
+        }
         // POST: RoomController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -128,16 +128,20 @@ namespace TravelGroupAssignment1.Controllers
         }
 
         // search by location and capacity (search bar same for hotel and room)
-        public async Task<IActionResult> Search(int hotelId, int capacity)
+        public async Task<IActionResult> Search(int hotelId, int capacity, DateTime checkInDate, DateTime checkOutDate)
         {
-            var roomQuery = from p in _context.Rooms
-                             select p;
-            // Keeping Location for future possible Hotel recommendations
+            var roomQuery = from p in _context.Rooms select p;
+
             bool searchValid = hotelId >= 0 && capacity >= 0;
             if (searchValid)
             {
+                // find room of given Hotel and capacity
                 roomQuery = roomQuery.Where(r => r.HotelId == hotelId)
                                 .Where(r => r.Capacity >= capacity);
+                // find room with no bookings on given start / end dates
+                roomQuery = roomQuery.Where(r => !r.RoomBookings.Any(rb => rb.CheckInDate >= checkInDate && rb.CheckOutDate <= checkOutDate
+                                        || rb.CheckInDate >= checkInDate && rb.CheckInDate <= checkOutDate));
+                                
             }
             else
             {
@@ -146,6 +150,9 @@ namespace TravelGroupAssignment1.Controllers
             var rooms = await roomQuery.ToListAsync();
             ViewBag.SearchValid = searchValid;
             ViewBag.Capacity = capacity;
+            ViewBag.CheckInDate = checkInDate;
+            ViewBag.CheckOUtDate = checkOutDate;
+            ViewBag.HotelId = hotelId;
             return View("Index", rooms);
         }
     }
