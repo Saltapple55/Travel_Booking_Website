@@ -27,6 +27,10 @@
         </div>
 
         <input type="submit" value="Search and Book" class="btn btn-warning" />
+        @if (searchValid)
+        {
+            <a asp-action="Index" class="btn btn-secondary">Clear Search</a>
+        }
     </form>
 </div>
 
@@ -65,10 +69,10 @@
                         {
                             <a asp-controller="CarBooking" asp-action="Create" asp-route-carId="@car.CarId" asp-route-startDate="@searchStartDate.ToString("yyyy-MM-dd")" asp-route-endDate="@searchEndDate.ToString("yyyy-MM-dd")" class="btn btn.sm btn-warning" role="button">Book Car<i class="fa-solid fa-list-check"></i></a>
                         }
-                        <a asp-controller="CarBooking" asp-action="Index" asp-route-carId="@car.CarId" class="btn btn.sm btn-secondary" role="button">All Bookings<i class="fa-solid fa-list-check"></i></a>
-                        <a asp-action="Details" asp-route-carId="@car.CarId" class="btn btn.sm btn-secondary" role="button">Details <i class="fa-solid fa-circle-info"></i></a>
-                        <a asp-action="Edit" asp-route-carId="@car.CarId" class="btn btn.sm btn-secondary" role="button">Edit <i class="fa-regular fa-pen-to-square"></i></a>
-                        <a asp-action="Delete" asp-route-carId="@car.CarId" class="btn btn.sm btn-danger" role="button">Delete <i class="fa-solid fa-circle-xmark"></i></a>
+                        <a asp-controller="CarBooking" asp-action="Index" asp-route-carId="@car.CarId" class="btn btn.sm btn-secondary" role="button">All Bookings</a>
+                        <a asp-action="Details" asp-route-carId="@car.CarId" class="btn btn.sm btn-secondary" role="button">Details</a>
+                        <a asp-action="Edit" asp-route-carId="@car.CarId" class="btn btn.sm btn-secondary" role="button">Edit</a>
+                        <a asp-action="Delete" asp-route-carId="@car.CarId" class="btn btn.sm btn-danger" role="button">Delete</a>
                     </td>
 
                 </tr>
