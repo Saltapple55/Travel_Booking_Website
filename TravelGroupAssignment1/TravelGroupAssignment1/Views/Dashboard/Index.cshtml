@@ -1,0 +1,14 @@
+﻿@model List<Dashboard>
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+@if (Model.Any())
+{
+    @foreach (var dashboard in Model)
+    {
+        <h1>@dashboard.Hotel.HotelName</h1>
+        <h2>@dashboard.Car.Make</h2>
+    }
+}

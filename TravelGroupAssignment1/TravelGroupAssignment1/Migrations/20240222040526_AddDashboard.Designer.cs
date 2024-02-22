@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TravelGroupAssignment1.Data;
 
@@ -11,9 +12,11 @@ using TravelGroupAssignment1.Data;
 namespace TravelGroupAssignment1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240222040526_AddDashboard")]
+    partial class AddDashboard
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -121,29 +124,6 @@ namespace TravelGroupAssignment1.Migrations
                     b.HasKey("CarRentalCompanyId");
 
                     b.ToTable("CarRentalCompanies");
-                });
-
-            modelBuilder.Entity("TravelGroupAssignment1.Models.Dashboard", b =>
-                {
-                    b.Property<int>("DashboardId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DashboardId"));
-
-                    b.Property<int?>("CarId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("HotelId")
-                        .HasColumnType("int");
-
-                    b.HasKey("DashboardId");
-
-                    b.HasIndex("CarId");
-
-                    b.HasIndex("HotelId");
-
-                    b.ToTable("Dashboard");
                 });
 
             modelBuilder.Entity("TravelGroupAssignment1.Models.Hotel", b =>
@@ -272,21 +252,6 @@ namespace TravelGroupAssignment1.Migrations
                         .IsRequired();
 
                     b.Navigation("Car");
-                });
-
-            modelBuilder.Entity("TravelGroupAssignment1.Models.Dashboard", b =>
-                {
-                    b.HasOne("TravelGroupAssignment1.Models.Car", "Car")
-                        .WithMany()
-                        .HasForeignKey("CarId");
-
-                    b.HasOne("TravelGroupAssignment1.Models.Hotel", "Hotel")
-                        .WithMany()
-                        .HasForeignKey("HotelId");
-
-                    b.Navigation("Car");
-
-                    b.Navigation("Hotel");
                 });
 
             modelBuilder.Entity("TravelGroupAssignment1.Models.Room", b =>
