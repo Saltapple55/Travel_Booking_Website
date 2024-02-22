@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\js\\dynamicButton.js"
     },
     {
+      "Id": "C:\\Users\\CM\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\wwwroot\\js\\formValidation.js",
+      "PackagePath": "staticwebassets\\js\\formValidation.js"
+    },
+    {
       "Id": "C:\\Users\\CM\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

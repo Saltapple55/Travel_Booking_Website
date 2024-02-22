@@ -129,6 +129,8 @@ namespace TravelGroupAssignment1.Controllers
             ViewBag.SearchValid = searchValid;
             ViewBag.Location = location;
             ViewBag.Capacity = capacity;
+            ViewBag.CheckInDate = checkInDate;
+            ViewBag.CheckOutDate = checkOutDate;
             return View("Index", hotels);
         }
 
