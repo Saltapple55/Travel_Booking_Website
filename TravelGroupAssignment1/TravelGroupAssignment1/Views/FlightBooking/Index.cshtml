@@ -4,6 +4,7 @@
     ViewData["Title"] = "Bookings List";
 }
 <h2>@ViewData["Title"]</h2>
+<h3>For Flight @ViewBag.From to @ViewBag.To</h3>
 
 <a asp-action="create" asp-route-flightId="@ViewBag.FlightId" class="btn btn-primary">Create</a>
 
@@ -13,11 +14,10 @@
     <table class=" table">
         <thead>
             <tr>
-                <th>Airline</th>
-                <th>From</th>
-                <th>To</th>
-                <th>Departure Time</th>
-                <th>Arrival Time</th>
+                <th>Booking Reference</th>
+                <th>Passenger Id</th>
+                <th>Passenger Name</th>
+                <th>Passport Number</th>
 
 
 
@@ -30,6 +30,9 @@
 
                 <tr>
                     <td>@fbooking.BookingReference</td>
+                    <td>@fbooking.Passengers[0].PassengerId</td>
+                    <td>@fbooking.Passengers[0].FirstName @fbooking.Passengers[0].LastName</td>
+                    <td>@fbooking.Passengers[0].PassportNo</td>
 
 
                     <td>

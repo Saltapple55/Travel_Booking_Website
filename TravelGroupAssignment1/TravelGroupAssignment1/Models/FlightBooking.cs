@@ -11,9 +11,11 @@ namespace TravelGroupAssignment1.Models
         public Flight? Flight { get; set; }
         [Required]
         public string FlightClass { get; set; }
-        //public IList<Passenger>? Passengers { get; set; }
+        public string Seat { get; set; }
 
-        public Passenger[]? Passengers { get; set; } = null;
+        public IList<Passenger> Passengers { get; set; }
+
+       // public Passenger[]? Passengers { get; set; } = null;
 
     }
 }

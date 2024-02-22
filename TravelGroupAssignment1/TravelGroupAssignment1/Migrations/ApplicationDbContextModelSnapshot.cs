@@ -124,6 +124,10 @@ namespace TravelGroupAssignment1.Migrations
                     b.Property<int>("FlightId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Seat")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("TripId")
                         .HasColumnType("int");
 
@@ -165,9 +169,6 @@ namespace TravelGroupAssignment1.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PassengerId"));
-
-                    b.Property<int>("BookingId")
-                        .HasColumnType("int");
 
                     b.Property<string>("FirstName")
                         .IsRequired()

@@ -14,7 +14,7 @@ namespace TravelGroupAssignment1.Models
         [Required]
 
         public int MaxPassenger { get; set;}
-        public IEnumerable<Passenger>? PassengerList { get; set;}
+        public IEnumerable<Passenger> PassengerList { get; set;}
         [Required]
         public string? From { get; set;}
         [Required]

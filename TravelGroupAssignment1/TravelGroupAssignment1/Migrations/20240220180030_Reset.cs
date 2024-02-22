@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TravelGroupAssignment1.Migrations
 {
     /// <inheritdoc />
-    public partial class EditedFlight : Migration
+    public partial class Reset : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -40,8 +40,7 @@ namespace TravelGroupAssignment1.Migrations
                     From = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     To = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DepartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ArrivalTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Stops = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ArrivalTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -77,6 +76,28 @@ namespace TravelGroupAssignment1.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "FlightBookings",
+                columns: table => new
+                {
+                    BookingId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FlightId = table.Column<int>(type: "int", nullable: false),
+                    FlightClass = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BookingReference = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TripId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FlightBookings", x => x.BookingId);
+                    table.ForeignKey(
+                        name: "FK_FlightBookings_Flights_FlightId",
+                        column: x => x.FlightId,
+                        principalTable: "Flights",
+                        principalColumn: "FlightId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Rooms",
                 columns: table => new
                 {
@@ -102,44 +123,16 @@ namespace TravelGroupAssignment1.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Booking",
-                columns: table => new
-                {
-                    BookingId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    BookingReference = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TripId = table.Column<int>(type: "int", nullable: false),
-                    Discriminator = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
-                    FlightId = table.Column<int>(type: "int", nullable: true),
-                    FlightClass = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Booking", x => x.BookingId);
-                    table.ForeignKey(
-                        name: "FK_Booking_Flights_FlightId",
-                        column: x => x.FlightId,
-                        principalTable: "Flights",
-                        principalColumn: "FlightId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Booking_Trips_TripId",
-                        column: x => x.TripId,
-                        principalTable: "Trips",
-                        principalColumn: "TripId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Passengers",
                 columns: table => new
                 {
                     PassengerId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    firstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    lastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    passportNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PassportNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BookingId = table.Column<int>(type: "int", nullable: false),
                     FlightBookingBookingId = table.Column<int>(type: "int", nullable: true),
                     FlightId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -147,9 +140,9 @@ namespace TravelGroupAssignment1.Migrations
                 {
                     table.PrimaryKey("PK_Passengers", x => x.PassengerId);
                     table.ForeignKey(
-                        name: "FK_Passengers_Booking_FlightBookingBookingId",
+                        name: "FK_Passengers_FlightBookings_FlightBookingBookingId",
                         column: x => x.FlightBookingBookingId,
-                        principalTable: "Booking",
+                        principalTable: "FlightBookings",
                         principalColumn: "BookingId");
                     table.ForeignKey(
                         name: "FK_Passengers_Flights_FlightId",
@@ -169,14 +162,9 @@ namespace TravelGroupAssignment1.Migrations
                 values: new object[] { 1, 1 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Booking_FlightId",
-                table: "Booking",
+                name: "IX_FlightBookings_FlightId",
+                table: "FlightBookings",
                 column: "FlightId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Booking_TripId",
-                table: "Booking",
-                column: "TripId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Passengers_FlightBookingBookingId",
@@ -207,16 +195,16 @@ namespace TravelGroupAssignment1.Migrations
                 name: "Rooms");
 
             migrationBuilder.DropTable(
-                name: "Booking");
+                name: "Trips");
+
+            migrationBuilder.DropTable(
+                name: "FlightBookings");
 
             migrationBuilder.DropTable(
                 name: "Hotels");
 
             migrationBuilder.DropTable(
                 name: "Flights");
-
-            migrationBuilder.DropTable(
-                name: "Trips");
         }
     }
 }

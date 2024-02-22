@@ -5,25 +5,25 @@
 namespace TravelGroupAssignment1.Migrations
 {
     /// <inheritdoc />
-    public partial class EditPassengers : Migration
+    public partial class FlightBookingNeedsPassengers : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<int>(
-                name: "BookingId",
-                table: "Passengers",
-                type: "int",
+            migrationBuilder.AddColumn<string>(
+                name: "Seat",
+                table: "FlightBookings",
+                type: "nvarchar(max)",
                 nullable: false,
-                defaultValue: 0);
+                defaultValue: "");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "BookingId",
-                table: "Passengers");
+                name: "Seat",
+                table: "FlightBookings");
         }
     }
 }

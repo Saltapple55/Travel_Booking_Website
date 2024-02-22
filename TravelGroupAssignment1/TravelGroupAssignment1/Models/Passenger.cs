@@ -18,8 +18,8 @@ namespace TravelGroupAssignment1.Models
         [Required]
         public string PassportNo { get; set; }
         
-        public int BookingId { get; set; }
-        public FlightBooking? FlightBooking { get; set; }
+        //public int BookingId { get; set; }
+        //public FlightBooking? FlightBooking { get; set; }
 
     }
 }

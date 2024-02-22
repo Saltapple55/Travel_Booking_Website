@@ -12,8 +12,8 @@ using TravelGroupAssignment1.Data;
 namespace TravelGroupAssignment1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240219070327_UpdatedPassenger")]
-    partial class UpdatedPassenger
+    [Migration("20240220181223_FlightbookingList")]
+    partial class FlightbookingList
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,37 +24,6 @@ namespace TravelGroupAssignment1.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("TravelGroupAssignment1.Models.Booking", b =>
-                {
-                    b.Property<int>("BookingId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingId"));
-
-                    b.Property<string>("BookingReference")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasMaxLength(13)
-                        .HasColumnType("nvarchar(13)");
-
-                    b.Property<int>("TripId")
-                        .HasColumnType("int");
-
-                    b.HasKey("BookingId");
-
-                    b.HasIndex("TripId");
-
-                    b.ToTable("Booking");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Booking");
-
-                    b.UseTphMappingStrategy();
-                });
 
             modelBuilder.Entity("TravelGroupAssignment1.Models.Customer", b =>
                 {
@@ -137,6 +106,35 @@ namespace TravelGroupAssignment1.Migrations
                     b.HasKey("FlightId");
 
                     b.ToTable("Flights");
+                });
+
+            modelBuilder.Entity("TravelGroupAssignment1.Models.FlightBooking", b =>
+                {
+                    b.Property<int>("BookingId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingId"));
+
+                    b.Property<string>("BookingReference")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FlightClass")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("FlightId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TripId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BookingId");
+
+                    b.HasIndex("FlightId");
+
+                    b.ToTable("FlightBookings");
                 });
 
             modelBuilder.Entity("TravelGroupAssignment1.Models.Hotel", b =>
@@ -264,27 +262,13 @@ namespace TravelGroupAssignment1.Migrations
 
             modelBuilder.Entity("TravelGroupAssignment1.Models.FlightBooking", b =>
                 {
-                    b.HasBaseType("TravelGroupAssignment1.Models.Booking");
-
-                    b.Property<string>("FlightClass")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("FlightId")
-                        .HasColumnType("int");
-
-                    b.HasIndex("FlightId");
-
-                    b.HasDiscriminator().HasValue("FlightBooking");
-                });
-
-            modelBuilder.Entity("TravelGroupAssignment1.Models.Booking", b =>
-                {
-                    b.HasOne("TravelGroupAssignment1.Models.Trip", null)
-                        .WithMany("Bookings")
-                        .HasForeignKey("TripId")
+                    b.HasOne("TravelGroupAssignment1.Models.Flight", "Flight")
+                        .WithMany()
+                        .HasForeignKey("FlightId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Flight");
                 });
 
             modelBuilder.Entity("TravelGroupAssignment1.Models.Passenger", b =>
@@ -309,35 +293,19 @@ namespace TravelGroupAssignment1.Migrations
                     b.Navigation("Hotel");
                 });
 
-            modelBuilder.Entity("TravelGroupAssignment1.Models.FlightBooking", b =>
-                {
-                    b.HasOne("TravelGroupAssignment1.Models.Flight", "Flight")
-                        .WithMany()
-                        .HasForeignKey("FlightId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Flight");
-                });
-
             modelBuilder.Entity("TravelGroupAssignment1.Models.Flight", b =>
                 {
                     b.Navigation("PassengerList");
                 });
 
-            modelBuilder.Entity("TravelGroupAssignment1.Models.Hotel", b =>
-                {
-                    b.Navigation("Rooms");
-                });
-
-            modelBuilder.Entity("TravelGroupAssignment1.Models.Trip", b =>
-                {
-                    b.Navigation("Bookings");
-                });
-
             modelBuilder.Entity("TravelGroupAssignment1.Models.FlightBooking", b =>
                 {
                     b.Navigation("Passengers");
+                });
+
+            modelBuilder.Entity("TravelGroupAssignment1.Models.Hotel", b =>
+                {
+                    b.Navigation("Rooms");
                 });
 #pragma warning restore 612, 618
         }
