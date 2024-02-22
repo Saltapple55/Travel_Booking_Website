@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Runtime.Serialization;
 using TravelGroupAssignment1.Data;
 using TravelGroupAssignment1.Models;
 
@@ -64,6 +66,7 @@ namespace TravelGroupAssignment1.Controllers
             ViewBag.Hotel = hotel;
             ViewBag.CheckInDate = checkInDate;
             ViewBag.CheckOutDate = checkOutDate;
+
             return View(new RoomBooking { RoomId = roomId });
         }
 
@@ -79,6 +82,14 @@ namespace TravelGroupAssignment1.Controllers
                 _context.SaveChanges();
                 return RedirectToAction("Index", new { roomId = roomBooking.RoomId });
             }
+            var room = _context.Rooms.Find(roomBooking.RoomId);
+            if (room == null) return NotFound();
+            var hotel = _context.Hotels.Find(room.HotelId);
+            if (hotel == null) return NotFound();
+
+            ViewBag.Room = room;
+            ViewBag.Hotel = hotel;
+            //return RedirectToAction("Create", new { roomId = roomBooking.RoomId });
             return View(roomBooking);
         }
 
@@ -86,16 +97,18 @@ namespace TravelGroupAssignment1.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var booking = _context.RoomBookings
+            var roomBooking = _context.RoomBookings
                             .Include(rb => rb.Room)
                             .FirstOrDefault(cb => cb.BookingId == id);
-            if (booking == null) return NotFound();
-            var room = _context.Rooms.Find(booking.RoomId);
+            if (roomBooking == null) return NotFound();
+            var room = _context.Rooms.Find(roomBooking.RoomId);
             if (room == null) return NotFound();
             var hotel = _context.Hotels.Find(room.HotelId);
             if (hotel == null) return NotFound();
-            if (booking == null) return NotFound();
-            return View(booking);
+            if (roomBooking == null) return NotFound();
+            ViewBag.Room = room;
+            ViewBag.Hotel = hotel;
+            return View(roomBooking);
         }
 
         // POST: RoomBookingController/Edit/5
@@ -112,7 +125,12 @@ namespace TravelGroupAssignment1.Controllers
                 _context.SaveChanges();
                 return RedirectToAction("Index", new { roomId = roomBooking.RoomId });
             }
-            return View();
+            var room = _context.Rooms.Find(roomBooking.RoomId);
+            var hotel = _context.Hotels.Find(room.HotelId);
+            if (roomBooking == null) return NotFound();
+            ViewBag.Room = room;
+            ViewBag.Hotel = hotel;
+            return View(roomBooking);
         }
 
         // GET: RoomBookingController/Delete/5

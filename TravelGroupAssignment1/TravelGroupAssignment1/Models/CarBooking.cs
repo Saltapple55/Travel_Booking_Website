@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using TravelGroupAssignment1.Validation;
 
 namespace TravelGroupAssignment1.Models
 {
@@ -10,6 +11,7 @@ namespace TravelGroupAssignment1.Models
         [Required]
         public DateTime? StartDate { get; set; }
         [Required]
+        [ValidEndDate("StartDate")]
         public DateTime? EndDate { get; set; } // validate end date >= start date
     }
 }
