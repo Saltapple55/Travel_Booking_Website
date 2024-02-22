@@ -14,7 +14,6 @@ namespace TravelGroupAssignment1.Data
         public DbSet<RoomBooking> RoomBookings { get; set; }
         public DbSet<Room_RoomBooking> Room_RoomBookings { get; set; }
 
-        public DbSet<Dashboard> Dashboard { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

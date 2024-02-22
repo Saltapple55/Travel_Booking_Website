@@ -7,10 +7,7 @@
     bool searchValid = ViewBag.SearchValid != null? ViewBag.SearchValid : false;
 }
 
-
 <h2>@ViewData["Title"]</h2>
-<a asp-action="Create" class="btn btn-primary">Create Car <i class="fa-solid fa-plus"></i></a>
-<a asp-controller="CarRentalCompany" asp-action="Index" class="btn btn-primary">Rental Companies<i class="fa-solid fa-plus"></i></a>
 
 @if (Model.Any()) 
 {

@@ -32,6 +32,16 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Flight" asp-action="Index">Flight</a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Admin Dashboard
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" asp-controller="Dashboard" asp-action="HotelIndex">Hotel Dashboard</a></li>
+                                <li><a class="dropdown-item" asp-controller="Dashboard" asp-action="CarIndex">Car Dashboard</a></li>
+                                <li><a class="dropdown-item" asp-controller="Dashboard" asp-action="FlightIndex">Flight Dashboard</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>
