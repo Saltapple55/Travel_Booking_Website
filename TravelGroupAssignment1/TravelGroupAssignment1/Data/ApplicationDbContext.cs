@@ -15,11 +15,32 @@ namespace TravelGroupAssignment1.Data
         public DbSet<Trip> Trips { get; set; }
         public DbSet<FlightBooking> FlightBookings { get; set; }
 
-
+        
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Hotel>()
+                .HasMany(r => r.Rooms)
+                .WithOne(h => h.Hotel)
+                .HasForeignKey(r => r.HotelId);
+
+            modelBuilder.Entity<CarRentalCompany>()
+                .HasMany(c => c.Cars)
+                .WithOne(cr => cr.Company)
+                .HasForeignKey(c => c.CompanyId);
+
+            modelBuilder.Entity<Car>()
+                .HasMany(c => c.Bookings)
+                .WithOne(cb => cb.Car)
+                .HasForeignKey(c => c.CarId);
+
+            modelBuilder.Entity<Room>()
+                .HasMany(rb => rb.RoomBookings)
+                .WithOne(r => r.Room)
+                .HasForeignKey(rb => rb.RoomId);
+
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Hotel>()
                 .HasMany(r => r.Rooms)
