@@ -1,0 +1,98 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+<!-- Create Car -->
+<div class="col-md-12 text-center">
+    <h2>Create Car</h2>
+</div>
+<br />
+<div class="container">
+    <form>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="upload-area">
+                    <body onload="setup()">
+                        <div id='formid' enctype="multipart/form-data" accept="image/*">
+                            <input id='fileid' type='file' name='filename' hidden />
+                            <input id='buttonid' type='button' value='Upload Image' />
+                        </div>
+                    </body>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="title">Make</label>
+                    <input type="text" class="form-control" id="title" placeholder="Enter Make">
+                </div>
+
+                <div class="form-group">
+                    <label for="title">Mode</label>
+                    <input type="text" class="form-control" id="title" placeholder="Enter capacModeity">
+                </div>
+
+                <div class="form-group">
+                    <label for="title">Price</label>
+                    <input type="number" class="form-control" id="title" placeholder="Enter Price">
+                </div>
+
+                <div class="form-group">
+                    <label for="title">Max Passengers</label>
+                    <input type="number" class="form-control" id="title" placeholder="Enter Max Passengers">
+                </div>
+
+                <div class="form-group">
+                    <div class="dropdown">
+                        <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            Select The Car Company
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><button class="dropdown-item" type="button">AAA</button></li>
+                            <li><button class="dropdown-item" type="button">BBB</button></li>
+                            <li><button class="dropdown-item" type="button">CCC</button></li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="amenities">Amenities</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            <i class="fa-solid fa-code-branch"></i> Automation
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                        <label class="form-check-label" for="flexCheckChecked">
+                            <i class="fa-solid fa-fan"></i> Air Conditioner
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                        <label class="form-check-label" for="flexCheckChecked">
+                            <i class="fa-solid fa-gauge-high"></i> Unlimited Mileage
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-12 text-center">
+            <button type="submit" class="btn btn-primary btn-lg">Create</button>
+        </div>
+    </form>
+</div>
+
+
+<script>
+    function setup() {
+        document.getElementById('buttonid').addEventListener('click', openDialog);
+        function openDialog() {
+            document.getElementById('fileid').click();
+        }
+        document.getElementById('fileid').addEventListener('change', submitForm);
+        function submitForm() {
+            document.getElementById('formid').submit();
+        }
+    }
+</script>
