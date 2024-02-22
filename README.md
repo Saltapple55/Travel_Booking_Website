@@ -1,4 +1,9 @@
 210224 Merge Change Log
+- Added www.root/js/formValidation.js for client side date validation (end date >= start date)
+- Added Validation/ValidEndDateAttribute.cs class ((end date >= start date for CarBooking and RoomBooking Models)
+- Modified Create and Edit actions of CarBooking and RoomBooking to match changes above
+
+210224 Merge Change Log
 - Added Room Booking base class (Room:RoomBooking = 1:M)
 - Updated Car search to use location, car capacity, start and end date
 - Added Hotel search by location, room capacity, check in and check out date
