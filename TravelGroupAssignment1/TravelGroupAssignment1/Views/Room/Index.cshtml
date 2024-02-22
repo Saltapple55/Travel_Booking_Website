@@ -21,12 +21,12 @@
 
         <div class="form-group mb-2 d-inline-block">
             <label for="checkInDate" class="control-label">Start Date</label>
-            <input required id="checkInDate" name="checkInDate" type="date" value="@searchCheckInDate.ToString("yyyy-MM-dd")" class="form-control" />
+            <input required id="checkInDate" name="checkInDate" type="date" value="@searchCheckInDate.ToString("yyyy-MM-dd")" min="@DateTime.Now.ToString("yyyy-MM-dd")" class="form-control" onchange="updateCheckOutDateLimit('checkInDate', 'checkOutDate')" />
         </div>
 
         <div class="form-group mb-2 d-inline-block">
             <label for="checkOutDate" class="control-label">End Date</label>
-            <input required id="checkOutDate" name="checkOutDate" type="date" value="@searchCheckOutDate.ToString("yyyy-MM-dd")" class="form-control" />
+            <input required id="checkOutDate" name="checkOutDate" type="date" value="@searchCheckOutDate.ToString("yyyy-MM-dd")" min="@DateTime.Now.ToString("yyyy-MM-dd")" class="form-control" />
         </div>
 
         <input type="submit" value="Search and Book" class="btn btn-warning" />

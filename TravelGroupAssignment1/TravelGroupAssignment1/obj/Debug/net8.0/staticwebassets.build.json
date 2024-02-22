@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "NQm40lrzxYEF1EwbdqU6Ie95qOWCy6NuhE1WnuX5vhQ=",
+  "Hash": "jSVGwZ1eZ1eHn4nROiqOvYBoBCVO3uKCQPC377CzkLY=",
   "Source": "TravelGroupAssignment1",
   "BasePath": "_content/TravelGroupAssignment1",
   "Mode": "Default",
@@ -110,6 +110,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\dynamicButton.js"
+    },
+    {
+      "Identity": "C:\\Users\\CM\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\wwwroot\\js\\formValidation.js",
+      "SourceId": "TravelGroupAssignment1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\CM\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\wwwroot\\",
+      "BasePath": "_content/TravelGroupAssignment1",
+      "RelativePath": "js/formValidation.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\formValidation.js"
     },
     {
       "Identity": "C:\\Users\\CM\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\wwwroot\\js\\site.js",
