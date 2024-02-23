@@ -1,0 +1,35 @@
+﻿@model FlightBooking
+@{
+    ViewData["Title"] = "Booking Details";
+
+}
+<h1>@ViewData["Title"]</h1>
+
+<div class="card">
+
+    <h3 class="card-title"> @Model.BookingReference</h3>
+
+    <p class=" = " card-text>@Model.BookingId </p>
+
+    <dl class="row">
+        @foreach (var pass in Model.Passengers){
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => pass.FirstName) </dt>
+        <dd class=" col-sm-9">@Html.DisplayFor(model => pass.FirstName)</dd>
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => pass.LastName) </dt>
+        <dd class=" col-sm-9">@Html.DisplayFor(model => pass.LastName)</dd>
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => pass.PassportNo) </dt>
+            <dd class=" col-sm-9">@Html.DisplayFor(model => pass.PassportNo)</dd>
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => pass.Phone) </dt>
+            <dd class=" col-sm-9">@Html.DisplayFor(model => pass.Phone)</dd>
+
+       
+
+        }
+    </dl>
+    <a asp-action="Edit" asp-route-id="@Model.BookingId" class=" btn btn-primary">Edit</a>
+    <a asp-action="Index" asp-route-flightId="@Model.FlightId" class=" btn btn-secondary">Back</a>
+
+</div>
+
+

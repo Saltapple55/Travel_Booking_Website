@@ -12,6 +12,13 @@ namespace TravelGroupAssignment1.Data
         public DbSet<Car> Cars { get; set; }
         public DbSet<CarBooking> CarBookings { get; set; }
         public DbSet<RoomBooking> RoomBookings { get; set; }
+        public DbSet<Flight> Flights { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+
+        public DbSet<Passenger> Passengers { get; set; }
+        public DbSet<Trip> Trips { get; set; }
+        public DbSet<FlightBooking> FlightBookings { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -35,7 +42,14 @@ namespace TravelGroupAssignment1.Data
                 .WithOne(r => r.Room)
                 .HasForeignKey(rb => rb.RoomId);
 
+            modelBuilder.Entity<Customer>().HasData(
+               new Customer { CustomerId = 1, Username = "username", Password = "password", FirstName = "Guest", LastName = "User", Email = "Comp2319@gmail.com" }
 
+               );
+
+            modelBuilder.Entity<Trip>().HasData(
+                new Trip { TripId = 1, CustomerId = 1 }
+                 );
         }
     }
 }
