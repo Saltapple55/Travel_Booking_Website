@@ -34,14 +34,14 @@
 
                         <dt class="col-sm-3">Rental Company</dt>
                         <dd class="col-sm-9">
-                            <a asp-controller="CarRentalCompany" asp-action="Details" asp-route-id="@Model.CompanyId" class="btn btn-outline-info">
+                            <p class="btn btn-outline-info">
                                 @(Model.Company != null ? @Model.Company.CompanyName : "")
-                            </a>
+                            </p>
                         </dd>
 
                     </dl>
 
-                    <a asp-action="Edit" asp-route-carId="@Model.CarId" class="btn btn-primary">Edit</a> <!--Will change to book the car-->
+                    <a asp-controller="CarBooking" asp-action="Create" asp-route-carId="@Model.CarId" class="btn btn.sm btn-primary" role="button">Book Car</a>
                     <a asp-action="Index" class="btn btn-secondary">Return</a>
                 </div>
             </div>

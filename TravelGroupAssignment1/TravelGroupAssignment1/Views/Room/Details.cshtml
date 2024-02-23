@@ -38,7 +38,7 @@
                         <dd class="col-sm-9">@Model.Amenities</dd>
                     </dl>
 
-                    <a asp-action="Edit" asp-route-id="@Model.RoomId" class="btn btn-primary">Edit</a> <!--Will change to book the room-->
+                    <a asp-controller="RoomBooking" asp-action="Create" asp-route-roomId="@Model.RoomId" class="btn btn-primary">Reserve Room<i class="fa-solid fa-plus"></i></a>
                     <a asp-action="Index" asp-route-hotelId="@Model.HotelId" class="btn btn-secondary">Return</a>
                 </div>
             </div>
