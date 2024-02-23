@@ -1,3 +1,9 @@
+230224 Merge Change Log
+- added search bar date validation (start date >= today, end date >= start date)
+- search bar has default date and traveller/passenger values
+- search bar dates now carry over to show after the search
+- search bar values also shared across 3 search tabs (hotel / room / car) 
+
 210224 Merge Change Log
 - Added www.root/js/formValidation.js for client side date validation (end date >= start date)
 - Added Validation/ValidEndDateAttribute.cs class ((end date >= start date for CarBooking and RoomBooking Models)
