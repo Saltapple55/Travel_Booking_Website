@@ -17,17 +17,17 @@ namespace TravelGroupAssignment1.Models
         public int MaxPassenger { get; set;}
         public IEnumerable<Passenger>? PassengerList { get; set;}
         [Required]
-        public string? From { get; set;}
+        public string From { get; set;}
         [Required]
-        public string? To { get; set;}
+        public string To { get; set;}
 
         [Required]
 
-        public DateTime? DepartTime { get; set;}
+        public DateTime DepartTime { get; set;}
         [Required]
         [ValidEndDate("DepartTime")]
 
-        public DateTime? ArrivalTime { get; set; }
+        public DateTime ArrivalTime { get; set; }
 
 
 

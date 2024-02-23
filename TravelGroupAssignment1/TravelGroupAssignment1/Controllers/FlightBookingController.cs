@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol;
 using System;
 using System.Threading.Tasks;
 using TravelGroupAssignment1.Data;
@@ -181,6 +182,29 @@ namespace TravelGroupAssignment1.Controllers
         {
 
             return _context.FlightBookings.Any(e => e.BookingId == id);
+        }
+        public async Task<IActionResult> Search(string locationFrom, string location, int capacity, DateTime startDate)
+        {
+            var flightQuery = from p in _context.Flights
+                             select p;
+            
+            bool searchValid = !String.IsNullOrEmpty(location) && capacity > 0;
+            if (searchValid)
+            {
+                flightQuery = flightQuery.Where(f => f.From.Contains(locationFrom) && f.To.Contains(location));
+                flightQuery = flightQuery.Where(f => f.DepartTime.Date == startDate.Date);
+               
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+            var flights = await flightQuery.ToListAsync();
+            ViewBag.SearchValid = searchValid;
+            ViewBag.Location = location;
+            ViewBag.Capacity = capacity;
+            ViewBag.StartDate = startDate;
+            return View("Index", flights);
         }
 
 
