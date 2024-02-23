@@ -9,48 +9,31 @@
 
 @if (Model.Any()) // check if Model is null. 'Model' is reserved keyword to access the model
 {
-    <table class="table">
-
-        <thead>
-            <tr>
-                <th>Flight ID</th>
-                <th>AirLine</th>
-                <th>Price</th>
-                <th>From</th>
-                <th>To</th>
-                <th>DepartTime</th>
-                <th>ArrivalTime</th>
-            </tr>
-        </thead>
-
-        <tbody>
+    <!-- Flight Card-->
+  <div class="container">
+    <div class="column">
             @foreach (var flight in Model)
             {
-                <tr>
-                    <td>@flight.FlightId</td>
-                    <td>@flight.Airline</td>
-                    <td>@flight.Price</td>
-                    <td>@flight.From</td>
-                    <td>@flight.To</td>
-                    <td>@flight.DepartTime</td>
-                    <td>@flight.ArrivalTime</td>
-
-                    <td>
-                        <a asp-controller="FlightBooking" asp-action="Index" asp-route-flightId="@flight.FlightId" class="btn btn.sm btn-secondary" role="button">Bookings<i class="fa-solid fa-list-check"></i></a>
-
-                        <a asp-action="Details" asp-route-flightId="@flight.FlightId" class="btn btn.sm btn-secondary" role="button">Details <i class="fa-solid fa-circle-info"></i></a>
-                        <a asp-action="Edit" asp-route-flightId="@flight.FlightId" class="btn btn.sm btn-secondary" role="button">Edit <i class="fa-regular fa-pen-to-square"></i></a>
-                        <a asp-action="Delete" asp-route-flightId="@flight.FlightId" class="btn btn.sm btn-danger" role="button">Delete <i class="fa-solid fa-circle-xmark"></i></a>
-                    </td>
-
-                </tr>
+                <div class="col-md-6">
+                    <div class="flight-card">
+                        <div class="flight-card-body">
+                            <div class="flight-info">
+                                <p><i class="fa-solid fa-plane-departure"></i> @flight.DepartTime <i class="fa-solid fa-plane-arrival"></i> @flight.ArrivalTime</p>
+                                <p><strong>From:</strong> @flight.From <strong>To:</strong> @flight.To</p>
+                                <p><i class="fa-solid fa-plane-up"></i> @flight.Airline</p>
+                            </div>
+                            <div class="flight-price">$500</div>
+                        </div>
+                        <a asp-controller="FlightBooking" asp-action="Create" asp-route-flightId="@flight.FlightId" class="btn btn-primary">Book</a>
+                    </div>
+                </div>
             }
-        </tbody>
-
-    </table>
-
+        </div>
+    </div>
 }
 else
 {
     <p>No flights available</p>
 }
+
+
