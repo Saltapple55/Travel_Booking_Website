@@ -4,7 +4,7 @@
     ViewData["Title"] = "Bookings List";
 }
 <h2>@ViewData["Title"]</h2>
-<h3>For Flight @ViewBag.From to @ViewBag.To</h3>
+<h3>For Flight @ViewBag.Flight.From to @ViewBag.Flight.To</h3>
 
 <a asp-action="create" asp-route-flightId="@ViewBag.FlightId" class="btn btn-primary">Create</a>
 

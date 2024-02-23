@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
+using TravelGroupAssignment1.Data;
 using TravelGroupAssignment1.Models;
 
 namespace TravelGroupAssignment1.Controllers
@@ -7,14 +9,18 @@ namespace TravelGroupAssignment1.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ApplicationDbContext _context;
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
+
+            TempData["flightbookings"] = new List<String>();
+            TempData["ha"] = "ha";
             return View();
         }
 
@@ -22,6 +28,7 @@ namespace TravelGroupAssignment1.Controllers
         {
             return View();
         }
+        
 
         public IActionResult LoadPartialView()
         {

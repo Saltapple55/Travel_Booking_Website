@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Protocol;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using TravelGroupAssignment1.Data;
 using TravelGroupAssignment1.Models;
@@ -22,14 +23,10 @@ namespace TravelGroupAssignment1.Controllers
         public IActionResult Index(int flightId)
         {
             var bookings = _context.FlightBookings.Where(t => t.FlightId == flightId).Include(t=>t.Flight).Include(p=>p.Passengers).ToList();
-            System.Diagnostics.Debug.WriteLine(bookings.Count);
-            System.Diagnostics.Debug.WriteLine(flightId);
-
+            
             ViewBag.FlightId = flightId;
-            ViewBag.From = bookings[0].Flight.From;
-            ViewBag.To = bookings[0].Flight.To;
+            ViewBag.Flight = _context.Flights.Find(flightId);
 
-            // System.Diagnostics.Debug.WriteLine(flightId);
 
             return View(bookings);
         }
@@ -68,7 +65,6 @@ namespace TravelGroupAssignment1.Controllers
         public IActionResult Create( [Bind("BookingId, BookingReference, TripId, FlightClass,Flight, Seat, FlightId, Passengers")] FlightBooking booking)
         {
 
-
             if (ModelState.IsValid)
             {
                 
@@ -89,13 +85,13 @@ namespace TravelGroupAssignment1.Controllers
                     return NotFound(); }
                 _context.FlightBookings.Add(booking);
                 _context.SaveChanges();
-                // return RedirectToAction("Index", "Passenger", new {fbookingId= booking.BookingId });
                 return RedirectToAction("Index", new{flightId = booking.FlightId});
             }
             
 
             return View(booking);
         }
+        
         [HttpGet]
         public IActionResult Details(int id)
         {
@@ -192,7 +188,7 @@ namespace TravelGroupAssignment1.Controllers
             if (searchValid)
             {
                 flightQuery = flightQuery.Where(f => f.From.Contains(locationFrom) && f.To.Contains(location));
-                flightQuery = flightQuery.Where(f => f.DepartTime.Date == startDate.Date);
+                flightQuery = flightQuery.Where(f => f.DepartTime.Date >= startDate.Date);
                
             }
             else
