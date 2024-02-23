@@ -59,7 +59,11 @@ namespace TravelGroupAssignment1.Controllers
             ViewBag.StartDate = startDate;
             ViewBag.EndDate = endDate;
 
+
+            return View(new CarBooking { CarId = carId });
+
             return View(new CarBooking { CarId = car.CarId });
+
         }
 
         // POST: CarBookingController/Create
@@ -74,6 +78,10 @@ namespace TravelGroupAssignment1.Controllers
                 _context.SaveChanges();
                 return RedirectToAction("Index", new { carId = carBooking.CarId });
             }
+
+            return View(carBooking);
+
+
             var car = _context.Cars.Find(carBooking.CarId);
             if (car == null) return NotFound();
             var company = _context.CarRentalCompanies.Find(car.CompanyId);
@@ -82,6 +90,7 @@ namespace TravelGroupAssignment1.Controllers
             ViewBag.Car = car;
             ViewBag.Company = company;
             return View(carBooking);
+
         }
 
         // GET: CarBookingController/Edit/5
@@ -92,11 +101,15 @@ namespace TravelGroupAssignment1.Controllers
                             .Include(cb => cb.Car)
                             .FirstOrDefault(cb => cb.BookingId == id);
             if (carBooking == null) return NotFound();
+
+
+
             var car = _context.Cars.Find(carBooking.CarId);
             if (car == null) return NotFound();
             ViewBag.CarName = car.Make + " " + car.Model;
             ViewBag.CarType = car.Type;
             ViewBag.Car = car;
+
             return View(carBooking);
         }
 
@@ -114,12 +127,16 @@ namespace TravelGroupAssignment1.Controllers
                 _context.SaveChanges();
                 return RedirectToAction("Index", new { carId = carBooking.CarId});
             }
+
+            return View();
+
             var car = _context.Cars.Find(carBooking.CarId);
             if (car == null) return NotFound();
             ViewBag.CarName = car.Make + " " + car.Model;
             ViewBag.CarType = car.Type;
             ViewBag.Car = car;
             return View(carBooking);
+
         }
 
         // GET: CarBookingController/Delete/5
