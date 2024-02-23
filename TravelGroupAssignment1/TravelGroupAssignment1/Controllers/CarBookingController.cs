@@ -60,7 +60,6 @@ namespace TravelGroupAssignment1.Controllers
             ViewBag.EndDate = endDate;
 
 
-            return View(new CarBooking { CarId = carId });
 
             return View(new CarBooking { CarId = car.CarId });
 
@@ -78,9 +77,6 @@ namespace TravelGroupAssignment1.Controllers
                 _context.SaveChanges();
                 return RedirectToAction("Index", new { carId = carBooking.CarId });
             }
-
-            return View(carBooking);
-
 
             var car = _context.Cars.Find(carBooking.CarId);
             if (car == null) return NotFound();
@@ -127,8 +123,6 @@ namespace TravelGroupAssignment1.Controllers
                 _context.SaveChanges();
                 return RedirectToAction("Index", new { carId = carBooking.CarId});
             }
-
-            return View();
 
             var car = _context.Cars.Find(carBooking.CarId);
             if (car == null) return NotFound();

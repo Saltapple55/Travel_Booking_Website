@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@{
+    string? location = ViewContext.HttpContext.Request.Query["location"].Count > 0 ? ViewContext.HttpContext.Request.Query["location"] : "";
+    string? startDate = ViewContext.HttpContext.Request.Query["startDate"].Count > 0 ? ViewContext.HttpContext.Request.Query["startDate"] : DateTime.Now.ToString("yyyy-MM-dd");
+    string? endDate = ViewContext.HttpContext.Request.Query["endDate"].Count > 0 ? ViewContext.HttpContext.Request.Query["endDate"] : DateTime.Now.AddDays(2).ToString("yyyy-MM-dd");
+    string? capacity = ViewContext.HttpContext.Request.Query["capacity"].Count > 0 ? ViewContext.HttpContext.Request.Query["capacity"] : "2";
+    string? tab = ViewContext.HttpContext.Request.Query["tab"].Count > 0 ? ViewContext.HttpContext.Request.Query["tab"] : "";
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -70,30 +78,31 @@
                 <div class="tab-pane active" id="hotel" role="tabpanel" aria-labelledby="hotel-tab" tabindex="0">
                     <div id="hotelForm" class="search-form">
                         <h3>Hotel Search</h3>
-                        <form class="row row-cols-lg-auto g-3 align-items-center" asp-controller="Hotel" asp-action="Search">
+                        <form method="get" class="row row-cols-lg-auto g-3 align-items-center" asp-controller="Hotel" asp-action="Search">
                             <div class="col-12">
                                 <label for="location" class="control-label">Location</label>
-                                <input id="location" name="location" class="form-control" placeholder="Going To" />
+                                <input required id="location" name="location" class="form-control" value="@location" placeholder="Going To" />
                             </div>
 
                             <div class="col-12">
-                                <label for="specificSizeInputName">Start Date</label>
-                                <input type="date" class="form-control" id="specificSizeInputName" placeholder="Start Date">
+                                <label for="startDate">Start Date</label>
+                                <input required type="date" class="form-control" id="startDate" name="startDate" value="@startDate" min="@DateTime.Now.ToString("yyyy-MM-dd")" placeholder="Start Date" onchange="updateCheckOutDateLimit('startDate', 'endDate')">
                             </div>
 
                             <div class="col-12">
-                                <label for="specificSizeInputName">End Date</label>
-                                <input type="date" class="form-control" id="specificSizeInputName" placeholder="End Date">
+                                <label for="endDate">End Date</label>
+                                <input required type="date" class="form-control" id="endDate" name="endDate" value="@endDate" min="@startDate" placeholder="End Date">
                             </div>
 
                             <div class="col-12">
                                 <label for="capacity" class="control-label">Travellers</label>
-                                <input id="capacity" name="capacity" type="number" class="form-control" placeholder="How many passengers" />
+                                <input required id="capacity" name="capacity" type="number" class="form-control" value="@capacity" min="1" max="100" placeholder="How many travellers" />
                             </div>
 
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary">Search</button>
                             </div>
+                            <input hidden id="tab" value="hotel" />
                         </form>
                     </div>
                 </div>
@@ -101,7 +110,7 @@
                 <div class="tab-pane" id="flight" role="tabpanel" aria-labelledby="flight-tab" tabindex="0">
                     <div id="flightForm" class="search-form">
                         <h3>Flight Search</h3>
-                        <form class="row row-cols-lg-auto g-3 align-items-center">
+                        <form method="get" class="row row-cols-lg-auto g-3 align-items-center">
                             <div class="col-12">
                                 <label for="specificSizeInputName">Leaving From</label>
                                 <input type="text" class="form-control" id="specificSizeInputName" placeholder="Toronto">
@@ -113,23 +122,25 @@
                             </div>
 
                             <div class="col-12">
-                                <label for="specificSizeInputName">Start Date</label>
-                                <input type="date" class="form-control" id="specificSizeInputName" placeholder="Start Date">
+                                <label for="startDate">Start Date</label>
+                                <input required type="date" class="form-control" id="startDate" name="startDate" value="@startDate" min="@DateTime.Now.ToString("yyyy-MM-dd")" placeholder="Start Date" onchange="updateCheckOutDateLimit('startDate', 'endDate')">
                             </div>
 
                             <div class="col-12">
-                                <label for="specificSizeInputName">End Date</label>
-                                <input type="date" class="form-control" id="specificSizeInputName" placeholder="End Date">
+                                <label for="endDate">End Date</label>
+                                <input required type="date" class="form-control" id="endDate" name="endDate" value="@endDate" min="@startDate" placeholder="End Date">
                             </div>
 
                             <div class="col-12">
-                                <label for="specificSizeInputName">Passengers</label>
-                                <input type="number" class="form-control" id="specificSizeInputName" placeholder="2">
+                                <label for="capacity" class="control-label">Passengers</label>
+                                <input required id="capacity" name="capacity" type="number" class="form-control" value="@capacity" min="1" max="100" placeholder="How many passengers" />
                             </div>
 
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary">Search</button>
                             </div>
+                            <input hidden id="tab" value="flight" />
+
                         </form>
                     </div>
                 </div>
@@ -137,25 +148,26 @@
                 <div class="tab-pane" id="car" role="tabpanel" aria-labelledby="car-tab" tabindex="0">
                     <div id="carForm" class="search-form">
                         <h3>Car Search</h3>
-                        <form class="row row-cols-lg-auto g-3 align-items-center" asp-controller="Car" asp-action="Search">
+                        <form method="get" class="row row-cols-lg-auto g-3 align-items-center" asp-controller="Car" asp-action="Search">
                             <div class="col-12">
-                                <label for="location" class="control-label">Pick Up At</label>
-                                <input required id="location" name="location" class="form-control" placeholder="Toronto" />
+                                <label for="location" class="control-label">Location</label>
+                                <input required id="location" name="location" class="form-control" value="@location" placeholder="Going To" />
                             </div>
 
                             <div class="col-12">
-                                <label for="startDate" class="control-label">Start Date</label>
-                                <input required id="startDate" name="startDate" type="date" class="form-control" />
+                                <label for="startDate">Start Date</label>
+                                <input required type="date" class="form-control" id="startDate" name="startDate" value="@startDate" min="@DateTime.Now.ToString("yyyy-MM-dd")" placeholder="Start Date" onchange="updateCheckOutDateLimit('startDate','endDate')">
                             </div>
 
                             <div class="col-12">
-                                <label for="endDate" class="control-label">End Date</label>
-                                <input required id="endDate" name="endDate" type="date" class="form-control" />
+                                <label for="endDate">End Date</label>
+                                <input required type="date" class="form-control" id="endDate" name="endDate" value="@endDate" min="@startDate" placeholder="End Date">
                             </div>
 
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary">Search</button>
                             </div>
+                            <input hidden id="tab" value="car" />
                         </form>
                     </div>
                 </div>
