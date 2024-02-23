@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/TravelGroupAssignment1.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
 <body>
     <header>
@@ -31,13 +32,134 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Flight" asp-action="Index">Flight</a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Admin Dashboard
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" asp-controller="Dashboard" asp-action="HotelIndex">Hotel Dashboard</a></li>
+                                <li><a class="dropdown-item" asp-controller="Dashboard" asp-action="CarIndex">Car Dashboard</a></li>
+                                <li><a class="dropdown-item" asp-controller="Dashboard" asp-action="FlightIndex">Flight Dashboard</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+
+
     <div class="container">
         <main role="main" class="pb-3">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="hotel-tab" data-bs-toggle="tab" data-bs-target="#hotel" type="button" role="tab" aria-controls="hotel" aria-selected="false">Hotel</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="flight-tab" data-bs-toggle="tab" data-bs-target="#flight" type="button" role="tab" aria-controls="flight" aria-selected="false">Flight</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="car-tab" data-bs-toggle="tab" data-bs-target="#car" type="button" role="tab" aria-controls="car" aria-selected="false">Car</button>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <!-- Hotel Tab -->
+                <div class="tab-pane active" id="hotel" role="tabpanel" aria-labelledby="hotel-tab" tabindex="0">
+                    <div id="hotelForm" class="search-form">
+                        <h3>Hotel Search</h3>
+                        <form class="row row-cols-lg-auto g-3 align-items-center" asp-controller="Hotel" asp-action="Search">
+                            <div class="col-12">
+                                <label for="location" class="control-label">Location</label>
+                                <input id="location" name="location" class="form-control" placeholder="Going To" />
+                            </div>
+
+                            <div class="col-12">
+                                <label for="specificSizeInputName">Start Date</label>
+                                <input type="date" class="form-control" id="specificSizeInputName" placeholder="Start Date">
+                            </div>
+
+                            <div class="col-12">
+                                <label for="specificSizeInputName">End Date</label>
+                                <input type="date" class="form-control" id="specificSizeInputName" placeholder="End Date">
+                            </div>
+
+                            <div class="col-12">
+                                <label for="capacity" class="control-label">Travellers</label>
+                                <input id="capacity" name="capacity" type="number" class="form-control" placeholder="How many passengers" />
+                            </div>
+
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Flight Tab -->
+                <div class="tab-pane" id="flight" role="tabpanel" aria-labelledby="flight-tab" tabindex="0">
+                    <div id="flightForm" class="search-form">
+                        <h3>Flight Search</h3>
+                        <form class="row row-cols-lg-auto g-3 align-items-center">
+                            <div class="col-12">
+                                <label for="specificSizeInputName">Leaving From</label>
+                                <input type="text" class="form-control" id="specificSizeInputName" placeholder="Toronto">
+                            </div>
+
+                            <div class="col-12">
+                                <label for="specificSizeInputName">Going To</label>
+                                <input type="text" class="form-control" id="specificSizeInputName" placeholder="New York">
+                            </div>
+
+                            <div class="col-12">
+                                <label for="specificSizeInputName">Start Date</label>
+                                <input type="date" class="form-control" id="specificSizeInputName" placeholder="Start Date">
+                            </div>
+
+                            <div class="col-12">
+                                <label for="specificSizeInputName">End Date</label>
+                                <input type="date" class="form-control" id="specificSizeInputName" placeholder="End Date">
+                            </div>
+
+                            <div class="col-12">
+                                <label for="specificSizeInputName">Passengers</label>
+                                <input type="number" class="form-control" id="specificSizeInputName" placeholder="2">
+                            </div>
+
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Car Tab -->
+                <div class="tab-pane" id="car" role="tabpanel" aria-labelledby="car-tab" tabindex="0">
+                    <div id="carForm" class="search-form">
+                        <h3>Car Search</h3>
+                        <form class="row row-cols-lg-auto g-3 align-items-center" asp-controller="Car" asp-action="Search">
+                            <div class="col-12">
+                                <label for="location" class="control-label">Pick Up At</label>
+                                <input required id="location" name="location" class="form-control" placeholder="Toronto" />
+                            </div>
+
+                            <div class="col-12">
+                                <label for="startDate" class="control-label">Start Date</label>
+                                <input required id="startDate" name="startDate" type="date" class="form-control" />
+                            </div>
+
+                            <div class="col-12">
+                                <label for="endDate" class="control-label">End Date</label>
+                                <input required id="endDate" name="endDate" type="date" class="form-control" />
+                            </div>
+
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
             @RenderBody()
         </main>
     </div>
@@ -50,8 +172,6 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/js/dynamicButton.js"></script>
-    <script src="~/js/formValidation.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

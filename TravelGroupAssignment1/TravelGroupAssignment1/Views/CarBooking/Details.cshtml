@@ -29,7 +29,7 @@
             <dd class="col-sm-9">@Model.EndDate?.ToShortDateString()</dd>
         </dl>
 
-        <a asp-action="Edit" asp-route-id="@Model.BookingId" class="btn btn-primary">Edit</a>
+        <a asp-action="Edit" asp-route-carId="@Model.CarId" class="btn btn-primary">Edit</a>
         <a asp-action="Index" asp-route-carId="@Model.CarId" class="btn btn-secondary">Return</a>
 
     </div>
