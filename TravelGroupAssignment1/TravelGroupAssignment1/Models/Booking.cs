@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TravelGroupAssignment1.Models
 {
@@ -6,14 +7,14 @@ namespace TravelGroupAssignment1.Models
     {
         [Key]
         public int BookingId { get; set; }
-        public int TripId { get; set; } // rename and add navigation property
-        public string? BookingReference { get; set; }
 
-        protected Booking() 
+        public string BookingReference { get; set; }
+
+        public int TripId { get; set; }
+        protected Booking()
         {
             BookingReference = GenerateBookingReference();
         }
-
         protected virtual String GenerateBookingReference()
         {
             string date = DateTime.Now.ToString("yyMMddHHmm");
@@ -21,4 +22,5 @@ namespace TravelGroupAssignment1.Models
             return date + uniqueString;
         }
     }
-}
+
+}  
