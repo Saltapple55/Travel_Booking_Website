@@ -115,6 +115,33 @@ namespace TravelGroupAssignment1.Controllers
             return _context.Hotels.Any(h => h.HotelId == id);
         }
 
+		public async Task<IActionResult> HotelSearch(string location, int capacity, DateTime checkInDate, DateTime checkOutDate)
+		{
+			var hotelQuery = from p in _context.Hotels
+							 select p;
+			bool searchValid = !String.IsNullOrEmpty(location) && capacity > 0;
+			if (searchValid)
+			{
+				hotelQuery = hotelQuery.Where(h => !String.IsNullOrEmpty(h.Location) && h.Location.Contains(location)
+										|| !String.IsNullOrEmpty(h.Description) && h.Description.Contains(location));
+				hotelQuery = hotelQuery.Where(h => h.Rooms != null && h.Rooms.Any(r => r.Capacity >= capacity));
+				hotelQuery = hotelQuery.Where(h => h.Rooms != null && h.Rooms.Any(r => !r.RoomBookings.Any(rb => rb.CheckInDate >= checkInDate && rb.CheckOutDate <= checkOutDate
+										|| rb.CheckInDate >= checkInDate && rb.CheckInDate <= checkOutDate)));
+
+			}
+			else
+			{
+				return RedirectToAction("HotelIndex");
+			}
+			var hotels = await hotelQuery.ToListAsync();
+			ViewBag.SearchValid = searchValid;
+			ViewBag.Location = location;
+			ViewBag.Capacity = capacity;
+			ViewBag.CheckInDate = checkInDate;
+			ViewBag.CheckOutDate = checkOutDate;
+			return View("HotelIndex", hotels);
+		}
+
 		// ========================== Room ============================
 
 		[HttpGet]
@@ -342,6 +369,132 @@ namespace TravelGroupAssignment1.Controllers
             return NotFound();
         }
 
+		public async Task<IActionResult> CarSearch(string location, DateTime startDate, DateTime endDate)
+		{
+			var carQuery = from p in _context.Cars
+						   select p;
+			bool searchValid = !String.IsNullOrEmpty(location);
+			if (searchValid)
+			{
+				carQuery = carQuery.Where(c => c.Company != null && c.Company.Location.Contains(location))
+								.Where(c => !c.Bookings.Any(b => b.EndDate >= startDate && b.EndDate <= endDate
+									|| b.StartDate >= startDate && b.StartDate <= endDate));
+			}
+			else
+			{
+				return RedirectToAction("CarIndex");
+			}
+			var cars = await carQuery.Include(c => c.Company).ToListAsync();
+			ViewBag.SearchValid = searchValid;
+			ViewBag.Location = location;
+			ViewBag.StartDate = startDate;
+			ViewBag.EndDate = endDate;
+			return View("CarIndex", cars);
+		}
 
-    }
+
+
+		// ============================= Flight ===================================
+		public IActionResult FlightIndex()
+		{
+			var flights = _context.Flights.ToList();
+			return View(flights);
+		}
+		[HttpGet]
+		public IActionResult FlightCreate()
+		{
+			return View();
+		}
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+
+		public IActionResult FlightCreate(Flight newFlight)
+		{
+			if (ModelState.IsValid)
+			{
+				_context.Flights.Add(newFlight);
+				_context.SaveChanges();
+				return RedirectToAction("FlightIndex");
+			}
+			return View(newFlight);
+		}
+		[HttpGet]
+		public IActionResult FlightDetails(int flightId)
+		{
+			var flight = _context.Flights.Find(flightId);
+
+			return View(flight);
+
+		}
+		[HttpGet]
+		public IActionResult FlightEdit(int flightId)
+
+		{
+			var flight = _context.Flights.Find(flightId);
+			return View(flight);
+
+
+		}
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public IActionResult FlightEdit(int id, [Bind("FlightId", "Airline", "Price", "MaxPassenger", "From", "To", "DepartTime", "ArrivalTime")] Flight flight)
+		{
+
+			if (id != flight.FlightId)
+			{
+				System.Diagnostics.Debug.WriteLine(id);
+				System.Diagnostics.Debug.WriteLine(flight.FlightId);
+				Console.WriteLine(flight.FlightId);
+				// return RedirectToAction("Index", "Flight", id, flight.FlightId);
+				return RedirectToAction("FlightIndex");
+
+			}
+			if (ModelState.IsValid)
+			{
+				_context.Flights.Update(flight);
+				_context.SaveChanges();
+				return RedirectToAction("Index");
+
+
+			}
+
+			return View(flight);
+
+		}
+		[HttpGet]
+		public IActionResult WhatsWrong(int id, int id2)
+		{
+			ViewData["Id"] = id;
+			ViewData["Second"] = id2;
+			return View();
+		}
+		public IActionResult FlightDelete(int flightId)
+
+		{
+			var flight = _context.Flights.Find(flightId);
+			if (flight == null) return NotFound();
+			return View(flight);
+
+
+		}
+		[HttpPost, ActionName("FlightDeleteConfirmed")]
+		[ValidateAntiForgeryToken]
+		public IActionResult FlightDeleteConfirmed(int flightId)
+		{
+			var flight = _context.Flights.Find(flightId);
+			if (flight != null)
+			{
+				_context.Remove(flight);
+				_context.SaveChanges();
+				return RedirectToAction("Index");
+			}
+			return NotFound();
+		}
+
+		public bool FlightExists(int id)
+		{
+
+			return _context.Flights.Any(e => e.FlightId == id);
+		}
+	}
 }
