@@ -1,0 +1,130 @@
+
+<h2>List of Hotels</h2>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+		</tr>
+	</thead>
+
+	<tbody>
+			<tr>
+				<td>Hotel Id</td>
+				<td>Hotel Name</td>
+				<td>
+					<a class="btn btn-info">Details</a>
+					<a class="btn btn-warning">Edit</a>
+				<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+					Delete Button
+				</button>
+				</td>
+			</tr>
+	</tbody>
+</table>
+
+<a class="btn btn-primary">Create new Hotel</a>
+
+<h2>List of Room</h2>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr>
+			<td>Hotel Id</td>
+			<td>Hotel Name</td>
+			<td>
+				<a class="btn btn-info">Details</a>
+				<a class="btn btn-warning">Edit</a>
+				<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+					Delete Button
+				</button>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<a class="btn btn-primary">Create new Room</a>
+
+<h2>List of Car</h2>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Company</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr>
+			<td>Car Id</td>
+			<td>Car Company</td>
+			<td>
+				<a class="btn btn-info">Details</a>
+				<a class="btn btn-warning">Edit</a>
+				<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+					Delete Button
+				</button>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<a class="btn btn-primary">Create new Car</a>
+
+<h2>List of Flight</h2>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Airline</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr>
+			<td>Flight Id</td>
+			<td>Airline</td>
+			<td>
+				<a class="btn btn-info">Details</a>
+				<a class="btn btn-warning">Edit</a>
+				<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+					Delete Button
+				</button>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<a class="btn btn-primary">Create new Flight</a>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Do you want to delete?</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				...
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-danger">Confirm Delete</button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,233 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="hotel-tab" data-bs-toggle="tab" data-bs-target="#hotel" type="button" role="tab" aria-controls="hotel" aria-selected="false">Hotel</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="flight-tab" data-bs-toggle="tab" data-bs-target="#flight" type="button" role="tab" aria-controls="flight" aria-selected="false">Flight</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="car-tab" data-bs-toggle="tab" data-bs-target="#car" type="button" role="tab" aria-controls="car" aria-selected="false">Car</button>
+    </li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+    <!-- Hotel Tab -->
+    <div class="tab-pane active" id="hotel" role="tabpanel" aria-labelledby="hotel-tab" tabindex="0">
+        <div id="hotelForm" class="search-form">
+            <h3>Hotel Search</h3>
+            <form class="row row-cols-lg-auto g-3 align-items-center">
+                <div class="col-12">
+                    <label for="specificSizeInputName">Going To</label>
+                    <input type="text" class="form-control" id="specificSizeInputName" placeholder="New York">
+                </div>
+
+                <div class="col-12">
+                    <label for="specificSizeInputName">Start Date</label>
+                    <input type="date" class="form-control" id="specificSizeInputName" placeholder="Start Date">
+                </div>
+
+                <div class="col-12">
+                    <label for="specificSizeInputName">End Date</label>
+                    <input type="date" class="form-control" id="specificSizeInputName" placeholder="End Date">
+                </div>
+
+                <div class="col-12">
+                    <label for="specificSizeInputName">Traveller</label>
+                    <input type="number" class="form-control" id="specificSizeInputName" placeholder="2">
+                </div>
+
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Flight Tab -->
+    <div class="tab-pane" id="flight" role="tabpanel" aria-labelledby="flight-tab" tabindex="0">
+        <div id="flightForm" class="search-form">
+            <h3>Flight Search</h3>
+            <form class="row row-cols-lg-auto g-3 align-items-center">
+                <div class="col-12">
+                    <label for="specificSizeInputName">Leaving From</label>
+                    <input type="text" class="form-control" id="specificSizeInputName" placeholder="Toronto">
+                </div>
+
+                <div class="col-12">
+                    <label for="specificSizeInputName">Going To</label>
+                    <input type="text" class="form-control" id="specificSizeInputName" placeholder="New York">
+                </div>
+
+                <div class="col-12">
+                    <label for="specificSizeInputName">Start Date</label>
+                    <input type="date" class="form-control" id="specificSizeInputName" placeholder="Start Date">
+                </div>
+
+                <div class="col-12">
+                    <label for="specificSizeInputName">End Date</label>
+                    <input type="date" class="form-control" id="specificSizeInputName" placeholder="End Date">
+                </div>
+
+                <div class="col-12">
+                    <label for="specificSizeInputName">Passengers</label>
+                    <input type="number" class="form-control" id="specificSizeInputName" placeholder="2">
+                </div>
+
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Car Tab -->
+    <div class="tab-pane" id="car" role="tabpanel" aria-labelledby="car-tab" tabindex="0">
+        <div id="carForm" class="search-form">
+            <h3>Car Search</h3>
+            <form class="row row-cols-lg-auto g-3 align-items-center">
+                <div class="col-12">
+                    <label for="specificSizeInputName">Pick Up At</label>
+                    <input type="text" class="form-control" id="specificSizeInputName" placeholder="Toronto">
+                </div>
+
+                <div class="col-12">
+                    <label for="specificSizeInputName">Return At</label>
+                    <input type="text" class="form-control" id="specificSizeInputName" placeholder="Markham">
+                </div>
+
+                <div class="col-12">
+                    <label for="specificSizeInputName">Start Date</label>
+                    <input type="date" class="form-control" id="specificSizeInputName" placeholder="Start Date">
+                </div>
+
+                <div class="col-12">
+                    <label for="specificSizeInputName">End Date</label>
+                    <input type="date" class="form-control" id="specificSizeInputName" placeholder="End Date">
+                </div>
+
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<div class="row">
+    <!-- Car Card -->
+    <div class="col-12 col-sm-4">
+        <div class="card" style="width: 18rem;">
+            <img src="https://www.kbb.com/wp-content/uploads/2022/10/2023-toyota-rav4-prime-frt-3qtr.jpg?w=918" class="card-img-top" alt="Car" style="width: 100%; height: 100%;">
+            <div class="card-body">
+                <h5 class="card-title">Car Name</h5>
+                <p class="card-text">Description</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <i class="fa-solid fa-user-group"></i> 4
+                </li>
+                <li class="list-group-item">
+                    <i class="fa-solid fa-code-branch"></i> Automation
+                </li>
+                <li class="list-group-item">
+                    <i class="fa-solid fa-fan"></i> Air Condition
+                </li>
+                <li class="list-group-item">
+                    <i class="fa-solid fa-globe"></i> Japan
+                </li>
+                <li class="list-group-item">
+                    <i class="fa-solid fa-gauge-high"></i> Unlimited Mileage
+                </li>
+                <li class="list-group-item">
+                    <i class="fa-solid fa-building"></i> Company Name
+                </li>
+                <li class="list-group-item">
+                    <i class="fa-solid fa-tag"></i> $50
+                </li>
+            </ul>
+            <a href="#" class="btn btn-primary">Reserve</a>
+        </div>
+    </div>
+
+    <!-- Hotel Card -->
+    <div class="col-12 col-sm-4">
+        <div class="card" style="width: 18rem;">
+            <a href="your-link-here" class="card-link">
+                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750" class="card-img-top" alt="Hotel Room" style="width: 100%; height: 100%;">
+                <div class="card-body">
+                    <h5 class="card-title">Hotel Name</h5>
+                    <p class="card-text"></p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <i class="fa-solid fa-location-dot"></i> Toronto
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fa-solid fa-tag"></i> $450
+                    </li>
+                </ul>
+            </a>
+        </div>
+    </div>
+    <!-- Room Card -->
+    <div class="col-12 col-sm-4">
+        <div class="card" style="width: 18rem;">
+            <img src="https://assets-global.website-files.com/5c6d6c45eaa55f57c6367749/65045f093c166fdddb4a94a5_x-65045f0266217.webp" class="card-img-top" alt="Hotel Room" style="width: 100%; height: 100%;">
+            <div class="card-body">
+                <h5 class="card-title">Room Name</h5>
+                <p class="card-text">Description</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" >
+                    <i class="fa-solid fa-user-group"></i> 4
+                </li>
+                <li class="list-group-item">
+                    <i class="fa-solid fa-bed"></i> 1 Queen Bed
+                </li>
+                <li class="list-group-item">
+                    <i class="fa-solid fa-expand"></i> 350 sq ft
+                </li>
+                <li class="list-group-item">
+                    <i class="fa-solid fa-tag"></i> $450
+                </li>
+            </ul>
+            <a href="#" class="btn btn-primary">Reserve</a>
+        </div>
+    </div>
+</div>
+
+<!-- Flight Card-->
+<div class="container">
+    <div class="column">
+        <div class="col-md-6">
+            <div class="flight-card">
+                <div class="flight-card-body">
+                    <div class="flight-info">
+                        <p><i class="fa-solid fa-plane-departure"></i> 08:00 <i class="fa-solid fa-plane-arrival"></i> 10:30</p>
+                        <p><strong>From:</strong> New York <strong>To:</strong> London</p>
+                        <p><i class="fa-solid fa-plane-up"></i> ABC Airlines</p>
+                    </div>
+                    <div class="flight-price">$500</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="flight-card">
+                <div class="flight-card-body">
+                    <div class="flight-info">
+                        <p><i class="fa-solid fa-plane-departure"></i> 08:00 <i class="fa-solid fa-plane-arrival"></i> 10:30</p>
+                        <p><strong>From:</strong> New York <strong>To:</strong> London</p>
+                        <p><i class="fa-solid fa-plane-up"></i> ABC Airlines</p>
+                    </div>
+                    <div class="flight-price">$500</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

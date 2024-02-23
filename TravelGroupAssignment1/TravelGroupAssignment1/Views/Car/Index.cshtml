@@ -7,82 +7,85 @@
     bool searchValid = ViewBag.SearchValid != null? ViewBag.SearchValid : false;
 }
 
-<div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-    <form asp-action="Search" class="form" method="get">
-        <div asp-validation-summary="ModelOnly" class="text-warning"></div>
-
-        <div class="form-group mb-2 d-inline-block">
-            <label for="location" class="control-label">Location</label>
-            <input required id="location" name="location" value="@(!String.IsNullOrEmpty(searchLocation) ? searchLocation : "")" class="form-control" />
-        </div>
-
-        <div class="form-group mb-2 d-inline-block">
-            <label for="startDate" class="control-label">Start Date</label>
-            <input required id="startDate" name="startDate" type="date" value="@searchStartDate.ToString("yyyy-MM-dd")" min="@DateTime.Now.ToString("yyyy-MM-dd")" class="form-control" onchange="updateCheckOutDateLimit('startDate', 'endDate')" />
-        </div>
-
-        <div class="form-group mb-2 d-inline-block">
-            <label for="endDate" class="control-label">End Date</label>
-            <input required id="endDate" name="endDate" type="date" value="@searchEndDate.ToString("yyyy-MM-dd")" min="@DateTime.Now.ToString("yyyy-MM-dd")" class="form-control" />
-        </div>
-
-        <input type="submit" value="Search and Book" class="btn btn-warning" />
-        @if (searchValid)
-        {
-            <a asp-action="Index" class="btn btn-secondary">Clear Search</a>
-        }
-    </form>
-</div>
-
 <h2>@ViewData["Title"]</h2>
-<a asp-action="Create" class="btn btn-primary">Create Car <i class="fa-solid fa-plus"></i></a>
-<a asp-controller="CarRentalCompany" asp-action="Index" class="btn btn-primary">Rental Companies<i class="fa-solid fa-plus"></i></a>
 
-@if (Model.Any()) // check if Model is null. 'Model' is reserved keyword to access the model
+@if (Model.Any()) 
 {
-    <table class="table">
+    <!-- Car Card -->
+    <div class="row">
+        @foreach (var car in Model)
+        {
+            <div class="col-12 col-sm-4">
+                <div class="card" style="width: 18rem;">
+                    <a asp-action="Details" asp-route-carId="@car.CarId" class="card-link">
+                        <img id="@car.CarId" src="https://www.kbb.com/wp-content/uploads/2022/10/2023-toyota-rav4-prime-frt-3qtr.jpg?w=918" class="card-img-top" alt="Car" style="width: 100%; height: 100%;">
+                        <div class="card-body">
+                            <h5 class="card-title">@car.Make</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <i class="fa-solid fa-user-group"></i> @car.MaxPassengers
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fa-solid fa-code-branch"></i> @car.Transmission
+                            </li>
+                            <li class="list-group-item">
+                                @if (car.HasAirConditioning)
+                                {
+                                    <i class="fa-solid fa-fan"></i> <span>Air Conditioner</span>
 
-        <thead>
-            <tr>
-                <th>Car ID</th>
-                <th>Make</th>
-                <th>Model</th>
-                <th>Price/Day</th>
-                <th>Max Passengers</th>
-                <th>Rental Company</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
+                                }
+                                else
+                                {
+                                    <i class="fa-solid fa-fan"></i> <span>No Air Conditioner</span>
+                                }
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fa-solid fa-globe"></i> Model @car.Model
+                            </li>
+                            <li class="list-group-item">
+                                @if (car.HasUnlimitedMileage)
+                                {
+                                    <i class="fa-solid fa-gauge-high"></i> <span>Unlimited Mileage</span>
+                                    
+                                }
+                                else
+                                {
+                                    <i class="fa-solid fa-gauge-high"></i> <span>Limited Mileage</span>
+                                }
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fa-solid fa-building"></i> @(car.Company == null ? "None" : car.Company.CompanyName)
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fa-solid fa-tag"></i> $@car.PricePerDay
+                            </li>
+                        </ul>
+                        <a asp-controller="CarBooking" asp-action="Index" asp-route-carId="@car.CarId" class="btn btn.sm btn-primary" role="button">Booking</a>
+                    </a>
+                </div>
+            </div>
+@*             <script>
+                (async () => {
+                    const topic = 'car';
+                    const accessKey = 'WOgcw4SyGE-wP7k667o8j0Z3wgySWFLIaSr89ZOUkM4';
 
-        <tbody>
-            @foreach (var car in Model)
-            {
-                <tr>
-                    <td>@car.CarId</td>
-                    <td>@car.Make</td>
-                    <td>@car.Model</td>
-                    <td>@car.PricePerDay</td>
-                    <td>@car.MaxPassengers</td>
-                    <td>@(car.Company == null ? "None" : car.Company.CompanyName)</td>
-                    <td>
-                        @if(searchValid)
-                        {
-                            <a asp-controller="CarBooking" asp-action="Create" asp-route-carId="@car.CarId" asp-route-startDate="@searchStartDate.ToString("yyyy-MM-dd")" asp-route-endDate="@searchEndDate.ToString("yyyy-MM-dd")" class="btn btn.sm btn-warning" role="button">Book Car<i class="fa-solid fa-list-check"></i></a>
-                        }
-                        <a asp-controller="CarBooking" asp-action="Index" asp-route-carId="@car.CarId" class="btn btn.sm btn-secondary" role="button">All Bookings</a>
-                        <a asp-action="Details" asp-route-carId="@car.CarId" class="btn btn.sm btn-secondary" role="button">Details</a>
-                        <a asp-action="Edit" asp-route-carId="@car.CarId" class="btn btn.sm btn-secondary" role="button">Edit</a>
-                        <a asp-action="Delete" asp-route-carId="@car.CarId" class="btn btn.sm btn-danger" role="button">Delete</a>
-                    </td>
+                    // Make API request to fetch random image by topic for this hotel
+                    const response = await fetch(`https://api.unsplash.com/photos/random?query=${topic}&client_id=${accessKey}`);
+                    const data = await response.json();
+                    const imageUrl = data.urls.regular;
 
-                </tr>
-            }
-        </tbody>
-
-    </table>
-
+                    // Set the image src attribute dynamically for this hotel
+                    document.getElementById('@car.CarId').src = imageUrl;
+                })();
+            </script> *@
+        }
+    </div>
 }
 else
 {
     <p>No cars available</p>
 }
+
+
+
