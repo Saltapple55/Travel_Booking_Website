@@ -7,6 +7,8 @@
 	ViewData["Titile"] = "Cars";
 }
 
+<a asp-controller="CarRentalCompany" asp-action="Index" class="btn btn-primary">Rental Companies<i class="fa-solid fa-plus"></i></a>
+<a asp-controller="Dashboard" asp-action="CarCreate" class="btn btn-primary">Create new Car</a>
 
 @if (Model.Any())
 {
@@ -45,5 +47,3 @@ else
 	<p>No project available</p>
 
 }
-<a asp-controller="CarRentalCompany" asp-action="Index" class="btn btn-primary">Rental Companies<i class="fa-solid fa-plus"></i></a>
-<a asp-controller="Dashboard" asp-action="CarCreate" class="btn btn-primary">Create new Car</a>

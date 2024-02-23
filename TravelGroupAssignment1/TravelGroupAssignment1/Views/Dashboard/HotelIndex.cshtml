@@ -8,6 +8,7 @@
 	ViewData["Titile"] = "Hotels";
 }
 
+<a asp-controller="Dashboard" asp-action="HotelCreate" class="btn btn-primary">Create new Hotel</a>
 
 @if (Model.Any())
 {
@@ -44,4 +45,3 @@ else
 	<p>No project available</p>
 
 }
-<a asp-controller="Dashboard" asp-action="HotelCreate" class="btn btn-primary">Create new Hotel</a>
