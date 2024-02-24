@@ -13,6 +13,30 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\biradon\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\wwwroot\\images\\eva-darron-oCdVtGFeDC0-unsplash.jpg",
+      "PackagePath": "staticwebassets\\images\\eva-darron-oCdVtGFeDC0-unsplash.jpg"
+    },
+    {
+      "Id": "C:\\Users\\biradon\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\wwwroot\\images\\jack-ward-rknrvCrfS1k-unsplash.jpg",
+      "PackagePath": "staticwebassets\\images\\jack-ward-rknrvCrfS1k-unsplash.jpg"
+    },
+    {
+      "Id": "C:\\Users\\biradon\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\wwwroot\\images\\luca-bravo-O453M2Liufs-unsplash.jpg",
+      "PackagePath": "staticwebassets\\images\\luca-bravo-O453M2Liufs-unsplash.jpg"
+    },
+    {
+      "Id": "C:\\Users\\biradon\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\wwwroot\\images\\pietro-de-grandi-T7K4aEPoGGk-unsplash.jpg",
+      "PackagePath": "staticwebassets\\images\\pietro-de-grandi-T7K4aEPoGGk-unsplash.jpg"
+    },
+    {
+      "Id": "C:\\Users\\biradon\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\wwwroot\\images\\stefan-stefancik-0wMmxNB6Xzc-unsplash.jpg",
+      "PackagePath": "staticwebassets\\images\\stefan-stefancik-0wMmxNB6Xzc-unsplash.jpg"
+    },
+    {
+      "Id": "C:\\Users\\biradon\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\wwwroot\\images\\tom-barrett-M0AWNxnLaMw-unsplash.jpg",
+      "PackagePath": "staticwebassets\\images\\tom-barrett-M0AWNxnLaMw-unsplash.jpg"
+    },
+    {
       "Id": "C:\\Users\\biradon\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\wwwroot\\js\\dynamicButton.js",
       "PackagePath": "staticwebassets\\js\\dynamicButton.js"
     },
