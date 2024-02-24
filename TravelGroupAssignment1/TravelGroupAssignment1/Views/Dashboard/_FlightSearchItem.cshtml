@@ -66,41 +66,47 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="hotel-tab" data-bs-toggle="tab" data-bs-target="#hotel" type="button" role="tab" aria-controls="hotel" aria-selected="false">Hotel</button>
+                    <button class="nav-link" id="flight-tab" data-bs-toggle="tab" data-bs-target="#flight" type="button" role="tab" aria-controls="flight" aria-selected="false">Flight</button>
                 </li>
             </ul>
 
             <!-- Tab panes -->
             <div class="tab-content">
-                <!-- Hotel Tab -->
-                <div class="tab-pane show active" id="hotel" role="tabpanel" aria-labelledby="hotel-tab" tabindex="0">
-                    <div id="hotelForm" class="search-form">
-                        <h3>Hotel Search</h3>
-                        <form method="get" class="row row-cols-lg-auto g-3 align-items-center" asp-controller="Hotel" asp-action="Search">
+                <!-- Flight Tab -->
+                <div class="tab-pane show active" id="flight" role="tabpanel" aria-labelledby="flight-tab" tabindex="0">
+                    <div id="flightForm" class="search-form">
+                        <h3>Flight Search</h3>
+                        <form method="get" class="row row-cols-lg-auto g-3 align-items-center" asp-controller="Flight" asp-action="Search">
                             <div class="col-12">
-                                <label for="location" class="control-label">Location</label>
-                                <input required id="location" name="location" class="form-control" value="@location" placeholder="Going To" />
+                                <label for="locationFrom">Leaving From</label>
+                                <input required id="locationFrom" name="locationFrom" class="form-control" value="@tab" placeholder="Toronto" />
+                            </div>
+
+                            <div class="col-12">
+                                <label for="location">Going To</label>
+                                <input required id="location" name="location" class="form-control" value="@tab" placeholder="New York" />
                             </div>
 
                             <div class="col-12">
                                 <label for="startDate">Start Date</label>
-                                <input required type="date" class="form-control" id="hotelStartDate" name="startDate" value="@startDate" min="@DateTime.Now.ToString("yyyy-MM-dd")" placeholder="Start Date" onchange="updateCheckOutDateLimit('hotelStartDate', 'hotelEndDate')">
+                                <input required type="date" class="form-control" id="flightStartDate" name="startDate" value="@startDate" min="@DateTime.Now.ToString("yyyy-MM-dd")" placeholder="Start Date" onchange="updateCheckOutDateLimit('flightStartDate', 'flightEndDate')">
                             </div>
 
                             <div class="col-12">
                                 <label for="endDate">End Date</label>
-                                <input required type="date" class="form-control" id="hotelEndDate" name="endDate" value="@endDate" min="@startDate" placeholder="End Date">
+                                <input required type="date" class="form-control" id="flightEndDate" name="endDate" value="@endDate" min="@startDate" placeholder="End Date">
                             </div>
 
                             <div class="col-12">
-                                <label for="capacity" class="control-label">Travellers</label>
-                                <input required id="capacity" name="capacity" type="number" class="form-control" value="@capacity" min="1" max="100" placeholder="How many travellers" />
+                                <label for="capacity" class="control-label">Passengers</label>
+                                <input required id="capacity" name="capacity" type="number" class="form-control" value="@capacity" min="1" max="100" placeholder="How many passengers" />
                             </div>
 
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary">Search</button>
                             </div>
-                            <input type="hidden" id="tab" name="tab" value="hotel" />
+                            <input type="hidden" id="tab" name="tab" value="flight" />
+
                         </form>
                     </div>
                 </div>

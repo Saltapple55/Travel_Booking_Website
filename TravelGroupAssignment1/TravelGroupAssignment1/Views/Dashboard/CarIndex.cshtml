@@ -1,9 +1,15 @@
-﻿@model List<Car>
+﻿@{
+	Layout = "_CarSearchItem";
+}
+
+@model List<Car>
 @{
 	ViewData["Titile"] = "Cars";
 }
-
-
+<br />
+<a asp-controller="CarRentalCompany" asp-action="Index" class="btn btn-primary">Rental Companies<i class="fa-solid fa-plus"></i></a>
+<a asp-controller="Dashboard" asp-action="CarCreate" class="btn btn-primary">Create new Car</a>
+<br />
 @if (Model.Any())
 {
 	<table class="table">
@@ -27,6 +33,7 @@
 					<td>@car.Model</td>
 					<td>@car.Company.CompanyName</td>
 					<td>
+						<a asp-controller="CarBooking" asp-action="Index" asp-route-carId="@car.CarId" class="btn btn.sm btn-secondary" role="button">Bookings<i class="fa-solid fa-list-check"></i></a>
 						<a asp-controller="Dashboard" asp-action="CarDetails" asp-route-carId="@car.CarId" class="btn btn-info">Details</a>
 						<a asp-controller="Dashboard" asp-action="CarEdit" asp-route-carId="@car.CarId" class="btn btn-warning">Edit</a>
 						<a asp-controller="Dashboard" asp-action="CarDelete" asp-route-carId="@car.CarId" class="btn btn-danger">Delete</a>
@@ -41,5 +48,3 @@ else
 	<p>No project available</p>
 
 }
-<a asp-controller="CarRentalCompany" asp-action="Index" class="btn btn-primary">Rental Companies<i class="fa-solid fa-plus"></i></a>
-<a asp-controller="Dashboard" asp-action="CarCreate" class="btn btn-primary">Create new Car</a>
