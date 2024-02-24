@@ -59,7 +59,9 @@ namespace TravelGroupAssignment1.Controllers
         {
             if (ModelState.IsValid)
             {
+                // retrieve Company navigation property via id
                 CarRentalCompany? company = _context.CarRentalCompanies.FirstOrDefault(cr => cr.CarRentalCompanyId == car.CompanyId);
+                // create new Car object with navigation property
                 Car newCar = new Car { 
                     Make = car.Make, 
                     Model = car.Model, 
@@ -144,6 +146,7 @@ namespace TravelGroupAssignment1.Controllers
             bool searchValid = !String.IsNullOrEmpty(location);
             if (searchValid)
             {
+                // search by location, and by cars with no bookings in given date range
                 carQuery = carQuery.Where(c => c.Company != null && c.Company.Location.Contains(location))
                                 .Where(c => !c.Bookings.Any(b => b.EndDate >= startDate && b.EndDate <= endDate 
                                     || b.StartDate >= startDate && b.StartDate <= endDate));
