@@ -6,6 +6,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using TravelGroupAssignment1.Data;
+using TravelGroupAssignment1.Migrations;
 using TravelGroupAssignment1.Models;
 using FlightBooking = TravelGroupAssignment1.Models.FlightBooking;
 
@@ -45,7 +46,8 @@ namespace TravelGroupAssignment1.Controllers
             }
             var flightbooking = new FlightBooking
             {
-                FlightId = flightId
+                FlightId = flightId,
+                TripId=1
             };
 
 
@@ -62,12 +64,18 @@ namespace TravelGroupAssignment1.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public IActionResult Create( [Bind("BookingId, BookingReference, TripId, FlightClass,Flight, Seat, FlightId, Passengers")] FlightBooking booking)
+        public IActionResult Create( [Bind("BookingId, BookingReference, TripId, FlightClass, Flight, Seat, FlightId, Passengers")] FlightBooking booking)
         {
+           int count=_context.FlightBookings.Where(f=>f.FlightId==booking.FlightId).ToList().Count;
 
+           if (count >= _context.Flights.Find(booking.FlightId).MaxPassenger)
+            {
+                return NotFound();
+            }
+            if (booking.TripId == 0) return View(booking);
             if (ModelState.IsValid)
             {
-                
+                int flightId=booking.FlightId;
 
                 if (booking.Passengers.Any())
                 {
@@ -81,7 +89,6 @@ namespace TravelGroupAssignment1.Controllers
                 }
                 else
                 {
-                    System.Diagnostics.Debug.WriteLine("No passengers");
                     return NotFound(); }
                 _context.FlightBookings.Add(booking);
                 _context.SaveChanges();
@@ -93,13 +100,14 @@ namespace TravelGroupAssignment1.Controllers
         }
         
         [HttpGet]
-        public IActionResult Details(int id)
+        public IActionResult Details(int id, string? con = "FlightBooking" )
         {
             var flightbooking = _context.FlightBookings.Include(t => t.Flight).Include(p=>p.Passengers).FirstOrDefault(booking => booking.BookingId == id);
 
             // var passengers = _context.Passengers.Where(t => t.Flig == flightbooking.BookingId).ToList();
             if (flightbooking == null) return NotFound();
             //var flightBooking = _context.FlightBookings.Find(id);
+            ViewBag.Controller = con;
 
             return View(flightbooking);
 
@@ -148,11 +156,11 @@ namespace TravelGroupAssignment1.Controllers
             return View(flightbooking);
 
         }
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int id, string? con="FlightBooking")
 
         {
             var booking = _context.FlightBookings.Include(t => t.Flight).Include(p=>p.Passengers).FirstOrDefault(b => b.BookingId == id);
-
+            ViewBag.Controller= con;
             if (booking == null) return NotFound();
             return View(booking);
 
@@ -160,16 +168,19 @@ namespace TravelGroupAssignment1.Controllers
         }
         [HttpPost, ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int bookingId)
+        public IActionResult DeleteConfirmed(int bookingId, string? con="FlightBooking")
         {
             var booking = _context.FlightBookings.Include(p=>p.Passengers).FirstOrDefault(b=>b.BookingId==bookingId);
-           
+            if (string.Equals(con, "FlightBooking")) return NotFound();
             if (booking != null)
             {
                 _context.Passengers.Remove(booking.Passengers[0]);
                 _context.FlightBookings.Remove(booking);
                 _context.SaveChanges();
+                if(string.Equals("FlightBooking", con)) 
                 return RedirectToAction("Index", new { flightId = booking.FlightId });
+
+                return RedirectToAction( "Index", con);
             }
             return NotFound();
         }

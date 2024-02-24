@@ -4,8 +4,6 @@
     ViewData["Title"] = "Create Flight Booking";
     int i = 1;
 
-    //                       @Html.HiddenFor(Model => Model.Passengers[0].BookingId);
-    //@Html.Partial("_AddPassenger", Model)
 
 
 }
@@ -15,16 +13,11 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create" asp-route-id="@Model.TripId" method="post">
+        <form asp-action="Create" asp-route-id="@Model.FlightId" method="post">
             <!-- Displays mode-lreated validation errors here -->
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            @Html.HiddenFor(Model => Model.TripId, 1);
-            <div class="form-group">
-                <label asp-for="@Model.FlightId" class="control-label">Flight Number</label>
-                <input asp-for="@Model.FlightId" class="form-control" />
-                <span asp-validation-for="@Model.FlightId" class="text-danger"></span>
-            </div>
+ 
             <div class="form-group">
                 <label asp-for="@Model.FlightClass" class="control-label">Class Seat</label>
                 <select asp-for="@Model.FlightClass" class="form-control" >
@@ -74,6 +67,9 @@
 
 
                 <div class="form-group">
+                @Html.HiddenFor(m => m.TripId, 1)
+                @Html.HiddenFor(m => m.FlightId)
+
                     <input type="submit" value="Create" class="btn btn-primary" />
                     <a asp-action="Index" asp-route-flightId="@Model.FlightId" class=" btn btn-secondary">Back</a>
     

@@ -37,11 +37,13 @@ namespace TravelGroupAssignment1.Controllers
 
         // GET: CarBookingController/Details/5
         [HttpGet]
-        public IActionResult Details(int id)
+        public IActionResult Details(int id, string? con="CarBooking")
         {
             var booking = _context.CarBookings
                         .Include(cb => cb.Car)
                         .FirstOrDefault(cb => cb.BookingId == id);
+            ViewBag.Controller = con;
+
             return View(booking);
         }
 
@@ -61,7 +63,7 @@ namespace TravelGroupAssignment1.Controllers
 
 
 
-            return View(new CarBooking { CarId = car.CarId });
+            return View(new CarBooking { CarId = car.CarId, TripId= 1 });
 
         }
 
@@ -141,26 +143,33 @@ namespace TravelGroupAssignment1.Controllers
 
         // GET: CarBookingController/Delete/5
         [HttpGet]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int id, string? con = "CarBooking")
         {
             var carBooking = _context.CarBookings
                         .Include(cb => cb.Car)
                         .FirstOrDefault(cb => cb.BookingId == id);
             if (carBooking == null) return NotFound();
+            ViewBag.Controller = con;
+            System.Diagnostics.Debug.WriteLine(con);
             return View(carBooking);
         }
 
         // POST: CarBookingController/DeleteConfirmed/5
         [HttpPost, ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id, string? con = "CarBooking")
         {
             var carBooking = _context.CarBookings.Find(id);
+            
             if (carBooking != null)
             {
                 _context.CarBookings.Remove(carBooking);
                 _context.SaveChanges();
+                if(string.Equals(con, "CarBooking"))
                 return RedirectToAction("Index", new { carId = carBooking.CarId });
+
+                return RedirectToAction("Index", con);
+
             }
             return NotFound();
         }

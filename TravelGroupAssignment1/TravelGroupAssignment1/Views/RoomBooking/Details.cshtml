@@ -30,8 +30,8 @@
 
         </dl>
 
-        <a asp-action="Edit" asp-route-id="@Model.BookingId" class="btn btn-primary">Edit</a>
-        <a asp-action="Index" asp-route-roomId="@Model.RoomId" class="btn btn-secondary">Return</a>
+        <a asp-controller="RoomBooking" asp-action="Edit" asp-route-id="@Model.BookingId" class="btn btn-primary">Edit</a>
+        <a asp-controller="@ViewBag.Controller" asp-action="Index" asp-route-roomId="@Model.RoomId" class="btn btn-secondary">Return</a>
 
     </div>
 

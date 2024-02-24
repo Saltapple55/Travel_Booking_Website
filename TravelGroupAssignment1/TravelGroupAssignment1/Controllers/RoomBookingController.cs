@@ -39,7 +39,7 @@ namespace TravelGroupAssignment1.Controllers
 
         // GET: RoomBookingControllers/Details/5
         [HttpGet]
-        public IActionResult Details(int id)
+        public IActionResult Details(int id, string? con = "RoomBooking")
         {
             var booking = _context.RoomBookings
                         .Include(rb => rb.Room)
@@ -50,6 +50,7 @@ namespace TravelGroupAssignment1.Controllers
             var hotel = _context.Hotels.Find(room.HotelId);
             if (hotel == null) return NotFound();
             ViewBag.Hotel = hotel;
+            ViewBag.Controller = con;
             return View(booking);
         }
 
@@ -64,10 +65,11 @@ namespace TravelGroupAssignment1.Controllers
 
             ViewBag.Room = room;
             ViewBag.Hotel = hotel;
+            
             ViewBag.CheckInDate = checkInDate;
             ViewBag.CheckOutDate = checkOutDate;
 
-            return View(new RoomBooking { RoomId = roomId });
+            return View(new RoomBooking { RoomId = roomId, TripId=1});
         }
 
         // POST: RoomBookingController/Create
@@ -144,7 +146,7 @@ namespace TravelGroupAssignment1.Controllers
 
         // GET: RoomBookingController/Delete/5
         [HttpGet]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int id, string? con="RoomBooking")
         {
             var booking = _context.RoomBookings
                         .Include(rb => rb.Room)
@@ -155,6 +157,7 @@ namespace TravelGroupAssignment1.Controllers
             var hotel = _context.Hotels.Find(room.HotelId);
             if (hotel == null) return NotFound();
             ViewBag.Hotel = hotel;
+            ViewBag.Controller = con;
 
             return View(booking);
         }
@@ -162,14 +165,17 @@ namespace TravelGroupAssignment1.Controllers
         // POST: RoomBookingController/DeleteConfirmed/5
         [HttpPost, ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id, string? con="RoomBooking")
         {
             var roomBooking = _context.RoomBookings.Find(id);
             if (roomBooking != null)
             {
                 _context.RoomBookings.Remove(roomBooking);
                 _context.SaveChanges();
+                if(string.Equals(con, "RoomBooking"))
                 return RedirectToAction("Index", new { roomId = roomBooking.RoomId });
+
+                return RedirectToAction("Index", con);
             }
             return NotFound();
         }
