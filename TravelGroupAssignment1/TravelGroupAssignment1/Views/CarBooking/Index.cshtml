@@ -34,9 +34,9 @@
                     <td>@booking.StartDate?.ToShortDateString()</td>
                     <td>@booking.EndDate?.ToShortDateString()</td>
                     <td>
-                        <a asp-action="Details" asp-route-id="@booking.BookingId" class="btn btn.sm btn-secondary" role="button">Details</a>
-                        <a asp-action="Edit" asp-route-id="@booking.BookingId" class="btn btn.sm btn-secondary" role="button">Edit</a>
-                        <a asp-action="Delete" asp-route-id="@booking.BookingId" class="btn btn.sm btn-danger" role="button">Delete</a>
+                        <a asp-action="Details" asp-route-id="@booking.BookingId" class="btn btn.sm btn-secondary" role="button">Details <i class="fa-solid fa-circle-info"></i></a>
+                        <a asp-action="Edit" asp-route-id="@booking.BookingId" class="btn btn.sm btn-secondary" role="button">Edit <i class="fa-regular fa-pen-to-square"></i></a>
+                        <a asp-action="Delete" asp-route-id="@booking.BookingId" class="btn btn.sm btn-danger" role="button">Delete <i class="fa-solid fa-circle-xmark"></i></a>
                     </td>
 
                 </tr>

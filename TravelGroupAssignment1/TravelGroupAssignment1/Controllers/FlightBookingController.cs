@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using TravelGroupAssignment1.Data;
+using TravelGroupAssignment1.Migrations;
 using TravelGroupAssignment1.Models;
 using FlightBooking = TravelGroupAssignment1.Models.FlightBooking;
 
@@ -21,14 +24,10 @@ namespace TravelGroupAssignment1.Controllers
         public IActionResult Index(int flightId)
         {
             var bookings = _context.FlightBookings.Where(t => t.FlightId == flightId).Include(t=>t.Flight).Include(p=>p.Passengers).ToList();
-            System.Diagnostics.Debug.WriteLine(bookings.Count);
-            System.Diagnostics.Debug.WriteLine(flightId);
-
+            
             ViewBag.FlightId = flightId;
-            ViewBag.From = bookings[0].Flight.From;
-            ViewBag.To = bookings[0].Flight.To;
+            ViewBag.Flight = _context.Flights.Find(flightId);
 
-            // System.Diagnostics.Debug.WriteLine(flightId);
 
             return View(bookings);
         }
@@ -47,14 +46,12 @@ namespace TravelGroupAssignment1.Controllers
             }
             var flightbooking = new FlightBooking
             {
-                FlightId = flightId
+                FlightId = flightId,
+                TripId=1
             };
 
 
-            var viewModel = new PassengerBooking
-            {
-                FBooking = flightbooking
-        };
+          
             return View(flightbooking);
         }
         [HttpGet]
@@ -67,13 +64,18 @@ namespace TravelGroupAssignment1.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public IActionResult Create( [Bind("BookingId, BookingReference, TripId, FlightClass,Flight, Seat, FlightId, Passengers")] FlightBooking booking)
+        public IActionResult Create( [Bind("BookingId, BookingReference, TripId, FlightClass, Flight, Seat, FlightId, Passengers")] FlightBooking booking)
         {
+           int count=_context.FlightBookings.Where(f=>f.FlightId==booking.FlightId).ToList().Count;
 
-
+           if (count >= _context.Flights.Find(booking.FlightId).MaxPassenger)
+            {
+                return NotFound();
+            }
+            if (booking.TripId == 0) return View(booking);
             if (ModelState.IsValid)
             {
-                
+                int flightId=booking.FlightId;
 
                 if (booking.Passengers.Any())
                 {
@@ -87,25 +89,25 @@ namespace TravelGroupAssignment1.Controllers
                 }
                 else
                 {
-                    System.Diagnostics.Debug.WriteLine("No passengers");
                     return NotFound(); }
                 _context.FlightBookings.Add(booking);
                 _context.SaveChanges();
-                // return RedirectToAction("Index", "Passenger", new {fbookingId= booking.BookingId });
                 return RedirectToAction("Index", new{flightId = booking.FlightId});
             }
             
 
             return View(booking);
         }
+        
         [HttpGet]
-        public IActionResult Details(int id)
+        public IActionResult Details(int id, string? con = "FlightBooking" )
         {
             var flightbooking = _context.FlightBookings.Include(t => t.Flight).Include(p=>p.Passengers).FirstOrDefault(booking => booking.BookingId == id);
 
             // var passengers = _context.Passengers.Where(t => t.Flig == flightbooking.BookingId).ToList();
             if (flightbooking == null) return NotFound();
             //var flightBooking = _context.FlightBookings.Find(id);
+            ViewBag.Controller = con;
 
             return View(flightbooking);
 
@@ -154,11 +156,11 @@ namespace TravelGroupAssignment1.Controllers
             return View(flightbooking);
 
         }
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int id, string? con="FlightBooking")
 
         {
             var booking = _context.FlightBookings.Include(t => t.Flight).Include(p=>p.Passengers).FirstOrDefault(b => b.BookingId == id);
-
+            ViewBag.Controller= con;
             if (booking == null) return NotFound();
             return View(booking);
 
@@ -166,16 +168,19 @@ namespace TravelGroupAssignment1.Controllers
         }
         [HttpPost, ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int bookingId)
+        public IActionResult DeleteConfirmed(int bookingId, string? con="FlightBooking")
         {
             var booking = _context.FlightBookings.Include(p=>p.Passengers).FirstOrDefault(b=>b.BookingId==bookingId);
-           
+            if (string.Equals(con, "FlightBooking")) return NotFound();
             if (booking != null)
             {
                 _context.Passengers.Remove(booking.Passengers[0]);
                 _context.FlightBookings.Remove(booking);
                 _context.SaveChanges();
+                if(string.Equals("FlightBooking", con)) 
                 return RedirectToAction("Index", new { flightId = booking.FlightId });
+
+                return RedirectToAction( "Index", con);
             }
             return NotFound();
         }
@@ -184,6 +189,30 @@ namespace TravelGroupAssignment1.Controllers
         {
 
             return _context.FlightBookings.Any(e => e.BookingId == id);
+        }
+        public async Task<IActionResult> Search(string locationFrom, string location, int capacity, DateTime startDate)
+        {
+            var flightQuery = from p in _context.Flights
+                             select p;
+            
+            bool searchValid = !String.IsNullOrEmpty(location) && capacity > 0;
+            if (searchValid)
+            {
+                flightQuery = flightQuery.Where(f => f.From.Contains(locationFrom) && f.To.Contains(location));
+                // I changed line below, not sure if I fixed it or not
+                flightQuery = flightQuery.Where(f => f.DepartTime.Date >= startDate.Date);
+               
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+            var flights = await flightQuery.ToListAsync();
+            ViewBag.SearchValid = searchValid;
+            ViewBag.Location = location;
+            ViewBag.Capacity = capacity;
+            ViewBag.StartDate = startDate;
+            return View("Index", flights);
         }
 
 

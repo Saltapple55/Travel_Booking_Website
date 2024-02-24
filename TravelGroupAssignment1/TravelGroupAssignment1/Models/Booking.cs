@@ -7,14 +7,15 @@ namespace TravelGroupAssignment1.Models
     {
         [Key]
         public int BookingId { get; set; }
+        [Required]
+        public int TripId { get; set; } // rename and add navigation property
+        public string? BookingReference { get; set; }
 
-        public string BookingReference { get; set; }
-
-        public int TripId { get; set; }
-        protected Booking()
+        protected Booking() 
         {
             BookingReference = GenerateBookingReference();
         }
+
         protected virtual String GenerateBookingReference()
         {
             string date = DateTime.Now.ToString("yyMMddHHmm");
@@ -22,5 +23,4 @@ namespace TravelGroupAssignment1.Models
             return date + uniqueString;
         }
     }
-
-}  
+}

@@ -27,8 +27,8 @@
 
         }
     </dl>
-    <a asp-action="Edit" asp-route-id="@Model.BookingId" class=" btn btn-primary">Edit</a>
-    <a asp-action="Index" asp-route-flightId="@Model.FlightId" class=" btn btn-secondary">Back</a>
+    <a asp-controller="FlightBooking" asp-action="Edit" asp-route-id="@Model.BookingId" class=" btn btn-primary">Edit</a>
+    <a asp-controller="@ViewBag.Controller"  asp-action="Index" asp-route-flightId="@Model.FlightId" class=" btn btn-secondary">Back</a>
 
 </div>
 

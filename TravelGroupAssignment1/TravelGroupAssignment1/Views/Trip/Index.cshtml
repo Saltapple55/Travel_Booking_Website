@@ -1,0 +1,88 @@
+﻿@model BookingsViewModel;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>All Bookings</h1>
+
+<p>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Flights
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var booking in Model.flights) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => booking.Flight.From)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => booking.Flight.To)
+                </td>
+            <td>
+                    <a asp-controller="FlightBooking" asp-action="Details" asp-route-con="Trip" asp-route-id="@booking.BookingId">Details</a> |
+                    <a asp-controller="FlightBooking" asp-action="Delete" asp-route-con="Trip" asp-route-id="@booking.BookingId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Car
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.cars)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Car.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Car.Model)
+                </td>
+                <td>
+                    <a asp-controller="CarBooking" asp-action="Details" asp-route-con="Trip" asp-route-id="@item.BookingId">Details</a> |
+                    <a asp-controller="CarBooking" asp-action="Delete" asp-route-con="Trip" asp-route-id="@item.BookingId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+Rooms                </th>
+                <th></th>
+            </tr>
+        </thead>
+    <tbody>
+        @foreach (var item in Model.rooms)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Room.Hotel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Room.Capacity)
+                </td>
+                <td>
+                        <a asp-controller="RoomBooking" asp-action="Details" asp-route-con="Trip" asp-route-id="@item.BookingId">Details</a> |
+                        <a asp-controller="RoomBooking" asp-action="Delete" asp-route-con="Trip" asp-route-id="@item.BookingId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

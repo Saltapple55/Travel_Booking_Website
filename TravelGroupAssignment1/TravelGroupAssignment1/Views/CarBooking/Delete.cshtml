@@ -1,6 +1,6 @@
 ﻿@model CarBooking
 @{
-    ViewData["Title"] = "Delete Room Booking";
+    ViewData["Title"] = "Delete Room";
 }
 
 <h2>@ViewData["Title"]</h2>
@@ -32,7 +32,7 @@
     </div>
 
 </div>
-<form asp-action="DeleteConfirmed" asp-route-id="@Model.BookingId" method="post">
+<form asp-action="DeleteConfirmed" asp-route-con="@ViewBag.Controller" asp-route-id="@Model.BookingId" method="post">
     @Html.HiddenFor(model => model.BookingId)
     <input type="submit" value="Delete" class="btn btn-danger"/>
     <a asp-action="Index" asp-route-carId="@Model.CarId" class="btn btn-secondary">Cancel</a>
