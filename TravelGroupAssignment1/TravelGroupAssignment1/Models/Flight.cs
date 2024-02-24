@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using TravelGroupAssignment1.Validation;
 
 namespace TravelGroupAssignment1.Models
@@ -22,9 +23,10 @@ namespace TravelGroupAssignment1.Models
         public string To { get; set;}
 
         [Required]
-
+        [DisallowNull]
         public DateTime DepartTime { get; set;}
         [Required]
+        [DisallowNull]
         [ValidEndDate("DepartTime")]
 
         public DateTime ArrivalTime { get; set; }

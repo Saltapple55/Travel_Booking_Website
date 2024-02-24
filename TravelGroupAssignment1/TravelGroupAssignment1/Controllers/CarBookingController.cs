@@ -41,6 +41,7 @@ namespace TravelGroupAssignment1.Controllers
         {
             var booking = _context.CarBookings
                         .Include(cb => cb.Car)
+                        .ThenInclude(c => c.Company)
                         .FirstOrDefault(cb => cb.BookingId == id);
             ViewBag.Controller = con;
 
@@ -125,18 +126,23 @@ namespace TravelGroupAssignment1.Controllers
         {
             if (id != carBooking.BookingId) return NotFound();
 
-            if (ModelState.IsValid)
-            {
-                _context.CarBookings.Update(carBooking);
-                _context.SaveChanges();
-                return RedirectToAction("Index", new { carId = carBooking.CarId});
-            }
-
             var car = _context.Cars.Find(carBooking.CarId);
             if (car == null) return NotFound();
             ViewBag.CarName = car.Make + " " + car.Model;
             ViewBag.CarType = car.Type;
             ViewBag.Car = car;
+
+            if (ModelState.IsValid)
+            {
+                if (carBookingExists(carBooking))
+                {
+                    ModelState.AddModelError("", "Car is not available for booking on given date range.");
+                    return View(carBooking);
+                }
+                _context.CarBookings.Update(carBooking);
+                _context.SaveChanges();
+                return RedirectToAction("Index", new { carId = carBooking.CarId });
+            }
             return View(carBooking);
 
         }
