@@ -25,6 +25,7 @@
 					<td>@room.Name</td>
 					<td>@room.Hotel.HotelName</td>
 					<td>
+						<a asp-controller="RoomBooking" asp-action="Index" asp-route-roomId="@room.RoomId" class="btn btn.sm btn-secondary" role="button">Bookings<i class="fa-solid fa-list-check"></i></a>
 						<a asp-controller="Dashboard" asp-action="RoomDetails" asp-route-id="@room.RoomId" class="btn btn-info">Details</a>
 						<a asp-controller="Dashboard" asp-action="RoomEdit" asp-route-id="@room.RoomId" class="btn btn-warning">Edit</a>
 						<a asp-controller="Dashboard" asp-action="RoomDelete" asp-route-id="@room.RoomId" class="btn btn-danger">Delete</a>
