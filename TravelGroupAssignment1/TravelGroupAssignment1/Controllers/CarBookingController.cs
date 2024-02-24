@@ -73,13 +73,7 @@ namespace TravelGroupAssignment1.Controllers
         public IActionResult Create([Bind("TripId", "BookingReference",
             "CarId", "Car", "StartDate", "EndDate")] CarBooking carBooking)
         {
-            if (ModelState.IsValid)
-            {
-                _context.CarBookings.Add(carBooking);
-                _context.SaveChanges();
-                return RedirectToAction("Index", new { carId = carBooking.CarId });
-            }
-
+            // View bag components to be show in page
             var car = _context.Cars.Find(carBooking.CarId);
             if (car == null) return NotFound();
             var company = _context.CarRentalCompanies.Find(car.CompanyId);
@@ -87,8 +81,20 @@ namespace TravelGroupAssignment1.Controllers
             ViewBag.CarType = car.Type;
             ViewBag.Car = car;
             ViewBag.Company = company;
-            return View(carBooking);
 
+            if (ModelState.IsValid)
+            {
+                // check if car is booked 
+                if (carBookingExists(carBooking))
+                {
+                    ModelState.AddModelError("", "Car is not available for booking on given date range.");
+                    return View(carBooking);
+                }
+                _context.CarBookings.Add(carBooking);
+                _context.SaveChanges();
+                return RedirectToAction("Index", new { carId = carBooking.CarId });
+            }
+            return View(carBooking);
         }
 
         // GET: CarBookingController/Edit/5
@@ -166,6 +172,18 @@ namespace TravelGroupAssignment1.Controllers
 
             }
             return NotFound();
+        }
+
+        // Helper function: check if no identical carbooking (car, start date, end date) exists
+        public bool carBookingExists(CarBooking carBooking)
+        {
+            var carBookingQuery = from p in _context.CarBookings
+                                  select p;
+            carBookingQuery = carBookingQuery.Where(c => c.CarId == carBooking.CarId)
+                                            .Where(c => c.StartDate >= carBooking.StartDate && c.StartDate <= carBooking.EndDate ||
+                                            c.EndDate >= carBooking.StartDate && c.EndDate <= carBooking.EndDate);
+            var existingCarBookings = carBookingQuery.ToList(); 
+            return existingCarBookings.Any();
         }
     }
 }

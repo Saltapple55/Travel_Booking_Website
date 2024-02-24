@@ -44,7 +44,7 @@
         
     <div>
         <label asp-for="StartDate" class="control-label">Start Date</label>
-        @if (ViewBag.EndDate != null)
+        @if (ViewBag.StartDate != null)
         {
             <input asp-for="StartDate" value="@ViewBag.StartDate.ToString("yyyy-MM-dd")" type="date" class="form-control" readonly />
         }
@@ -52,6 +52,8 @@
         {
             <input asp-for="StartDate" value="@(DateTime.Now.AddDays(2).ToString("yyyy-MM-dd"))" type="date" class="form-control" />
         }
+        <span asp-validation-for="StartDate" class="text-danger"></span>
+
     </div>
 
     <div>
@@ -64,6 +66,8 @@
         {
             <input asp-for="EndDate" value="@(DateTime.Now.AddDays(2).ToString("yyyy-MM-dd"))" type="date" class="form-control"/>
         }
+        <span asp-validation-for="EndDate" class="text-danger"></span>
+
     </div>
 
     <div class="form-group">

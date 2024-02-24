@@ -133,27 +133,29 @@ namespace TravelGroupAssignment1.Controllers
             var roomQuery = from p in _context.Rooms select p;
 
             bool searchValid = hotelId >= 0 && capacity >= 0;
-            if (searchValid)
-            {
-                // find room of given Hotel and capacity
-                roomQuery = roomQuery.Where(r => r.HotelId == hotelId)
-                                .Where(r => r.Capacity >= capacity);
-                // find room with no bookings on given start / end dates
-                roomQuery = roomQuery.Where(r => !r.RoomBookings.Any(rb => rb.CheckInDate >= checkInDate && rb.CheckOutDate <= checkOutDate
-                                        || rb.CheckInDate >= checkInDate && rb.CheckInDate <= checkOutDate));
-                                
-            }
-            else
-            {
+            if (!searchValid)
                 return RedirectToAction("Index");
-            }
+            
+            // find room of given Hotel and capacity
+            roomQuery = roomQuery.Where(r => r.HotelId == hotelId)
+                            .Where(r => r.Capacity >= capacity);
+            // find room with no bookings on given start / end dates
+            roomQuery = roomQuery.Where(r => !r.RoomBookings.Any(rb => checkOutDate >= rb.CheckInDate && checkInDate <= rb.CheckOutDate));
             var rooms = await roomQuery.ToListAsync();
+            
+            // Passing view information via ViewBag
+            var hotel = _context.Hotels.Find(hotelId);
             ViewBag.SearchValid = searchValid;
             ViewBag.Capacity = capacity;
             ViewBag.CheckInDate = checkInDate;
             ViewBag.CheckOUtDate = checkOutDate;
             ViewBag.HotelId = hotelId;
+            ViewBag.HotelName = hotel?.HotelName;
             return View("Index", rooms);
         }
+
+
     }
+
+    
 }
