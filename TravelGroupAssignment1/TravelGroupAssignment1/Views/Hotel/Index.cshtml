@@ -63,6 +63,15 @@
 
 else
 {
-    <br />
-    <h3>No hotels available</h3>
+    @if (searchValid)
+    {
+        <br />
+        <h4>Sorry, No Hotels match your search results</h4>
+    }
+    else
+    {
+        <br />
+        <h4>Sorry, No Hotels available at the momement</h4>
+    }
+    
 }

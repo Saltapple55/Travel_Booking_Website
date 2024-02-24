@@ -84,7 +84,16 @@
 }
 else
 {
-    <p>No cars available</p>
+    @if (searchValid)
+    {
+        <br />
+        <h4>Sorry, no available Car that matches your search results</h4>
+    }
+    else
+    {
+        <br />
+        <h4>Sorry, no cars available at the momement</h4>
+    }
 }
 
 
