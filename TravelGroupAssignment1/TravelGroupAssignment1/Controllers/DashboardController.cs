@@ -342,6 +342,110 @@ namespace TravelGroupAssignment1.Controllers
             return NotFound();
         }
 
+		// ================================== Flight ===========================================
 
-    }
+		public IActionResult FlightIndex()
+		{
+			var flights = _context.Flights.ToList();
+			return View(flights);
+		}
+		[HttpGet]
+		public IActionResult Create()
+		{
+			return View();
+		}
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+
+		public IActionResult FlightCreate(Flight newFlight)
+		{
+			if (ModelState.IsValid)
+			{
+				_context.Flights.Add(newFlight);
+				_context.SaveChanges();
+				return RedirectToAction("FlightIndex");
+			}
+			return View(newFlight);
+		}
+		[HttpGet]
+		public IActionResult FlightDetails(int flightId)
+		{
+			var flight = _context.Flights.Find(flightId);
+
+			return View(flight);
+
+		}
+		[HttpGet]
+		public IActionResult FlightEdit(int flightId)
+
+		{
+			var flight = _context.Flights.Find(flightId);
+			return View(flight);
+
+
+		}
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public IActionResult FlightEdit(int id, [Bind("FlightId", "Airline", "Price", "MaxPassenger", "From", "To", "DepartTime", "ArrivalTime")] Flight flight)
+		{
+
+			if (id != flight.FlightId)
+			{
+				System.Diagnostics.Debug.WriteLine(id);
+				System.Diagnostics.Debug.WriteLine(flight.FlightId);
+				Console.WriteLine(flight.FlightId);
+				// return RedirectToAction("Index", "Flight", id, flight.FlightId);
+				return RedirectToAction("Index");
+
+			}
+			if (ModelState.IsValid)
+			{
+				_context.Flights.Update(flight);
+				_context.SaveChanges();
+				return RedirectToAction("FlightIndex");
+
+
+			}
+
+			return View(flight);
+
+		}
+		[HttpGet]
+		public IActionResult WhatsWrong(int id, int id2)
+		{
+			ViewData["Id"] = id;
+			ViewData["Second"] = id2;
+			return View();
+		}
+		public IActionResult Delete(int flightId)
+
+		{
+			var flight = _context.Flights.Find(flightId);
+			if (flight == null) return NotFound();
+			return View(flight);
+
+
+		}
+		[HttpPost, ActionName("FlightDeleteConfirmed")]
+		[ValidateAntiForgeryToken]
+		public IActionResult FlightDeleteConfirmed(int flightId)
+		{
+			var flight = _context.Flights.Find(flightId);
+			if (flight != null)
+			{
+				_context.Remove(flight);
+				_context.SaveChanges();
+				return RedirectToAction("FlightIndex");
+			}
+			return NotFound();
+		}
+
+		public bool FlightExists(int id)
+		{
+
+			return _context.Flights.Any(e => e.FlightId == id);
+		}
+
+
+	}
 }
