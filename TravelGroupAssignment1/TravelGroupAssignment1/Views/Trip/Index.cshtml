@@ -28,7 +28,6 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Hotel's name</th>
                                 <th>Room's name</th>
                                 <th>Check in time</th>
                                 <th>Check out time</th>
@@ -41,12 +40,11 @@
                             @foreach (var booking in Model.rooms)
                             {
                                 <tr>
-                                    <td>@Html.DisplayFor(modelItem => booking.Room.Hotel.HotelName)</td>
                                     <td>@Html.DisplayFor(modelItem => booking.Room.Name)</td>
                                     <td>@Html.DisplayFor(modelItem => booking.CheckInDate)</td>
                                     <td>@Html.DisplayFor(modelItem => booking.CheckOutDate)</td>
                                     <td>@Html.DisplayFor(modelItem => booking.Room.Capacity)</td>
-                                    <td>@Html.DisplayFor(modelItem => booking.Room.PricePerNight)</td>
+                                    <td>$@Html.DisplayFor(modelItem => booking.Room.PricePerNight)</td>
                                     <td>
                                         <a asp-controller="RoomBooking" asp-action="Details" asp-route-con="Trip" asp-route-id="@booking.BookingId">Details</a> |
                                         <a asp-controller="RoomBooking" asp-action="Delete" asp-route-con="Trip" asp-route-id="@booking.BookingId">Delete</a>
@@ -87,7 +85,7 @@
                                     <td>@Html.DisplayFor(modelItem => booking.Flight.To)</td>
                                     <td>@Html.DisplayFor(modelItem => booking.Flight.DepartTime)</td>
                                     <td>@Html.DisplayFor(modelItem => booking.Flight.ArrivalTime)</td>
-                                    <td>@Html.DisplayFor(modelItem => booking.Flight.Price)</td>
+                                    <td>$@Html.DisplayFor(modelItem => booking.Flight.Price)</td>
                                     <td>
                                         <a asp-controller="FlightBooking" asp-action="Details" asp-route-con="Trip" asp-route-id="@booking.BookingId">Details</a> |
                                         <a asp-controller="FlightBooking" asp-action="Delete" asp-route-con="Trip" asp-route-id="@booking.BookingId">Delete</a>
@@ -127,7 +125,7 @@
                                     <td>@Html.DisplayFor(modelItem => booking.Car.Model)</td>
                                     <td>@Html.DisplayFor(modelItem => booking.StartDate)</td>
                                     <td>@Html.DisplayFor(modelItem => booking.EndDate)</td>
-                                    <td>@Html.DisplayFor(modelItem => booking.Car.PricePerDay)</td>
+                                    <td>$@Html.DisplayFor(modelItem => booking.Car.PricePerDay)</td>
                                     <td>
                                         <a asp-controller="RoomBooking" asp-action="Details" asp-route-con="Trip" asp-route-id="@booking.BookingId">Details</a> |
                                         <a asp-controller="RoomBooking" asp-action="Delete" asp-route-con="Trip" asp-route-id="@booking.BookingId">Delete</a>

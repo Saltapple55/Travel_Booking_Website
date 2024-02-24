@@ -78,12 +78,21 @@ p {
 }
 
 .flight-price {
-    font-size: 24px;
+    color: #17594A;
+    font-size: 32px;
     font-weight: bold;
 }
 
 .flight-info p {
     margin: 5px 0;
+}
+
+.custom-margin {
+    margin-bottom: 20px;
+}
+
+.custom-rounded {
+    border-radius: 10px; 
 }
 
 .upload-area {

@@ -114,7 +114,7 @@
                 <div class="tab-pane @(tab == "flight" ? "active" : "")" id="flight" role="tabpanel" aria-labelledby="flight-tab" tabindex="0">
                     <div id="flightForm" class="search-form">
                         <h3>Flight Search</h3>
-                        <form method="get" class="row row-cols-lg-auto g-3 align-items-center">
+                        <form method="get" class="row row-cols-lg-auto g-3 align-items-center" asp-controller="Flight" asp-action="Search">
                             <div class="col-12">
                                 <label for="locationFrom">Leaving From</label>
                                 <input required id="locationFrom" name="locationFrom" class="form-control" value="@tab" placeholder="Toronto" />
