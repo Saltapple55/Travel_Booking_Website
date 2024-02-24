@@ -63,6 +63,7 @@ p {
     border-radius: 5px;
     margin-bottom: 20px;
     overflow: hidden;
+    background: #FEFBF6;
 }
 
 .flight-card-body {
@@ -128,3 +129,4 @@ p {
     background-color: #F5EDCE;
     color: #272829;
 }
+

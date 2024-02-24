@@ -6,36 +6,41 @@
 }
 
 <h2>@ViewData["Title"]</h2>
+<div class="card shadow">
+    <div class="card-header" style="background: #FFF3CF;">
+        <h3 class="card-title"> @ViewBag.Hotel?.HotelName - @ViewBag.Room?.Name</h3>
+    </div>
+    <div class="card-body">
 
-<div class="card-body">
-    <h3 class="card-title"> @ViewBag.Hotel?.HotelName: @ViewBag.Room?.Name</h3>
+        <h4>Booking Info</h4>
+        <dl class="row">
+            <dt class="col-sm-3">Booking Reference</dt>
+            <dd class="col-sm-9">@Model.BookingReference</dd>
 
-    <dl class="row">
-        <dt class="col-sm-3">Booking Reference</dt>
-        <dd class="col-sm-9">@Model.BookingReference</dd>
+            <dt class="col-sm-3">Room ID</dt>
+            <dd class="col-sm-9">@Model.RoomId</dd>
+        </dl>
+        <hr />
+        <h4>Room Details</h4>
+        <dl class="row">
+            <dt class="col-sm-3">Capacity</dt>
+            <dd class="col-sm-9">@ViewBag.Room?.Capacity</dd>
 
-        <dt class="col-sm-3">Room ID</dt>
-        <dd class="col-sm-9">@Model.RoomId</dd>
-    </dl>
+            <dt class="col-sm-3">Bed Description</dt>
+            <dd class="col-sm-9">@ViewBag.Room?.BedDescription</dd>
 
-    <h4>Room Details</h4>
-    <dl class="row">
-        <dt class="col-sm-3">Capacity</dt>
-        <dd class="col-sm-9">@ViewBag.Room?.Capacity</dd>
+            <dt class="col-sm-3">Room Size</dt>
+            <dd class="col-sm-9">@ViewBag.Room?.RoomSize (sq ft)</dd>
 
-        <dt class="col-sm-3">Bed Description</dt>
-        <dd class="col-sm-9">@ViewBag.Room?.BedDescription</dd>
+            <dt class="col-sm-3">Price per night</dt>
+            <dd class="col-sm-9">$@ViewBag.Room?.PricePerNight</dd>
 
-        <dt class="col-sm-3">Room Size</dt>
-        <dd class="col-sm-9">@ViewBag.Room?.RoomSize (sq ft)</dd>
-
-        <dt class="col-sm-3">Price per night</dt>
-        <dd class="col-sm-9">$@ViewBag.Room?.PricePerNight</dd>
-
-        <dt class="col-sm-3">Amenities</dt>
-        <dd class="col-sm-9">@ViewBag.Room?.Amenities</dd>
-    </dl>
+            <dt class="col-sm-3">Amenities</dt>
+            <dd class="col-sm-9">@ViewBag.Room?.Amenities</dd>
+        </dl>
+    </div>
 </div>
+<br />
 <form asp-action="Create" method="post">
     <!-- Warning if input validation fails -->
     <div asp-validation-summary="ModelOnly" class="text-warning"></div>
@@ -66,7 +71,7 @@
         <span asp-validation-for="CheckOutDate" class="text-danger"></span>
 
     </div>
-
+    <br />
     <div class="form-group">
         @Html.HiddenFor(model => model.TripId)
         @Html.HiddenFor(model => model.RoomId)
