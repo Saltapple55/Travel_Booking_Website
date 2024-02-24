@@ -8,40 +8,38 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <img src="https://www.kbb.com/wp-content/uploads/2022/10/2023-toyota-rav4-prime-frt-3qtr.jpg?w=918" class="img-fluid" alt="Car">
+            <img src="https://www.kbb.com/wp-content/uploads/2022/10/2023-toyota-rav4-prime-frt-3qtr.jpg?w=918" class="img-fluid shadow" alt="Car">
         </div>
         <div class="col-md-6">
-            <div class="card">
+            <div class="card shadow">
                 <div class="card-body">
                     <h3 class="card-title">@Model.Make @Model.Model</h3>
-                    <p class="card-text">@Model.Type</p>
-
+                    <h4 class="card-text">@Model.Type</h4>
+                    <br />
                     <dl class="row">
-                        <dt class="col-sm-3">Price/Day</dt>
-                        <dd class="col-sm-9">$@Model.PricePerDay</dd>
+                        <dt class="col-sm-4">Price/Day</dt>
+                        <dd class="col-sm-8">$@Model.PricePerDay</dd>
 
-                        <dt class="col-sm-3">Max Passengers</dt>
-                        <dd class="col-sm-9">@Model.MaxPassengers</dd>
+                        <dt class="col-sm-4">Max Passengers</dt>
+                        <dd class="col-sm-8">@Model.MaxPassengers</dd>
 
-                        <dt class="col-sm-3">Transmission</dt>
-                        <dd class="col-sm-9">@Model.Transmission</dd>
+                        <dt class="col-sm-4">Transmission</dt>
+                        <dd class="col-sm-8">@Model.Transmission</dd>
 
-                        <dt class="col-sm-3">Air Conditioning</dt>
-                        <dd class="col-sm-9">@(Model.HasAirConditioning ? "Yes" : "No")</dd>
+                        <dt class="col-sm-4">Air Conditioning</dt>
+                        <dd class="col-sm-8">@(Model.HasAirConditioning ? "Yes" : "No")</dd>
 
-                        <dt class="col-sm-3">Unlimited Mileage</dt>
-                        <dd class="col-sm-9">@(Model.HasUnlimitedMileage ? "Yes" : "No")</dd>
+                        <dt class="col-sm-4">Unlimited Mileage</dt>
+                        <dd class="col-sm-8">@(Model.HasUnlimitedMileage ? "Yes" : "No")</dd>
 
-                        <dt class="col-sm-3">Rental Company</dt>
-                        <dd class="col-sm-9">
-                            <a asp-controller="CarRentalCompany" asp-action="Details" asp-route-id="@Model.CompanyId" class="btn btn-outline-info">
-                                @(Model.Company != null ? @Model.Company.CompanyName : "")
-                            </a>
+                        <dt class="col-sm-4">Rental Company</dt>
+                        <dd class="col-sm-8">
+                         @(Model.Company != null ? @Model.Company.CompanyName : "")
                         </dd>
 
                     </dl>
 
-                    <a asp-action="Edit" asp-route-carId="@Model.CarId" class="btn btn-primary">Edit</a> <!--Will change to book the car-->
+                    <a asp-controller="CarBooking" asp-action="Create" asp-route-carId="@Model.CarId" class="btn btn.sm btn-primary" role="button">Book Car</a>
                     <a asp-action="Index" class="btn btn-secondary">Return</a>
                 </div>
             </div>

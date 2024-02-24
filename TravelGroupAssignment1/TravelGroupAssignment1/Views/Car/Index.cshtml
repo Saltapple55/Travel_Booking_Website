@@ -16,7 +16,7 @@
         @foreach (var car in Model)
         {
             <div class="col-12 col-sm-4">
-                <div class="card" style="width: 18rem;">
+                <div class="card shadow" style="width: 18rem; margin-bottom: 20px;">
                     <a asp-action="Details" asp-route-carId="@car.CarId" class="card-link">
                         <img id="@car.CarId" src="https://www.kbb.com/wp-content/uploads/2022/10/2023-toyota-rav4-prime-frt-3qtr.jpg?w=918" class="card-img-top" alt="Car" style="width: 100%; height: 100%;">
                         <div class="card-body">
