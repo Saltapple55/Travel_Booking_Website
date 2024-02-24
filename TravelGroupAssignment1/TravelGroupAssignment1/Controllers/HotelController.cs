@@ -116,10 +116,11 @@ namespace TravelGroupAssignment1.Controllers
             {
                 hotelQuery = hotelQuery.Where(h => !String.IsNullOrEmpty(h.Location) && h.Location.Contains(location)
                                         || !String.IsNullOrEmpty(h.Description) && h.Description.Contains(location));
-                hotelQuery = hotelQuery.Where(h => h.Rooms != null && h.Rooms.Any(r => r.Capacity >= capacity));
-                hotelQuery = hotelQuery.Where(h => h.Rooms != null && h.Rooms.Any(r => !r.RoomBookings.Any(rb => rb.CheckInDate >= checkInDate && rb.CheckOutDate <= checkOutDate
-                                        || rb.CheckInDate >= checkInDate && rb.CheckInDate <= checkOutDate)));
-                                            
+                //hotelQuery = hotelQuery.Where(h => h.Rooms != null && h.Rooms.Any(r => r.Capacity >= capacity));
+                //hotelQuery = hotelQuery.Where(h => h.Rooms != null && h.Rooms.Any(r => r.Capacity >= capacity && (!r.RoomBookings.Any(rb => rb.CheckInDate >= checkInDate && rb.CheckInDate <= checkOutDate
+                //                        || rb.CheckOutDate >= checkInDate && rb.CheckOutDate <= checkOutDate || rb.CheckInDate <= checkInDate && rb.CheckOutDate >= checkOutDate))));
+                hotelQuery = hotelQuery.Where(h => h.Rooms != null && h.Rooms.Any(r => r.Capacity >= capacity && !r.RoomBookings.Any(rb => checkOutDate >= rb.CheckInDate && checkInDate <= rb.CheckOutDate)));
+
             } 
             else
             {

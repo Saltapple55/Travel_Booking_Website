@@ -5,6 +5,12 @@
     string? searchLocation = ViewBag.Location as string;
     int searchCapacity = ViewBag.Capacity as int? ?? 0;
     bool searchValid = ViewBag.SearchValid as bool? ?? false;
+    DateTime searchCheckInDate = ViewBag.CheckInDate != null ? ViewBag.CheckInDate : DateTime.Now;
+    DateTime searchCheckOutDate = ViewBag.CheckOutDate != null ? ViewBag.CheckOutDate : DateTime.Now.AddDays(2);
+    string? location = ViewContext.HttpContext.Request.Query["location"].Count > 0 ? ViewContext.HttpContext.Request.Query["location"] : "";
+    string? startDate = ViewContext.HttpContext.Request.Query["startDate"].Count > 0 ? ViewContext.HttpContext.Request.Query["startDate"] : DateTime.Now.ToString("yyyy-MM-dd");
+    string? endDate = ViewContext.HttpContext.Request.Query["endDate"].Count > 0 ? ViewContext.HttpContext.Request.Query["endDate"] : DateTime.Now.AddDays(2).ToString("yyyy-MM-dd");
+    string? capacity = ViewContext.HttpContext.Request.Query["capacity"].Count > 0 ? ViewContext.HttpContext.Request.Query["capacity"] : "2";
 }
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
@@ -20,7 +26,7 @@
 
             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="card" style="width: 18rem;">
-                    <a asp-controller="Room" asp-action="Index" asp-route-hotelId="@hotel.HotelId" class="card-link">
+                    <a asp-controller="Room" asp-action="Search" asp-route-hotelId="@hotel.HotelId" asp-route-capacity="@capacity" asp-route-checkInDate="@startDate" asp-route-checkOutDate="@endDate" class="card-link">
                         <img id="@hotel.HotelId" src="https://cdn.britannica.com/96/115096-050-5AFDAF5D/Bellagio-Hotel-Casino-Las-Vegas.jpg" class="card-img-top" alt="Hotel Room" style="width: 300px; height: 300px;">
                         <div class="card-body">
                             <h5 class="card-title">@hotel.HotelName</h5>
