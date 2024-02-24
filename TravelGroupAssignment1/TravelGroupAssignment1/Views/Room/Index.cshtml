@@ -99,7 +99,16 @@
 }
 else
 {
-    <p>No rooms available for booking</p>
+    @if (searchValid)
+    {
+        <br />
+        <h4>Sorry, no available Room that matches your search results</h4>
+    }
+    else
+    {
+        <br />
+        <h4>Sorry, no rooms available at the momement</h4>
+    }
 }
 
 
