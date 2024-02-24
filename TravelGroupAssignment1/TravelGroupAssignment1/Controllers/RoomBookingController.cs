@@ -76,19 +76,28 @@ namespace TravelGroupAssignment1.Controllers
         public IActionResult Create([Bind("TripId", "BookingReference",
             "RoomId", "Room", "CheckInDate", "CheckOutDate")] RoomBooking roomBooking)
         {
-            if (ModelState.IsValid)
-            {
-                _context.RoomBookings.Add(roomBooking);
-                _context.SaveChanges();
-                return RedirectToAction("Index", new { roomId = roomBooking.RoomId });
-            }
+            // information needed if booking not successfull created
             var room = _context.Rooms.Find(roomBooking.RoomId);
             if (room == null) return NotFound();
             var hotel = _context.Hotels.Find(room.HotelId);
             if (hotel == null) return NotFound();
-
             ViewBag.Room = room;
             ViewBag.Hotel = hotel;
+
+            if (ModelState.IsValid)
+            {
+                // check if room is already booked on given dates
+                if (roomBookingExists(roomBooking))
+                {
+                    ModelState.AddModelError("", "Room is not available for booking on given date range.");
+                    return View(roomBooking);
+                }
+
+                _context.RoomBookings.Add(roomBooking);
+                _context.SaveChanges();
+                return RedirectToAction("Index", new { roomId = roomBooking.RoomId });
+            }
+
             //return RedirectToAction("Create", new { roomId = roomBooking.RoomId });
             return View(roomBooking);
         }
@@ -163,6 +172,17 @@ namespace TravelGroupAssignment1.Controllers
                 return RedirectToAction("Index", new { roomId = roomBooking.RoomId });
             }
             return NotFound();
+        }
+
+        public bool roomBookingExists(RoomBooking roomBooking)
+        {
+            var roomBookingQuery = from p in _context.RoomBookings
+                                   select p;
+            roomBookingQuery = roomBookingQuery.Where(r => r.RoomId == roomBooking.RoomId)
+                                            .Where(r => r.CheckInDate >= roomBooking.CheckInDate && r.CheckInDate <= roomBooking.CheckOutDate ||
+                                            r.CheckOutDate >= roomBooking.CheckInDate && r.CheckOutDate <= roomBooking.CheckOutDate);
+            var existingRoomBookings = roomBookingQuery.ToList();
+            return existingRoomBookings.Count > 0;
         }
     }
 }
