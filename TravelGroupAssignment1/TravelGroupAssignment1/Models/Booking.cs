@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TravelGroupAssignment1.Models
 {
@@ -6,6 +7,7 @@ namespace TravelGroupAssignment1.Models
     {
         [Key]
         public int BookingId { get; set; }
+        [Required]
         public int TripId { get; set; } // rename and add navigation property
         public string? BookingReference { get; set; }
 
