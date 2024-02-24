@@ -199,6 +199,7 @@ namespace TravelGroupAssignment1.Controllers
             if (searchValid)
             {
                 flightQuery = flightQuery.Where(f => f.From.Contains(locationFrom) && f.To.Contains(location));
+                // I changed line below, not sure if I fixed it or not
                 flightQuery = flightQuery.Where(f => f.DepartTime.Date >= startDate.Date);
                
             }
