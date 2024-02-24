@@ -112,3 +112,10 @@ p {
 .form-group {
     margin-bottom: 20px;
 }
+
+#accordion-button-flight,
+#accordion-button-car,
+#accordion-button-room {
+    background-color: #F5EDCE;
+    color: #272829;
+}
