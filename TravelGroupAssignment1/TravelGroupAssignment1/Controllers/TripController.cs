@@ -22,9 +22,9 @@ namespace TravelGroupAssignment1.Controllers
         // GET: Trip
         public async Task<IActionResult> Index()
         {
-            var fbookings = _context.FlightBookings.Include(f=>f.Flight).Include(f => f.Passengers).Where(t=>t.TripId==1).ToList();
-            var cbookings = _context.CarBookings.Include(c=>c.Car).Where(t => t.TripId == 1).ToList();
-            var rbooking = _context.RoomBookings.Include(r=>r.Room).Where(t=>t.TripId == 1).ToList();
+            var fbookings = _context.FlightBookings.Include(f=>f.Flight).Include(f => f.Passengers).ToList();
+            var cbookings = _context.CarBookings.Include(c=>c.Car).ToList();
+            var rbooking = _context.RoomBookings.Include(r=>r.Room).ToList();
 
             BookingsViewModel bookings = new BookingsViewModel
             {

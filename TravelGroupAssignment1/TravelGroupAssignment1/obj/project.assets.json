@@ -7881,39 +7881,23 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
     "C:\\Users\\tjand\\.nuget\\packages\\": {},
-=======
-    "C:\\Users\\biradon\\.nuget\\packages\\": {},
->>>>>>> 681832f577763649497e36e08def149e3138335d
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\tjand\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\TravelGroupAssignment1.csproj",
       "projectName": "TravelGroupAssignment1",
       "projectPath": "C:\\Users\\tjand\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\TravelGroupAssignment1.csproj",
       "packagesPath": "C:\\Users\\tjand\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\tjand\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\obj\\",
-=======
-      "projectUniqueName": "C:\\Users\\biradon\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\TravelGroupAssignment1.csproj",
-      "projectName": "TravelGroupAssignment1",
-      "projectPath": "C:\\Users\\biradon\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\TravelGroupAssignment1.csproj",
-      "packagesPath": "C:\\Users\\biradon\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\biradon\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\obj\\",
->>>>>>> 681832f577763649497e36e08def149e3138335d
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-<<<<<<< HEAD
         "C:\\Users\\tjand\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-        "C:\\Users\\biradon\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> 681832f577763649497e36e08def149e3138335d
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -7935,6 +7919,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -7979,8 +7968,16 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\tjand\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
