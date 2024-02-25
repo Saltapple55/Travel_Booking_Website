@@ -144,11 +144,9 @@ namespace TravelGroupAssignment1.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CustomerId");
@@ -179,12 +177,10 @@ namespace TravelGroupAssignment1.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("ArrivalTime")
-                        .IsRequired()
+                    b.Property<DateTime>("ArrivalTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DepartTime")
-                        .IsRequired()
+                    b.Property<DateTime>("DepartTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("From")
