@@ -115,6 +115,31 @@ namespace TravelGroupAssignment1.Controllers
 
             return _context.Flights.Any(e => e.FlightId == id);
         }
+        public async Task<IActionResult> Search(string locationFrom, string location, int capacity, DateTime startDate)
+        {
+            var flightQuery = from p in _context.Flights
+                              select p;
+
+            bool searchValid = !String.IsNullOrEmpty(location) && capacity > 0;
+            if (searchValid)
+            {
+                flightQuery = flightQuery.Where(f => f.From.Contains(locationFrom) && f.To.Contains(location));
+                // I changed line below, not sure if I fixed it or not
+                flightQuery = flightQuery.Where(f => f.DepartTime.Date >= startDate.Date);
+
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+            var flights = await flightQuery.ToListAsync();
+            ViewBag.SearchValid = searchValid;
+            ViewBag.Location = location;
+            ViewBag.Capacity = capacity;
+            ViewBag.StartDate = startDate;
+            return View("Index", flights);
+        }
+
 
 
     }
