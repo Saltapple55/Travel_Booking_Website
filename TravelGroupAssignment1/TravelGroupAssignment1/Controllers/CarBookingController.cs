@@ -61,9 +61,6 @@ namespace TravelGroupAssignment1.Controllers
             ViewBag.Company = company;
             ViewBag.StartDate = startDate;
             ViewBag.EndDate = endDate;
-
-
-
             return View(new CarBooking { CarId = car.CarId, TripId= 1 });
 
         }
@@ -93,7 +90,7 @@ namespace TravelGroupAssignment1.Controllers
                 }
                 _context.CarBookings.Add(carBooking);
                 _context.SaveChanges();
-                return RedirectToAction("Index", new { carId = carBooking.CarId });
+                return RedirectToAction("Index", "Trip");
             }
             return View(carBooking);
         }

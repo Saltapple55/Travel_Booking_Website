@@ -165,5 +165,28 @@ namespace TravelGroupAssignment1.Controllers
         {
             return _context.Trips.Any(e => e.TripId == id);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Checkout(int tripId)
+        {
+            var trip = _context.Trips.Find(tripId);
+            if (trip == null) return NotFound();
+            var cust = _context.Customers.Find(trip.CustomerId);
+            if (cust == null) return NotFound();
+            return View(cust);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Checkout([Bind("Email, FirstName, LastName")] Customer customer)
+        {
+
+            if (ModelState.IsValid)
+            {
+                _context.Customers.Add(customer);
+                _context.SaveChanges();
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View();
+        }
     }
 }

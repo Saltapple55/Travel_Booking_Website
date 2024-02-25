@@ -1,9 +1,7 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-    ViewData["Title"] = "404 Not Found";
+﻿@{
+    ViewData["Title"] = "Not Found";
 }
-<h1>@ViewData["Title"]</h1>
-<p> Page you're looking for does not exist'</p>
-<a href="@Url.Action("Index", "Home")">Go Home</a>
+
+<h1>404 - Page Not Found</h1>
+<p>Sorry, the page your are looking for could not be found</p>
+<a href="@Url.Action("Index","Home")">Return to Home Page</a>

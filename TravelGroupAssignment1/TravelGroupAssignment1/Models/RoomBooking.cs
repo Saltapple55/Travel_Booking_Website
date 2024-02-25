@@ -1,4 +1,4 @@
-﻿//using Newtonsoft.Json.Serialization;
+﻿using Newtonsoft.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using TravelGroupAssignment1.Validation;
 

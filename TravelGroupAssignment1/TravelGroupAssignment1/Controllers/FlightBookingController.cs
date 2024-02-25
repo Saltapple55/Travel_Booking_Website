@@ -129,7 +129,7 @@ namespace TravelGroupAssignment1.Controllers
 
         public IActionResult Edit(int id, [Bind("BookingId,FlightId, FlightClass, Seat, Passengers")] Models.FlightBooking flightbooking)
         {
-            if (id != flightbooking.BookingId)
+            if (id != flightbooking.FlightId)
             {
                 return NotFound();
 
@@ -140,7 +140,7 @@ namespace TravelGroupAssignment1.Controllers
                 {
                     _context.FlightBookings.Update(flightbooking);                 //add new project - only in memory, nothing in database yet
                     _context.SaveChanges(); //commits changes to memory
-                    return RedirectToAction("Index", new { flightId = flightbooking.BookingId });
+                    return RedirectToAction("Index", new { flightId = flightbooking.FlightId });
                 }
                 catch (DbUpdateConcurrencyException ex)
                 { //for when two updates at the same time-rarely will happen with our form
@@ -190,31 +190,7 @@ namespace TravelGroupAssignment1.Controllers
 
             return _context.FlightBookings.Any(e => e.BookingId == id);
         }
-        public async Task<IActionResult> Search(string locationFrom, string location, int capacity, DateTime startDate)
-        {
-            var flightQuery = from p in _context.Flights
-                             select p;
-            
-            bool searchValid = !String.IsNullOrEmpty(location) && capacity > 0;
-            if (searchValid)
-            {
-                flightQuery = flightQuery.Where(f => f.From.Contains(locationFrom) && f.To.Contains(location));
-                // I changed line below, not sure if I fixed it or not
-                flightQuery = flightQuery.Where(f => f.DepartTime.Date >= startDate.Date);
-               
-            }
-            else
-            {
-                return RedirectToAction("Index");
-            }
-            var flights = await flightQuery.ToListAsync();
-            ViewBag.SearchValid = searchValid;
-            ViewBag.Location = location;
-            ViewBag.Capacity = capacity;
-            ViewBag.StartDate = startDate;
-            return View("Index", flights);
-        }
-
+      
 
     }
 }

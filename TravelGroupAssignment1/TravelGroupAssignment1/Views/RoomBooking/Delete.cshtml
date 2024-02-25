@@ -36,5 +36,5 @@
 <form asp-action="DeleteConfirmed" asp-route-con="@ViewBag.Controller" asp-route-id="@Model.BookingId" method="post">
     @Html.HiddenFor(model => model.BookingId)
     <input type="submit" value="Delete" class="btn btn-danger" />
-    <a asp-action="Index" asp-route-roomId="@Model.RoomId" class="btn btn-secondary">Cancel</a>
+    <a asp-controller="@ViewBag.Controller" asp-action="Index" asp-route-roomId="@Model.RoomId" class="btn btn-secondary">Cancel</a>
 </form>
