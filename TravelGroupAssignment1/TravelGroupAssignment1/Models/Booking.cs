@@ -8,7 +8,7 @@ namespace TravelGroupAssignment1.Models
         [Key]
         public int BookingId { get; set; }
         [Required]
-        public int TripId { get; set; } // rename and add navigation property
+        public int TripId { get; set; } 
         public string? BookingReference { get; set; }
 
         protected Booking() 
