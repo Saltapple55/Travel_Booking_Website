@@ -97,7 +97,7 @@ namespace TravelGroupAssignment1.Controllers
 
                 _context.RoomBookings.Add(roomBooking);
                 _context.SaveChanges();
-                return RedirectToAction("Index", new { roomId = roomBooking.RoomId });
+                return RedirectToAction("Index", "Trip");
             }
 
             //return RedirectToAction("Create", new { roomId = roomBooking.RoomId });
@@ -130,17 +130,24 @@ namespace TravelGroupAssignment1.Controllers
         {
             if (id != roomBooking.BookingId) return NotFound();
 
-            if (ModelState.IsValid)
-            {
-                _context.RoomBookings.Update(roomBooking);
-                _context.SaveChanges();
-                return RedirectToAction("Index", new { roomId = roomBooking.RoomId });
-            }
+            // info to render view if failure
             var room = _context.Rooms.Find(roomBooking.RoomId);
             var hotel = _context.Hotels.Find(room.HotelId);
             if (roomBooking == null) return NotFound();
             ViewBag.Room = room;
             ViewBag.Hotel = hotel;
+
+            if (ModelState.IsValid)
+            {
+                if (roomBookingExists(roomBooking))
+                {
+                    ModelState.AddModelError("", "Room is not available for booking on given date range.");
+                    return View(roomBooking);
+                }
+                _context.RoomBookings.Update(roomBooking);
+                _context.SaveChanges();
+                return RedirectToAction("Index", new { roomId = roomBooking.RoomId });
+            }
             return View(roomBooking);
         }
 

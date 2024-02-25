@@ -7881,23 +7881,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\tjand\\.nuget\\packages\\": {},
+    "C:\\Users\\biradon\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\tjand\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\TravelGroupAssignment1.csproj",
+      "projectUniqueName": "C:\\Users\\biradon\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\TravelGroupAssignment1.csproj",
       "projectName": "TravelGroupAssignment1",
-      "projectPath": "C:\\Users\\tjand\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\TravelGroupAssignment1.csproj",
-      "packagesPath": "C:\\Users\\tjand\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\tjand\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\obj\\",
+      "projectPath": "C:\\Users\\biradon\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\TravelGroupAssignment1.csproj",
+      "packagesPath": "C:\\Users\\biradon\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\biradon\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\tjand\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\biradon\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -7906,7 +7906,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -7919,11 +7918,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -7968,7 +7962,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

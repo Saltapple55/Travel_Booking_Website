@@ -1,0 +1,69 @@
+﻿@model Customer // bound to an empty Project (no attributes set)
+
+@{
+    // Razor block
+    ViewData["Title"] = "Create Hotel"; // set title of view
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+<!-- Create Hotel -->
+<div class="col-md-12 text-center">
+    <h2>Would you like to save your information for the future?</h2>
+</div>
+<br />
+<div class="container">
+    <form asp-action="Checkout" method="post">
+        <!-- Warning if input validation fails -->
+        <div asp-validation-summary="ModelOnly" class="text-warning"></div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="FirstName" class="control-label">First Name</label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName" class="control-label">Last Name</label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label">Email</label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-md-12 text-center">
+            <button type="submit" class="btn btn-primary btn-lg">Create</button>
+            <a asp-action="Index" class=" btn btn-secondary">Back</a>
+
+        </div>
+    </form>
+</div>
+
+
+<script>
+    function setup() {
+        document.getElementById('buttonid').addEventListener('click', openDialog);
+        function openDialog() {
+            document.getElementById('fileid').click();
+        }
+        document.getElementById('fileid').addEventListener('change', submitForm);
+        function submitForm() {
+            document.getElementById('formid').submit();
+        }
+    }
+</script>
+
+
+
+<!-- Validation scripts (if any) -->
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

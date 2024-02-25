@@ -73,6 +73,7 @@ namespace TravelGroupAssignment1.Controllers
                 return NotFound();
             }
             if (booking.TripId == 0) return View(booking);
+            System.Diagnostics.Debug.WriteLine(booking.TripId);
             if (ModelState.IsValid)
             {
                 int flightId=booking.FlightId;
@@ -129,7 +130,7 @@ namespace TravelGroupAssignment1.Controllers
 
         public IActionResult Edit(int id, [Bind("BookingId,FlightId, FlightClass, Seat, Passengers")] Models.FlightBooking flightbooking)
         {
-            if (id != flightbooking.BookingId)
+            if (id != flightbooking.FlightId)
             {
                 return NotFound();
 
@@ -138,9 +139,16 @@ namespace TravelGroupAssignment1.Controllers
             {
                 try
                 {
-                    _context.FlightBookings.Update(flightbooking);                 //add new project - only in memory, nothing in database yet
+                    
+                    foreach (Passenger p in flightbooking.Passengers)
+                    {
+                        _context.Passengers.Update(p);
+
+                    }
+                        _context.SaveChanges();
+                        _context.FlightBookings.Update(flightbooking);                 //add new project - only in memory, nothing in database yet
                     _context.SaveChanges(); //commits changes to memory
-                    return RedirectToAction("Index", new { flightId = flightbooking.BookingId });
+                    return RedirectToAction("Index", new { flightId = flightbooking.FlightId });
                 }
                 catch (DbUpdateConcurrencyException ex)
                 { //for when two updates at the same time-rarely will happen with our form
@@ -171,14 +179,13 @@ namespace TravelGroupAssignment1.Controllers
         public IActionResult DeleteConfirmed(int bookingId, string? con="FlightBooking")
         {
             var booking = _context.FlightBookings.Include(p=>p.Passengers).FirstOrDefault(b=>b.BookingId==bookingId);
-            if (string.Equals(con, "FlightBooking")) return NotFound();
             if (booking != null)
             {
                 _context.Passengers.Remove(booking.Passengers[0]);
                 _context.FlightBookings.Remove(booking);
                 _context.SaveChanges();
                 if(string.Equals("FlightBooking", con)) 
-                return RedirectToAction("Index", new { flightId = booking.FlightId });
+                return RedirectToAction("Index", con, new { flightId = booking.FlightId });
 
                 return RedirectToAction( "Index", con);
             }
@@ -190,30 +197,7 @@ namespace TravelGroupAssignment1.Controllers
 
             return _context.FlightBookings.Any(e => e.BookingId == id);
         }
-        public async Task<IActionResult> Search(string locationFrom, string location, int capacity, DateTime startDate)
-        {
-            var flightQuery = from p in _context.Flights
-                             select p;
-            
-            bool searchValid = !String.IsNullOrEmpty(location) && capacity > 0;
-            if (searchValid)
-            {
-                flightQuery = flightQuery.Where(f => f.From.Contains(locationFrom) && f.To.Contains(location));
-                flightQuery = flightQuery.Where(f => f.DepartTime.Date >= startDate.Date);
-               
-            }
-            else
-            {
-                return RedirectToAction("Index");
-            }
-            var flights = await flightQuery.ToListAsync();
-            ViewBag.SearchValid = searchValid;
-            ViewBag.Location = location;
-            ViewBag.Capacity = capacity;
-            ViewBag.StartDate = startDate;
-            return View("Index", flights);
-        }
-
+      
 
     }
 }

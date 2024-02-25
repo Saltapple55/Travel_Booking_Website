@@ -17,10 +17,10 @@
                 <th>Booking Reference</th>
                 <th>Passenger Id</th>
                 <th>Passenger Name</th>
+                <th>Passenger Seat</th>
+
                 <th>Passport Number</th>
-
-
-
+                <th>Action</th>
             </tr>
         </thead>
 
@@ -31,14 +31,15 @@
                 <tr>
                     <td>@fbooking.BookingReference</td>
                     <td>@fbooking.Passengers[0].PassengerId</td>
+                    <td>@fbooking.Seat</td>
                     <td>@fbooking.Passengers[0].FirstName @fbooking.Passengers[0].LastName</td>
                     <td>@fbooking.Passengers[0].PassportNo</td>
 
 
                     <td>
-                        <a class="nav-link text-dark  btn btn-info" asp-action="Details" asp-route-id="@fbooking.BookingId">Details</a> <!-- don't need to specify controller if same as default index' -->
-                        <a class="nav-link text-dark  btn btn-secondary" asp-action="Edit" asp-route-id="@fbooking.BookingId">Edit</a>
-                        <a class="nav-link text-dark  btn btn-warning" asp-action="Delete" asp-route-id="@fbooking.BookingId">Delete</a>
+                        <a class="btn btn.sm btn-info" asp-action="Details" asp-route-id="@fbooking.BookingId">Details</a> <!-- don't need to specify controller if same as default index' -->
+                        <a class="btn btn.sm btn-warning" asp-action="Edit" asp-route-id="@fbooking.BookingId">Edit</a>
+                        <a class="btn btn.sm btn-danger" asp-action="Delete" asp-route-id="@fbooking.BookingId">Delete</a>
                     </td>
 
                 </tr>

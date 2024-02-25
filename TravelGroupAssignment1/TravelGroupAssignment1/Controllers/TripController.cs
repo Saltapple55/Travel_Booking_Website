@@ -22,9 +22,9 @@ namespace TravelGroupAssignment1.Controllers
         // GET: Trip
         public async Task<IActionResult> Index()
         {
-            var fbookings = _context.FlightBookings.Include(f=>f.Flight).Include(f => f.Passengers).Where(t=>t.TripId==1).ToList();
-            var cbookings = _context.CarBookings.Include(c=>c.Car).Where(t => t.TripId == 1).ToList();
-            var rbooking = _context.RoomBookings.Include(r=>r.Room).Where(t=>t.TripId == 1).ToList();
+            var fbookings = _context.FlightBookings.Include(f=>f.Flight).Include(f => f.Passengers).ToList();
+            var cbookings = _context.CarBookings.Include(c=>c.Car).ToList();
+            var rbooking = _context.RoomBookings.Include(r=>r.Room).ToList();
 
             BookingsViewModel bookings = new BookingsViewModel
             {
@@ -164,6 +164,29 @@ namespace TravelGroupAssignment1.Controllers
         private bool TripExists(int id)
         {
             return _context.Trips.Any(e => e.TripId == id);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Checkout(int tripId)
+        {
+            var trip = _context.Trips.Find(tripId);
+            if (trip == null) return NotFound();
+            var cust = _context.Customers.Find(trip.CustomerId);
+            if (cust == null) return NotFound();
+            return View(cust);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Checkout([Bind("Email, FirstName, LastName")] Customer customer)
+        {
+
+            if (ModelState.IsValid)
+            {
+                _context.Customers.Add(customer);
+                _context.SaveChanges();
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View();
         }
     }
 }

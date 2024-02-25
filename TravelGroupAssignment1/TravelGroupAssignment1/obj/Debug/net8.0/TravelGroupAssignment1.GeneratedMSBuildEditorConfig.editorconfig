@@ -114,8 +114,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEZsaWdodERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CM/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Views/Dashboard/FlightDetails .cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEZsaWdodERldGFpbHMgLmNzaHRtbA==
+[C:/Users/CM/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Views/Dashboard/FlightDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEZsaWdodERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/CM/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Views/Dashboard/FlightEdit.cshtml]
@@ -166,6 +166,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFJvb21JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/CM/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Views/Dashboard/_CarSearchItem.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXF9DYXJTZWFyY2hJdGVtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CM/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Views/Dashboard/_FlightSearchItem.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXF9GbGlnaHRTZWFyY2hJdGVtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CM/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Views/Dashboard/_HotelSearchItem.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXF9Ib3RlbFNlYXJjaEl0ZW0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/CM/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Views/FlightBooking/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmxpZ2h0Qm9va2luZ1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -210,6 +222,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmxpZ2h0XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/CM/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Views/Flight/WhatsWrong.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmxpZ2h0XFdoYXRzV3JvbmcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/CM/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -236,6 +252,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/CM/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Views/Hotel/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG90ZWxcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CM/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Views/Passenger/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFzc2VuZ2VyXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/CM/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Views/RoomBooking/Create.cshtml]
@@ -282,12 +302,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/CM/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Views/Shared/NotFound.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE5vdEZvdW5kLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/CM/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Views/Shared/_PartialView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QYXJ0aWFsVmlldy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/CM/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CM/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Views/Trip/CheckOut.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJpcFxDaGVja091dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/CM/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Views/Trip/Create.cshtml]

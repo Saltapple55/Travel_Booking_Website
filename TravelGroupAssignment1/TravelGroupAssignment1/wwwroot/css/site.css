@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
 html {
     font-size: 14px;
 }
@@ -63,6 +65,7 @@ p {
     border-radius: 5px;
     margin-bottom: 20px;
     overflow: hidden;
+    background: #FEFBF6;
 }
 
 .flight-card-body {
@@ -78,12 +81,21 @@ p {
 }
 
 .flight-price {
-    font-size: 24px;
+    color: #17594A;
+    font-size: 32px;
     font-weight: bold;
 }
 
 .flight-info p {
     margin: 5px 0;
+}
+
+.custom-margin {
+    margin-bottom: 20px;
+}
+
+.custom-rounded {
+    border-radius: 10px; 
 }
 
 .upload-area {
@@ -112,3 +124,18 @@ p {
 .form-group {
     margin-bottom: 20px;
 }
+
+#accordion-button-flight,
+#accordion-button-car,
+#accordion-button-room {
+    background-color: #F5EDCE;
+    color: #272829;
+}
+
+.img-responsive {
+    max-width: 100%;
+    height: auto;
+    display: block; 
+    margin: 0 auto;
+}
+
