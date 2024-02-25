@@ -81,8 +81,8 @@
         @Html.HiddenFor(model => model.TripId)
         @Html.HiddenFor(model => model.CarId)
         @Html.HiddenFor(model => model.Car)
-        <input type="submit" value="Reserve Car" class="btn btn-primary" />
-        <a asp-action="Index" asp-route-carId="@Model.CarId" class="btn btn-secondary">Cancel</a>
+        <input type="submit" value="Confirm" class="btn btn-primary" />
+        <a asp-controller="Car" asp-action="Index" class="btn btn-secondary">Cancel</a>
     </div>
 
 

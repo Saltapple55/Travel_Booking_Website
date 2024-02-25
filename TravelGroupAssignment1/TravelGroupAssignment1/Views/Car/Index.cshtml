@@ -61,7 +61,7 @@
                                 <i class="fa-solid fa-tag"></i> $@car.PricePerDay
                             </li>
                         </ul>
-                        <a asp-controller="CarBooking" asp-action="Create" asp-route-carId="@car.CarId" asp-route-startDate="@searchStartDate.ToString("yyyy-MM-dd")" asp-route-endDate="@searchEndDate.ToString("yyyy-MM-dd")" class="btn btn.sm btn-primary" role="button">Booking</a>
+                        <a asp-controller="CarBooking" asp-action="Create" asp-route-carId="@car.CarId" asp-route-startDate="@searchStartDate.ToString("yyyy-MM-dd")" asp-route-endDate="@searchEndDate.ToString("yyyy-MM-dd")" class="btn btn.sm btn-primary" role="button">Reserve Car</a>
                     </a>
                 </div>
             </div>
@@ -84,7 +84,16 @@
 }
 else
 {
-    <p>No cars available</p>
+    @if (searchValid)
+    {
+        <br />
+        <h4>Sorry, no available Car that matches your search results</h4>
+    }
+    else
+    {
+        <br />
+        <h4>Sorry, no cars available at the momement</h4>
+    }
 }
 
 

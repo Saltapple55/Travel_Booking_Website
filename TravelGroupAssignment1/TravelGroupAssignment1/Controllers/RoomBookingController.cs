@@ -97,7 +97,7 @@ namespace TravelGroupAssignment1.Controllers
 
                 _context.RoomBookings.Add(roomBooking);
                 _context.SaveChanges();
-                return RedirectToAction("Index", new { roomId = roomBooking.RoomId });
+                return RedirectToAction("Index", "Trip");
             }
 
             //return RedirectToAction("Create", new { roomId = roomBooking.RoomId });
