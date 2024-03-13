@@ -17,17 +17,17 @@ namespace TravelGroupAssignment1.Controllers
 
         // GET: CarRentalCompanyController
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var carRentalCompanies = _context.CarRentalCompanies.ToList();
+            var carRentalCompanies = await _context.CarRentalCompanies.ToListAsync();
             return View(carRentalCompanies);
         }
 
         // GET: CarRentalCompanyController/Details/5
         [HttpGet]
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            var company = _context.CarRentalCompanies.FirstOrDefault(c => c.CarRentalCompanyId == id);
+            var company = await _context.CarRentalCompanies.FirstOrDefaultAsync(c => c.CarRentalCompanyId == id);
             if (company == null) return NotFound();
             return View(company);
         }
@@ -42,21 +42,21 @@ namespace TravelGroupAssignment1.Controllers
         // POST: CarRentalCompanyController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(CarRentalCompany newCarRentalCompany)
+        public async Task<IActionResult> Create(CarRentalCompany newCarRentalCompany)
         {
             if (ModelState.IsValid)
             {
-                _context.CarRentalCompanies.Add(newCarRentalCompany);
-                _context.SaveChanges();
+                await _context.CarRentalCompanies.AddAsync(newCarRentalCompany);
+                await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(newCarRentalCompany);
         }
 
         // GET: CarRentalCompanyController/Edit/5
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            var company = _context.CarRentalCompanies.Find(id);
+            var company = await _context.CarRentalCompanies.FindAsync(id);
             if (company == null) return NotFound();
             return View(company);
         }
@@ -64,7 +64,7 @@ namespace TravelGroupAssignment1.Controllers
         // POST: CarRentalCompanyController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("CarRentalCompanyId", "CompanyName", "Location", "Rating")] CarRentalCompany company)
+        public async Task<IActionResult> Edit(int id, [Bind("CarRentalCompanyId", "CompanyName", "Location", "Rating")] CarRentalCompany company)
         {
             if (id != company.CarRentalCompanyId) return NotFound();
             if (ModelState.IsValid)
@@ -72,12 +72,12 @@ namespace TravelGroupAssignment1.Controllers
                 try
                 {
                     _context.CarRentalCompanies.Update(company);
-                    _context.SaveChanges();
+                    await _context.SaveChangesAsync();
                     return RedirectToAction("Index");
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CarRentalCompanyExists(id)) return NotFound();
+                    if (!await CarRentalCompanyExists(id)) return NotFound();
                     else throw;
                 }
             }
@@ -85,9 +85,9 @@ namespace TravelGroupAssignment1.Controllers
         }
 
         // GET: CarRentalCompanyController/Delete/5
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var company = _context.CarRentalCompanies.FirstOrDefault(c => c.CarRentalCompanyId == id);
+            var company = await _context.CarRentalCompanies.FirstOrDefaultAsync(c => c.CarRentalCompanyId == id);
             if (company == null) return NotFound();
             return View(company);
         }
@@ -95,21 +95,21 @@ namespace TravelGroupAssignment1.Controllers
         // POST: CarRentalCompanyController/DeleteConfirmed/5
         [HttpPost, ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var company = _context.CarRentalCompanies.Find(id);
+            var company = await _context.CarRentalCompanies.FindAsync(id);
             if (company != null)
             {
                 _context.Remove(company);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return NotFound();
         }
 
-        public bool CarRentalCompanyExists(int id)
+        public async Task<bool> CarRentalCompanyExists(int id)
         {
-            return _context.CarRentalCompanies.Any(h => h.CarRentalCompanyId == id);
+            return await _context.CarRentalCompanies.AnyAsync(h => h.CarRentalCompanyId == id);
         }
     }
 }

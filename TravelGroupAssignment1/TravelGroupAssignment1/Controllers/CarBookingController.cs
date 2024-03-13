@@ -20,14 +20,14 @@ namespace TravelGroupAssignment1.Controllers
 
         // GET: CarBookingController/5
         [HttpGet]
-        public IActionResult Index(int carId)
+        public async Task<IActionResult> Index(int carId)
         {
-            var bookings = _context.CarBookings
+            var bookings = await _context.CarBookings
                         .Include(c => c.Car)
                         .Where(c => c.CarId == carId)
-                        .ToList();
+                        .ToListAsync();
             if (bookings == null) return NotFound();
-            Car? car = _context.Cars.Find(carId);
+            Car? car = await _context.Cars.FindAsync(carId);
             if (car == null) return NotFound();
             ViewBag.CarName = car.Make + " " + car.Model;
             ViewBag.CarType = car.Type;
@@ -37,24 +37,23 @@ namespace TravelGroupAssignment1.Controllers
 
         // GET: CarBookingController/Details/5
         [HttpGet]
-        public IActionResult Details(int id, string? con="CarBooking")
+        public async Task<IActionResult> Details(int id, string? con="CarBooking")
         {
-            var booking = _context.CarBookings
+            var booking = await _context.CarBookings
                         .Include(cb => cb.Car)
                         .ThenInclude(c => c.Company)
-                        .FirstOrDefault(cb => cb.BookingId == id);
+                        .FirstOrDefaultAsync(cb => cb.BookingId == id);
             ViewBag.Controller = con;
-
             return View(booking);
         }
 
         // GET: CarBookingController/Create/5
         [HttpGet]
-        public IActionResult Create(int carId, DateTime? startDate, DateTime? endDate)
+        public async Task<IActionResult> Create(int carId, DateTime? startDate, DateTime? endDate)
         {
-            var car = _context.Cars.Find(carId);
+            var car = await _context.Cars.FindAsync(carId);
             if (car == null) return NotFound();
-            var company = _context.CarRentalCompanies.Find(car.CompanyId);
+            var company = await _context.CarRentalCompanies.FindAsync(car.CompanyId);
             ViewBag.CarName = car.Make + " " + car.Model;
             ViewBag.CarType = car.Type;
             ViewBag.Car = car;
@@ -68,13 +67,13 @@ namespace TravelGroupAssignment1.Controllers
         // POST: CarBookingController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("TripId", "BookingReference",
+        public async Task<IActionResult> Create([Bind("TripId", "BookingReference",
             "CarId", "Car", "StartDate", "EndDate")] CarBooking carBooking)
         {
             // View bag components to be show in page
-            var car = _context.Cars.Find(carBooking.CarId);
+            var car = await _context.Cars.FindAsync(carBooking.CarId);
             if (car == null) return NotFound();
-            var company = _context.CarRentalCompanies.Find(car.CompanyId);
+            var company = await _context.CarRentalCompanies.FindAsync(car.CompanyId);
             ViewBag.CarName = car.Make + " " + car.Model;
             ViewBag.CarType = car.Type;
             ViewBag.Car = car;
@@ -83,13 +82,13 @@ namespace TravelGroupAssignment1.Controllers
             if (ModelState.IsValid)
             {
                 // check if car is booked 
-                if (carBookingExists(carBooking))
+                if (await carBookingExists(carBooking))
                 {
                     ModelState.AddModelError("", "Car is not available for booking on given date range.");
                     return View(carBooking);
                 }
-                _context.CarBookings.Add(carBooking);
-                _context.SaveChanges();
+                await _context.CarBookings.AddAsync(carBooking);
+                await _context.SaveChangesAsync();
                 return RedirectToAction("Index", "Trip");
             }
             return View(carBooking);
@@ -97,16 +96,16 @@ namespace TravelGroupAssignment1.Controllers
 
         // GET: CarBookingController/Edit/5
         [HttpGet]
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            var carBooking = _context.CarBookings
+            var carBooking = await _context.CarBookings
                             .Include(cb => cb.Car)
-                            .FirstOrDefault(cb => cb.BookingId == id);
+                            .FirstOrDefaultAsync(cb => cb.BookingId == id);
             if (carBooking == null) return NotFound();
 
 
 
-            var car = _context.Cars.Find(carBooking.CarId);
+            var car = await _context.Cars.FindAsync(carBooking.CarId);
             if (car == null) return NotFound();
             ViewBag.CarName = car.Make + " " + car.Model;
             ViewBag.CarType = car.Type;
@@ -118,12 +117,12 @@ namespace TravelGroupAssignment1.Controllers
         // POST: CarBookingController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("BookingId", "TripId", "BookingReference",
+        public async Task<IActionResult> Edit(int id, [Bind("BookingId", "TripId", "BookingReference",
             "CarId", "Car", "StartDate", "EndDate")] CarBooking carBooking)
         {
             if (id != carBooking.BookingId) return NotFound();
 
-            var car = _context.Cars.Find(carBooking.CarId);
+            var car = await _context.Cars.FindAsync(carBooking.CarId);
             if (car == null) return NotFound();
             ViewBag.CarName = car.Make + " " + car.Model;
             ViewBag.CarType = car.Type;
@@ -131,13 +130,13 @@ namespace TravelGroupAssignment1.Controllers
 
             if (ModelState.IsValid)
             {
-                if (carBookingExists(carBooking))
+                if (await carBookingExists(carBooking))
                 {
                     ModelState.AddModelError("", "Car is not available for booking on given date range.");
                     return View(carBooking);
                 }
                 _context.CarBookings.Update(carBooking);
-                _context.SaveChanges();
+               await _context.SaveChangesAsync();
                 return RedirectToAction("Index", new { carId = carBooking.CarId });
             }
             return View(carBooking);
@@ -146,11 +145,11 @@ namespace TravelGroupAssignment1.Controllers
 
         // GET: CarBookingController/Delete/5
         [HttpGet]
-        public IActionResult Delete(int id, string? con = "CarBooking")
+        public async Task<IActionResult> Delete(int id, string? con = "CarBooking")
         {
-            var carBooking = _context.CarBookings
+            var carBooking = await _context.CarBookings
                         .Include(cb => cb.Car)
-                        .FirstOrDefault(cb => cb.BookingId == id);
+                        .FirstOrDefaultAsync(cb => cb.BookingId == id);
             if (carBooking == null) return NotFound();
             ViewBag.Controller = con;
             System.Diagnostics.Debug.WriteLine(con);
@@ -160,32 +159,31 @@ namespace TravelGroupAssignment1.Controllers
         // POST: CarBookingController/DeleteConfirmed/5
         [HttpPost, ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id, string? con = "CarBooking")
+        public async Task<IActionResult> DeleteConfirmed(int id, string? con = "CarBooking")
         {
-            var carBooking = _context.CarBookings.Find(id);
+            var carBooking = await _context.CarBookings.FindAsync(id);
             
             if (carBooking != null)
             {
                 _context.CarBookings.Remove(carBooking);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 if(string.Equals(con, "CarBooking"))
+                    return RedirectToAction("Index", con);
                 return RedirectToAction("Index", new { carId = carBooking.CarId });
-
-                return RedirectToAction("Index", con);
 
             }
             return NotFound();
         }
 
         // Helper function: check if no identical carbooking (car, start date, end date) exists
-        public bool carBookingExists(CarBooking carBooking)
+        public async Task<bool> carBookingExists(CarBooking carBooking)
         {
             var carBookingQuery = from p in _context.CarBookings
                                   select p;
             carBookingQuery = carBookingQuery.Where(c => c.CarId == carBooking.CarId)
                                             .Where(c => c.StartDate >= carBooking.StartDate && c.StartDate <= carBooking.EndDate ||
                                             c.EndDate >= carBooking.StartDate && c.EndDate <= carBooking.EndDate);
-            var existingCarBookings = carBookingQuery.ToList(); 
+            var existingCarBookings = await carBookingQuery.ToListAsync(); 
             return existingCarBookings.Any();
         }
     }
