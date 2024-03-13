@@ -22,14 +22,14 @@ namespace TravelGroupAssignment1.Controllers
 
         // GET: RoomBookingController/5
         [HttpGet]
-        public IActionResult Index(int roomId)
+        public async Task<IActionResult> Index(int roomId)
         {
-            var roomBookings = _context.RoomBookings
+            var roomBookings = await _context.RoomBookings
                                 .Include(rb => rb.Room)
                                 .Where(rb => rb.RoomId == roomId)
-                                .ToList();
+                                .ToListAsync();
             
-            var room = _context.Rooms.FirstOrDefault(r => r.RoomId == roomId);
+            var room = await _context.Rooms.FirstOrDefaultAsync(r => r.RoomId == roomId);
             if(room == null) return NotFound();
             ViewBag.RoomName = room.Name;
             ViewBag.RoomId = room.RoomId;
@@ -39,15 +39,15 @@ namespace TravelGroupAssignment1.Controllers
 
         // GET: RoomBookingControllers/Details/5
         [HttpGet]
-        public IActionResult Details(int id, string? con = "RoomBooking")
+        public async Task<IActionResult> Details(int id, string? con = "RoomBooking")
         {
-            var booking = _context.RoomBookings
+            var booking = await _context.RoomBookings
                         .Include(rb => rb.Room)
-                        .FirstOrDefault(rb => rb.BookingId == id);
+                        .FirstOrDefaultAsync(rb => rb.BookingId == id);
             if (booking == null) return NotFound();
-            var room = _context.Rooms.Find(booking.RoomId);
+            var room = await _context.Rooms.FindAsync(booking.RoomId);
             if (room == null) return NotFound();
-            var hotel = _context.Hotels.Find(room.HotelId);
+            var hotel = await _context.Hotels.FindAsync(room.HotelId);
             if (hotel == null) return NotFound();
             ViewBag.Hotel = hotel;
             ViewBag.Controller = con;
@@ -56,11 +56,11 @@ namespace TravelGroupAssignment1.Controllers
 
         // GET: RoomBookingController/Create/5
         [HttpGet]
-        public IActionResult Create(int roomId, DateTime? checkInDate, DateTime? checkOutDate)
+        public async Task<IActionResult> Create(int roomId, DateTime? checkInDate, DateTime? checkOutDate)
         {
-            var room = _context.Rooms.Find(roomId);
+            var room = await _context.Rooms.FindAsync(roomId);
             if (room == null) return NotFound();
-            var hotel = _context.Hotels.Find(room.HotelId);
+            var hotel = await _context.Hotels.FindAsync(room.HotelId);
             if (hotel == null) return NotFound();
 
             ViewBag.Room = room;
@@ -69,19 +69,19 @@ namespace TravelGroupAssignment1.Controllers
             ViewBag.CheckInDate = checkInDate;
             ViewBag.CheckOutDate = checkOutDate;
 
-            return View(new RoomBooking { RoomId = roomId, TripId=1});
+            return View(new RoomBooking { RoomId = roomId, TripId=1 });
         }
 
         // POST: RoomBookingController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("TripId", "BookingReference",
+        public async Task<IActionResult> Create([Bind("TripId", "BookingReference",
             "RoomId", "Room", "CheckInDate", "CheckOutDate")] RoomBooking roomBooking)
         {
             // information needed if booking not successfull created
-            var room = _context.Rooms.Find(roomBooking.RoomId);
+            var room = await _context.Rooms.FindAsync(roomBooking.RoomId);
             if (room == null) return NotFound();
-            var hotel = _context.Hotels.Find(room.HotelId);
+            var hotel = await _context.Hotels.FindAsync(room.HotelId);
             if (hotel == null) return NotFound();
             ViewBag.Room = room;
             ViewBag.Hotel = hotel;
@@ -89,14 +89,14 @@ namespace TravelGroupAssignment1.Controllers
             if (ModelState.IsValid)
             {
                 // check if room is already booked on given dates
-                if (roomBookingExists(roomBooking))
+                if (await roomBookingExists(roomBooking))
                 {
                     ModelState.AddModelError("", "Room is not available for booking on given date range.");
                     return View(roomBooking);
                 }
 
-                _context.RoomBookings.Add(roomBooking);
-                _context.SaveChanges();
+                await _context.RoomBookings.AddAsync(roomBooking);
+                await _context.SaveChangesAsync();
                 return RedirectToAction("Index", "Trip");
             }
 
@@ -106,15 +106,15 @@ namespace TravelGroupAssignment1.Controllers
 
         // GET: RoomBookingController/Edit/5
         [HttpGet]
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            var roomBooking = _context.RoomBookings
+            var roomBooking = await _context.RoomBookings
                             .Include(rb => rb.Room)
-                            .FirstOrDefault(cb => cb.BookingId == id);
+                            .FirstOrDefaultAsync(cb => cb.BookingId == id);
             if (roomBooking == null) return NotFound();
-            var room = _context.Rooms.Find(roomBooking.RoomId);
+            var room = await _context.Rooms.FindAsync(roomBooking.RoomId);
             if (room == null) return NotFound();
-            var hotel = _context.Hotels.Find(room.HotelId);
+            var hotel = await _context.Hotels.FindAsync(room.HotelId);
             if (hotel == null) return NotFound();
             if (roomBooking == null) return NotFound();
             ViewBag.Room = room;
@@ -125,27 +125,27 @@ namespace TravelGroupAssignment1.Controllers
         // POST: RoomBookingController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("BookingId", "TripId", "BookingReference",
+        public async Task<IActionResult> Edit(int id, [Bind("BookingId", "TripId", "BookingReference",
             "RoomId", "Room", "CheckInDate", "CheckOutDate")] RoomBooking roomBooking)
         {
             if (id != roomBooking.BookingId) return NotFound();
 
             // info to render view if failure
-            var room = _context.Rooms.Find(roomBooking.RoomId);
-            var hotel = _context.Hotels.Find(room.HotelId);
+            var room = await _context.Rooms.FindAsync(roomBooking.RoomId);
+            var hotel = await _context.Hotels.FindAsync(room.HotelId);
             if (roomBooking == null) return NotFound();
             ViewBag.Room = room;
             ViewBag.Hotel = hotel;
 
             if (ModelState.IsValid)
             {
-                if (roomBookingExists(roomBooking))
+                if (await roomBookingExists(roomBooking))
                 {
                     ModelState.AddModelError("", "Room is not available for booking on given date range.");
                     return View(roomBooking);
                 }
                 _context.RoomBookings.Update(roomBooking);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return RedirectToAction("Index", new { roomId = roomBooking.RoomId });
             }
             return View(roomBooking);
@@ -153,15 +153,15 @@ namespace TravelGroupAssignment1.Controllers
 
         // GET: RoomBookingController/Delete/5
         [HttpGet]
-        public IActionResult Delete(int id, string? con="RoomBooking")
+        public async Task<IActionResult> Delete(int id, string? con="RoomBooking")
         {
-            var booking = _context.RoomBookings
+            var booking = await _context.RoomBookings
                         .Include(rb => rb.Room)
-                        .FirstOrDefault(rb => rb.BookingId == id);
+                        .FirstOrDefaultAsync(rb => rb.BookingId == id);
             if (booking == null) return NotFound();
-            var room = _context.Rooms.Find(booking.RoomId);
+            var room = await _context.Rooms.FindAsync(booking.RoomId);
             if (room == null) return NotFound();
-            var hotel = _context.Hotels.Find(room.HotelId);
+            var hotel = await _context.Hotels.FindAsync(room.HotelId);
             if (hotel == null) return NotFound();
             ViewBag.Hotel = hotel;
             ViewBag.Controller = con;
@@ -172,29 +172,28 @@ namespace TravelGroupAssignment1.Controllers
         // POST: RoomBookingController/DeleteConfirmed/5
         [HttpPost, ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id, string? con="RoomBooking")
+        public async Task<IActionResult> DeleteConfirmed(int id, string? con="RoomBooking")
         {
-            var roomBooking = _context.RoomBookings.Find(id);
+            var roomBooking = await _context.RoomBookings.FindAsync(id);
             if (roomBooking != null)
             {
                 _context.RoomBookings.Remove(roomBooking);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 if(string.Equals(con, "RoomBooking"))
+                    return RedirectToAction("Index", con);
                 return RedirectToAction("Index", new { roomId = roomBooking.RoomId });
-
-                return RedirectToAction("Index", con);
             }
             return NotFound();
         }
 
-        public bool roomBookingExists(RoomBooking roomBooking)
+        public async Task<bool> roomBookingExists(RoomBooking roomBooking)
         {
             var roomBookingQuery = from p in _context.RoomBookings
                                    select p;
             roomBookingQuery = roomBookingQuery.Where(r => r.RoomId == roomBooking.RoomId)
                                             .Where(r => r.CheckInDate >= roomBooking.CheckInDate && r.CheckInDate <= roomBooking.CheckOutDate ||
                                             r.CheckOutDate >= roomBooking.CheckInDate && r.CheckOutDate <= roomBooking.CheckOutDate);
-            var existingRoomBookings = roomBookingQuery.ToList();
+            var existingRoomBookings = await roomBookingQuery.ToListAsync();
             return existingRoomBookings.Count > 0;
         }
     }

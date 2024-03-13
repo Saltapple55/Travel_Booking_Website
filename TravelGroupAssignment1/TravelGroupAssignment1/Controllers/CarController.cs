@@ -20,33 +20,33 @@ namespace TravelGroupAssignment1.Controllers
 
         // GET: CarController
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var cars = _context.Cars
+            var cars = await _context.Cars
                         .Include(cars => cars.Company)
-                        .ToList();
+                        .ToListAsync();
             if (cars == null) return NotFound();
             return View(cars);
         }
 
         // GET: CarController/Details/5
         [HttpGet]
-        public IActionResult Details(int carId)
+        public async Task<IActionResult> Details(int carId)
         {
-            var car = _context.Cars
+            var car = await _context.Cars
                         .Include(c => c.Company)
-                        .FirstOrDefault(c => c.CarId == carId);
+                        .FirstOrDefaultAsync(c => c.CarId == carId);
             if (car == null) return NotFound();
             return View(car);
         }
 
         // GET: CarController/Create
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             ViewBag.Companies = new SelectList(_context.CarRentalCompanies, "CarRentalCompanyId", "CompanyName");
-            var companyObjects = _context.CarRentalCompanies
-                                        .ToDictionary(c => c.CarRentalCompanyId, c => c);
+            var companyObjects = await _context.CarRentalCompanies
+                                        .ToDictionaryAsync(c => c.CarRentalCompanyId, c => c);
             ViewBag.CompanyObjects = companyObjects;
             return View();
         }
@@ -54,13 +54,13 @@ namespace TravelGroupAssignment1.Controllers
         // POST: CarController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Make", "Model", "Type", "PricePerDay", "MaxPassengers",
+        public async Task<IActionResult> Create([Bind("Make", "Model", "Type", "PricePerDay", "MaxPassengers",
             "CompanyId", "Company", "Transmission", "HasAirConditioning", "HasUnlimitedMileage")] Car car)
         {
             if (ModelState.IsValid)
             {
                 // retrieve Company navigation property via id
-                CarRentalCompany? company = _context.CarRentalCompanies.FirstOrDefault(cr => cr.CarRentalCompanyId == car.CompanyId);
+                CarRentalCompany? company = await _context.CarRentalCompanies.FirstOrDefaultAsync(cr => cr.CarRentalCompanyId == car.CompanyId);
                 // create new Car object with navigation property
                 Car newCar = new Car { 
                     Make = car.Make, 
@@ -73,8 +73,8 @@ namespace TravelGroupAssignment1.Controllers
                     HasUnlimitedMileage = car.HasUnlimitedMileage, 
                     CompanyId = car.CompanyId, 
                     Company = company }; 
-                _context.Cars.Add(newCar);
-                _context.SaveChanges();
+                await _context.Cars.AddAsync(newCar);
+                await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             ViewBag.Companies = new SelectList(_context.CarRentalCompanies, "CarRentalCompanyId", "CompanyName", car.CarId);
@@ -84,11 +84,11 @@ namespace TravelGroupAssignment1.Controllers
 
         // GET: CarController/Edit/5
         [HttpGet]
-        public IActionResult Edit(int carId)
+        public async Task<IActionResult> Edit(int carId)
         {
-            var car = _context.Cars
+            var car = await _context.Cars
                         .Include(c => c.Company)
-                        .FirstOrDefault(c => c.CarId == carId);
+                        .FirstOrDefaultAsync(c => c.CarId == carId);
             if (car == null) return NotFound();
 
             ViewBag.CompanyList = new SelectList(_context.CarRentalCompanies, "CarRentalCompanyId", "CompanyName", car.CarId);
@@ -98,7 +98,7 @@ namespace TravelGroupAssignment1.Controllers
         // POST: CarController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int carId, [Bind("CarId", "Make", "Model", "Type", "PricePerDay", "MaxPassengers",
+        public async Task<IActionResult> Edit(int carId, [Bind("CarId", "Make", "Model", "Type", "PricePerDay", "MaxPassengers",
             "CompanyId", "Company", "Transmission", "HasAirConditioning", "HasUnlimitedMileage")] Car car)
         {
             if (carId != car.CarId) return NotFound();
@@ -106,7 +106,7 @@ namespace TravelGroupAssignment1.Controllers
             if (ModelState.IsValid)
             {
                 _context.Cars.Update(car);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             ViewBag.CompanyList = new SelectList(_context.CarRentalCompanies, "CompanyId", "CompanyName");
@@ -115,11 +115,11 @@ namespace TravelGroupAssignment1.Controllers
 
         // GET: CarController/Delete/5
         [HttpGet]
-        public IActionResult Delete(int carId)
+        public async Task<IActionResult> Delete(int carId)
         {
-            var car = _context.Cars
+            var car = await _context.Cars
                         .Include(c => c.Company)
-                        .FirstOrDefault(c => c.CarId == carId);
+                        .FirstOrDefaultAsync(c => c.CarId == carId);
             if (car == null) return NotFound();
             return View(car);
         }
@@ -127,13 +127,13 @@ namespace TravelGroupAssignment1.Controllers
         // POST: CarController/DeleteConfirmed/5
         [HttpPost, ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int carId)
+        public async Task<IActionResult> DeleteConfirmed(int carId)
         {
-            var car = _context.Cars.Find(carId);
+            var car = await _context.Cars.FindAsync(carId);
             if (car != null)
             {
                 _context.Cars.Remove(car);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return NotFound();
