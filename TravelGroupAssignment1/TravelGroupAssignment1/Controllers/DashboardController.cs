@@ -346,7 +346,7 @@ namespace TravelGroupAssignment1.Controllers
 
 		public async Task<IActionResult> FlightIndex()
 		{
-			var flights = await _context.Flights.FindAsync();
+			var flights = await _context.Flights.ToListAsync();
 			return View(flights);
 		}
 		[HttpGet]
