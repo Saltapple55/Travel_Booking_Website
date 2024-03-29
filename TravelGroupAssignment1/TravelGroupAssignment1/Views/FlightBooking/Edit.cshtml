@@ -3,59 +3,65 @@
 @{
     ViewData["Title"] = "Edit FlightBooking";
 }
+<br />
+<h2>@ViewData["Title"]</h2>
+<br />
+<div class="card shadow">
+    <div class="card-header" style="background: #FFF3CF;">
+        <h3>Booking Reference: @Model.BookingReference</h3>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Edit" asp-route-id="@Model.FlightId" method="post">
+                    <!-- Displays mode-lreated validation errors here -->
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    @Html.HiddenFor(Model => Model.BookingId)
 
-<h1>@ViewData["Title"]</h1>
+                    <div class="form-group">
+                        <label asp-for="FlightClass" class="control-label">Flight Class</label>
+                        <input asp-for="FlightClass" class="form-control" />
+                        <span asp-validation-for="FlightClass" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FlightId" class="control-label">Flight Location</label>
+                        <select asp-for="FlightId" asp-items="@ViewBag.BookingsList" class="form-control"></select>
+                        <span asp-validation-for="FlightId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Seat" class="control-label"></label>
+                        <input asp-for="Seat" class="form-control" />
+                        <span asp-validation-for="Seat" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Passengers[0].FirstName" class="control-label">First Name</label>
+                        <input asp-for="Passengers[0].FirstName" class="form-control" />
+                        <span asp-validation-for="Passengers[0].FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Passengers[0].LastName" class="control-label">Last name</label>
+                        <input asp-for="Passengers[0].LastName" class="form-control" />
+                        <span asp-validation-for="Passengers[0].LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Passengers[0].Phone" class="control-label">Phone</label>
+                        <input asp-for="Passengers[0].Phone" class="form-control" />
+                        <span asp-validation-for="Passengers[0].Phone" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Passengers[0].PassportNo" class="control-label">Passport No.</label>
+                        <input asp-for="Passengers[0].PassportNo" class="form-control" />
+                        <span asp-validation-for="Passengers[0].PassportNo" class="text-danger"></span>
+                    </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit" asp-route-id="@Model.FlightId" method="post">
-            <!-- Displays mode-lreated validation errors here -->
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @Html.HiddenFor(Model => Model.BookingId)
+                    <div class="form-group">
+                        <input type="submit" value="Edit" class="btn btn-primary" />
+                        <a asp-controller="FlightBooking" asp-action="Index" asp-route-flightId="@Model.FlightId" class="btn btn-warning">Cancel</a>
 
-            <div class="form-group">
-                <label asp-for="FlightClass" class="control-label"></label>
-                <input asp-for="FlightClass" class="form-control" />
-                <span asp-validation-for="FlightClass" class="text-danger"></span>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="FlightId" class="control-label"></label>
-                <select asp-for="FlightId" asp-items="@ViewBag.BookingsList" class="form-control"
-                ></select>
-                <span asp-validation-for="FlightId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Seat" class="control-label"></label>
-                <input asp-for="Seat" class="form-control" />
-                <span asp-validation-for="Seat" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Passengers[0].FirstName" class="control-label"></label>
-                <input asp-for="Passengers[0].FirstName" class="form-control" />
-                <span asp-validation-for="Passengers[0].FirstName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Passengers[0].LastName" class="control-label"></label>
-                <input asp-for="Passengers[0].LastName" class="form-control" />
-                <span asp-validation-for="Passengers[0].LastName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Passengers[0].Phone" class="control-label"></label>
-                <input asp-for="Passengers[0].Phone" class="form-control" />
-                <span asp-validation-for="Passengers[0].Phone" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Passengers[0].PassportNo" class="control-label"></label>
-                <input asp-for="Passengers[0].PassportNo" class="form-control" />
-                <span asp-validation-for="Passengers[0].PassportNo" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <input type="submit" value="Edit" class="btn btn-primary" />
-                <a asp-controller="FlightBooking" asp-action="Index" asp-route-flightId="@Model.FlightId" class="btn btn-warning">Cancel</a>
-
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 

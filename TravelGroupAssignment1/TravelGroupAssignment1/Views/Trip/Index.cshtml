@@ -41,8 +41,8 @@
                             {
                                 <tr>
                                     <td>@Html.DisplayFor(modelItem => booking.Room.Name)</td>
-                                    <td>@Html.DisplayFor(modelItem => booking.CheckInDate)</td>
-                                    <td>@Html.DisplayFor(modelItem => booking.CheckOutDate)</td>
+                                    <td>@Html.DisplayFor(modelItem => booking.CheckInDate, "HotelDateTime")</td>
+                                    <td>@Html.DisplayFor(modelItem => booking.CheckOutDate, "HotelDateTime")</td>
                                     <td>@Html.DisplayFor(modelItem => booking.Room.Capacity)</td>
                                     <td>$@Html.DisplayFor(modelItem => booking.Room.PricePerNight)</td>
                                     <td>
@@ -83,8 +83,8 @@
                                     <td>@Html.DisplayFor(modelItem => booking.Flight.Airline)</td>
                                     <td>@Html.DisplayFor(modelItem => booking.Flight.From)</td>
                                     <td>@Html.DisplayFor(modelItem => booking.Flight.To)</td>
-                                    <td>@Html.DisplayFor(modelItem => booking.Flight.DepartTime)</td>
-                                    <td>@Html.DisplayFor(modelItem => booking.Flight.ArrivalTime)</td>
+                                    <td>@Html.DisplayFor(modelItem => booking.Flight.DepartTime, "FlightDateTime")</td>
+                                    <td>@Html.DisplayFor(modelItem => booking.Flight.ArrivalTime, "FlightDateTime")</td>
                                     <td>$@Html.DisplayFor(modelItem => booking.Flight.Price)</td>
                                     <td>
                                         <a asp-controller="FlightBooking" asp-action="Details" asp-route-con="Trip" asp-route-id="@booking.BookingId">Details</a> |
@@ -123,8 +123,8 @@
                                 <tr>
                                     <td>@Html.DisplayFor(modelItem => booking.Car.Make)</td>
                                     <td>@Html.DisplayFor(modelItem => booking.Car.Model)</td>
-                                    <td>@Html.DisplayFor(modelItem => booking.StartDate)</td>
-                                    <td>@Html.DisplayFor(modelItem => booking.EndDate)</td>
+                                    <td>@Html.DisplayFor(modelItem => booking.StartDate, "CarDateTime")</td>
+                                    <td>@Html.DisplayFor(modelItem => booking.EndDate, "CarDateTime")</td>
                                     <td>$@Html.DisplayFor(modelItem => booking.Car.PricePerDay)</td>
                                     <td>
                                         <a asp-controller="CarBooking" asp-action="Details" asp-route-con="Trip" asp-route-id="@booking.BookingId">Details</a> |

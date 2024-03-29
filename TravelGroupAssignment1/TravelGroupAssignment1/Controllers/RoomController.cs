@@ -20,11 +20,11 @@ namespace TravelGroupAssignment1.Controllers
 
         // GET: RoomController
         [HttpGet]
-        public IActionResult Index(int hotelId)
+        public async Task<IActionResult> Index(int hotelId)
         {
-            var rooms = _context.Rooms
+            var rooms = await _context.Rooms
                         .Where(h => h.HotelId == hotelId)
-                        .ToList();
+                        .ToListAsync();
             if (rooms == null) return NotFound();
             ViewBag.HotelId = hotelId;
             ViewBag.HotelName = _context.Hotels.Find(hotelId)?.HotelName;
@@ -33,21 +33,21 @@ namespace TravelGroupAssignment1.Controllers
 
         // GET: RoomController/Details/5
         [HttpGet]
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            var room = _context.Rooms
+            var room = await _context.Rooms
                         .Include(r => r.Hotel)
-                        .FirstOrDefault(r => r.RoomId == id);
+                        .FirstOrDefaultAsync(r => r.RoomId == id);
             return View(room);
         }
 
         // GET: RoomController/Create
         [HttpGet]
-        public IActionResult Create(int hotelId)
+        public async Task<IActionResult> Create(int hotelId)
         {
-            var hotel = _context.Hotels.Include(h => h.Rooms).FirstOrDefault(h => h.HotelId == hotelId);
+            var hotel = await _context.Hotels.Include(h => h.Rooms).FirstOrDefaultAsync(h => h.HotelId == hotelId);
             if (hotel == null) return NotFound();
-            ViewBag.HotelName = _context.Hotels.Find(hotelId)?.HotelName;
+            ViewBag.HotelName = hotel.HotelName;
 
             var room = new Room { HotelId = hotelId, Hotel = hotel };
             return View(room);
@@ -56,27 +56,26 @@ namespace TravelGroupAssignment1.Controllers
         // POST: RoomController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Name", "Capacity", "BedDescription", "RoomSize",
+        public async Task<IActionResult> Create([Bind("Name", "Capacity", "BedDescription", "RoomSize",
              "PricePerNight", "Amenities", "HotelId")] Room room)
         {
             if (ModelState.IsValid)
             {
-                _context.Rooms.Add(room);
-                _context.SaveChanges();
+                await _context.Rooms.AddAsync(room);
+                await _context.SaveChangesAsync();
                 return RedirectToAction("Index", new { hotelId = room.HotelId });
             }
             ViewBag.HotelList = new SelectList(_context.Hotels, "HotelId", "HotelName", room.HotelId);
             return View(room);
-
         }
 
         // GET: RoomController/Edit/5
         [HttpGet]
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            var room = _context.Rooms
+            var room = await _context.Rooms
                         .Include(r => r.Hotel)
-                        .FirstOrDefault(r => r.RoomId == id);
+                        .FirstOrDefaultAsync(r => r.RoomId == id);
             if (room == null) return NotFound();
 
             ViewBag.HotelList = new SelectList(_context.Hotels, "HotelId", "HotelName", room.HotelId);
@@ -86,7 +85,7 @@ namespace TravelGroupAssignment1.Controllers
         // POST: RoomController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("RoomId", "Name", "Capacity", "BedDescription", "RoomSize",
+        public async Task<IActionResult> Edit(int id, [Bind("RoomId", "Name", "Capacity", "BedDescription", "RoomSize",
              "PricePerNight", "Amenities", "HotelId")] Room room)
         {
             if (id != room.RoomId) return NotFound();
@@ -94,7 +93,7 @@ namespace TravelGroupAssignment1.Controllers
             if (ModelState.IsValid)
             {
                 _context.Rooms.Update(room);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return RedirectToAction("Index", new { hotelId = room.HotelId });
             }
             ViewBag.HotelList = new SelectList(_context.Hotels, "HotelId", "HotelName", room.HotelId);
@@ -103,11 +102,11 @@ namespace TravelGroupAssignment1.Controllers
 
         // GET: RoomController/Delete/5
         [HttpGet]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var room = _context.Rooms
+            var room = await _context.Rooms
                         .Include(r => r.Hotel)
-                        .FirstOrDefault(r => r.RoomId == id);
+                        .FirstOrDefaultAsync(r => r.RoomId == id);
             if (room == null) return NotFound();
             return View(room);
         }
@@ -115,13 +114,13 @@ namespace TravelGroupAssignment1.Controllers
         // POST: RoomController/DeleteConfirmed/5
         [HttpPost, ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var room = _context.Rooms.Find(id);
             if (room != null)
             {
                 _context.Rooms.Remove(room);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return RedirectToAction("Index", new { hotelId = room.HotelId });
             }
             return NotFound();
@@ -135,14 +134,14 @@ namespace TravelGroupAssignment1.Controllers
             bool searchValid = hotelId >= 0 && capacity >= 0;
             if (!searchValid)
                 return RedirectToAction("Index");
-            
+
             // find room of given Hotel and capacity
             roomQuery = roomQuery.Where(r => r.HotelId == hotelId)
                             .Where(r => r.Capacity >= capacity);
             // find room with no bookings on given start / end dates
             roomQuery = roomQuery.Where(r => !r.RoomBookings.Any(rb => checkOutDate >= rb.CheckInDate && checkInDate <= rb.CheckOutDate));
             var rooms = await roomQuery.ToListAsync();
-            
+
             // Passing view information via ViewBag
             var hotel = _context.Hotels.Find(hotelId);
             ViewBag.SearchValid = searchValid;
@@ -157,5 +156,5 @@ namespace TravelGroupAssignment1.Controllers
 
     }
 
-    
+
 }
