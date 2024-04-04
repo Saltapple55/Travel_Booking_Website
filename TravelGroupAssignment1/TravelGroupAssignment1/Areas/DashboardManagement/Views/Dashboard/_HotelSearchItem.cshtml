@@ -1,6 +1,4 @@
-﻿@using TravelGroupAssignment1.Models;
-
-@{
+﻿@{
     string? locationFrom = ViewContext.HttpContext.Request.Query["locationFrom"].Count > 0 ? ViewContext.HttpContext.Request.Query["locationFrom"] : "";
     string? location = ViewContext.HttpContext.Request.Query["location"].Count > 0 ? ViewContext.HttpContext.Request.Query["location"] : "";
     string? startDate = ViewContext.HttpContext.Request.Query["startDate"].Count > 0 ? ViewContext.HttpContext.Request.Query["startDate"] : DateTime.Now.ToString("yyyy-MM-dd");
@@ -51,9 +49,9 @@
                                 Admin Dashboard
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" asp-controller="Dashboard" asp-action="HotelIndex">Hotel Dashboard</a></li>
-                                <li><a class="dropdown-item" asp-controller="Dashboard" asp-action="CarIndex">Car Dashboard</a></li>
-                                <li><a class="dropdown-item" asp-controller="Dashboard" asp-action="FlightIndex">Flight Dashboard</a></li>
+                                <li><a class="dropdown-item" asp-area="DashboardManagement" asp-controller="Dashboard" asp-action="HotelIndex">Hotel Dashboard</a></li>
+                                <li><a class="dropdown-item" asp-area="DashboardManagement" asp-controller="Dashboard" asp-action="CarIndex">Car Dashboard</a></li>
+                                <li><a class="dropdown-item" asp-area="DashboardManagement" asp-controller="Dashboard" asp-action="FlightIndex">Flight Dashboard</a></li>
                             </ul>
                         </li>
                     </ul>

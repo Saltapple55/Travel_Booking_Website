@@ -7,6 +7,8 @@ using TravelGroupAssignment1.Models;
 
 namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
 {
+    [Area("DashboardManagement")]
+    [Route("[area]/[controller]")]
     public class DashboardController : Controller
     {
         // required
@@ -18,7 +20,7 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
             _context = context;
         }
         // GET: HotelController
-        [HttpGet]
+        [HttpGet("HotelIndex")]
         public async Task<IActionResult> HotelIndex()
         {
             var hotels = await _context.Hotels.ToListAsync();
@@ -27,7 +29,7 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
 
         // ========================== HOTEL ============================
         // GET: HotelController/Details/5
-        [HttpGet]
+        [HttpGet("HotelDetails")]
         public async Task<IActionResult> HotelDetails(int id)
         {
             var hotel = await _context.Hotels.FirstOrDefaultAsync(h => h.HotelId == id);
@@ -36,14 +38,14 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
         }
 
         // GET: HotelController/Create
-        [HttpGet]
+        [HttpGet("HotelCreate")]
         public IActionResult HotelCreate()
         {
             return View();
         }
 
         // POST: HotelController/Create
-        [HttpPost]
+        [HttpPost("HotelCreate")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> HotelCreate(Hotel newHotel)
         {
@@ -57,6 +59,7 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
         }
 
         // GET: HotelController/Edit/5
+        [HttpGet("HotelEdit")]
         public async Task<IActionResult> HotelEdit(int id)
         {
             var hotel = await _context.Hotels.FindAsync(id);
@@ -65,7 +68,7 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
         }
 
         // POST: HotelController/Edit/5
-        [HttpPost]
+        [HttpPost("HotelEdit")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> HotelEdit(int id, [Bind("HotelId", "HotelName", "Location", "Description", "Amenities")] Hotel hotel)
         {
@@ -88,6 +91,7 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
         }
 
         // GET: HotelController/Delete/5
+        [HttpGet("HotelDelete")]
         public async Task<IActionResult> HotelDelete(int id)
         {
             var hotel = await _context.Hotels.FirstOrDefaultAsync(h => h.HotelId == id);
