@@ -113,6 +113,34 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
             }
             return NotFound();
         }
+        [HttpGet("HotelSearch")]
+        public async Task<IActionResult> HotelSearch(string location, int capacity, DateTime checkInDate, DateTime checkOutDate)
+        {
+            var hotelQuery = from p in _context.Hotels
+                             select p;
+            bool searchValid = !String.IsNullOrEmpty(location) && capacity > 0;
+            if (searchValid)
+            {
+                hotelQuery = hotelQuery.Where(h => !String.IsNullOrEmpty(h.Location) && h.Location.Contains(location)
+                                        || !String.IsNullOrEmpty(h.Description) && h.Description.Contains(location));
+                //hotelQuery = hotelQuery.Where(h => h.Rooms != null && h.Rooms.Any(r => r.Capacity >= capacity));
+                //hotelQuery = hotelQuery.Where(h => h.Rooms != null && h.Rooms.Any(r => r.Capacity >= capacity && (!r.RoomBookings.Any(rb => rb.CheckInDate >= checkInDate && rb.CheckInDate <= checkOutDate
+                //                        || rb.CheckOutDate >= checkInDate && rb.CheckOutDate <= checkOutDate || rb.CheckInDate <= checkInDate && rb.CheckOutDate >= checkOutDate))));
+                hotelQuery = hotelQuery.Where(h => h.Rooms != null && h.Rooms.Any(r => r.Capacity >= capacity && !r.RoomBookings.Any(rb => checkOutDate >= rb.CheckInDate && checkInDate <= rb.CheckOutDate)));
+
+            }
+            else
+            {
+                return RedirectToAction("HotelIndex");
+            }
+            var hotels = await hotelQuery.ToListAsync();
+            ViewBag.SearchValid = searchValid;
+            ViewBag.Location = location;
+            ViewBag.Capacity = capacity;
+            ViewBag.CheckInDate = checkInDate;
+            ViewBag.CheckOutDate = checkOutDate;
+            return View("HotelIndex", hotels);
+        }
 
         public async Task<bool> HotelExists(int id)
         {
@@ -346,9 +374,34 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
             return NotFound();
         }
 
-        // ================================== Flight ===========================================
+        [HttpGet("CarSearch")]
+		public async Task<IActionResult> CarSearch(string location, DateTime startDate, DateTime endDate)
+		{
+			var carQuery = from p in _context.Cars
+						   select p;
+			bool searchValid = !String.IsNullOrEmpty(location);
+			if (searchValid)
+			{
+				// search by location, and by cars with no bookings in given date range
+				carQuery = carQuery.Where(c => c.Company != null && c.Company.Location.Contains(location))
+								.Where(c => !c.Bookings.Any(b => b.EndDate >= startDate && b.EndDate <= endDate
+									|| b.StartDate >= startDate && b.StartDate <= endDate));
+			}
+			else
+			{
+				return RedirectToAction("CarIndex");
+			}
+			var cars = await carQuery.Include(c => c.Company).ToListAsync();
+			ViewBag.SearchValid = searchValid;
+			ViewBag.Location = location;
+			ViewBag.StartDate = startDate;
+			ViewBag.EndDate = endDate;
+			return View("CarIndex", cars);
+		}
 
-        [HttpGet("FlightIndex")]
+		// ================================== Flight ===========================================
+
+		[HttpGet("FlightIndex")]
         public async Task<IActionResult> FlightIndex()
         {
             var flights = await _context.Flights.ToListAsync();

@@ -20,6 +20,7 @@
   <ItemGroup>
     <Folder Include="Areas\DashboardManagement\Data\" />
     <Folder Include="Areas\DashboardManagement\Models\" />
+    <Folder Include="Areas\DashboardManagement\Views\Shared\" />
     <Folder Include="Views\Shared\Components\" />
   </ItemGroup>
 
