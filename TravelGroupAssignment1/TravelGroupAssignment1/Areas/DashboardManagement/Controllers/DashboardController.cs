@@ -184,9 +184,9 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
         }
 
         // POST: RoomController/Create
-        [HttpPost("RoomCreate")]
+        [HttpPost("RoomCreateConfirm")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RoomCreate([Bind("Name", "Capacity", "BedDescription", "RoomSize",
+        public async Task<IActionResult> RoomCreateConfirm([Bind("Name", "Capacity", "BedDescription", "RoomSize",
              "PricePerNight", "Amenities", "HotelId")] Room room)
         {
             if (ModelState.IsValid)
@@ -412,19 +412,24 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
         {
             return View();
         }
-        [HttpPost("FlightCreate")]
+        [HttpPost("FlightCreateConfirm")]
         [ValidateAntiForgeryToken]
 
-        public async Task<IActionResult> FlightCreate(Flight newFlight)
+        public IActionResult FlightCreateConfirm(Flight newFlight)
         {
             if (ModelState.IsValid)
             {
-                await _context.Flights.FindAsync(newFlight);
-                await _context.SaveChangesAsync();
+                _context.Flights.Add(newFlight);
+                _context.SaveChanges();
                 return RedirectToAction("FlightIndex");
             }
             return View(newFlight);
         }
+
+
+
+
+
         [HttpGet("FlightDetails/{flightId:int}")]
         public async Task<IActionResult> FlightDetails(int flightId)
         {
