@@ -29,7 +29,7 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
 
         // ========================== HOTEL ============================
         // GET: HotelController/Details/5
-        [HttpGet("HotelDetails")]
+        [HttpGet("HotelDetails/{id:int}")]
         public async Task<IActionResult> HotelDetails(int id)
         {
             var hotel = await _context.Hotels.FirstOrDefaultAsync(h => h.HotelId == id);
@@ -59,7 +59,7 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
         }
 
         // GET: HotelController/Edit/5
-        [HttpGet("HotelEdit")]
+        [HttpGet("HotelEdit/{id:int}")]
         public async Task<IActionResult> HotelEdit(int id)
         {
             var hotel = await _context.Hotels.FindAsync(id);
@@ -68,7 +68,7 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
         }
 
         // POST: HotelController/Edit/5
-        [HttpPost("HotelEdit")]
+        [HttpPost("HotelEdit/{id:int}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> HotelEdit(int id, [Bind("HotelId", "HotelName", "Location", "Description", "Amenities")] Hotel hotel)
         {
@@ -91,7 +91,7 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
         }
 
         // GET: HotelController/Delete/5
-        [HttpGet("HotelDelete")]
+        [HttpGet("HotelDelete/{id:int}")]
         public async Task<IActionResult> HotelDelete(int id)
         {
             var hotel = await _context.Hotels.FirstOrDefaultAsync(h => h.HotelId == id);
@@ -100,7 +100,7 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
         }
 
         // POST: HotelController/DeleteConfirmed/5
-        [HttpPost, ActionName("DeleteConfirmed")]
+        [HttpPost("DeleteConfirmed/{id:int}"), ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
@@ -121,7 +121,7 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
 
         // ========================== Room ============================
 
-        [HttpGet]
+        [HttpGet("RoomIndex/{hotelId:int}")]
         public async Task<IActionResult> RoomIndex(int hotelId)
         {
             var rooms = await _context.Rooms
@@ -134,7 +134,7 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
         }
 
         // GET: RoomController/Details/5
-        [HttpGet]
+        [HttpGet("RoomDetails/{id:int}")]
         public async Task<IActionResult> RoomDetails(int id)
         {
             var room = await _context.Rooms
@@ -144,7 +144,7 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
         }
 
         // GET: RoomController/Create
-        [HttpGet]
+        [HttpGet("RoomCreate/{hotelId:int}")]
         public async Task<IActionResult> RoomCreate(int hotelId)
         {
             var hotel = await _context.Hotels.FindAsync(hotelId);
@@ -156,7 +156,7 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
         }
 
         // POST: RoomController/Create
-        [HttpPost]
+        [HttpPost("RoomCreate")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RoomCreate([Bind("Name", "Capacity", "BedDescription", "RoomSize",
              "PricePerNight", "Amenities", "HotelId")] Room room)
@@ -173,7 +173,7 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
         }
 
         // GET: RoomController/Edit/5
-        [HttpGet]
+        [HttpGet("RoomEdit/{id:int}")]
         public async Task<IActionResult> RoomEdit(int id)
         {
             var room = await _context.Rooms
@@ -186,7 +186,7 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
         }
 
         // POST: RoomController/Edit/5
-        [HttpPost]
+        [HttpPost("RoomEdit/{id:int}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RoomEdit(int id, [Bind("RoomId", "Name", "Capacity", "BedDescription", "RoomSize",
              "PricePerNight", "Amenities", "HotelId")] Room room)
@@ -204,7 +204,7 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
         }
 
         // GET: RoomController/Delete/5
-        [HttpGet]
+        [HttpGet("RoomDelete/{id:int}")]
         public async Task<IActionResult> RoomDelete(int id)
         {
             var room = await _context.Rooms
@@ -215,7 +215,7 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
         }
 
         // POST: RoomController/DeleteConfirmed/5
-        [HttpPost, ActionName("RoomDeleteConfirmed")]
+        [HttpPost("RoomDeleteConfirmed/{id:int}"), ActionName("RoomDeleteConfirmed")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RoomDeleteConfirmed(int id)
         {
@@ -230,7 +230,7 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
         }
 
         // ========================== CAR ============================
-        [HttpGet]
+        [HttpGet("CarIndex")]
         public async Task<IActionResult> CarIndex()
         {
             var cars = await _context.Cars
@@ -241,7 +241,7 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
         }
 
 
-        [HttpGet]
+        [HttpGet("CarDetails/{carId:int}")]
         public async Task<IActionResult> CarDetails(int carId)
         {
             var car = await _context.Cars
@@ -251,7 +251,7 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
             return View(car);
         }
 
-        [HttpGet]
+        [HttpGet("CarCreate")]
         public async Task<IActionResult> CarCreate()
         {
             ViewBag.Companies = new SelectList(_context.CarRentalCompanies, "CarRentalCompanyId", "CompanyName");
@@ -262,7 +262,7 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
         }
 
         // POST: CarController/Create
-        [HttpPost]
+        [HttpPost("CarCreate")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CarCreate([Bind("Make", "Model", "Type", "PricePerDay", "MaxPassengers",
             "CompanyId", "Company", "Transmission", "HasAirConditioning", "HasUnlimitedMileage")] Car car)
@@ -292,7 +292,7 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
 
         }
 
-        [HttpGet]
+        [HttpGet("CarEdit/{carId:int}")]
         public async Task<IActionResult> CarEdit(int carId)
         {
             var car = await _context.Cars
@@ -304,7 +304,7 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
             return View(car);
         }
 
-        [HttpPost]
+        [HttpPost("CarEdit/{carId:int}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CarEdit(int carId, [Bind("CarId", "Make", "Model", "Type", "PricePerDay", "MaxPassengers",
             "CompanyId", "Company", "Transmission", "HasAirConditioning", "HasUnlimitedMileage")] Car car)
@@ -321,7 +321,7 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
             return View();
         }
 
-        [HttpGet]
+        [HttpGet("CarDelete/{carId:int}")]
         public async Task<IActionResult> CarDelete(int carId)
         {
             var car = await _context.Cars
@@ -332,7 +332,7 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
         }
 
         // POST: CarController/DeleteConfirmed/5
-        [HttpPost, ActionName("CarDeleteConfirmed")]
+        [HttpPost("CarDeleteConfirmed/{carId:int}"), ActionName("CarDeleteConfirmed")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CarDeleteConfirmed(int carId)
         {
@@ -348,17 +348,18 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
 
         // ================================== Flight ===========================================
 
+        [HttpGet("FlightIndex")]
         public async Task<IActionResult> FlightIndex()
         {
             var flights = await _context.Flights.ToListAsync();
             return View(flights);
         }
-        [HttpGet]
+        [HttpGet("FlightCreate")]
         public IActionResult FlightCreate()
         {
             return View();
         }
-        [HttpPost]
+        [HttpPost("FlightCreate")]
         [ValidateAntiForgeryToken]
 
         public async Task<IActionResult> FlightCreate(Flight newFlight)
@@ -371,7 +372,7 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
             }
             return View(newFlight);
         }
-        [HttpGet]
+        [HttpGet("FlightDetails/{flightId:int}")]
         public async Task<IActionResult> FlightDetails(int flightId)
         {
             var flight = await _context.Flights.FindAsync(flightId);
@@ -379,7 +380,7 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
             return View(flight);
 
         }
-        [HttpGet]
+        [HttpGet("FlightEdit/{flightId:int}")]
         public async Task<IActionResult> FlightEdit(int flightId)
 
         {
@@ -388,7 +389,7 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
 
 
         }
-        [HttpPost]
+        [HttpPost("FlightEdit/{id:int}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> FlightEdit(int id, [Bind("FlightId", "Airline", "Price", "MaxPassenger", "From", "To", "DepartTime", "ArrivalTime")] Flight flight)
         {
@@ -415,16 +416,16 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
 
         }
 
+        [HttpGet("FlightDelete/{flightId:int}")]
         public async Task<IActionResult> FlightDelete(int flightId)
 
         {
             var flight = await _context.Flights.FindAsync(flightId);
             if (flight == null) return NotFound();
             return View(flight);
-
-
         }
-        [HttpPost, ActionName("FlightDeleteConfirmed")]
+
+        [HttpPost("FlightDeleteConfirmed/{flightId:int}"), ActionName("FlightDeleteConfirmed")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> FlightDeleteConfirmed(int flightId)
         {
