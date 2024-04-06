@@ -138,4 +138,14 @@ p {
     display: block; 
     margin: 0 auto;
 }
+.DashboardNumber {
+    color: #789461;
+    font-weight: 900;
+    font-size: 64px;
+}
+
+.DashboardObject {
+    margin-bottom: 25px;
+    font-size: 24px;
+}
 
