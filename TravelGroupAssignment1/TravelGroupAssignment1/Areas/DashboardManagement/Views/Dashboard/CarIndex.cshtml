@@ -35,7 +35,8 @@
 					<td>@car.Model</td>
 					<td>@car.Company.CompanyName</td>
 					<td>
-						<a asp-controller="CarBooking" asp-action="Index" asp-route-carId="@car.CarId" class="btn btn.sm btn-secondary" role="button">Bookings<i class="fa-solid fa-list-check"></i></a>
+						@* Need to have a list of user to book the car for specific user *@
+						@* <a asp-controller="CarBooking" asp-action="Index" asp-route-carId="@car.CarId" class="btn btn.sm btn-secondary" role="button">Bookings<i class="fa-solid fa-list-check"></i></a> *@
 						<a asp-controller="Dashboard" asp-action="CarDetails" asp-route-carId="@car.CarId" class="btn btn-info">Details</a>
 						<a asp-controller="Dashboard" asp-action="CarEdit" asp-route-carId="@car.CarId" class="btn btn-warning">Edit</a>
 						<a asp-controller="Dashboard" asp-action="CarDelete" asp-route-carId="@car.CarId" class="btn btn-danger">Delete</a>
