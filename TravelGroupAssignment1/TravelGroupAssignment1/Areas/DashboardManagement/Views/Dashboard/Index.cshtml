@@ -6,6 +6,7 @@
 
 @model DashboardViewModel
 
+<!-- Number Group -->
 <div class="container text-center">
     <div class="row">
         <div class="col">
@@ -53,3 +54,55 @@
     </div>
 </div>
 
+<!-- Button Group -->
+<div class="container text-center">
+    <div class="row">
+        <div class="col">
+            <div class="container text-center">
+                <div class="row row-cols-1">
+                    <div class="col">
+                        <a class="btn btn-outline-dark DashboardButton" asp-controller="Dashboard" asp-action="CarIndex">Manage Cars</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="container text-center">
+                <div class="row row-cols-1">
+                    <div class="col">
+                        <a class="btn btn-outline-dark DashboardButton" asp-controller="Dashboard" asp-action="HotelIndex">Manage Hotels</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="container text-center">
+                <div class="row row-cols-1">
+                    <div class="col">
+                        <a class="btn btn-outline-dark DashboardButton" asp-controller="Dashboard" asp-action="FlightIndex">Manage Flights</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="container text-center">
+                <div class="row row-cols-1">
+                    <div class="col">
+                        <a class="btn btn-outline-dark DashboardButton" asp-controller="" asp-action="">Manage Users</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="container text-center">
+                <div class="row row-cols-1">
+                    <div class="col">
+                        <a class="btn btn-outline-dark DashboardButton" asp-controller="" asp-action="">Manage Roles</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
