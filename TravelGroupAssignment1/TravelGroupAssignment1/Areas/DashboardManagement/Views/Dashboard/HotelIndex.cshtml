@@ -1,4 +1,6 @@
-﻿@{
+﻿@using TravelGroupAssignment1.Models
+
+@{
 	Layout = "_HotelSearchItem";
 }
 
@@ -30,9 +32,9 @@
 					<td>@hotel.HotelName</td>
 					<td>@hotel.Description</td>
 					<td>
-						<a asp-controller="Dashboard" asp-action="HotelDetails" asp-route-id="@hotel.HotelId" class="btn btn-info">Details</a>
-						<a asp-controller="Dashboard" asp-action="HotelEdit" asp-route-id="@hotel.HotelId" class="btn btn-warning">Edit</a>
-						<a asp-controller="Dashboard" asp-action="HotelDelete" asp-route-id="@hotel.HotelId" class="btn btn-danger">Delete</a>
+						<a asp-area="DashboardManagement" asp-controller="Dashboard" asp-action="HotelDetails" asp-route-id="@hotel.HotelId" class="btn btn-info">Details</a>
+						<a asp-area="DashboardManagement" asp-controller="Dashboard" asp-action="HotelEdit" asp-route-id="@hotel.HotelId" class="btn btn-warning">Edit</a>
+						<a asp-area="DashboardManagement"  asp-controller="Dashboard" asp-action="HotelDelete" asp-route-id="@hotel.HotelId" class="btn btn-danger">Delete</a>
 					</td>
 				</tr>
 			}

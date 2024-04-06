@@ -1,15 +1,17 @@
-﻿@model Room
+﻿@using TravelGroupAssignment1.Models;
+
+@model Room
 
 @{
     // Razor block
-    ViewData["Title"] = "Create Room";
+    ViewData["Title"] = "Edit Room";
     string? hotelName = ViewBag.HotelName as string;
 }
 
 <h2>@ViewData["Title"]</h2>
 <h4>@hotelName</h4>
 
-<form asp-action="RoomCreate" method="post">
+<form asp-action="RoomEdit" method="post">
     <div asp-validation-summary="ModelOnly" class="text-warning"></div>
 
     <div>
@@ -24,7 +26,14 @@
             <option value="">Select Room Capacity</option>
             @for (int i = 1; i <= 10; i++)
             {
-                <option value="@i">@i</option>
+                if (Model.Capacity == i)
+                {
+                    <option value="@i" selected>@i</option>
+                }
+                else
+                {
+                    <option value="@i">@i</option>
+                }
             }
         </select>
     </div>
@@ -55,11 +64,11 @@
     </div>
 
     <div class="form-group">
+        @Html.HiddenFor(r => r.RoomId)
         @Html.HiddenFor(r => r.HotelId)
-        <input type="submit" value="Create" class="btn btn-primary" />
-        <a asp-action="RoomIndex" asp-route-hotelId="@Model.HotelId" class="btn btn-secondary">Cancel</a>
+        <input type="submit" value="Edit" class="btn btn-primary" />
+        <a asp-action="RoomIndex" asp-route-hotelId="@Model.HotelId" class="btn btn-secondary">Return</a>
     </div>
-
 
 </form>
 

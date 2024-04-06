@@ -1,4 +1,6 @@
-﻿@{
+﻿@using TravelGroupAssignment1.Models;
+
+@{
     string? locationFrom = ViewContext.HttpContext.Request.Query["locationFrom"].Count > 0 ? ViewContext.HttpContext.Request.Query["locationFrom"] : "";
     string? location = ViewContext.HttpContext.Request.Query["location"].Count > 0 ? ViewContext.HttpContext.Request.Query["location"] : "";
     string? startDate = ViewContext.HttpContext.Request.Query["startDate"].Count > 0 ? ViewContext.HttpContext.Request.Query["startDate"] : DateTime.Now.ToString("yyyy-MM-dd");
@@ -66,40 +68,51 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="car-tab" data-bs-toggle="tab" data-bs-target="#car" type="button" role="tab" aria-controls="car" aria-selected="true">Car</button>
+                    <button class="nav-link" id="flight-tab" data-bs-toggle="tab" data-bs-target="#flight" type="button" role="tab" aria-controls="flight" aria-selected="false">Flight</button>
                 </li>
             </ul>
 
             <!-- Tab panes -->
             <div class="tab-content">
-                <!-- Car Tab -->
-                <div class="tab-pane show active" id="car" role="tabpanel" aria-labelledby="car-tab" tabindex="0">
-                    <div id="carForm" class="search-form">
-                        <h3>Car Search</h3>
-                        <form method="get" class="row row-cols-lg-auto g-3 align-items-center" asp-controller="Car" asp-action="Search">
+                <!-- Flight Tab -->
+                <div class="tab-pane show active" id="flight" role="tabpanel" aria-labelledby="flight-tab" tabindex="0">
+                    <div id="flightForm" class="search-form">
+                        <h3>Flight Search</h3>
+                        <form method="get" class="row row-cols-lg-auto g-3 align-items-center" asp-controller="Dashboard" asp-action="FlightSearch">
                             <div class="col-12">
-                                <label for="location" class="control-label">Location</label>
-                                <input required id="location" name="location" class="form-control" value="@location" placeholder="Going To" />
+                                <label for="locationFrom">Leaving From</label>
+                                <input required id="locationFrom" name="locationFrom" class="form-control" value="@tab" placeholder="Toronto" />
+                            </div>
+
+                            <div class="col-12">
+                                <label for="location">Going To</label>
+                                <input required id="location" name="location" class="form-control" value="@tab" placeholder="New York" />
                             </div>
 
                             <div class="col-12">
                                 <label for="startDate">Start Date</label>
-                                <input required type="date" class="form-control" id="carStartDate" name="startDate" value="@startDate" min="@DateTime.Now.ToString("yyyy-MM-dd")" placeholder="Start Date" onchange="updateCheckOutDateLimit('carStartDate','carEndDate')">
+                                <input required type="date" class="form-control" id="flightStartDate" name="startDate" value="@startDate" min="@DateTime.Now.ToString("yyyy-MM-dd")" placeholder="Start Date" onchange="updateCheckOutDateLimit('flightStartDate', 'flightEndDate')">
                             </div>
 
                             <div class="col-12">
                                 <label for="endDate">End Date</label>
-                                <input required type="date" class="form-control" id="carEndDate" name="endDate" value="@endDate" min="@startDate" placeholder="End Date">
+                                <input required type="date" class="form-control" id="flightEndDate" name="endDate" value="@endDate" min="@startDate" placeholder="End Date">
+                            </div>
+
+                            <div class="col-12">
+                                <label for="capacity" class="control-label">Passengers</label>
+                                <input required id="capacity" name="capacity" type="number" class="form-control" value="@capacity" min="1" max="100" placeholder="How many passengers" />
                             </div>
 
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary">Search</button>
                             </div>
-                            <input type="hidden" id="tab" name="tab" value="car" />
+                            <input type="hidden" id="tab" name="tab" value="flight" />
+
                         </form>
                     </div>
                 </div>
-                @RenderBody()
+            @RenderBody()
         </main>
     </div>
 

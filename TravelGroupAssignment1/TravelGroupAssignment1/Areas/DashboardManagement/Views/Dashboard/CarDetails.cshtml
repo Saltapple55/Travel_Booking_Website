@@ -1,4 +1,6 @@
-﻿@{
+﻿@using TravelGroupAssignment1.Models;
+
+@{
     Layout = "_CarSearchItem";
 }
 
@@ -36,12 +38,9 @@
     </div>
 
 </div>
+<a asp-action="CarEdit" asp-route-carId="@Model.CarId" class="btn btn-primary">Edit</a>
+<a asp-action="CarIndex" class="btn btn-secondary">Return</a>
 
-<form asp-action="DeleteConfirmed" method="post">
-    @Html.HiddenFor(model => model.CarId)
-    <input asp-action="CarDeleteConfirmed" asp-route-carId="@Model.CarId" type="submit" value="Delete" class="btn btn-danger" />
-    <a asp-action="CarIndex" class="btn btn-secondary">Cancel</a>
-</form>
 
 @section Scripts {
     @{

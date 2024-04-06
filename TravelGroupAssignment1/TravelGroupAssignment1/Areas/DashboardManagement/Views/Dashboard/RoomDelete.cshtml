@@ -1,10 +1,12 @@
-﻿@model Room
+﻿@using TravelGroupAssignment1.Models;
+
+@model Room
 @{
-    ViewData["Title"] = "Room Details";
+    ViewData["Title"] = "Delete Room";
 }
 
 <h2>@ViewData["Title"]</h2>
-<h3>All the information you need to know about Room</h3>
+<h3>Please confirm you are deleting this room.</h3>
 
 <div class="card">
 
@@ -38,5 +40,8 @@
     </div>
 
 </div>
-<a asp-controller="Dashboard" asp-action="RoomEdit" asp-route-id="@Model.RoomId" class="btn btn-warning">Edit</a>
-<a asp-action="RoomIndex" asp-route-hotelId="@Model.HotelId" class="btn btn-secondary">Cancel</a>
+<form asp-action="RoomDeleteConfirmed" asp-route-id="@Model.RoomId" method="post">
+    @Html.HiddenFor(model => model.RoomId)
+    <input type="submit" value="Delete" class="btn btn-danger" />
+    <a asp-action="RoomIndex" asp-route-hotelId="@Model.HotelId" class="btn btn-secondary">Cancel</a>
+</form>
