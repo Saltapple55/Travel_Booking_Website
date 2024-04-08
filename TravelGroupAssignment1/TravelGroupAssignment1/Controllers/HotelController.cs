@@ -17,22 +17,22 @@ namespace TravelGroupAssignment1.Controllers
 
         // GET: HotelController
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var hotels = _context.Hotels.ToList();
+            var hotels = await _context.Hotels.ToListAsync();
             return View(hotels);
         }
 
         // GET: HotelController/Details/5
         [HttpGet]
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            var hotel = _context.Hotels.FirstOrDefault(h => h.HotelId == id);
+            var hotel = await _context.Hotels.FirstOrDefaultAsync(h => h.HotelId == id);
             if(hotel == null) return NotFound();
             return View(hotel);
         }
-
         // GET: HotelController/Create
+
         [HttpGet]
         public IActionResult Create()
         {
@@ -42,21 +42,21 @@ namespace TravelGroupAssignment1.Controllers
         // POST: HotelController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Hotel newHotel)
+        public async Task<IActionResult> Create(Hotel newHotel)
         {
             if (ModelState.IsValid)
             {
-                _context.Hotels.Add(newHotel);
-                _context.SaveChanges();
+                await _context.Hotels.AddAsync(newHotel);
+                await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(newHotel);
         }
 
         // GET: HotelController/Edit/5
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            var hotel = _context.Hotels.Find(id);
+            var hotel = await _context.Hotels.FindAsync(id);
             if (hotel == null) return NotFound();
             return View(hotel);
         }
@@ -64,7 +64,7 @@ namespace TravelGroupAssignment1.Controllers
         // POST: HotelController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("HotelId", "HotelName", "Location", "Description","Amenities")] Hotel hotel)
+        public async Task<IActionResult> Edit(int id, [Bind("HotelId", "HotelName", "Location", "Description","Amenities")] Hotel hotel)
         {
             if(id != hotel.HotelId) return NotFound();
             if (ModelState.IsValid)
@@ -72,12 +72,12 @@ namespace TravelGroupAssignment1.Controllers
                 try
                 {
                     _context.Hotels.Update(hotel);
-                    _context.SaveChanges();
+                    await _context.SaveChangesAsync();
                     return RedirectToAction("Index");
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!HotelExists(id)) return NotFound();
+                    if (!await HotelExists(id)) return NotFound();
                     else throw;
                 }
             }
@@ -85,9 +85,9 @@ namespace TravelGroupAssignment1.Controllers
         }
 
         // GET: HotelController/Delete/5
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var hotel = _context.Hotels.FirstOrDefault(h => h.HotelId == id);
+            var hotel = await _context.Hotels.FirstOrDefaultAsync(h => h.HotelId == id);
             if (hotel == null) return NotFound();
             return View(hotel);
         }
@@ -95,13 +95,13 @@ namespace TravelGroupAssignment1.Controllers
         // POST: HotelController/DeleteConfirmed/5
         [HttpPost, ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var hotel = _context.Hotels.Find(id);
+            var hotel = await _context.Hotels.FindAsync(id);
             if (hotel != null)
             {
                 _context.Remove(hotel);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return NotFound();
@@ -135,9 +135,9 @@ namespace TravelGroupAssignment1.Controllers
             return View("Index", hotels);
         }
 
-        public bool HotelExists(int id)
+        public async Task<bool> HotelExists(int id)
         {
-            return _context.Hotels.Any(h => h.HotelId == id);
+            return await _context.Hotels.AnyAsync(h => h.HotelId == id);
         }
     }
 }
