@@ -1,6 +1,10 @@
 ﻿@model List<Flight>
 @{
     ViewData["Title"] = "List of Flights";
+    string? searchLocation = ViewBag.Location as string;
+    DateTime searchStartDate = ViewBag.StartDate != null ? ViewBag.StartDate : DateTime.Now;
+    DateTime searchEndDate = ViewBag.EndDate != null ? ViewBag.EndDate : DateTime.Now.AddDays(2);
+    bool searchValid = ViewBag.SearchValid != null ? ViewBag.SearchValid : false;
 }
 
 <h2>@ViewData["Title"]</h2>
@@ -11,7 +15,7 @@
 {
     <!-- Flight Card-->
     <div class="container">
-        <div class="row">
+        <div class="row" id="flightList">
             @foreach (var flight in Model)
             {
                 <div class="col-md-6">
@@ -23,7 +27,7 @@
                                 <p><strong>From:</strong> @flight.From <strong>To:</strong> @flight.To</p>
                                 <p><b>Airline:</b>  @flight.Airline</p>
                             </div>
-                            <div class="flight-price">$500</div>
+                            <div class="flight-price">@flight.Price</div>
                         </div>
                         <div class="text-center custom-margin">
                             <!-- Add custom margin class -->
@@ -37,9 +41,21 @@
 }
 else
 {
-    <p>No flights available</p>
+    @if (searchValid)
+    {
+        <br />
+        <h4>Sorry, no available flight that matches your search criteria</h4>
+    }
+    else
+    {
+        <br />
+        <h4>Sorry, no flights available at the momement</h4>
+    }
 }
 
+@section Scripts {
+    <script src="~/js/flightSearch.js"></script>
+}
 
 
 

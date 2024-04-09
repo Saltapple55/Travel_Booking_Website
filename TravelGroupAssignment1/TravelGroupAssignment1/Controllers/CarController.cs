@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TravelGroupAssignment1.Data;
@@ -142,13 +143,13 @@ namespace TravelGroupAssignment1.Controllers
         public async Task<IActionResult> Search(string location, DateTime startDate, DateTime endDate)
         {
             var carQuery = from p in _context.Cars
-                             select p;
+                           select p;
             bool searchValid = !String.IsNullOrEmpty(location);
             if (searchValid)
             {
                 // search by location, and by cars with no bookings in given date range
                 carQuery = carQuery.Where(c => c.Company != null && c.Company.Location.Contains(location))
-                                .Where(c => !c.Bookings.Any(b => b.EndDate >= startDate && b.EndDate <= endDate 
+                                .Where(c => !c.Bookings.Any(b => b.EndDate >= startDate && b.EndDate <= endDate
                                     || b.StartDate >= startDate && b.StartDate <= endDate));
             }
             else
@@ -161,6 +162,47 @@ namespace TravelGroupAssignment1.Controllers
             ViewBag.StartDate = startDate;
             ViewBag.EndDate = endDate;
             return View("Index", cars);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> SearchAjax(string location, DateTime startDate, DateTime endDate)
+        {
+            var carQuery = from p in _context.Cars
+                           select p;
+            bool searchValid = !String.IsNullOrEmpty(location);
+            if (searchValid)
+            {
+                // search by location, and by cars with no bookings in given date range
+                carQuery = carQuery.Where(c => c.Company != null && c.Company.Location.Contains(location))
+                                .Where(c => !c.Bookings.Any(b => b.EndDate >= startDate && b.EndDate <= endDate
+                                    || b.StartDate >= startDate && b.StartDate <= endDate));
+            }
+            else
+            {
+                return StatusCode(400, "Search invalid");
+            }
+
+            //var cars = await carQuery.ToListAsync();
+            var cars = await carQuery.Include(c => c.Company).Select(c => new
+            {
+                carId = c.CarId,
+                make = c.Make,
+                model = c.Model,
+                maxPassengers = c.MaxPassengers,
+                transmission = c.Transmission,
+                hasAirConditioning = c.HasAirConditioning,
+                hasUnlimitedMileage = c.HasUnlimitedMileage,
+                pricePerDay = c.PricePerDay,
+                companyName = c.Company.CompanyName
+            }).ToListAsync();
+
+            //????
+            //ViewBag.SearchValid = searchValid;
+            //ViewBag.Location = location;
+            //ViewBag.StartDate = startDate;
+            //ViewBag.EndDate = endDate;
+
+            return Json(cars);
         }
     }
 }
