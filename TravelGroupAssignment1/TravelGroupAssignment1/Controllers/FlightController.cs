@@ -14,20 +14,22 @@ namespace TravelGroupAssignment1.Controllers
         {
             _context = context;
         }
+
         [HttpGet]
         public IActionResult Index()
         {
             var flights = _context.Flights.ToList();
             return View(flights);
         }
+
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-
         public IActionResult Create(Flight newFlight)
         {
             if (ModelState.IsValid)
@@ -38,6 +40,7 @@ namespace TravelGroupAssignment1.Controllers
             }
             return View(newFlight);
         }
+
         [HttpGet]
         public IActionResult Details(int flightId) {
             var flight = _context.Flights.Find(flightId);
@@ -45,6 +48,7 @@ namespace TravelGroupAssignment1.Controllers
             return View(flight);
 
         }
+
         [HttpGet]
         public IActionResult Edit(int flightId)
 
@@ -54,6 +58,7 @@ namespace TravelGroupAssignment1.Controllers
 
 
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, [Bind("FlightId", "Airline", "Price", "MaxPassenger", "From", "To", "DepartTime", "ArrivalTime")] Flight flight)
@@ -96,6 +101,7 @@ namespace TravelGroupAssignment1.Controllers
 
 
         }
+
         [HttpPost, ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int flightId)
@@ -115,7 +121,7 @@ namespace TravelGroupAssignment1.Controllers
 
             return _context.Flights.Any(e => e.FlightId == id);
         }
-        public async Task<IActionResult> Search(string locationFrom, string location, int capacity, DateTime startDate)
+        public async Task<IActionResult> Search(string locationFrom, string location, int capacity, DateTime startDate, DateTime endDate)
         {
             var flightQuery = from p in _context.Flights
                               select p;
@@ -125,7 +131,7 @@ namespace TravelGroupAssignment1.Controllers
             {
                 flightQuery = flightQuery.Where(f => f.From.Contains(locationFrom) && f.To.Contains(location));
                 // I changed line below, not sure if I fixed it or not
-                flightQuery = flightQuery.Where(f => f.DepartTime.Date >= startDate.Date);
+                flightQuery = flightQuery.Where(f => f.DepartTime.Date >= startDate.Date && f.ArrivalTime.Date <= endDate.Date);
 
             }
             else
@@ -138,6 +144,28 @@ namespace TravelGroupAssignment1.Controllers
             ViewBag.Capacity = capacity;
             ViewBag.StartDate = startDate;
             return View("Index", flights);
+        }
+
+        public async Task<IActionResult> SearchAjax(string locationFrom, string location, int capacity, DateTime startDate, DateTime endDate)
+        {
+            var flightQuery = from p in _context.Flights
+                              select p;
+
+            bool searchValid = !String.IsNullOrEmpty(location) && capacity > 0;
+            if (searchValid)
+            {
+                flightQuery = flightQuery.Where(f => f.From.Contains(locationFrom) && f.To.Contains(location));
+                // I changed line below, not sure if I fixed it or not
+                flightQuery = flightQuery.Where(f => f.DepartTime.Date >= startDate.Date && f.ArrivalTime.Date <= endDate.Date);
+
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+            var flights = await flightQuery.ToListAsync();
+            
+            return Json(flights);
         }
 
 

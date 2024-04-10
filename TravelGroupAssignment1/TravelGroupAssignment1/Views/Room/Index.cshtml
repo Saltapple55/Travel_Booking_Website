@@ -15,7 +15,7 @@
 <div class="tab-pane" role="tabpanel" aria-labelledby="room-tab" tabindex="0">
     <div id="roomForm" class="search-form">
         <h4>Room Search</h4>
-        <form asp-action="Search" class="form" method="get">
+        <form asp-action="Search" class="form" method="get" id="roomSearchForm" autocomplete="off">
             <div asp-validation-summary="ModelOnly" class="text-warning"></div>
             <input hidden required id="hotelId" name="hotelId" value="@hotelId" class="form-control" />
 
@@ -33,12 +33,9 @@
                 <label for="checkOutDate" class="control-label">End Date</label>
                 <input required id="checkOutDate" name="checkOutDate" type="date" value="@searchCheckOutDate.ToString("yyyy-MM-dd")" min="@DateTime.Now.ToString("yyyy-MM-dd")" class="form-control" />
             </div>
-
-            <input type="submit" value="Search" class="btn btn-primary" />
-            @if (searchValid)
-            {
-                <a asp-action="Index" asp-route-hotelId="@hotelId" class="btn btn-secondary">Clear Search</a>
-            }
+            <div class="container d-inline-block" id="roomSearchButton">
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </div>
         </form>
     </div>
 </div>
@@ -49,7 +46,7 @@
 @if (Model.Any())
 {
     <!-- Room Card -->
-    <div class="row">
+    <div class="row" id="roomList">
         @foreach (var room in Model)
         {
             <div class="col-12 col-sm-4">
@@ -70,7 +67,7 @@
                                 <i class="fa-solid fa-expand"></i> @room.RoomSize sq ft
                             </li>
                             <li class="list-group-item">
-                                <i class="fa-solid fa-tag"></i> $450
+                                <i class="fa-solid fa-tag"></i> $@room.PricePerNight / night
                             </li>
                         </ul>
                         <a asp-controller="RoomBooking" asp-action="Create" asp-route-roomId="@room.RoomId" 
@@ -110,5 +107,7 @@ else
         <h4>Sorry, no rooms available at the momement</h4>
     }
 }
-
+@section Scripts {
+    <script src="~/js/roomSearch.js"></script>
+}
 
