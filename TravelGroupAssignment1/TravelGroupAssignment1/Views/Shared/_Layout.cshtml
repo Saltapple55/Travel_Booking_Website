@@ -82,7 +82,7 @@
                 <div class="tab-pane @(tab == "" || tab == "hotel" ? "active" : "")" id="hotel" role="tabpanel" aria-labelledby="hotel-tab" tabindex="0">
                     <div id="hotelForm" class="search-form">
                         <h3>Hotel Search</h3>
-                        <form method="get" class="row row-cols-lg-auto g-3 align-items-center" id="hotelSearchForm" asp-controller="Hotel" asp-action="Search">
+                        <form method="get" class="row row-cols-lg-auto g-3 align-items-center" id="hotelSearchForm" asp-controller="Hotel" asp-action="Search" autocomplete="off">
                             <div class="col-12">
                                 <label for="hotelLocation" class="control-label">Location</label>
                                 <input required id="hotelLocation" name="location" class="form-control" value="@location" placeholder="Toronto" />
@@ -114,7 +114,7 @@
                 <div class="tab-pane @(tab == "flight" ? "active" : "")" id="flight" role="tabpanel" aria-labelledby="flight-tab" tabindex="0">
                     <div id="flightForm" class="search-form">
                         <h3>Flight Search</h3>
-                        <form method="get" class="row row-cols-lg-auto g-3 align-items-center" id="flightSearchForm" asp-controller="Flight" asp-action="Search">
+                        <form method="get" class="row row-cols-lg-auto g-3 align-items-center" id="flightSearchForm" asp-controller="Flight" asp-action="Search" autocomplete="off">
                             <div class="col-12">
                                 <label for="flightLocationFrom">Leaving From</label>
                                 <input required id="flightLocationFrom" name="locationFrom" class="form-control" value="@locationFrom" placeholder="Toronto" />
@@ -152,7 +152,7 @@
                 <div class="tab-pane @(tab == "car" ? "active" : "")" id="car" role="tabpanel" aria-labelledby="car-tab" tabindex="0">
                     <div id="carForm" class="search-form">
                         <h3>Car Search</h3>
-                        <form method="get" class="row row-cols-lg-auto g-3 align-items-center" id="carSearchForm" asp-controller="Car" asp-action="Search">
+                        <form method="get" class="row row-cols-lg-auto g-3 align-items-center" id="carSearchForm" asp-controller="Car" asp-action="Search" autocomplete="off">
                             <div class="col-12">
                                 <label for="carLocation" class="control-label">Location</label>
                                 <input required id="carLocation" name="location" class="form-control" value="@location" placeholder="Toronto" />

@@ -51,6 +51,20 @@ function loadCarSearch(carLocation, startDate, endDate) {
 }
 // include and run partial script on DOM ready (entering car Index page)
 $(() => {
+    var carLocation = $('#carLocation').val();
+    var carStartDate = $('#carStartDate').val();
+    var carEndDate = $('#carEndDate').val();
+
+    $('#carLocation').val(carLocation)
+    $('#carStartDate').val(carStartDate)
+    $('#carEndDate').val(carEndDate)
+
+    console.log(carLocation, carStartDate, carEndDate)
+    console.log($('#carLocation').val(), $('#carStartDate').val(), $('#carEndDate').val())
+
+    if (carLocation && carStartDate && carEndDate) {
+        loadCarSearch(carLocation, carStartDate, carEndDate);
+    }
 
     $('#carSearchForm').on("submit", (e) => {
         

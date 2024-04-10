@@ -15,7 +15,7 @@
 <div class="tab-pane" role="tabpanel" aria-labelledby="room-tab" tabindex="0">
     <div id="roomForm" class="search-form">
         <h4>Room Search</h4>
-        <form asp-action="Search" class="form" method="get" id="roomSearchForm">
+        <form asp-action="Search" class="form" method="get" id="roomSearchForm" autocomplete="off">
             <div asp-validation-summary="ModelOnly" class="text-warning"></div>
             <input hidden required id="hotelId" name="hotelId" value="@hotelId" class="form-control" />
 
