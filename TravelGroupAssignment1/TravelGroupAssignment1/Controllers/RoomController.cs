@@ -153,6 +153,40 @@ namespace TravelGroupAssignment1.Controllers
             return View("Index", rooms);
         }
 
+        public async Task<IActionResult> SearchAjax(int hotelId, int capacity, DateTime checkInDate, DateTime checkOutDate)
+        {
+            var roomQuery = from p in _context.Rooms select p;
+
+            bool searchValid = hotelId >= 0 && capacity >= 0;
+            if (!searchValid)
+                return RedirectToAction("Index");
+
+            // find room of given Hotel and capacity
+            roomQuery = roomQuery.Where(r => r.HotelId == hotelId)
+                            .Where(r => r.Capacity >= capacity);
+            // find room with no bookings on given start / end dates
+            roomQuery = roomQuery.Where(r => !r.RoomBookings.Any(rb => checkOutDate >= rb.CheckInDate && checkInDate <= rb.CheckOutDate));
+            var rooms = await roomQuery.Select(c => new
+            {
+                roomId = c.RoomId,
+                name = c.Name,
+                capacity = c.Capacity,
+                bedDescription = c.BedDescription,
+                roomSize = c.RoomSize,
+                pricePerNight = c.PricePerNight
+            }).ToListAsync();
+
+            // Passing view information via ViewBag
+            var hotel = _context.Hotels.Find(hotelId);
+            ViewBag.SearchValid = searchValid;
+            ViewBag.Capacity = capacity;
+            ViewBag.CheckInDate = checkInDate;
+            ViewBag.CheckOUtDate = checkOutDate;
+            ViewBag.HotelId = hotelId;
+            ViewBag.HotelName = hotel?.HotelName;
+            return Json(rooms);
+        }
+
 
     }
 
