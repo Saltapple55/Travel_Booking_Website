@@ -114,12 +114,10 @@ namespace TravelGroupAssignment1.Controllers
             bool searchValid = !String.IsNullOrEmpty(location) && capacity > 0;
             if (searchValid)
             {
-                hotelQuery = hotelQuery.Where(h => !String.IsNullOrEmpty(h.Location) && h.Location.Contains(location)
-                                        || !String.IsNullOrEmpty(h.Description) && h.Description.Contains(location));
-                //hotelQuery = hotelQuery.Where(h => h.Rooms != null && h.Rooms.Any(r => r.Capacity >= capacity));
-                //hotelQuery = hotelQuery.Where(h => h.Rooms != null && h.Rooms.Any(r => r.Capacity >= capacity && (!r.RoomBookings.Any(rb => rb.CheckInDate >= checkInDate && rb.CheckInDate <= checkOutDate
-                //                        || rb.CheckOutDate >= checkInDate && rb.CheckOutDate <= checkOutDate || rb.CheckInDate <= checkInDate && rb.CheckOutDate >= checkOutDate))));
-                hotelQuery = hotelQuery.Where(h => h.Rooms != null && h.Rooms.Any(r => r.Capacity >= capacity && !r.RoomBookings.Any(rb => checkOutDate >= rb.CheckInDate && checkInDate <= rb.CheckOutDate)));
+                hotelQuery = hotelQuery.Where(h => !String.IsNullOrEmpty(h.Location) && h.Location.Contains(location) ||
+                                        !String.IsNullOrEmpty(h.Description) && h.Description.Contains(location));
+                hotelQuery = hotelQuery.Where(h => h.Rooms != null && h.Rooms.Any(r => r.Capacity >= capacity && 
+                                        !r.RoomBookings.Any(rb => checkOutDate >= rb.CheckInDate && checkInDate <= rb.CheckOutDate)));
 
             } 
             else
@@ -133,6 +131,27 @@ namespace TravelGroupAssignment1.Controllers
             ViewBag.CheckInDate = checkInDate;
             ViewBag.CheckOutDate = checkOutDate;
             return View("Index", hotels);
+        }
+
+        public async Task<IActionResult> SearchAjax(string location, int capacity, DateTime checkInDate, DateTime checkOutDate)
+        {
+            var hotelQuery = from p in _context.Hotels
+                             select p;
+            bool searchValid = !String.IsNullOrEmpty(location) && capacity > 0;
+            if (searchValid)
+            {
+                hotelQuery = hotelQuery.Where(h => !String.IsNullOrEmpty(h.Location) && h.Location.Contains(location) ||
+                                        !String.IsNullOrEmpty(h.Description) && h.Description.Contains(location));
+                hotelQuery = hotelQuery.Where(h => h.Rooms != null && h.Rooms.Any(r => r.Capacity >= capacity &&
+                                        !r.RoomBookings.Any(rb => checkOutDate >= rb.CheckInDate && checkInDate <= rb.CheckOutDate)));
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+            var hotels = await hotelQuery.ToListAsync();
+
+            return Json(hotels);
         }
 
         public async Task<bool> HotelExists(int id)

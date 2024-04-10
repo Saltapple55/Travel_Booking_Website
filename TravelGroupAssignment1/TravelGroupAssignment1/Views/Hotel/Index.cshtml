@@ -20,7 +20,7 @@
 <!-- Hotel Card -->
 @if (Model.Any())
 {
-    <div class="row">
+    <div class="row" id="hotelList">
         @foreach (var hotel in Model)
         {
 
@@ -75,4 +75,7 @@ else
         <h4>Sorry, No Hotels available at the momement</h4>
     }
     
+}
+@section Scripts {
+    <script src="~/js/hotelSearch.js"></script>
 }

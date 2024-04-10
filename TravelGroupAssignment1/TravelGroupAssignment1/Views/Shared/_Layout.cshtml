@@ -82,7 +82,7 @@
                 <div class="tab-pane @(tab == "" || tab == "hotel" ? "active" : "")" id="hotel" role="tabpanel" aria-labelledby="hotel-tab" tabindex="0">
                     <div id="hotelForm" class="search-form">
                         <h3>Hotel Search</h3>
-                        <form method="get" class="row row-cols-lg-auto g-3 align-items-center" asp-controller="Hotel" asp-action="Search">
+                        <form method="get" class="row row-cols-lg-auto g-3 align-items-center" id="hotelSearchForm" asp-controller="Hotel" asp-action="Search">
                             <div class="col-12">
                                 <label for="hotelLocation" class="control-label">Location</label>
                                 <input required id="hotelLocation" name="location" class="form-control" value="@location" placeholder="Toronto" />
@@ -103,7 +103,7 @@
                                 <input required id="hotelCapacity" name="capacity" type="number" class="form-control" value="@capacity" min="1" max="100" placeholder="How many travellers" />
                             </div>
 
-                            <div class="col-12">
+                            <div class="col-12" id="hotelSearchButton">
                                 <button type="submit" class="btn btn-primary">Search</button>
                             </div>
                             <input type="hidden" id="tab" name="tab" value="hotel" />
@@ -140,8 +140,8 @@
                                 <input required id="flightCapacity" name="capacity" type="number" class="form-control" value="@capacity" min="1" max="100" placeholder="How many passengers" />
                             </div>
 
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-primary" id="flightSearchButton">Search</button>
+                            <div class="col-12" id="flightSearchButton">
+                                <button type="submit" class="btn btn-primary">Search</button>
                             </div>
                             <input type="hidden" id="tab" name="tab" value="flight" />
 

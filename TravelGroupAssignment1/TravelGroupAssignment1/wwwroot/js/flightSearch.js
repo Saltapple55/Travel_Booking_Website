@@ -2,7 +2,7 @@
 // This script is only run on the Index.cshtml page for FlightController
 
 // function to call controller to retrieve data in JSON format
-function loadSearch(flightFrom, flightTo, flightStartDate, flightEndDate, passengerCount) {
+function loadFlightSearch(flightFrom, flightTo, flightStartDate, flightEndDate, passengerCount) {
 
     $.ajax({
         /// Flight/Search?locationFrom=Toronto&location=Montreal&startDate=2024-04-09&endDate=2024-04-21&capacity=2&tab=flight
@@ -31,6 +31,11 @@ function loadSearch(flightFrom, flightTo, flightStartDate, flightEndDate, passen
                 flightListHtml += '</div>'
                 flightListHtml += '</div>'
             }
+
+            if (data.length == 0) {
+                hotelListHtml = '<p>Sorry, no available flight matches your search criteria</p>'
+            }
+
             // append to the list of items
             $('#flightList').html(flightListHtml);
         }
@@ -55,7 +60,7 @@ $(() => {
         $('#flightSearchButton').html('<div class="w-50 h-50 d-flex justify-content-center"><img src="../images/loading-icon.gif"></div>')
 
         // call Ajax search function, populate grid with items
-        loadSearch(flightFrom, flightTo, flightStartDate, flightEndDate, passengerCount);
+        loadFlightSearch(flightFrom, flightTo, flightStartDate, flightEndDate, passengerCount);
 
 
         $('#flightSearchButton').html('<button type="submit" class="btn btn-primary">Search</button>')

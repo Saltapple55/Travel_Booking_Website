@@ -2,7 +2,7 @@
 // This script is only run on the Index.cshtml page for CarController
 
 // function to call controller to retrieve data in JSON format
-function loadSearch(carLocation, startDate, endDate) {
+function loadCarSearch(carLocation, startDate, endDate) {
 
     $.ajax({
         url: '/Car/SearchAjax?location=' + carLocation + '&startDate=' + startDate + '&endDate=' + endDate + '&tab=car',
@@ -38,6 +38,11 @@ function loadSearch(carLocation, startDate, endDate) {
                 carsListHtml += '</div>'    
                 carsListHtml += '</div>'    
             }
+
+            if (data.length == 0) {
+                carsListHtml = '<p>Sorry, no available Car that matches your search criteria</p>'
+            }
+
             // append to the list of items
             $('#carList').html(carsListHtml);
         }
@@ -48,6 +53,7 @@ function loadSearch(carLocation, startDate, endDate) {
 $(() => {
 
     $('#carSearchForm').on("submit", (e) => {
+        
         e.preventDefault(); // prevent reload and calling default search
         var carLocation = $('#carLocation').val();
         var carStartDate = $('#carStartDate').val();
@@ -58,7 +64,7 @@ $(() => {
         $('#carSearchButton').html('<div class="w-50 h-50 d-flex justify-content-center"><img src="../images/loading-icon.gif"></div>')
 
         // call Ajax search function, populate grid with items
-        loadSearch(carLocation, carStartDate, carEndDate);
+        loadCarSearch(carLocation, carStartDate, carEndDate);
 
 
         $('#carSearchButton').html('<button type="submit" class="btn btn-primary">Search</button>')
