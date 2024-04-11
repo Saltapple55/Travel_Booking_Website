@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using TravelGroupAssignment1.Areas.CarManagement.Models;
+using TravelGroupAssignment1.Areas.HotelManagement.Models;
+using TravelGroupAssignment1.Areas.RoomManagement.Models;
 using TravelGroupAssignment1.Data;
 using TravelGroupAssignment1.Models;
 
