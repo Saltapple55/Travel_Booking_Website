@@ -1,8 +1,9 @@
 ﻿using Newtonsoft.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
+using TravelGroupAssignment1.Models;
 using TravelGroupAssignment1.Validation;
 
-namespace TravelGroupAssignment1.Models
+namespace TravelGroupAssignment1.Areas.RoomManagement.Models
 {
     public class RoomBooking : Booking
     {
@@ -14,7 +15,7 @@ namespace TravelGroupAssignment1.Models
         [Display(Name = "Check In Date")]
         [DataType(DataType.DateTime)]
         public DateTime? CheckInDate { get; set; }
-
+        
         [Required]
         [ValidEndDate("CheckInDate", ErrorMessage = "End date must be after start date")]
         [Display(Name = "Check Out Date")]

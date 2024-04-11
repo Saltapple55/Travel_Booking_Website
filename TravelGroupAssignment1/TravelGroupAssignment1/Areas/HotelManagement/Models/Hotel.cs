@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using TravelGroupAssignment1.Areas.RoomManagement.Models;
 
-namespace TravelGroupAssignment1.Models
+namespace TravelGroupAssignment1.Areas.HotelManagement.Models
 {
     public class Hotel
     {
