@@ -5,8 +5,7 @@
 function loadRoomSearch(hotelId, capacity, checkInDate, checkOutDate) {
 
     $.ajax({
-        // /Room/Search?hotelId=6&capacity=2&checkInDate=2024-04-10&checkOutDate=2024-04-12
-        url: '/Room/SearchAjax?hotelId=' + hotelId + '&capacity=' + capacity + '&checkInDate=' + checkInDate + '&checkOutDate=' + checkOutDate,
+        url: '/RoomManagement/Room/SearchAjax?hotelId=' + hotelId + '&capacity=' + capacity + '&checkInDate=' + checkInDate + '&checkOutDate=' + checkOutDate,
         method: 'GET',
         // on successfully retrieving data, generate cards for each item
         success: (data) => {

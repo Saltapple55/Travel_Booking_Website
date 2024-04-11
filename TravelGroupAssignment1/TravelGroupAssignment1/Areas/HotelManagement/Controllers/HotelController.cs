@@ -111,7 +111,7 @@ namespace TravelGroupAssignment1.Areas.HotelManagement.Controllers
             return NotFound();
         }
 
-        [HttpGet("Search/{location}/{capacity:int}/{checkInDate:DateTime}/{checkOutDate:DateTime}")]
+        [HttpGet("Search/{searchString?}")]
         public async Task<IActionResult> Search(string location, int capacity, DateTime checkInDate, DateTime checkOutDate)
         {
             var hotelQuery = from p in _context.Hotels
@@ -138,7 +138,7 @@ namespace TravelGroupAssignment1.Areas.HotelManagement.Controllers
             return View("Index", hotels);
         }
 
-        [HttpGet("SearchAjax/{location}/{capacity:int}/{checkInDate:DateTime}/{checkOutDate:DateTime}")]
+        [HttpGet("SearchAjax/{searchString?}")]
         public async Task<IActionResult> SearchAjax(string location, int capacity, DateTime checkInDate, DateTime checkOutDate)
         {
             var hotelQuery = from p in _context.Hotels

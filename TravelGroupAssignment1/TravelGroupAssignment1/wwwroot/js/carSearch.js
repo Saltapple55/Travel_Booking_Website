@@ -5,7 +5,7 @@
 function loadCarSearch(carLocation, startDate, endDate) {
 
     $.ajax({
-        url: '/Car/SearchAjax?location=' + carLocation + '&startDate=' + startDate + '&endDate=' + endDate + '&tab=car',
+        url: '/CarManagement/Car/SearchAjax?location=' + carLocation + '&startDate=' + startDate + '&endDate=' + endDate + '&tab=car',
         method: 'GET',
         // on successfully retrieving data, generate cards for each item
         success: (data) => {

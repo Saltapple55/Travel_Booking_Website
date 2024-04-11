@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using TravelGroupAssignment1.Areas.FlightManagement.Models;
 using TravelGroupAssignment1.Validation;
 
-namespace TravelGroupAssignment1.Models
+namespace TravelGroupAssignment1.Areas.FlightManagement.Models
 {
     public class Flight
     {

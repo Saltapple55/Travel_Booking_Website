@@ -11,6 +11,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
 {
     [Area("CarManagement")]
     [Route("[controller]")]
+    //[Route("[area]/[controller]")]
     public class CarController : Controller
     {
         // required
@@ -147,7 +148,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
             return NotFound();
         }
 
-        [HttpGet("Search/{location}/{startDate:DateTime}/{endDate:DateTime}")]
+        [HttpGet("Search/{searchString?}")]
         public async Task<IActionResult> Search(string location, DateTime startDate, DateTime endDate)
         {
             var carQuery = from p in _context.Cars
@@ -172,7 +173,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
             return View("Index", cars);
         }
 
-        [HttpGet("SearchAjax/{location}/{startDate:DateTime}/{endDate:DateTime}")]
+        [HttpGet("SearchAjax/{searchString?}")]
         public async Task<IActionResult> SearchAjax(string location, DateTime startDate, DateTime endDate)
         {
             var carQuery = from p in _context.Cars

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using TravelGroupAssignment1.Areas.FlightManagement.Models;
 
-namespace TravelGroupAssignment1.Models
+namespace TravelGroupAssignment1.Areas.FlightManagement.Models
 {
     public class FlightPassengerAndBooking
     {

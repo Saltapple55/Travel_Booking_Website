@@ -1,14 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using NuGet.Protocol;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using TravelGroupAssignment1.Areas.FlightManagement.Models;
 using TravelGroupAssignment1.Data;
-using TravelGroupAssignment1.Migrations;
-using FlightBooking = TravelGroupAssignment1.Models.FlightBooking;
 
 namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
 {

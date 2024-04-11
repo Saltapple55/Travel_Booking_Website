@@ -128,7 +128,7 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
             return NotFound();
         }
 
-        [HttpGet("Search")]
+        [HttpGet("Search/{searchString?}")]
         // search by location and capacity (search bar same for hotel and room)
         public async Task<IActionResult> Search(int hotelId, int capacity, DateTime checkInDate, DateTime checkOutDate)
         {
@@ -156,7 +156,7 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
             return View("Index", rooms);
         }
 
-        [HttpGet("SearchAjax")]
+        [HttpGet("SearchAjax/{searchString?}")]
         public async Task<IActionResult> SearchAjax(int hotelId, int capacity, DateTime checkInDate, DateTime checkOutDate)
         {
             var roomQuery = from p in _context.Rooms select p;

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using TravelGroupAssignment1.Data;
-using TravelGroupAssignment1.Models;
+using TravelGroupAssignment1.Areas.FlightManagement.Models;
 
 namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
 {
@@ -89,14 +89,6 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
 
         }
 
-        [HttpGet("WhatsWrong")]
-        public IActionResult WhatsWrong(int id, int id2)
-        {
-            ViewData["Id"] = id;
-            ViewData["Second"] = id2;
-            return View();
-        }
-
         [HttpGet("Delete/{flightId:int}")]
         public IActionResult Delete(int flightId)
 
@@ -128,7 +120,7 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
             return _context.Flights.Any(e => e.FlightId == id);
         }
 
-        [HttpGet("Search/{locationFrom}/{location}/{capacity:int}/{startDate:DateTime}/{endDate:DateTime}")]
+        [HttpGet("Search/{searchString?}")]
         public async Task<IActionResult> Search(string locationFrom, string location, int capacity, DateTime startDate, DateTime endDate)
         {
             var flightQuery = from p in _context.Flights
@@ -154,7 +146,7 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
             return View("Index", flights);
         }
 
-        [HttpGet("SearchAjax/{locationFrom}/{location}/{capacity:int}/{startDate:DateTime}/{endDate:DateTime}")]
+        [HttpGet("SearchAjax/{searchString?}")]
         public async Task<IActionResult> SearchAjax(string locationFrom, string location, int capacity, DateTime startDate, DateTime endDate)
         {
             var flightQuery = from p in _context.Flights
