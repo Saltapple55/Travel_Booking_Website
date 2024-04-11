@@ -89,7 +89,7 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
 
         }
 
-        [HttpGet]
+        [HttpGet("WhatsWrong")]
         public IActionResult WhatsWrong(int id, int id2)
         {
             ViewData["Id"] = id;
@@ -110,13 +110,13 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
 
         [HttpPost("DeleteConfirmed/{flightId:int}"), ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int flightId)
+        public async Task<IActionResult> DeleteConfirmed(int flightId)
         {
-            var flight = _context.Flights.Find(flightId);
+            var flight = await _context.Flights.FindAsync(flightId);
             if (flight != null)
             {
                 _context.Remove(flight);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return NotFound();

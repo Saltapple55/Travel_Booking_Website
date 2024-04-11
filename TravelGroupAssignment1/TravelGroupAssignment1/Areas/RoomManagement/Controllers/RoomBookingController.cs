@@ -9,6 +9,8 @@ using TravelGroupAssignment1.Data;
 
 namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
 {
+    [Area("RoomManagement")]
+    [Route("[controller]")]
     public class RoomBookingController : Controller
     {
         // required
@@ -21,7 +23,7 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
         }
 
         // GET: RoomBookingController/5
-        [HttpGet]
+        [HttpGet("Index/{roomId:int}")]
         public async Task<IActionResult> Index(int roomId)
         {
             var roomBookings = await _context.RoomBookings
@@ -38,7 +40,7 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
         }
 
         // GET: RoomBookingControllers/Details/5
-        [HttpGet]
+        [HttpGet("Details/{id:int}")]
         public async Task<IActionResult> Details(int id, string? con = "RoomBooking")
         {
             var booking = await _context.RoomBookings
@@ -55,7 +57,7 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
         }
 
         // GET: RoomBookingController/Create/5
-        [HttpGet]
+        [HttpGet("Create/{roomId:int}")]
         public async Task<IActionResult> Create(int roomId, DateTime? checkInDate, DateTime? checkOutDate)
         {
             var room = await _context.Rooms.FindAsync(roomId);
@@ -72,10 +74,10 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
             return View(new RoomBooking { RoomId = roomId, TripId = 1 });
         }
 
-        // POST: RoomBookingController/Create
-        [HttpPost]
+        // POST: RoomBookingController/CreateBooking
+        [HttpPost("CreateBooking")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TripId", "BookingReference",
+        public async Task<IActionResult> CreateBooking([Bind("TripId", "BookingReference",
             "RoomId", "Room", "CheckInDate", "CheckOutDate")] RoomBooking roomBooking)
         {
             // information needed if booking not successfull created
@@ -105,7 +107,7 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
         }
 
         // GET: RoomBookingController/Edit/5
-        [HttpGet]
+        [HttpGet("Edit/{id:int}")]
         public async Task<IActionResult> Edit(int id)
         {
             var roomBooking = await _context.RoomBookings
@@ -123,7 +125,7 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
         }
 
         // POST: RoomBookingController/Edit/5
-        [HttpPost]
+        [HttpPost("Edit/{id:int}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("BookingId", "TripId", "BookingReference",
             "RoomId", "Room", "CheckInDate", "CheckOutDate")] RoomBooking roomBooking)
@@ -152,7 +154,7 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
         }
 
         // GET: RoomBookingController/Delete/5
-        [HttpGet]
+        [HttpGet("Delete/{id:int}")]
         public async Task<IActionResult> Delete(int id, string? con = "RoomBooking")
         {
             var booking = await _context.RoomBookings
@@ -170,7 +172,7 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
         }
 
         // POST: RoomBookingController/DeleteConfirmed/5
-        [HttpPost, ActionName("DeleteConfirmed")]
+        [HttpPost("DeleteConfirmed/{id:int}"), ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id, string? con = "RoomBooking")
         {

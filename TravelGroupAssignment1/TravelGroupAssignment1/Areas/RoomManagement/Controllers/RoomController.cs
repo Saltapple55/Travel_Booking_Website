@@ -7,6 +7,8 @@ using TravelGroupAssignment1.Data;
 
 namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
 {
+    [Area("RoomManagement")]
+    [Route("[controller]")]
     public class RoomController : Controller
     {
         // required
@@ -19,7 +21,7 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
         }
 
         // GET: RoomController
-        [HttpGet]
+        [HttpGet("Index/{hotelId:int}")]
         public async Task<IActionResult> Index(int hotelId)
         {
             var rooms = await _context.Rooms
@@ -32,7 +34,7 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
         }
 
         // GET: RoomController/Details/5
-        [HttpGet]
+        [HttpGet("Details/{id:int}")]
         public async Task<IActionResult> Details(int id)
         {
             var room = await _context.Rooms
@@ -42,7 +44,7 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
         }
 
         // GET: RoomController/Create
-        [HttpGet]
+        [HttpGet("Create/{hotelId:int}")]
         public async Task<IActionResult> Create(int hotelId)
         {
             var hotel = await _context.Hotels.Include(h => h.Rooms).FirstOrDefaultAsync(h => h.HotelId == hotelId);
@@ -53,10 +55,10 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
             return View(room);
 
         }
-        // POST: RoomController/Create
-        [HttpPost]
+        // POST: RoomController/CreateRoom
+        [HttpPost("CreateRoom")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name", "Capacity", "BedDescription", "RoomSize",
+        public async Task<IActionResult> CreateRoom([Bind("Name", "Capacity", "BedDescription", "RoomSize",
              "PricePerNight", "Amenities", "HotelId")] Room room)
         {
             if (ModelState.IsValid)
@@ -70,7 +72,7 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
         }
 
         // GET: RoomController/Edit/5
-        [HttpGet]
+        [HttpGet("Edit/{id:int}")]
         public async Task<IActionResult> Edit(int id)
         {
             var room = await _context.Rooms
@@ -83,7 +85,7 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
         }
 
         // POST: RoomController/Edit/5
-        [HttpPost]
+        [HttpPost("Edit/{id:int}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("RoomId", "Name", "Capacity", "BedDescription", "RoomSize",
              "PricePerNight", "Amenities", "HotelId")] Room room)
@@ -101,7 +103,7 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
         }
 
         // GET: RoomController/Delete/5
-        [HttpGet]
+        [HttpGet("Delete/{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
             var room = await _context.Rooms
@@ -112,7 +114,7 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
         }
 
         // POST: RoomController/DeleteConfirmed/5
-        [HttpPost, ActionName("DeleteConfirmed")]
+        [HttpPost("DeleteConfirmed/{id:int}"), ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
@@ -126,6 +128,7 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
             return NotFound();
         }
 
+        [HttpGet("Search")]
         // search by location and capacity (search bar same for hotel and room)
         public async Task<IActionResult> Search(int hotelId, int capacity, DateTime checkInDate, DateTime checkOutDate)
         {
@@ -153,6 +156,7 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
             return View("Index", rooms);
         }
 
+        [HttpGet("SearchAjax")]
         public async Task<IActionResult> SearchAjax(int hotelId, int capacity, DateTime checkInDate, DateTime checkOutDate)
         {
             var roomQuery = from p in _context.Rooms select p;

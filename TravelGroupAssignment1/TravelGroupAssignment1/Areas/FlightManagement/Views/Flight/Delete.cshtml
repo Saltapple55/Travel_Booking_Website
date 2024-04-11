@@ -85,7 +85,7 @@
 </div>
 <form asp-action="deleteConfirmed" method="post">
     @Html.HiddenFor(model => model.FlightId)
-    <input asp-action="FlightdeleteConfirmed" asp-route-flightId="@Model.FlightId " type="submit" value="Delete" class="btn btn-danger" />
+    <input asp-action="DeleteConfirmed" asp-route-flightId="@Model.FlightId " type="submit" value="Delete" class="btn btn-danger" />
     <a asp-action="FlightIndex" class=" btn btn-warning">Cancel</a>
 
 
