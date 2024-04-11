@@ -14,7 +14,7 @@ function loadCarSearch(carLocation, startDate, endDate) {
                 car = data[i];
                 carsListHtml += '<div class="col-12 col-sm-4" >'
                 carsListHtml += '<div class="card shadow" style="width: 18rem; margin-bottom: 20px;">'
-                carsListHtml += '<a href="/Car/Details?carId=' + car.carId + '" class="card-link">'
+                carsListHtml += '<a href="/Car/Details/' + car.carId + '" class="card-link">'
                 carsListHtml += '<img id ="' + car.carId + '" src="https://www.kbb.com/wp-content/uploads/2022/10/2023-toyota-rav4-prime-frt-3qtr.jpg?w=918"' +
                                     'class="card-img-top" alt = "Car" style = "width: 100%; height: 100%;" >'
                 carsListHtml += '<div class="card-body">'
@@ -34,7 +34,7 @@ function loadCarSearch(carLocation, startDate, endDate) {
                 carsListHtml += '<li class="list-group-item"><i class="fa-solid fa-tag"></i> $' + car.pricePerDay + ' / day</li>'
                 carsListHtml += '</ul>'
                 carsListHtml += '</a>'    
-                carsListHtml += '<a href="/CarBooking/Create?carId=' + car.carId + '&startDate=' + startDate + '&endDate=' + endDate + '" class="btn btn.sm btn-primary" role="button">Reserve Car</a>'
+                carsListHtml += '<a href="/CarBooking/Create/' + car.carId + '/' + startDate + '/' + endDate + '" class="btn btn.sm btn-primary" role="button">Reserve Car</a>'
                 carsListHtml += '</div>'    
                 carsListHtml += '</div>'    
             }
