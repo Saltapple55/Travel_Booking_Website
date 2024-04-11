@@ -1,4 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TravelGroupAssignment1.Areas.CarManagement.Models;
+using TravelGroupAssignment1.Areas.CustomerManagement.Models;
+using TravelGroupAssignment1.Areas.FlightManagement.Models;
+using TravelGroupAssignment1.Areas.HotelManagement.Models;
+using TravelGroupAssignment1.Areas.RoomManagement.Models;
 using TravelGroupAssignment1.Models;
 namespace TravelGroupAssignment1.Data
 {
