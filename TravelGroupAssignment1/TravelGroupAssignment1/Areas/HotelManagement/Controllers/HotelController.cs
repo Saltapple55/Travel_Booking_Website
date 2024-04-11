@@ -6,6 +6,8 @@ using TravelGroupAssignment1.Data;
 
 namespace TravelGroupAssignment1.Areas.HotelManagement.Controllers
 {
+    [Area("HotelManagement")]
+    [Route("[controller]")]
     public class HotelController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -16,7 +18,7 @@ namespace TravelGroupAssignment1.Areas.HotelManagement.Controllers
         }
 
         // GET: HotelController
-        [HttpGet]
+        [HttpGet("Index")]
         public async Task<IActionResult> Index()
         {
             var hotels = await _context.Hotels.ToListAsync();
@@ -24,7 +26,7 @@ namespace TravelGroupAssignment1.Areas.HotelManagement.Controllers
         }
 
         // GET: HotelController/Details/5
-        [HttpGet]
+        [HttpGet("Details/{id:int}")]
         public async Task<IActionResult> Details(int id)
         {
             var hotel = await _context.Hotels.FirstOrDefaultAsync(h => h.HotelId == id);
@@ -33,14 +35,14 @@ namespace TravelGroupAssignment1.Areas.HotelManagement.Controllers
         }
         // GET: HotelController/Create
 
-        [HttpGet]
+        [HttpGet("Create")]
         public IActionResult Create()
         {
             return View();
         }
 
         // POST: HotelController/Create
-        [HttpPost]
+        [HttpPost("Create")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Hotel newHotel)
         {
@@ -54,6 +56,7 @@ namespace TravelGroupAssignment1.Areas.HotelManagement.Controllers
         }
 
         // GET: HotelController/Edit/5
+        [HttpGet("Edit/{id:int}")]
         public async Task<IActionResult> Edit(int id)
         {
             var hotel = await _context.Hotels.FindAsync(id);
@@ -62,7 +65,7 @@ namespace TravelGroupAssignment1.Areas.HotelManagement.Controllers
         }
 
         // POST: HotelController/Edit/5
-        [HttpPost]
+        [HttpPost("Edit/{id:int}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("HotelId", "HotelName", "Location", "Description", "Amenities")] Hotel hotel)
         {
@@ -85,6 +88,7 @@ namespace TravelGroupAssignment1.Areas.HotelManagement.Controllers
         }
 
         // GET: HotelController/Delete/5
+        [HttpGet("Delete/{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
             var hotel = await _context.Hotels.FirstOrDefaultAsync(h => h.HotelId == id);
@@ -93,7 +97,7 @@ namespace TravelGroupAssignment1.Areas.HotelManagement.Controllers
         }
 
         // POST: HotelController/DeleteConfirmed/5
-        [HttpPost, ActionName("DeleteConfirmed")]
+        [HttpPost("DeleteConfirmed/{id:int}"), ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
@@ -107,6 +111,7 @@ namespace TravelGroupAssignment1.Areas.HotelManagement.Controllers
             return NotFound();
         }
 
+        [HttpGet("Search/{location}/{capacity:int}/{checkInDate:DateTime}/{checkOutDate:DateTime}")]
         public async Task<IActionResult> Search(string location, int capacity, DateTime checkInDate, DateTime checkOutDate)
         {
             var hotelQuery = from p in _context.Hotels
@@ -133,6 +138,7 @@ namespace TravelGroupAssignment1.Areas.HotelManagement.Controllers
             return View("Index", hotels);
         }
 
+        [HttpGet("SearchAjax/{location}/{capacity:int}/{checkInDate:DateTime}/{checkOutDate:DateTime}")]
         public async Task<IActionResult> SearchAjax(string location, int capacity, DateTime checkInDate, DateTime checkOutDate)
         {
             var hotelQuery = from p in _context.Hotels

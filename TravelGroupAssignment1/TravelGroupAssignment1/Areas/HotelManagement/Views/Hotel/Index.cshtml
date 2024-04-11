@@ -44,7 +44,7 @@
             </div>
 
 
-@*             <script>
+            <script>
                 (async () => {
                     const topic = 'hotel';
                     const accessKey = 'WOgcw4SyGE-wP7k667o8j0Z3wgySWFLIaSr89ZOUkM4';
@@ -57,7 +57,7 @@
                     // Set the image src attribute dynamically for this hotel
                     document.getElementById('@hotel.HotelId').src = imageUrl;
                 })();
-            </script> *@
+            </script>
 
         }
     </div>
@@ -81,3 +81,52 @@ else
 @section Scripts {
     <script src="~/js/hotelSearch.js"></script>
 }
+
+
+ <!-- Admin View-->
+@*  @{
+	Layout = "_HotelSearchItem";
+}
+
+@model List<Hotel>
+@{
+	ViewData["Titile"] = "Hotels";
+}
+<br />
+<a asp-controller="Dashboard" asp-action="HotelCreate" class="btn btn-primary">Create new Hotel</a>
+<br />
+@if (Model.Any())
+{
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+
+		<tbody>
+
+			@foreach (var hotel in Model)
+			{
+				<tr>
+					<td>@hotel.HotelId</td>
+					<td>@hotel.HotelName</td>
+					<td>@hotel.Description</td>
+					<td>
+						<a asp-area="DashboardManagement" asp-controller="Dashboard" asp-action="HotelDetails" asp-route-id="@hotel.HotelId" class="btn btn-info">Details</a>
+						<a asp-area="DashboardManagement" asp-controller="Dashboard" asp-action="HotelEdit" asp-route-id="@hotel.HotelId" class="btn btn-warning">Edit</a>
+						<a asp-area="DashboardManagement"  asp-controller="Dashboard" asp-action="HotelDelete" asp-route-id="@hotel.HotelId" class="btn btn-danger">Delete</a>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+else
+{
+	<p>No project available</p>
+
+} *@
