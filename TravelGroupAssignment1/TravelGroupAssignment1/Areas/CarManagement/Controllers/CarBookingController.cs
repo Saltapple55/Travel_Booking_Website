@@ -50,7 +50,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         }
 
         // GET: CarBookingController/Create/5
-        [HttpGet("Create/{carId:int}")]
+        [HttpGet("Create/{carId:int}/{startDate:datetime}/{endDate:datetime}")]
         public async Task<IActionResult> Create(int carId, DateTime? startDate, DateTime? endDate)
         {
             var car = await _context.Cars.FindAsync(carId);

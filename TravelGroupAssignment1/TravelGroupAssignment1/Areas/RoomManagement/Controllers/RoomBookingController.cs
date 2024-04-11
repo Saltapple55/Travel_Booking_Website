@@ -57,7 +57,7 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
         }
 
         // GET: RoomBookingController/Create/5
-        [HttpGet("Create/{roomId:int}")]
+        [HttpGet("Create/{roomId:int}/{checkInDate:datetime}/{checkOutDate:datetime}")]
         public async Task<IActionResult> Create(int roomId, DateTime? checkInDate, DateTime? checkOutDate)
         {
             var room = await _context.Rooms.FindAsync(roomId);
