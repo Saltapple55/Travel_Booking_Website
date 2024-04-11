@@ -7,6 +7,8 @@ using TravelGroupAssignment1.Data;
 
 namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
 {
+    [Area("CarManagement")]
+    [Route("[controller]")]
     public class CarBookingController : Controller
     {
         // required
@@ -19,7 +21,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         }
 
         // GET: CarBookingController/5
-        [HttpGet]
+        [HttpGet("Index/{carId:int}")]
         public async Task<IActionResult> Index(int carId)
         {
             var bookings = await _context.CarBookings
@@ -36,7 +38,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         }
 
         // GET: CarBookingController/Details/5
-        [HttpGet]
+        [HttpGet("Details/{id:int}")]
         public async Task<IActionResult> Details(int id, string? con = "CarBooking")
         {
             var booking = await _context.CarBookings
@@ -48,7 +50,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         }
 
         // GET: CarBookingController/Create/5
-        [HttpGet]
+        [HttpGet("Create/{carId:int}")]
         public async Task<IActionResult> Create(int carId, DateTime? startDate, DateTime? endDate)
         {
             var car = await _context.Cars.FindAsync(carId);
@@ -65,7 +67,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         }
 
         // POST: CarBookingController/Create
-        [HttpPost]
+        [HttpPost("Post")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("TripId", "BookingReference",
             "CarId", "Car", "StartDate", "EndDate")] CarBooking carBooking)
@@ -95,7 +97,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         }
 
         // GET: CarBookingController/Edit/5
-        [HttpGet]
+        [HttpGet("Edit/{id:int}")]
         public async Task<IActionResult> Edit(int id)
         {
             var carBooking = await _context.CarBookings
@@ -115,7 +117,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         }
 
         // POST: CarBookingController/Edit/5
-        [HttpPost]
+        [HttpPost("Edit/{id:int}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("BookingId", "TripId", "BookingReference",
             "CarId", "Car", "StartDate", "EndDate")] CarBooking carBooking)
@@ -144,7 +146,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         }
 
         // GET: CarBookingController/Delete/5
-        [HttpGet]
+        [HttpGet("Delete/{id:int}")]
         public async Task<IActionResult> Delete(int id, string? con = "CarBooking")
         {
             var carBooking = await _context.CarBookings
@@ -157,7 +159,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         }
 
         // POST: CarBookingController/DeleteConfirmed/5
-        [HttpPost, ActionName("DeleteConfirmed")]
+        [HttpPost("DeleteConfirmed/{id:int}"), ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id, string? con = "CarBooking")
         {

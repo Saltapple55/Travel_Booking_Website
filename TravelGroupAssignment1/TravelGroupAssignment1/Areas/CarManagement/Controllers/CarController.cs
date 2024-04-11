@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -8,6 +9,8 @@ using TravelGroupAssignment1.Data;
 
 namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
 {
+    [Area("CarManagement")]
+    [Route("[controller]")]
     public class CarController : Controller
     {
         // required
@@ -20,7 +23,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         }
 
         // GET: CarController
-        [HttpGet]
+        [HttpGet("Index")]
         public async Task<IActionResult> Index()
         {
             var cars = await _context.Cars
@@ -31,7 +34,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         }
 
         // GET: CarController/Details/5
-        [HttpGet]
+        [HttpGet("Details/{carId:int}")]
         public async Task<IActionResult> Details(int carId)
         {
             var car = await _context.Cars
@@ -41,8 +44,10 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
             return View(car);
         }
 
+
+
         // GET: CarController/Create
-        [HttpGet]
+        [HttpGet("Create")]
         public async Task<IActionResult> Create()
         {
             ViewBag.Companies = new SelectList(_context.CarRentalCompanies, "CarRentalCompanyId", "CompanyName");
@@ -53,7 +58,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         }
 
         // POST: CarController/Create
-        [HttpPost]
+        [HttpPost("Create")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Make", "Model", "Type", "PricePerDay", "MaxPassengers",
             "CompanyId", "Company", "Transmission", "HasAirConditioning", "HasUnlimitedMileage")] Car car)
@@ -86,7 +91,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         }
 
         // GET: CarController/Edit/5
-        [HttpGet]
+        [HttpGet("Edit/{carId:int}")]
         public async Task<IActionResult> Edit(int carId)
         {
             var car = await _context.Cars
@@ -99,7 +104,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         }
 
         // POST: CarController/Edit/5
-        [HttpPost]
+        [HttpPost("Edit/{carId:int}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int carId, [Bind("CarId", "Make", "Model", "Type", "PricePerDay", "MaxPassengers",
             "CompanyId", "Company", "Transmission", "HasAirConditioning", "HasUnlimitedMileage")] Car car)
@@ -117,7 +122,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         }
 
         // GET: CarController/Delete/5
-        [HttpGet]
+        [HttpGet("Delete/{carId:int}")]
         public async Task<IActionResult> Delete(int carId)
         {
             var car = await _context.Cars
@@ -128,7 +133,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         }
 
         // POST: CarController/DeleteConfirmed/5
-        [HttpPost, ActionName("DeleteConfirmed")]
+        [HttpPost("DeleteConfirmed/{carId:int}"), ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int carId)
         {
@@ -142,6 +147,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
             return NotFound();
         }
 
+        [HttpGet("Search/{location}/{startDate:DateTime}/{endDate:DateTime}")]
         public async Task<IActionResult> Search(string location, DateTime startDate, DateTime endDate)
         {
             var carQuery = from p in _context.Cars
@@ -166,7 +172,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
             return View("Index", cars);
         }
 
-        [HttpGet]
+        [HttpGet("SearchAjax/{location}/{startDate:DateTime}/{endDate:DateTime}")]
         public async Task<IActionResult> SearchAjax(string location, DateTime startDate, DateTime endDate)
         {
             var carQuery = from p in _context.Cars

@@ -1,4 +1,7 @@
-﻿@model IEnumerable<CarBooking>
+﻿@using System.Globalization
+@using TravelGroupAssignment1.Areas.CarManagement.Models;
+
+@model IEnumerable<CarBooking>
 @{
     ViewData["Title"] = "List of Car Bookings";
     string carName = ViewBag.CarName as string;
