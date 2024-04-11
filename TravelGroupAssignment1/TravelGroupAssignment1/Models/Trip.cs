@@ -10,7 +10,6 @@ namespace TravelGroupAssignment1.Models
         [Required]
         public int CustomerId { get; set; }
         //public IList<Booking>? Bookings { get; set; }
-        
 
     }
 }
