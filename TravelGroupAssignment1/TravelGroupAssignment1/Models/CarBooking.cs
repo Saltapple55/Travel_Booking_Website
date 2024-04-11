@@ -8,10 +8,14 @@ namespace TravelGroupAssignment1.Models
         [Required]
         public int CarId { get; set; }
         public Car? Car { get; set; }
+
         [Required]
+        [DataType(DataType.DateTime)]
         public DateTime? StartDate { get; set; }
+
         [Required]
-        [ValidEndDate("StartDate")]
+        [DataType(DataType.DateTime)]
+        [ValidEndDate("StartDate")] // custom validation tag
         public DateTime? EndDate { get; set; } // validate end date >= start date
     }
 }
