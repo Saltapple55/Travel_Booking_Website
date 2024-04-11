@@ -5,7 +5,7 @@
 function loadRoomSearch(hotelId, capacity, checkInDate, checkOutDate) {
 
     $.ajax({
-        url: '/RoomManagement/Room/SearchAjax?hotelId=' + hotelId + '&capacity=' + capacity + '&checkInDate=' + checkInDate + '&checkOutDate=' + checkOutDate,
+        url: '/Room/SearchAjax?hotelId=' + hotelId + '&capacity=' + capacity + '&checkInDate=' + checkInDate + '&checkOutDate=' + checkOutDate,
         method: 'GET',
         // on successfully retrieving data, generate cards for each item
         success: (data) => {
@@ -28,7 +28,7 @@ function loadRoomSearch(hotelId, capacity, checkInDate, checkOutDate) {
                 roomListHtml += '<li class="list-group-item"><i class="fa-solid fa-tag" ></i > ' + room.pricePerNight + ' / night</li>'
                 roomListHtml += '</ul>'
                 roomListHtml += '</a>'
-                roomListHtml += '<a href="/RoomBooking/Create?roomId=' + room.roomId + '&checkInDate=' + checkInDate + '&checkOutDate=' + checkOutDate +
+                roomListHtml += '<a href="/RoomBooking/Create/' + room.roomId + '/' + checkInDate + '/' + checkOutDate +
                                 '" class="btn btn.sm btn-primary" role="button">Reserve Room</a>'
                 roomListHtml += '</div>'
                 roomListHtml += '</div>'

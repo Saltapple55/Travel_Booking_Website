@@ -5,7 +5,7 @@
 function loadHotelSearch(location, checkInDate, checkOutDate, guestCount) {
 
     $.ajax({
-        url: '/HotelManagement/Hotel/SearchAjax?location=' + location + '&startDate=' + checkInDate + '&endDate=' + checkOutDate + '&capacity=' + guestCount + '&tab=hotel',
+        url: '/Hotel/SearchAjax?location=' + location + '&startDate=' + checkInDate + '&endDate=' + checkOutDate + '&capacity=' + guestCount + '&tab=hotel',
         method: 'GET',
         // on successfully retrieving data, generate cards for each item
         success: (data) => {

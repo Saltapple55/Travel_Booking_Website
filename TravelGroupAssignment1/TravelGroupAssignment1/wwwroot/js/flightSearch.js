@@ -5,7 +5,7 @@
 function loadFlightSearch(flightFrom, flightTo, flightStartDate, flightEndDate, passengerCount) {
 
     $.ajax({
-        url: '/FlightManagement/Flight/SearchAjax?locationFrom=' + flightFrom + '&location=' + flightTo + '&startDate=' + flightStartDate + '&endDate=' + flightEndDate + '&capacity=' + passengerCount + '&tab=flight',
+        url: 'Flight/SearchAjax?locationFrom=' + flightFrom + '&location=' + flightTo + '&startDate=' + flightStartDate + '&endDate=' + flightEndDate + '&capacity=' + passengerCount + '&tab=flight',
         method: 'GET',
         // on successfully retrieving data, generate cards for each item
         success: (data) => {
@@ -25,7 +25,7 @@ function loadFlightSearch(flightFrom, flightTo, flightStartDate, flightEndDate, 
                 flightListHtml += '<div class="flight-price">$' + flight.price + '</div>'
                 flightListHtml += '</div>'
                 flightListHtml += '<div class="text-center custom-margin">'
-                flightListHtml += '<a href="/FlightBooking/Create?flightId=' + flight.flightId + '" class="btn btn-primary btn-lg">Book</a>'
+                flightListHtml += '<a href="/FlightBooking/Create/' + flight.flightId + '" class="btn btn-primary btn-lg">Book</a>'
                 flightListHtml += '</div>'
                 flightListHtml += '</div>'
                 flightListHtml += '</div>'
