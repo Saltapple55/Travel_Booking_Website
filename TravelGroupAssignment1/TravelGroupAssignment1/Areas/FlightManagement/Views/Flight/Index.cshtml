@@ -1,10 +1,8 @@
-﻿@model List<Flight>
+﻿@using TravelGroupAssignment1.Areas.FlightManagement.Models;
+
+@model List<Flight>
 @{
     ViewData["Title"] = "List of Flights";
-    string? searchLocation = ViewBag.Location as string;
-    DateTime searchStartDate = ViewBag.StartDate != null ? ViewBag.StartDate : DateTime.Now;
-    DateTime searchEndDate = ViewBag.EndDate != null ? ViewBag.EndDate : DateTime.Now.AddDays(2);
-    bool searchValid = ViewBag.SearchValid != null ? ViewBag.SearchValid : false;
 }
 
 <h2>@ViewData["Title"]</h2>
@@ -15,7 +13,7 @@
 {
     <!-- Flight Card-->
     <div class="container">
-        <div class="row" id="flightList">
+        <div class="row">
             @foreach (var flight in Model)
             {
                 <div class="col-md-6">
@@ -27,7 +25,7 @@
                                 <p><strong>From:</strong> @flight.From <strong>To:</strong> @flight.To</p>
                                 <p><b>Airline:</b>  @flight.Airline</p>
                             </div>
-                            <div class="flight-price">@flight.Price</div>
+                            <div class="flight-price">$500</div>
                         </div>
                         <div class="text-center custom-margin">
                             <!-- Add custom margin class -->
@@ -41,22 +39,71 @@
 }
 else
 {
-    @if (searchValid)
-    {
-        <br />
-        <h4>Sorry, no available flight that matches your search criteria</h4>
-    }
-    else
-    {
-        <br />
-        <h4>Sorry, no flights available at the momement</h4>
-    }
-}
-
-@section Scripts {
-    <script src="~/js/flightSearch.js"></script>
+    <p>No flights available</p>
 }
 
 
 
 
+
+<!-- Admin View-->
+
+@* @{
+	Layout = "_FlightSearchItem";
+}
+
+@model List<Flight>
+@{
+    ViewData["Title"] = "List of Flights";
+}
+
+<h2>@ViewData["Title"]</h2>
+<a asp-action="FlightCreate" class="btn btn-primary">Create Flight <i class="fa-solid fa-plus"></i></a>
+
+@if (Model.Any()) // check if Model is null. 'Model' is reserved keyword to access the model
+{
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>Flight ID</th>
+                <th>AirLine</th>
+                <th>Price</th>
+                <th>From</th>
+                <th>To</th>
+                <th>DepartTime</th>
+                <th>ArrivalTime</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var flight in Model)
+            {
+                <tr>
+                    <td>@flight.FlightId</td>
+                    <td>@flight.Airline</td>
+                    <td>@flight.Price</td>
+                    <td>@flight.From</td>
+                    <td>@flight.To</td>
+                    <td>@Html.DisplayFor(modelItem => flight.DepartTime)</td>
+                    <td>@flight.ArrivalTime</td>
+
+                    <td>
+                        <a asp-controller="FlightBooking" asp-action="Index" asp-route-flightId="@flight.FlightId" class="btn btn.sm btn-secondary" role="button">Bookings<i class="fa-solid fa-list-check"></i></a>
+
+                        <a asp-controller="Dashboard" asp-action="FlightDetails" asp-route-flightId="@flight.FlightId" class="btn btn.sm btn-info" role="button">Details </a>
+                        <a asp-controller="Dashboard" asp-action="FLightEdit" asp-route-flightId="@flight.FlightId" class="btn btn.sm btn-warning" role="button">Edit</a>
+                        <a asp-controller="Dashboard" asp-action="FlightDelete" asp-route-flightId="@flight.FlightId" class="btn btn.sm btn-danger" role="button">Delete</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+}
+else
+{
+    <p>No flights available</p>
+} *@

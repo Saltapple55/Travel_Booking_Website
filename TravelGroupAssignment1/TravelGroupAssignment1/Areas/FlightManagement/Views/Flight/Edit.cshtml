@@ -1,4 +1,8 @@
-﻿@using TravelGroupAssignment1.Models;
+﻿@using TravelGroupAssignment1.Areas.FlightManagement.Models;
+
+@{
+	Layout = "_FlightSearchItem";
+}
 
 @model Flight
 
@@ -10,7 +14,7 @@
 
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit" asp-route-id= "@Model.FlightId" method="post">
+        <form asp-action="FLightEdit" asp-route-id="@Model.FlightId" method="post">
             <!-- Displays mode-lreated validation errors here -->
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @Html.HiddenFor(Model => Model.FlightId)
@@ -53,7 +57,7 @@
 
             <div class="form-group">
                 <input type="submit" value="Edit" class="btn btn-primary" />
-                <a asp-action="Index" class="btn btn-warning">Cancel</a>
+                <a asp-controller="Dashboard" asp-action="FlightIndex" class="btn btn-warning">Cancel</a>
 
             </div>
         </form>

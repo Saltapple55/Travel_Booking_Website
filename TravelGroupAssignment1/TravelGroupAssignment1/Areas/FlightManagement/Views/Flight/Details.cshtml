@@ -1,6 +1,9 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using TravelGroupAssignment1.Models;
+
+@{
+	Layout = "_FlightSearchItem";
+}
+
 @model Flight
 @{
     ViewData["Title"] = "Flight Details";
@@ -17,6 +20,8 @@
     <dl>
         <dt class="col-sm-3">Price </dt>
         <dd class=" col-sm-9">@Model.Price</dd>
+        <dt class="col-sm-3">Max Passengers </dt>
+        <dd class=" col-sm-9">@Model.MaxPassenger</dd>
         <dt class="col-sm-3">From </dt>
         <dd class=" col-sm-9">@Model.From</dd>
         <dt class="col-sm-3">To </dt>
@@ -24,12 +29,10 @@
         <dt class="col-sm-3">Departure Time</dt>
         <dd class=" col-sm-9">@Model.DepartTime</dd>
         <dt class="col-sm-3">Arrival Time </dt>
-        <dd class=" col-sm-9">@Model.ArrivalTime</dd>        
+        <dd class=" col-sm-9">@Model.ArrivalTime</dd>
     </dl>
-    <a  asp-action="Edit" asp-route-flightid="@Model.FlightId" class=" btn btn-primary">Edit</a>
-    <a  asp-action="Index" class=" btn btn-secondary">Back</a>
+    <a asp-action="FlightEdit" asp-route-flightid="@Model.FlightId" class=" btn btn-primary">Edit</a>
+    <a asp-action="FLightIndex" class=" btn btn-secondary">Back</a>
 
 
 </div>
-
-

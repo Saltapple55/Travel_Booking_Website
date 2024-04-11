@@ -1,4 +1,5 @@
-﻿
+﻿@using TravelGroupAssignment1.Areas.FlightManagement.Models;
+
 @model List<FlightBooking> //collection of tasks
 @{
     ViewData["Title"] = "Bookings List";
@@ -54,4 +55,4 @@ else
     <p>No Bookings have been made</p>
 }
 
-<a class="btn btn-secondary" asp-controller="Dashboard" asp-action="FlightIndex">Return</a>
+<a class="btn btn-secondary" asp-controller="Flight" asp-action="Index">Return</a>

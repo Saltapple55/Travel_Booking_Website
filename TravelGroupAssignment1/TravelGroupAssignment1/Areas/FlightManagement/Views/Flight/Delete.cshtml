@@ -1,8 +1,9 @@
-﻿@using TravelGroupAssignment1.Models;
+﻿@using TravelGroupAssignment1.Areas.FlightManagement.Models;
 
-﻿@*
-    For more information on enabling MVC for empty flights, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+@{
+	Layout = "_FlightSearchItem";
+}
+
 @model Flight
 @{
     ViewData["Title"] = "Delete Flight";
@@ -84,8 +85,8 @@
 </div>
 <form asp-action="deleteConfirmed" method="post">
     @Html.HiddenFor(model => model.FlightId)
-    <input asp-action="deleteConfirmed" asp-route-flightId="@Model.FlightId " type="submit" value="Delete" class="btn btn-danger" />
-    <a asp-action="Index" class=" btn btn-warning">Cancel</a>
+    <input asp-action="FlightdeleteConfirmed" asp-route-flightId="@Model.FlightId " type="submit" value="Delete" class="btn btn-danger" />
+    <a asp-action="FlightIndex" class=" btn btn-warning">Cancel</a>
 
 
 </form>

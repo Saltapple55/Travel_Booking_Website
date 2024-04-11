@@ -6,6 +6,8 @@ using TravelGroupAssignment1.Models;
 
 namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
 {
+    [Area("FlightManagement")]
+    [Route("[controller]")]
     public class FlightController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -15,42 +17,42 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
             _context = context;
         }
 
-        [HttpGet]
-        public IActionResult Index()
+        [HttpGet("Index")]
+        public async Task<IActionResult> Index()
         {
-            var flights = _context.Flights.ToList();
+            var flights = await _context.Flights.ToListAsync();
             return View(flights);
         }
 
-        [HttpGet]
+        [HttpGet("Create")]
         public IActionResult Create()
         {
             return View();
         }
 
-        [HttpPost]
+        [HttpPost("Create")]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Flight newFlight)
+        public async Task<IActionResult> Create(Flight newFlight)
         {
             if (ModelState.IsValid)
             {
-                _context.Flights.Add(newFlight);
-                _context.SaveChanges();
+                await _context.Flights.AddAsync(newFlight);
+                await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(newFlight);
         }
 
-        [HttpGet]
-        public IActionResult Details(int flightId)
+        [HttpGet("Details/{flightId:int}")]
+        public async Task<IActionResult> Details(int flightId)
         {
-            var flight = _context.Flights.Find(flightId);
+            var flight = await _context.Flights.FindAsync(flightId);
 
             return View(flight);
 
         }
 
-        [HttpGet]
+        [HttpGet("Edit/{flightId:int}")]
         public IActionResult Edit(int flightId)
 
         {
@@ -60,7 +62,7 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
 
         }
 
-        [HttpPost]
+        [HttpPost("Edit/{id:int}")]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, [Bind("FlightId", "Airline", "Price", "MaxPassenger", "From", "To", "DepartTime", "ArrivalTime")] Flight flight)
         {
@@ -86,6 +88,7 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
             return View(flight);
 
         }
+
         [HttpGet]
         public IActionResult WhatsWrong(int id, int id2)
         {
@@ -93,6 +96,8 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
             ViewData["Second"] = id2;
             return View();
         }
+
+        [HttpGet("Delete/{flightId:int}")]
         public IActionResult Delete(int flightId)
 
         {
@@ -103,7 +108,7 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
 
         }
 
-        [HttpPost, ActionName("DeleteConfirmed")]
+        [HttpPost("DeleteConfirmed/{flightId:int}"), ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int flightId)
         {
@@ -122,6 +127,8 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
 
             return _context.Flights.Any(e => e.FlightId == id);
         }
+
+        [HttpGet("Search/{locationFrom}/{location}/{capacity:int}/{startDate:DateTime}/{endDate:DateTime}")]
         public async Task<IActionResult> Search(string locationFrom, string location, int capacity, DateTime startDate, DateTime endDate)
         {
             var flightQuery = from p in _context.Flights
@@ -147,6 +154,7 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
             return View("Index", flights);
         }
 
+        [HttpGet("SearchAjax/{locationFrom}/{location}/{capacity:int}/{startDate:DateTime}/{endDate:DateTime}")]
         public async Task<IActionResult> SearchAjax(string locationFrom, string location, int capacity, DateTime startDate, DateTime endDate)
         {
             var flightQuery = from p in _context.Flights

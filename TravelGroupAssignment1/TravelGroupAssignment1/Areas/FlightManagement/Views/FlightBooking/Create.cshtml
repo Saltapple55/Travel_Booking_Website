@@ -1,4 +1,6 @@
-﻿@model FlightBooking
+﻿@using TravelGroupAssignment1.Areas.FlightManagement.Models;
+
+@model FlightBooking
 
 @{
     ViewData["Title"] = "Input Passenger Info";
@@ -15,7 +17,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-4">
-                <form asp-action="Create" asp-route-id="@Model.FlightId" method="post">
+                <form asp-action="CreateBooking" asp-route-id="@Model.FlightId" method="post">
                     <!-- Displays mode-lreated validation errors here -->
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 

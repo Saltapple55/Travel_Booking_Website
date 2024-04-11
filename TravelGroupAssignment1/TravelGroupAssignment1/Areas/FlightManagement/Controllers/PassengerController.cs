@@ -6,6 +6,8 @@ using TravelGroupAssignment1.Models;
 
 namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
 {
+    [Area("FlightManagement")]
+    [Route("[controller]")]
     public class PassengerController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -14,6 +16,8 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
         {
             _context = context;
         }
+
+        [HttpGet("Index")]
         public IActionResult Index(int fbookingId)
         {
             /*var fbooking = _context.Passengers.Where(t => t.BookingId == fbookingId).ToList();

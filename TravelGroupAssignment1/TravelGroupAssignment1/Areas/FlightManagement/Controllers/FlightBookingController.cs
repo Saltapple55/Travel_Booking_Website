@@ -12,6 +12,8 @@ using FlightBooking = TravelGroupAssignment1.Models.FlightBooking;
 
 namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
 {
+    [Area("FlightManagement")]
+    [Route("[controller]")]
     public class FlightBookingController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -20,22 +22,22 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
         {
             _context = context;
         }
-        [HttpGet]
-        public IActionResult Index(int flightId)
+        [HttpGet("Index/{flightId:int}")]
+        public async Task<IActionResult> Index(int flightId)
         {
-            var bookings = _context.FlightBookings.Where(t => t.FlightId == flightId).Include(t => t.Flight).Include(p => p.Passengers).ToList();
+            var bookings = await _context.FlightBookings.Where(t => t.FlightId == flightId).Include(t => t.Flight).Include(p => p.Passengers).ToListAsync();
 
             ViewBag.FlightId = flightId;
-            ViewBag.Flight = _context.Flights.Find(flightId);
+            ViewBag.Flight = await _context.Flights.FindAsync(flightId);
 
 
             return View(bookings);
         }
-        [HttpGet]
-        public IActionResult Create(int flightId)
+        [HttpGet("Create/{flightId:int}")]
+        public async Task<IActionResult> Create(int flightId)
         {
 
-            var flight = _context.Flights.Find(flightId);
+            var flight = await _context.Flights.FindAsync(flightId);
 
             if (flight == null)
             {
@@ -51,20 +53,19 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
             };
 
 
-
             return View(flightbooking);
         }
-        [HttpGet]
+        [HttpGet("AddPassenger{index:int}")]
         public IActionResult AddPassenger(int index)
         {
             ViewBag["Index"] = index;
             return PartialView("_AddPassenger");
         }
 
-        [HttpPost]
+        [HttpPost("CreateBooking")]
         [ValidateAntiForgeryToken]
 
-        public IActionResult Create([Bind("BookingId, BookingReference, TripId, FlightClass, Flight, Seat, FlightId, Passengers")] FlightBooking booking)
+        public async Task<IActionResult> CreateBooking([Bind("BookingId, BookingReference, TripId, FlightClass, Flight, Seat, FlightId, Passengers")] FlightBooking booking)
         {
             int count = _context.FlightBookings.Where(f => f.FlightId == booking.FlightId).ToList().Count;
 
@@ -82,18 +83,18 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
                 {
                     foreach (Passenger p in booking.Passengers)
                     {
-                        _context.Passengers.Add(p);
+                        await _context.Passengers.AddAsync(p);
 
                     }
-                    _context.SaveChanges();
+                    await _context.SaveChangesAsync();
 
                 }
                 else
                 {
                     return NotFound();
                 }
-                _context.FlightBookings.Add(booking);
-                _context.SaveChanges();
+                await _context.FlightBookings.AddAsync(booking);
+                await _context.SaveChangesAsync();
                 return RedirectToAction("Index", new { flightId = booking.FlightId });
             }
 
@@ -101,10 +102,10 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
             return View(booking);
         }
 
-        [HttpGet]
-        public IActionResult Details(int id, string? con = "FlightBooking")
+        [HttpGet("Details/{id:int}")]
+        public async Task<IActionResult> Details(int id, string? con = "FlightBooking")
         {
-            var flightbooking = _context.FlightBookings.Include(t => t.Flight).Include(p => p.Passengers).FirstOrDefault(booking => booking.BookingId == id);
+            var flightbooking = await _context.FlightBookings.Include(t => t.Flight).Include(p => p.Passengers).FirstOrDefaultAsync(booking => booking.BookingId == id);
 
             // var passengers = _context.Passengers.Where(t => t.Flig == flightbooking.BookingId).ToList();
             if (flightbooking == null) return NotFound();
@@ -114,11 +115,11 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
             return View(flightbooking);
 
         }
-        [HttpGet]
-        public IActionResult Edit(int id)
+        [HttpGet("Edit/{id:int}")]
+        public async Task<IActionResult> Edit(int id)
 
         {
-            var booking = _context.FlightBookings.Include(f => f.Flight).Include(p => p.Passengers).FirstOrDefault(b => b.BookingId == id);
+            var booking = await _context.FlightBookings.Include(f => f.Flight).Include(p => p.Passengers).FirstOrDefaultAsync(b => b.BookingId == id);
             if (booking == null) return NotFound();
             ViewBag.BookingsList = new SelectList(_context.Flights, "FlightId", "From", booking.FlightId.ToString());
 
@@ -126,10 +127,9 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
 
 
         }
-        [HttpPost]
+        [HttpPost("Edit/{id:int}")]
         [ValidateAntiForgeryToken]
-
-        public IActionResult Edit(int id, [Bind("BookingId,FlightId, FlightClass, Seat, Passengers")] FlightBooking flightbooking)
+        public async Task<IActionResult> Edit(int id, [Bind("BookingId,FlightId, FlightClass, Seat, Passengers")] FlightBooking flightbooking)
         {
             if (id != flightbooking.FlightId)
             {
@@ -146,9 +146,9 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
                         _context.Passengers.Update(p);
 
                     }
-                    _context.SaveChanges();
+                    await _context.SaveChangesAsync();
                     _context.FlightBookings.Update(flightbooking);                 //add new project - only in memory, nothing in database yet
-                    _context.SaveChanges(); //commits changes to memory
+                    await _context.SaveChangesAsync(); //commits changes to memory
                     return RedirectToAction("Index", new { flightId = flightbooking.FlightId });
                 }
                 catch (DbUpdateConcurrencyException ex)
@@ -165,17 +165,19 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
             return View(flightbooking);
 
         }
-        public IActionResult Delete(int id, string? con = "FlightBooking")
+
+        [HttpGet("Delete/{id:int}")]
+        public async Task<IActionResult> Delete(int id, string? con = "FlightBooking")
 
         {
-            var booking = _context.FlightBookings.Include(t => t.Flight).Include(p => p.Passengers).FirstOrDefault(b => b.BookingId == id);
+            var booking = await _context.FlightBookings.Include(t => t.Flight).Include(p => p.Passengers).FirstOrDefaultAsync(b => b.BookingId == id);
             ViewBag.Controller = con;
             if (booking == null) return NotFound();
             return View(booking);
 
 
         }
-        [HttpPost, ActionName("DeleteConfirmed")]
+        [HttpPost("DeleteConfirmed/{bookingId:int}"), ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int bookingId, string? con = "FlightBooking")
         {

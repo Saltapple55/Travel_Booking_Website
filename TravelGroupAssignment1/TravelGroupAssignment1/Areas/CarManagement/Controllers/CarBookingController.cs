@@ -67,9 +67,9 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         }
 
         // POST: CarBookingController/Create
-        [HttpPost("Post")]
+        [HttpPost("CreateBooking")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TripId", "BookingReference",
+        public async Task<IActionResult> CreateBooking([Bind("TripId", "BookingReference",
             "CarId", "Car", "StartDate", "EndDate")] CarBooking carBooking)
         {
             // View bag components to be show in page

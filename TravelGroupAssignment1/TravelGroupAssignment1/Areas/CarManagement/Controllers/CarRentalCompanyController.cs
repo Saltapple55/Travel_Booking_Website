@@ -6,6 +6,8 @@ using TravelGroupAssignment1.Data;
 
 namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
 {
+    [Area("CarManagement")]
+    [Route("[controller]")]
     public class CarRentalCompanyController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -16,7 +18,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         }
 
         // GET: CarRentalCompanyController
-        [HttpGet]
+        [HttpGet("Index")]
         public async Task<IActionResult> Index()
         {
             var carRentalCompanies = await _context.CarRentalCompanies.ToListAsync();
@@ -24,7 +26,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         }
 
         // GET: CarRentalCompanyController/Details/5
-        [HttpGet]
+        [HttpGet("Details/{id:int}")]
         public async Task<IActionResult> Details(int id)
         {
             var company = await _context.CarRentalCompanies.FirstOrDefaultAsync(c => c.CarRentalCompanyId == id);
@@ -33,14 +35,14 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         }
 
         // GET: CarRentalCompanyController/Create
-        [HttpGet]
+        [HttpGet("Create")]
         public IActionResult Create()
         {
             return View();
         }
 
         // POST: CarRentalCompanyController/Create
-        [HttpPost]
+        [HttpPost("Create")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CarRentalCompany newCarRentalCompany)
         {
@@ -53,6 +55,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
             return View(newCarRentalCompany);
         }
 
+        [HttpGet("Edit/{id:int}")]
         // GET: CarRentalCompanyController/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
@@ -62,7 +65,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         }
 
         // POST: CarRentalCompanyController/Edit/5
-        [HttpPost]
+        [HttpPost("Edit/{id:int}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CarRentalCompanyId", "CompanyName", "Location", "Rating")] CarRentalCompany company)
         {
@@ -84,6 +87,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
             return View(company);
         }
 
+        [HttpGet("Delete/{id:int}")]
         // GET: CarRentalCompanyController/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
@@ -93,7 +97,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         }
 
         // POST: CarRentalCompanyController/DeleteConfirmed/5
-        [HttpPost, ActionName("DeleteConfirmed")]
+        [HttpPost("DeleteConfirmed/{id:int}"), ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
