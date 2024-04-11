@@ -1,5 +1,6 @@
 ﻿using TravelGroupAssignment1.Areas.CarManagement.Models;
 using TravelGroupAssignment1.Areas.RoomManagement.Models;
+using TravelGroupAssignment1.Areas.FlightManagement.Models;
 
 namespace TravelGroupAssignment1.Models
 {
