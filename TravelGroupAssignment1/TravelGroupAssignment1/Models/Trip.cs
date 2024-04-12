@@ -7,6 +7,7 @@ namespace TravelGroupAssignment1.Models
     {
         [Key]
         public int TripId { get; set; }
+
         [Required]
         public int CustomerId { get; set; }
         //public IList<Booking>? Bookings { get; set; }
