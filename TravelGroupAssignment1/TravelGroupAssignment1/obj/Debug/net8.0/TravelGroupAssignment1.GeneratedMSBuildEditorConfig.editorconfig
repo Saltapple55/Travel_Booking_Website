@@ -42,6 +42,26 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/tjand/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Areas/Identity/Pages/Account/Manage/Email.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRW1haWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/tjand/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Areas/Identity/Pages/Account/Manage/EnableAuthenticator.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRW5hYmxlQXV0aGVudGljYXRvci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/tjand/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Areas/Identity/Pages/Account/Manage/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/tjand/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Areas/Identity/Pages/Account/Manage/_ManageNav.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX01hbmFnZU5hdi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/tjand/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/tjand/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Areas/Identity/Pages/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -294,6 +314,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFzc2VuZ2VyXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/tjand/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Views/RoleManager/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZU1hbmFnZXJcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/tjand/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Views/RoomBooking/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9vbUJvb2tpbmdcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -332,6 +356,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/tjand/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Views/Room/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9vbVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/tjand/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Views/Shared/Components/UserRole/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcVXNlclJvbGVcRGVmYXVsdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/tjand/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Views/Shared/DisplayTemplates/CarDateTime.cshtml]
@@ -388,6 +416,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/tjand/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Views/Trip/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJpcFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/tjand/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Views/UserRoles/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclJvbGVzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/tjand/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Views/UserRoles/Manage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclJvbGVzXE1hbmFnZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/tjand/source/repos/COMP2139Project/TravelGroupAssignment1/TravelGroupAssignment1/Views/_ViewImports.cshtml]
