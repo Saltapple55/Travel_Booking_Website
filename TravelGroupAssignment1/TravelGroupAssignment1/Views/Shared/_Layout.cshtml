@@ -59,7 +59,7 @@
                                 <li><a class="dropdown-item" asp-controller="Dashboard" asp-action="FlightIndex">Flight Dashboard</a></li>
                             </ul>
                         </li>
-                         @if (SignInManager.IsSignedIn(User))
+                @if (SignInManager.IsSignedIn(User))
                 {
                     @await Component.InvokeAsync("UserRole")
                           
@@ -87,12 +87,12 @@
                 }
                 else
                 {
-                    //login
+                            <partial name="_LoginPartial" />
+                    @* //login
                     <li class="nav-item">
                         <a class="nav-link text-dark"
                            asp-area="Identity" asp-page="/Account/Login">
                             Login
-
                         </a>
                     </li>
                     //register
@@ -103,7 +103,7 @@
 
                         </a>
                     </li>
-                    
+                     *@
                 }
                     </ul>
                 </div>
