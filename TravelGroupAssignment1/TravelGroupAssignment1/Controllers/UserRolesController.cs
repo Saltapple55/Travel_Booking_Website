@@ -1,4 +1,4 @@
-﻿using TravelGroupAssignment1.Areas;
+﻿//using TravelGroupAssignment1.Areas;
 using TravelGroupAssignment1.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;

@@ -56,34 +56,21 @@ namespace TravelGroupAssignment1.Areas.Identity.Pages.Account.Manage
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-             [Display(Name = "username")]
-
-            public string Username { get; set; }
-
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
-            [Display(Name = "First Name")]
-            public string FirstName { get; set; }
-            [Display(Name = "Last Name")]
-            public string LastName { get; set; }
-
         }
 
         private async Task LoadAsync(ApplicationUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            var firstName = user.FirstName;
-            var lastName = user.LastName;
+
             Username = userName;
 
             Input = new InputModel
             {
-                FirstName = firstName,
-                LastName = lastName,
-                PhoneNumber = phoneNumber,
-                Username = userName
+                PhoneNumber = phoneNumber
             };
         }
 
@@ -122,45 +109,7 @@ namespace TravelGroupAssignment1.Areas.Identity.Pages.Account.Manage
                     StatusMessage = "Unexpected error when trying to set phone number.";
                     return RedirectToPage();
                 }
-                else
-                {
-                    user.UserName = Input.Username;
-                    user.UsernameChange -= 1;
-                    await _userManager.UpdateAsync(user);
-
-                }
             }
-            if (user.UsernameChange > 0)
-            {
-                if (Input.Username != user.UserName)
-                {
-                    var userNameExists = _userManager.FindByNameAsync(Input.Username);
-                    if (userNameExists != null)
-                    {
-                        StatusMessage = "Error: username not available. please enter a username";
-                        return RedirectToPage();
-                    }
-                    var setusername = await _userManager.SetUserNameAsync(user, Input.Username);
-                    if (setusername.Succeeded)
-                    {
-
-                    }
-                }
-            }
-            var firstName = user.FirstName;
-            if (Input.FirstName != firstName)
-            {
-                user.FirstName = firstName;
-                await _userManager.UpdateAsync(user);
-            }
-
-            var lastName = user.LastName;
-            if (Input.LastName != lastName)
-            {
-                user.LastName = lastName;
-                await _userManager.UpdateAsync(user);
-            }
-            
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
