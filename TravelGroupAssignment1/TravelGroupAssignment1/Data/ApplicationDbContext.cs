@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TravelGroupAssignment1.Models;
 using TravelGroupAssignment1.Areas.CarManagement.Models;
-using TravelGroupAssignment1.Areas.DashboardManagement.Models.ViewModel;
+using TravelGroupAssignment1.Areas.DashboardManagement.Models.ViewModels;
 using TravelGroupAssignment1.Areas.HotelManagement.Models;
 using TravelGroupAssignment1.Areas.RoomManagement.Models;
 using TravelGroupAssignment1.Areas.FlightManagement.Models;

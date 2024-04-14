@@ -21,6 +21,13 @@ namespace TravelGroupAssignment1.Controllers
 
             TempData["flightbookings"] = new List<String>();
             TempData["ha"] = "ha";
+            if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+            {
+                // Redirect to specific page for SuperAdmin or Admin
+                return RedirectToAction("Index", "Dashboard", new { area = "DashboardManagement" });
+            }
+
+            // Proceed with normal behavior if not SuperAdmin or Admin
             return View();
         }
 
