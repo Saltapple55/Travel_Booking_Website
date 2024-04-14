@@ -9,6 +9,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
 {
     [Area("CarManagement")]
     [Route("[controller]")]
+    [Authorize(Roles = "SuperAdmin, Admin")]
     public class CarRentalCompanyController : Controller
     {
         private readonly ApplicationDbContext _context;
