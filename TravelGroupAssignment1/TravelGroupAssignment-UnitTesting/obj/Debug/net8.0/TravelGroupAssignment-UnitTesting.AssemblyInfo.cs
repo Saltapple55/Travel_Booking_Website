@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TravelGroupAssignment-UnitTesting")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0bfd74893ed4f7273a07e82e18c2f4b038113afb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e0ba9f71203832b0afd1d797cd2366ece96e0e2a")]
 [assembly: System.Reflection.AssemblyProductAttribute("TravelGroupAssignment-UnitTesting")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TravelGroupAssignment-UnitTesting")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
