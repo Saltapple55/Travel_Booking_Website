@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -45,6 +46,7 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
 
         // GET: RoomController/Create
         [HttpGet("Create/{hotelId:int}")]
+        [Authorize(Roles = "SuperAdmin, Admin")]
         public async Task<IActionResult> Create(int hotelId)
         {
             var hotel = await _context.Hotels.Include(h => h.Rooms).FirstOrDefaultAsync(h => h.HotelId == hotelId);
@@ -58,6 +60,7 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
         // POST: RoomController/CreateRoom
         [HttpPost("CreateRoom")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SuperAdmin, Admin")]
         public async Task<IActionResult> CreateRoom([Bind("Name", "Capacity", "BedDescription", "RoomSize",
              "PricePerNight", "Amenities", "HotelId")] Room room)
         {
@@ -73,6 +76,7 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
 
         // GET: RoomController/Edit/5
         [HttpGet("Edit/{id:int}")]
+        [Authorize(Roles = "SuperAdmin, Admin")]
         public async Task<IActionResult> Edit(int id)
         {
             var room = await _context.Rooms
@@ -87,6 +91,7 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
         // POST: RoomController/Edit/5
         [HttpPost("Edit/{id:int}")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SuperAdmin, Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("RoomId", "Name", "Capacity", "BedDescription", "RoomSize",
              "PricePerNight", "Amenities", "HotelId")] Room room)
         {
@@ -104,6 +109,7 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
 
         // GET: RoomController/Delete/5
         [HttpGet("Delete/{id:int}")]
+        [Authorize(Roles = "SuperAdmin, Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var room = await _context.Rooms
@@ -116,6 +122,7 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
         // POST: RoomController/DeleteConfirmed/5
         [HttpPost("DeleteConfirmed/{id:int}"), ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SuperAdmin, Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var room = _context.Rooms.Find(id);

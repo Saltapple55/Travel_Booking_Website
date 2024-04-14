@@ -7,10 +7,26 @@ namespace TravelGroupAssignment1.Models
     {
         [Key]
         public int TripId { get; set; }
+        
+        public string? ApplicationUserId { get; set; }
+        [ForeignKey("ApplicationUserId")]
+        public ApplicationUser? ApplicationUser { get; set; }
 
-        [Required]
-        public int CustomerId { get; set; }
         //public IList<Booking>? Bookings { get; set; }
+        [Display(Name = "Trip Reference Number")]
+        public string? TripReference { get; set; }
+
+        public Trip()
+        {
+            TripReference = GenerateTripReference();
+        }
+
+        protected virtual String GenerateTripReference()
+        {
+            string date = DateTime.Now.ToString("yyMMddHHmm");
+            string uniqueString = Guid.NewGuid().ToString("").Substring(0, 6);
+            return date + uniqueString;
+        }
 
     }
 }
