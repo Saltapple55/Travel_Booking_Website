@@ -7,7 +7,6 @@ C:\Users\CM\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssig
 C:\Users\CM\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment-UnitTesting\bin\Debug\net8.0\TravelGroupAssignment1.staticwebassets.runtime.json
 C:\Users\CM\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment-UnitTesting\bin\Debug\net8.0\TravelGroupAssignment1.exe
 C:\Users\CM\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment-UnitTesting\bin\Debug\net8.0\testhost.exe
-C:\Users\CM\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment-UnitTesting\bin\Debug\net8.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
 C:\Users\CM\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment-UnitTesting\bin\Debug\net8.0\xunit.runner.reporters.netcoreapp10.dll
 C:\Users\CM\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment-UnitTesting\bin\Debug\net8.0\xunit.runner.utility.netcoreapp10.dll
 C:\Users\CM\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment-UnitTesting\bin\Debug\net8.0\TravelGroupAssignment-UnitTesting.deps.json
@@ -335,3 +334,7 @@ C:\Users\CM\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssig
 C:\Users\CM\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment-UnitTesting\obj\Debug\net8.0\TravelGroupAssignment-UnitTesting.pdb
 C:\Users\CM\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment-UnitTesting\obj\Debug\net8.0\TravelGroupAssignment-UnitTesting.genruntimeconfig.cache
 C:\Users\CM\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment-UnitTesting\obj\Debug\net8.0\ref\TravelGroupAssignment-UnitTesting.dll
+C:\Users\CM\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment-UnitTesting\bin\Debug\net8.0\xunit.runner.visualstudio.testadapter.dll
+C:\Users\CM\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment-UnitTesting\bin\Debug\net8.0\Castle.Core.dll
+C:\Users\CM\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment-UnitTesting\bin\Debug\net8.0\Moq.dll
+C:\Users\CM\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment-UnitTesting\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.InMemory.dll

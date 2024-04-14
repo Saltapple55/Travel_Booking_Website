@@ -24,7 +24,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Models
 
         [Required]
         [Display(Name = "Price Per Day")]
-        [Range(0, double.MaxValue, ErrorMessage = "Price must be non-negative.")]
+        [Range(0.00, double.MaxValue, ErrorMessage = "Price must be non-negative.")]
         public double PricePerDay { get; set; }
 
         [Display(Name = "Capacity")]
@@ -38,7 +38,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Models
         [Display(Name = "Has Air Conditioning")]
         public bool HasAirConditioning { get; set; }
 
-        [Display(Name = "Has Air Conditioning")]
+        [Display(Name = "Has Unlimited Mileage")]
         public bool HasUnlimitedMileage { get; set; }
 
         [Required]

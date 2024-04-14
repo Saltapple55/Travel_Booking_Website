@@ -18,7 +18,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Models
         public string? Location { get; set; }
 
         [Display(Name = "Rating")]
-        [Range(0, 5, ErrorMessage = "Rating must be between 0 and 5")]
+        [Range(0.00, 5.00, ErrorMessage = "Rating must be between 0 and 5")]
         public double Rating { get; set; }
 
         public ICollection<Car>? Cars { get; set; }

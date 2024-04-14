@@ -4,9 +4,9 @@ using System.Reflection;
 using TravelGroupAssignment1.Areas.CarManagement.Models;
 using Xunit.Sdk;
 
-namespace TravelGroupAssignment_UnitTesting
+namespace TravelGroupAssignment_UnitTesting.Models
 {
-    public class ModelTestCar
+    public class CarTests
     {
 
         // === Helper functions ===
@@ -23,7 +23,8 @@ namespace TravelGroupAssignment_UnitTesting
                 Transmission = "Auto",
                 HasAirConditioning = true,
                 HasUnlimitedMileage = false,
-                CompanyId = 1
+                CompanyId = 1,
+                Bookings = new List<CarBooking>()
             };
         }
 
@@ -209,6 +210,29 @@ namespace TravelGroupAssignment_UnitTesting
             Assert.Null(mockCar.Company);
         }
 
+        [Fact]
+        public void CarBookings_SetTwoBookings_ReturnTwoBookings()
+        {
+            var mockCar = createFakeCar();
+
+            var stubBooking = new CarBooking();
+            mockCar.Bookings.Add(stubBooking);
+            mockCar.Bookings.Add(stubBooking);
+
+            Assert.Equal(2, mockCar.Bookings.Count);
+        }
+
+        [Fact]
+        public void CarBookings_SetNull_ReturnNull()
+        {
+            var mockCar = createFakeCar();
+
+            mockCar.Bookings = null;
+
+            Assert.Null(mockCar.Bookings);
+        }
+
+
         // === Testing Data Annotations ===
 
         // [Required] exists
@@ -318,7 +342,7 @@ namespace TravelGroupAssignment_UnitTesting
             Assert.Equal(100, stringLengthAttribute.MaximumLength);
             Assert.Equal("Car model must not exceed 100 characters.", stringLengthAttribute.ErrorMessage);
         }
-        
+
 
         [Fact]
         public void CarType_TestRequiredAttribute_Exists()
@@ -373,9 +397,6 @@ namespace TravelGroupAssignment_UnitTesting
         }
 
 
-
-        //
-
         [Fact]
         public void CarPricePerDay_TestRequiredAttribute_Exists()
         {
@@ -384,7 +405,6 @@ namespace TravelGroupAssignment_UnitTesting
             var requiredAttribute = Assert.IsType<RequiredAttribute>(carProperties.GetCustomAttribute(typeof(RequiredAttribute)));
 
             Assert.NotNull(requiredAttribute);
-
         }
 
 
@@ -410,5 +430,57 @@ namespace TravelGroupAssignment_UnitTesting
             Assert.Equal(0.00, rangeAttribute.Minimum);
         }
 
+
+        [Fact]
+        public void CarMaxPassengers_TestDisplayNameAttribute_ValueMatch()
+        {
+            var carProperties = typeof(Car).GetProperty(nameof(Car.MaxPassengers));
+
+            var displayNameAttribute = carProperties.GetCustomAttribute<DisplayAttribute>();
+
+            Assert.Equal("Capacity", displayNameAttribute.Name);
+        }
+
+        // [Range(min, max, errorMessage = ...)] Range attribute test min, max values
+        [Fact]
+        public void CarMaxPassengers_TestRangeAttribute_ValueMatch()
+        {
+            var carProperties = typeof(Car).GetProperty(nameof(Car.MaxPassengers));
+
+            var rangeAttribute = carProperties.GetCustomAttribute<RangeAttribute>();
+
+            Assert.Equal(1000, rangeAttribute.Maximum);
+            Assert.Equal(1, rangeAttribute.Minimum);
+        }
+
+        [Fact]
+        public void CarHasAirConditioning_TestDisplayNameAttribute_ValueMatch()
+        {
+            var carProperties = typeof(Car).GetProperty(nameof(Car.HasAirConditioning));
+
+            var displayNameAttribute = carProperties.GetCustomAttribute<DisplayAttribute>();
+
+            Assert.Equal("Has Air Conditioning", displayNameAttribute.Name);
+        }
+
+        [Fact]
+        public void CarHasUnlimitedMileage_TestDisplayNameAttribute_ValueMatch()
+        {
+            var carProperties = typeof(Car).GetProperty(nameof(Car.HasUnlimitedMileage));
+
+            var displayNameAttribute = carProperties.GetCustomAttribute<DisplayAttribute>();
+
+            Assert.Equal("Has Unlimited Mileage", displayNameAttribute.Name);
+        }
+
+        [Fact]
+        public void CarCompanyId_TestRequiredAttribute_Exists()
+        {
+            var carProperties = typeof(Car).GetProperty(nameof(Car.CompanyId));
+
+            var requiredAttribute = Assert.IsType<RequiredAttribute>(carProperties.GetCustomAttribute(typeof(RequiredAttribute)));
+
+            Assert.NotNull(requiredAttribute);
+        }
     }
 }

@@ -45,6 +45,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
                         .Include(cb => cb.Car)
                         .ThenInclude(c => c.Company)
                         .FirstOrDefaultAsync(cb => cb.BookingId == id);
+            if (booking == null) return NotFound();
             ViewBag.Controller = con;
             return View(booking);
         }
@@ -63,7 +64,6 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
             ViewBag.StartDate = startDate;
             ViewBag.EndDate = endDate;
             return View(new CarBooking { CarId = car.CarId, TripId = 1 });
-
         }
 
         // POST: CarBookingController/Create

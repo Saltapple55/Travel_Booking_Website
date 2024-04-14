@@ -11,7 +11,6 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
 {
     [Area("CarManagement")]
     [Route("[controller]")]
-    //[Route("[area]/[controller]")]
     public class CarController : Controller
     {
         // required
@@ -191,7 +190,6 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
                 return StatusCode(400, "Search invalid");
             }
 
-            //var cars = await carQuery.ToListAsync();
             var cars = await carQuery.Include(c => c.Company).Select(c => new
             {
                 carId = c.CarId,
@@ -205,11 +203,6 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
                 companyName = c.Company.CompanyName
             }).ToListAsync();
 
-            //????
-            //ViewBag.SearchValid = searchValid;
-            //ViewBag.Location = location;
-            //ViewBag.StartDate = startDate;
-            //ViewBag.EndDate = endDate;
 
             return Json(cars);
         }
