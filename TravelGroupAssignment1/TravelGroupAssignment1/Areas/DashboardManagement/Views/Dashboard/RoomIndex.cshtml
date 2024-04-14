@@ -1,0 +1,45 @@
+﻿@using TravelGroupAssignment1.Areas.RoomManagement.Models;
+
+@model List<Room>
+@{
+	ViewData["Titile"] = "Rooms";
+}
+
+
+@if (Model.Any())
+{
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Room Name</th>
+				<th>Hotel Name</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+
+		<tbody>
+
+			@foreach (var room in Model)
+			{
+				<tr>
+					<td>@room.RoomId</td>
+					<td>@room.Name</td>
+					<td>@room.Hotel.HotelName</td>
+					<td>
+						<a asp-controller="RoomBooking" asp-action="Index" asp-route-roomId="@room.RoomId" class="btn btn.sm btn-secondary" role="button">Bookings<i class="fa-solid fa-list-check"></i></a>
+						<a asp-controller="Dashboard" asp-action="RoomDetails" asp-route-id="@room.RoomId" class="btn btn-info">Details</a>
+						<a asp-controller="Dashboard" asp-action="RoomEdit" asp-route-id="@room.RoomId" class="btn btn-warning">Edit</a>
+						<a asp-controller="Dashboard" asp-action="RoomDelete" asp-route-id="@room.RoomId" class="btn btn-danger">Delete</a>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+else
+{
+	<p>No project available</p>
+
+}
+<a asp-controller="Dashboard" asp-action="RoomCreate" asp-route-hotelId="@ViewBag.hotelId" class="btn btn-primary">Create new Room</a>

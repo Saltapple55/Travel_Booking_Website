@@ -1,4 +1,7 @@
-﻿const { start } = require("@popperjs/core");
+﻿
+
+
+
 
 // Client-side validation for search functions (start date <= end date)
 // function requires 2 parameters (IDs of start date and end date input tags)

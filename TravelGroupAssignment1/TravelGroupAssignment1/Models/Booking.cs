@@ -8,7 +8,9 @@ namespace TravelGroupAssignment1.Models
         [Key]
         public int BookingId { get; set; }
         [Required]
-        public int TripId { get; set; } 
+        public int TripId { get; set; }
+
+        [Display(Name = "Booking Reference Number")]
         public string? BookingReference { get; set; }
 
         protected Booking() 
