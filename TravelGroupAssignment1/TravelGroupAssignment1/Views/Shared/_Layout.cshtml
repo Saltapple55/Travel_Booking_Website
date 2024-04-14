@@ -41,22 +41,22 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Trip" asp-action="Index">My Trip</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Car" asp-action="Index">Car</a>
+                            <a class="nav-link text-dark" asp-area="CarManagement" asp-controller="Car" asp-action="Index">Car</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Hotel" asp-action="Index">Hotel</a>
+                            <a class="nav-link text-dark" asp-area="HotelManagement" asp-controller="Hotel" asp-action="Index">Hotel</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Flight" asp-action="Index">Flight</a>
+                            <a class="nav-link text-dark" asp-area="FlightManagement" asp-controller="Flight" asp-action="Index">Flight</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Admin Dashboard
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" asp-controller="Dashboard" asp-action="HotelIndex">Hotel Dashboard</a></li>
-                                <li><a class="dropdown-item" asp-controller="Dashboard" asp-action="CarIndex">Car Dashboard</a></li>
-                                <li><a class="dropdown-item" asp-controller="Dashboard" asp-action="FlightIndex">Flight Dashboard</a></li>
+                                <li><a class="dropdown-item" asp-area="DashboardManagement" asp-controller="Dashboard" asp-action="HotelIndex">Hotel Dashboard</a></li>
+                                <li><a class="dropdown-item" asp-area="DashboardManagement" asp-controller="Dashboard" asp-action="CarIndex">Car Dashboard</a></li>
+                                <li><a class="dropdown-item" asp-area="DashboardManagement" asp-controller="Dashboard" asp-action="FlightIndex">Flight Dashboard</a></li>
                             </ul>
                         </li>
                 @if (SignInManager.IsSignedIn(User))
@@ -133,28 +133,28 @@
                 <div class="tab-pane @(tab == "" || tab == "hotel" ? "active" : "")" id="hotel" role="tabpanel" aria-labelledby="hotel-tab" tabindex="0">
                     <div id="hotelForm" class="search-form">
                         <h3>Hotel Search</h3>
-                        <form method="get" class="row row-cols-lg-auto g-3 align-items-center" asp-controller="Hotel" asp-action="Search">
+                        <form method="get" class="row row-cols-lg-auto g-3 align-items-center" id="hotelSearchForm" asp-area="HotelManagement" asp-controller="Hotel" asp-action="Search" autocomplete="off">
                             <div class="col-12">
-                                <label for="location" class="control-label">Location</label>
-                                <input required id="location" name="location" class="form-control" value="@location" placeholder="Toronto" />
+                                <label for="hotelLocation" class="control-label">Location</label>
+                                <input required id="hotelLocation" name="location" class="form-control" value="@location" placeholder="Toronto" />
                             </div>
 
                             <div class="col-12">
-                                <label for="startDate">Start Date</label>
+                                <label for="hotelStartDate">Start Date</label>
                                 <input required type="date" class="form-control" id="hotelStartDate" name="startDate" value="@startDate" min="@DateTime.Now.ToString("yyyy-MM-dd")" placeholder="Start Date" onchange="updateCheckOutDateLimit('hotelStartDate', 'hotelEndDate')">
                             </div>
 
                             <div class="col-12">
-                                <label for="endDate">End Date</label>
+                                <label for="hotelEndDate">End Date</label>
                                 <input required type="date" class="form-control" id="hotelEndDate" name="endDate" value="@endDate" min="@startDate" placeholder="End Date">
                             </div>
 
                             <div class="col-12">
-                                <label for="capacity" class="control-label">Travellers</label>
-                                <input required id="capacity" name="capacity" type="number" class="form-control" value="@capacity" min="1" max="100" placeholder="How many travellers" />
+                                <label for="hotelCapacity" class="control-label">Travellers</label>
+                                <input required id="hotelCapacity" name="capacity" type="number" class="form-control" value="@capacity" min="1" max="100" placeholder="How many travellers" />
                             </div>
 
-                            <div class="col-12">
+                            <div class="col-12" id="hotelSearchButton">
                                 <button type="submit" class="btn btn-primary">Search</button>
                             </div>
                             <input type="hidden" id="tab" name="tab" value="hotel" />
@@ -165,33 +165,33 @@
                 <div class="tab-pane @(tab == "flight" ? "active" : "")" id="flight" role="tabpanel" aria-labelledby="flight-tab" tabindex="0">
                     <div id="flightForm" class="search-form">
                         <h3>Flight Search</h3>
-                        <form method="get" class="row row-cols-lg-auto g-3 align-items-center" asp-controller="Flight" asp-action="Search">
+                        <form method="get" class="row row-cols-lg-auto g-3 align-items-center" id="flightSearchForm" asp-area="FlightManagement" asp-controller="Flight" asp-action="Search" autocomplete="off">
                             <div class="col-12">
-                                <label for="locationFrom">Leaving From</label>
-                                <input required id="locationFrom" name="locationFrom" class="form-control" value="@tab" placeholder="Toronto" />
+                                <label for="flightLocationFrom">Leaving From</label>
+                                <input required id="flightLocationFrom" name="locationFrom" class="form-control" value="@locationFrom" placeholder="Toronto" />
                             </div>
 
                             <div class="col-12">
-                                <label for="location">Going To</label>
-                                <input required id="location" name="location" class="form-control" value="@tab" placeholder="New York" />
+                                <label for="flightLocation">Going To</label>
+                                <input required id="flightLocation" name="location" class="form-control" value="@location" placeholder="New York" />
                             </div>
 
                             <div class="col-12">
-                                <label for="startDate">Start Date</label>
+                                <label for="flightStartDate">Start Date</label>
                                 <input required type="date" class="form-control" id="flightStartDate" name="startDate" value="@startDate" min="@DateTime.Now.ToString("yyyy-MM-dd")" placeholder="Start Date" onchange="updateCheckOutDateLimit('flightStartDate', 'flightEndDate')">
                             </div>
 
                             <div class="col-12">
-                                <label for="endDate">End Date</label>
+                                <label for="flightEndDate">End Date</label>
                                 <input required type="date" class="form-control" id="flightEndDate" name="endDate" value="@endDate" min="@startDate" placeholder="End Date">
                             </div>
 
                             <div class="col-12">
-                                <label for="capacity" class="control-label">Passengers</label>
-                                <input required id="capacity" name="capacity" type="number" class="form-control" value="@capacity" min="1" max="100" placeholder="How many passengers" />
+                                <label for="flightCapacity" class="control-label">Passengers</label>
+                                <input required id="flightCapacity" name="capacity" type="number" class="form-control" value="@capacity" min="1" max="100" placeholder="How many passengers" />
                             </div>
 
-                            <div class="col-12">
+                            <div class="col-12" id="flightSearchButton">
                                 <button type="submit" class="btn btn-primary">Search</button>
                             </div>
                             <input type="hidden" id="tab" name="tab" value="flight" />
@@ -203,23 +203,23 @@
                 <div class="tab-pane @(tab == "car" ? "active" : "")" id="car" role="tabpanel" aria-labelledby="car-tab" tabindex="0">
                     <div id="carForm" class="search-form">
                         <h3>Car Search</h3>
-                        <form method="get" class="row row-cols-lg-auto g-3 align-items-center" asp-controller="Car" asp-action="Search">
+                        <form method="get" class="row row-cols-lg-auto g-3 align-items-center" id="carSearchForm" asp-area="CarManagement" asp-controller="Car" asp-action="Search" autocomplete="off">
                             <div class="col-12">
-                                <label for="location" class="control-label">Location</label>
-                                <input required id="location" name="location" class="form-control" value="@location" placeholder="Toronto" />
+                                <label for="carLocation" class="control-label">Location</label>
+                                <input required id="carLocation" name="location" class="form-control" value="@location" placeholder="Toronto" />
                             </div>
 
                             <div class="col-12">
-                                <label for="startDate">Start Date</label>
+                                <label for="carStartDate">Start Date</label>
                                 <input required type="date" class="form-control" id="carStartDate" name="startDate" value="@startDate" min="@DateTime.Now.ToString("yyyy-MM-dd")" placeholder="Start Date" onchange="updateCheckOutDateLimit('carStartDate','carEndDate')">
                             </div>
 
                             <div class="col-12">
-                                <label for="endDate">End Date</label>
+                                <label for="carEndDate">End Date</label>
                                 <input required type="date" class="form-control" id="carEndDate" name="endDate" value="@endDate" min="@startDate" placeholder="End Date">
                             </div>
 
-                            <div class="col-12">
+                            <div class="col-12" id="carSearchButton">
                                 <button type="submit" class="btn btn-primary">Search</button>
                             </div>
                             <input type="hidden" id="tab" name="tab" value="car" />
