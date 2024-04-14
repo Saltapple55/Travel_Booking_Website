@@ -231,7 +231,8 @@ namespace TravelGroupAssignment1.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("TravelGroupAssignment1.Models.Car", b =>
+            //modelBuilder.Entity("TravelGroupAssignment1.Models.Car", b =>
+            modelBuilder.Entity("TravelGroupAssignment1.Areas.CarManagement.Models.Car", b =>
                 {
                     b.Property<int>("CarId")
                         .ValueGeneratedOnAdd()
