@@ -7,6 +7,7 @@ using TravelGroupAssignment1.Data;
 
 namespace TravelGroupAssignment1.ViewComponents
 {
+    [ViewComponent(Name = "DashboardSummary")]
     public class DashboardSummary : ViewComponent
     {
         private readonly ApplicationDbContext _context;

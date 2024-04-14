@@ -60,17 +60,11 @@
                             </ul>
                         </li>
                 @if (SignInManager.IsSignedIn(User))
-                {
-                    @await Component.InvokeAsync("UserRole")
-                          
+                {         
                     //profile
                     <li class="nav-item">
-                       
-                                               }
                         <a class="nav-link text-dark"
                            asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage your account"> Hello @User.Identity?.Name
-                           
-
                         </a>
                     </li>
                     //logout
@@ -80,15 +74,11 @@
                             <button type="submit" class="nav-link btn btn-link text-dark" style="cursor:pointer"> Logout</button>
                             </form>
                     </li>
-
-
-                    
-
                 }
                 else
                 {
                             <partial name="_LoginPartial" />
-                    @* //login
+                    //login
                     <li class="nav-item">
                         <a class="nav-link text-dark"
                            asp-area="Identity" asp-page="/Account/Login">
@@ -103,7 +93,7 @@
 
                         </a>
                     </li>
-                     *@
+                    
                 }
                     </ul>
                 </div>
