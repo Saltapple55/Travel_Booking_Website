@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,7 @@ namespace TravelGroupAssignment1.Areas.DashboardManagement.Controllers
 {
     [Area("DashboardManagement")]
     [Route("[area]/[controller]")]
+    [Authorize(Roles = "SuperAdmin, Admin")]
     public class DashboardController : Controller
     {
         // required
