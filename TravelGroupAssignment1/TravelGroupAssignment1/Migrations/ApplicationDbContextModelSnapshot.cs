@@ -591,9 +591,6 @@ namespace TravelGroupAssignment1.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TripId"));
 
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
                     b.HasKey("TripId");
 
                     b.ToTable("Trips");
@@ -601,8 +598,7 @@ namespace TravelGroupAssignment1.Migrations
                     b.HasData(
                         new
                         {
-                            TripId = 1,
-                            CustomerId = 1
+                            TripId = 1
                         });
                 });
 
