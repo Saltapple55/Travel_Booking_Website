@@ -172,7 +172,6 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
                 if (string.Equals(con, "CarBooking"))
                     return RedirectToAction("Index", con);
                 return RedirectToAction("Index", new { carId = carBooking.CarId });
-
             }
             return NotFound();
         }

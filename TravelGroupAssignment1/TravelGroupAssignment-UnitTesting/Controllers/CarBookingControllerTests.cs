@@ -434,5 +434,124 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
                 context.Database.EnsureDeleted();
             }
         }
+
+        [Fact]
+        public async Task Delete_ReturnsViewResult_AndCarBooking()
+        {
+
+            using (var context = GetApplicationDbContext())
+            {
+                // Arrange: Cars, Company and Controller
+                var stubCompany = new CarRentalCompany { CarRentalCompanyId = 1, CompanyName = "stubCompany", Location = "stubLocation" };
+
+                var stubCar = new Car { CarId = 1, Make = "Toyota", Model = "Corolla", Type = "Sedan", CompanyId = 1, Company = stubCompany };
+                var mockCarBooking = new CarBooking { BookingId = 1, CarId = 1, Car = stubCar, TripId = 1, StartDate = new DateTime(2020, 1, 1), EndDate = new DateTime(2020, 1, 2) };
+
+                await context.Cars.AddRangeAsync(stubCar);
+                await context.CarBookings.AddRangeAsync(mockCarBooking);
+
+                await context.SaveChangesAsync();
+
+                var controller = new CarBookingController(context);
+
+                // Action: call Index()
+                var result = await controller.Delete(1);
+
+                // Assert
+                var viewResult = Assert.IsType<ViewResult>(result);
+                Assert.Null(viewResult.ViewName);
+
+                var model = Assert.IsAssignableFrom<CarBooking>(viewResult.ViewData.Model);
+                Assert.Equal(1, model.BookingId);
+                Assert.Equal(1, model.CarId);
+                Assert.Equivalent(stubCar, model.Car);
+
+                context.Database.EnsureDeleted();
+            }
+        }
+
+        [Fact]
+        public async Task Delete_NonExistentBookingId_ReturnNotFound()
+        {
+
+            using (var context = GetApplicationDbContext())
+            {
+                // Arrange
+                var controller = new CarBookingController(context);
+
+                // Action
+                var result = await controller.Delete(1);
+
+                // Assert
+                var viewResult = Assert.IsType<NotFoundResult>(result);
+
+                context.Database.EnsureDeleted();
+            }
+        }
+
+        [Fact]
+        public async Task DeleteConfirmed_ReturnsRedirectResult_AndCarBookingDeleted()
+        {
+
+            using (var context = GetApplicationDbContext())
+            {
+                // Arrange: Cars, Company and Controller
+                var stubCompany = new CarRentalCompany { CarRentalCompanyId = 1, CompanyName = "stubCompany", Location = "stubLocation" };
+
+                var stubCar = new Car { CarId = 1, Make = "Toyota", Model = "Corolla", Type = "Sedan", CompanyId = 1, Company = stubCompany };
+                var mockCarBooking = new CarBooking { BookingId = 1, CarId = 1, Car = stubCar, TripId = 1, StartDate = new DateTime(2020, 1, 1), EndDate = new DateTime(2020, 1, 2) };
+
+                await context.Cars.AddRangeAsync(stubCar);
+                await context.CarBookings.AddRangeAsync(mockCarBooking);
+
+                await context.SaveChangesAsync();
+
+                var controller = new CarBookingController(context);
+
+                // Action: call Index()
+                var result = await controller.DeleteConfirmed(1, "");
+
+                // Assert
+                var viewResult = Assert.IsType<RedirectToActionResult>(result);
+                Assert.Equal("Index", viewResult.ActionName);
+
+                var model = Assert.IsAssignableFrom<int>(viewResult.RouteValues["carId"]);
+                Assert.Equal(1, model);
+
+                context.Database.EnsureDeleted();
+            }
+        }
+
+        [Fact]
+        public async Task DeleteConfirmed_ReturnsToController_AndCarBookingDeleted()
+        {
+
+            using (var context = GetApplicationDbContext())
+            {
+                // Arrange: Cars, Company and Controller
+                var stubCompany = new CarRentalCompany { CarRentalCompanyId = 1, CompanyName = "stubCompany", Location = "stubLocation" };
+
+                var stubCar = new Car { CarId = 1, Make = "Toyota", Model = "Corolla", Type = "Sedan", CompanyId = 1, Company = stubCompany };
+                var mockCarBooking = new CarBooking { BookingId = 1, CarId = 1, Car = stubCar, TripId = 1, StartDate = new DateTime(2020, 1, 1), EndDate = new DateTime(2020, 1, 2) };
+
+                await context.Cars.AddRangeAsync(stubCar);
+                await context.CarBookings.AddRangeAsync(mockCarBooking);
+
+                await context.SaveChangesAsync();
+
+                var controller = new CarBookingController(context);
+
+                // Action: call Index()
+                var result = await controller.DeleteConfirmed(1);
+
+                // Assert
+                var viewResult = Assert.IsType<RedirectToActionResult>(result);
+                Assert.Equal("Index", viewResult.ActionName);
+                Assert.Equal("CarBooking", viewResult.ControllerName);
+
+                context.Database.EnsureDeleted();
+            }
+        }
+
     }
 }
