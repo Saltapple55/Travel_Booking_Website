@@ -71,7 +71,9 @@ namespace TravelGroupAssignment1.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
+
             [Display(Name = "Email or username")]
+
 
             public string Email { get; set; }
 

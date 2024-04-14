@@ -1,6 +1,4 @@
-﻿@using TravelGroupAssignment1.Areas.DashboardManagement.Models
-
-@{
+﻿@{
     string? locationFrom = ViewContext.HttpContext.Request.Query["locationFrom"].Count > 0 ? ViewContext.HttpContext.Request.Query["locationFrom"] : "";
     string? location = ViewContext.HttpContext.Request.Query["location"].Count > 0 ? ViewContext.HttpContext.Request.Query["location"] : "";
     string? startDate = ViewContext.HttpContext.Request.Query["startDate"].Count > 0 ? ViewContext.HttpContext.Request.Query["startDate"] : DateTime.Now.ToString("yyyy-MM-dd");
@@ -8,6 +6,11 @@
     string? capacity = ViewContext.HttpContext.Request.Query["capacity"].Count > 0 ? ViewContext.HttpContext.Request.Query["capacity"] : "2";
     string? tab = ViewContext.HttpContext.Request.Query["tab"].Count > 0 ? ViewContext.HttpContext.Request.Query["tab"] : "";
 }
+@using TravelGroupAssignment1.Models
+@using Microsoft.AspNetCore.Identity;
+@inject UserManager<ApplicationUser> UserManager
+
+@inject SignInManager<ApplicationUser> SignInManager
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,18 +46,26 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="FlightManagement" asp-controller="Flight" asp-action="Index">Flight</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark"
-                               asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage your account">
-                                Hello @User.Identity?.Name
-                            </a>
-                        </li>
-                        <li class="nav-item">
+                @if (SignInManager.IsSignedIn(User))
+                {         
+                    //profile
+                    <li class="nav-item">
+                        <a class="nav-link text-dark"
+                           asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage your account"> Hello @User.Identity?.Name
+                        </a>
+                    </li>
+                    //logout
+                    <li class="nav-item">
 
-                            <form asp-area="Identity" asp-page="/Account/Logout" method="post">
-                                <button type="submit" class="nav-link btn btn-link text-dark" style="cursor:pointer"> Logout</button>
+                        <form asp-area="Identity" asp-page="/Account/Logout" method="post">
+                            <button type="submit" class="nav-link btn btn-link text-dark" style="cursor:pointer"> Logout</button>
                             </form>
-                        </li>
+                    </li>
+                }
+                else
+                {
+                     <partial name="_LoginPartial" /> 
+                }
                     </ul>
                 </div>
             </div>

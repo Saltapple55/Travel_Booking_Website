@@ -1,4 +1,4 @@
-﻿namespace TravelGroupAssignment1.Areas.DashboardManagement.Models.ViewModel
+﻿namespace TravelGroupAssignment1.Areas.DashboardManagement.Models.ViewModels
 {
     public class DashboardViewModel
     {
