@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TravelGroupAssignment1.Areas.CarManagement.Models;
@@ -8,6 +9,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
 {
     [Area("CarManagement")]
     [Route("[controller]")]
+    [Authorize(Roles = "SuperAdmin, Admin")]
     public class CarRentalCompanyController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -36,6 +38,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
 
         // GET: CarRentalCompanyController/Create
         [HttpGet("Create")]
+        [Authorize(Roles = "SuperAdmin, Admin")]
         public IActionResult Create()
         {
             return View();
@@ -44,6 +47,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         // POST: CarRentalCompanyController/Create
         [HttpPost("Create")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SuperAdmin, Admin")]
         public async Task<IActionResult> Create(CarRentalCompany newCarRentalCompany)
         {
             if (ModelState.IsValid)
@@ -56,6 +60,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         }
 
         [HttpGet("Edit/{id:int}")]
+        [Authorize(Roles = "SuperAdmin, Admin")]
         // GET: CarRentalCompanyController/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
@@ -67,6 +72,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         // POST: CarRentalCompanyController/Edit/5
         [HttpPost("Edit/{id:int}")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SuperAdmin, Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("CarRentalCompanyId", "CompanyName", "Location", "Rating")] CarRentalCompany company)
         {
             if (id != company.CarRentalCompanyId) return NotFound();
@@ -88,6 +94,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         }
 
         [HttpGet("Delete/{id:int}")]
+        [Authorize(Roles = "SuperAdmin, Admin")]
         // GET: CarRentalCompanyController/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
@@ -99,6 +106,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         // POST: CarRentalCompanyController/DeleteConfirmed/5
         [HttpPost("DeleteConfirmed/{id:int}"), ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SuperAdmin, Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var company = await _context.CarRentalCompanies.FindAsync(id);

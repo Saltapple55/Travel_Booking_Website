@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using TravelGroupAssignment1.Data;
 using TravelGroupAssignment1.Areas.FlightManagement.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
 {
@@ -25,12 +26,14 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
         }
 
         [HttpGet("Create")]
+        [Authorize(Roles = "SuperAdmin, Admin")]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost("Create")]
+        [Authorize(Roles = "SuperAdmin, Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Flight newFlight)
         {
@@ -53,6 +56,7 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
         }
 
         [HttpGet("Edit/{flightId:int}")]
+        [Authorize(Roles = "SuperAdmin, Admin")]
         public IActionResult Edit(int flightId)
 
         {
@@ -63,6 +67,7 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
         }
 
         [HttpPost("Edit/{id:int}")]
+        [Authorize(Roles = "SuperAdmin, Admin")]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, [Bind("FlightId", "Airline", "Price", "MaxPassenger", "From", "To", "DepartTime", "ArrivalTime")] Flight flight)
         {
@@ -90,6 +95,7 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
         }
 
         [HttpGet("Delete/{flightId:int}")]
+        [Authorize(Roles = "SuperAdmin, Admin")]
         public IActionResult Delete(int flightId)
 
         {
@@ -102,6 +108,7 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
 
         [HttpPost("DeleteConfirmed/{flightId:int}"), ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SuperAdmin, Admin")]
         public async Task<IActionResult> DeleteConfirmed(int flightId)
         {
             var flight = await _context.Flights.FindAsync(flightId);
