@@ -13,7 +13,7 @@ namespace TravelGroupAssignment1.Models
         [Display(Name = "Booking Reference Number")]
         public string? BookingReference { get; set; }
 
-        protected Booking() 
+        protected Booking()
         {
             BookingReference = GenerateBookingReference();
         }
