@@ -32,9 +32,6 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1 justify-content-end">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Trip" asp-action="Index">My Trip</a>
                         </li>
                         <li class="nav-item">
@@ -46,15 +43,18 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="FlightManagement" asp-controller="Flight" asp-action="Index">Flight</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Admin Dashboard
+                        <li class="nav-item">
+                            <a class="nav-link text-dark"
+                               asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage your account">
+                                Hello @User.Identity?.Name
                             </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" asp-area="HotelManagement" asp-controller="Hotel" asp-action="Index">Hotel Dashboard</a></li>
-                                <li><a class="dropdown-item" asp-area="CarManagement" asp-controller="Car" asp-action="Index">Car Dashboard</a></li>
-                                <li><a class="dropdown-item" asp-area="FlightManagement" asp-controller="Flight" asp-action="Index">Flight Dashboard</a></li>
-                            </ul>
+                        </li>
+                        //logout
+                        <li class="nav-item">
+
+                            <form asp-area="Identity" asp-page="/Account/Logout" method="post">
+                                <button type="submit" class="nav-link btn btn-link text-dark" style="cursor:pointer"> Logout</button>
+                            </form>
                         </li>
                     </ul>
                 </div>
