@@ -176,7 +176,7 @@ namespace TravelGroupAssignment1.Controllers
             if (cust == null) return NotFound();
             return View(cust);
         }
-        [HttpPost]
+        /*[HttpPost]
         public async Task<IActionResult> Checkout([Bind("Email, FirstName, LastName")] Customer customer)
         {
 
@@ -188,6 +188,6 @@ namespace TravelGroupAssignment1.Controllers
             }
 
             return View();
-        }
+        }*/
     }
 }
