@@ -13,7 +13,7 @@ namespace TravelGroupAssignment1.Data
 
            await  roleManager.CreateAsync(new IdentityRole(Enum.Roles.SuperAdmin.ToString()));
             await roleManager.CreateAsync(new IdentityRole(Enum.Roles.Admin.ToString()));
-           await  roleManager.CreateAsync(new IdentityRole(Enum.Roles.Basic.ToString()));
+           await  roleManager.CreateAsync(new IdentityRole(Enum.Roles.Traveler.ToString()));
 
 
 
@@ -47,7 +47,7 @@ namespace TravelGroupAssignment1.Data
                     await userManager.CreateAsync(superUser, "P@ssword123"); //foist administration to users when you can 
                     await userManager.AddToRoleAsync(superUser, Enum.Roles.SuperAdmin.ToString());
                     await userManager.AddToRoleAsync(superUser, Enum.Roles.Admin.ToString());
-                    await userManager.AddToRoleAsync(superUser, Enum.Roles.Basic.ToString());
+                    await userManager.AddToRoleAsync(superUser, Enum.Roles.Traveler.ToString());
 
                }
                

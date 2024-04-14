@@ -30,6 +30,35 @@
                 <label asp-for="Input.PhoneNumber" class="form-label"></label>
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
+            <div class="col-md-6">
+
+                <div class="form-group">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <label asp-for="Input.ProfilePic" style="width: 100%"></label>
+                    @if (Model.Input.ProfilePic != null)
+                    {
+                        <img id="profilePicture" style="width: 350px; height: 350px; object-fit: cover"
+                             src="data: image/*;base64,@(Convert.ToBase64String(Model.Input.ProfilePic))" />
+                    }
+                    else
+                    {
+                        <img id="profilePicture" style="width: 350px; height: 350px; object-fit: cover" src="" />
+                    }
+                    <input type="file"
+                           accept=".png, .jpg, .jpeg, .gif, .tif"
+                           asp-for="Input.ProfilePic"
+                           class="form-control"
+                           style="border: 0px!important; passding:0px; padding-top10px; padding-bottom: 30px"
+                           onchange="document.getElementById('profilePicture').src= window.URL.createObjectURL(this.files[0])" />
+
+                    <span asp-validation-for="Input.ProfilePic" class="text-danger"></span>
+                </div>
+
+            </div>
+
+
+
             <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
         </form>
     </div>

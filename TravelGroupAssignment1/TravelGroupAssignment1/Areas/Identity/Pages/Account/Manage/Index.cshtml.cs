@@ -67,6 +67,8 @@ namespace TravelGroupAssignment1.Areas.Identity.Pages.Account.Manage
             public string FirstName { get; set; }
             [Display(Name = "Last Name")]
             public string LastName { get; set; }
+            [Display(Name = "Profile Picture")]
+            public byte[] ProfilePic { get; set; }
 
         }
 
@@ -76,6 +78,7 @@ namespace TravelGroupAssignment1.Areas.Identity.Pages.Account.Manage
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
             var firstName = user.FirstName;
             var lastName = user.LastName;
+            var profilePic = user.ProfilePic;
             Username = userName;
 
             Input = new InputModel
@@ -160,6 +163,17 @@ namespace TravelGroupAssignment1.Areas.Identity.Pages.Account.Manage
                 user.LastName = lastName;
                 await _userManager.UpdateAsync(user);
             }
+            if (Request.Form.Files.Count > 0)
+            {
+                IFormFile file = Request.Form.Files.FirstOrDefault();
+                using (var dataStream = new MemoryStream())
+                {
+                    await file.CopyToAsync(dataStream);
+                    user.ProfilePic = dataStream.ToArray();
+                }
+                await _userManager.UpdateAsync(user);
+            }
+
 
 
             await _signInManager.RefreshSignInAsync(user);

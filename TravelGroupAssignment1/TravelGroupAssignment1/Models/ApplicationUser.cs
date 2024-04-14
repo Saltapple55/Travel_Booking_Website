@@ -9,6 +9,7 @@ namespace TravelGroupAssignment1.Models
         public string LastName { get; set; }
         public int UsernameChange { get; set; } = 10; //tracks the number of times
         
+        public byte[]? ProfilePic { get; set; }
     }
 }
 
