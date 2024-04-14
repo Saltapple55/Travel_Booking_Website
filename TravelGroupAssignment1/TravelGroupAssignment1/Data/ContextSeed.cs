@@ -44,7 +44,7 @@ namespace TravelGroupAssignment1.Data
                     if (user == null)
                     {
                     System.Diagnostics.Debug.WriteLine("Super user creating");
-                    await userManager.CreateAsync(superUser, "P@ssword123"); //foist administration to users when you can 
+                    await userManager.CreateAsync(superUser, "P@ssword123$"); //foist administration to users when you can 
                     await userManager.AddToRoleAsync(superUser, Enum.Roles.SuperAdmin.ToString());
                     await userManager.AddToRoleAsync(superUser, Enum.Roles.Admin.ToString());
                     await userManager.AddToRoleAsync(superUser, Enum.Roles.Basic.ToString());

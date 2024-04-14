@@ -49,6 +49,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
 
         // GET: CarController/Create
         [HttpGet("Create")]
+        [Authorize(Roles = "SuperAdmin, Admin")]
         public async Task<IActionResult> Create()
         {
             ViewBag.Companies = new SelectList(_context.CarRentalCompanies, "CarRentalCompanyId", "CompanyName");
@@ -61,6 +62,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         // POST: CarController/Create
         [HttpPost("Create")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SuperAdmin, Admin")]
         public async Task<IActionResult> Create([Bind("Make", "Model", "Type", "PricePerDay", "MaxPassengers",
             "CompanyId", "Company", "Transmission", "HasAirConditioning", "HasUnlimitedMileage")] Car car)
         {
@@ -93,6 +95,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
 
         // GET: CarController/Edit/5
         [HttpGet("Edit/{carId:int}")]
+        [Authorize(Roles = "SuperAdmin, Admin")]
         public async Task<IActionResult> Edit(int carId)
         {
             var car = await _context.Cars
@@ -107,6 +110,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         // POST: CarController/Edit/5
         [HttpPost("Edit/{carId:int}")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SuperAdmin, Admin")]
         public async Task<IActionResult> Edit(int carId, [Bind("CarId", "Make", "Model", "Type", "PricePerDay", "MaxPassengers",
             "CompanyId", "Company", "Transmission", "HasAirConditioning", "HasUnlimitedMileage")] Car car)
         {
@@ -124,6 +128,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
 
         // GET: CarController/Delete/5
         [HttpGet("Delete/{carId:int}")]
+        [Authorize(Roles = "SuperAdmin, Admin")]
         public async Task<IActionResult> Delete(int carId)
         {
             var car = await _context.Cars
@@ -136,6 +141,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         // POST: CarController/DeleteConfirmed/5
         [HttpPost("DeleteConfirmed/{carId:int}"), ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SuperAdmin, Admin")]
         public async Task<IActionResult> DeleteConfirmed(int carId)
         {
             var car = await _context.Cars.FindAsync(carId);
