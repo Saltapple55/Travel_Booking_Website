@@ -44,9 +44,9 @@
 					    <td>@car.Company.CompanyName</td>
 					    <td>
 						    <a asp-controller="CarBooking" asp-action="Index" asp-route-carId="@car.CarId" class="btn btn.sm btn-secondary" role="button">Bookings<i class="fa-solid fa-list-check"></i></a>
-						    <a asp-controller="Dashboard" asp-action="CarDetails" asp-route-carId="@car.CarId" class="btn btn-info">Details</a>
-						    <a asp-controller="Dashboard" asp-action="CarEdit" asp-route-carId="@car.CarId" class="btn btn-warning">Edit</a>
-						    <a asp-controller="Dashboard" asp-action="CarDelete" asp-route-carId="@car.CarId" class="btn btn-danger">Delete</a>
+						    <a asp-controller="Car" asp-action="Details" asp-route-carId="@car.CarId" class="btn btn-info">Details</a>
+                            <a asp-controller="Car" asp-action="Edit" asp-route-carId="@car.CarId" class="btn btn-warning">Edit</a>
+                            <a asp-controller="Car" asp-action="Delete" asp-route-carId="@car.CarId" class="btn btn-danger">Delete</a>
 					    </td>
 				    </tr>
 			    }
