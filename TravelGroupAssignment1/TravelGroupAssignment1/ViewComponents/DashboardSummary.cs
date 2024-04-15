@@ -23,13 +23,15 @@ namespace TravelGroupAssignment1.ViewComponents
             int totalHotel = await _context.Hotels.CountAsync();
             int totalCar = await _context.Cars.CountAsync();
             int totalFlight = await _context.Flights.CountAsync();
+            int totalUser = await _context.Users.CountAsync();
 
 
             Dictionary<string, int> result = new Dictionary<string, int>
             {
                 { "Hotel", totalHotel },
                 { "Car", totalCar },
-                { "Flight", totalFlight }
+                { "Flight", totalFlight },
+                {"User", totalUser }
             };
 
             return (IActionResult)View(result);
