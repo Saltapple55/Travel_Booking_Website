@@ -25,6 +25,9 @@ namespace TravelGroupAssignment1.Data
         public DbSet<Passenger> Passengers { get; set; }
         public DbSet<Trip> Trips { get; set; }
         public DbSet<FlightBooking> FlightBookings { get; set; }
+        public DbSet<CarComment> CarComments { get; set; }
+        public DbSet<RoomComment> RoomComments { get; set; }
+        public DbSet<HotelComment> HotelComments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -49,6 +52,20 @@ namespace TravelGroupAssignment1.Data
                 .WithOne(r => r.Room)
                 .HasForeignKey(rb => rb.RoomId);
 
+            modelBuilder.Entity<Car>()
+                .HasMany(c => c.CarComments)
+                .WithOne(cc => cc.Car)
+                .HasForeignKey(c => c.CarId);
+
+            modelBuilder.Entity<Room>()
+                .HasMany(r => r.RoomComments)
+                .WithOne(rc => rc.Room)
+                .HasForeignKey(r => r.RoomId);
+
+            modelBuilder.Entity<Hotel>()
+                .HasMany(h => h.HotelComments)
+                .WithOne(hc => hc.Hotel)
+                .HasForeignKey(h => h.HotelId);
 
             modelBuilder.Entity<Trip>().HasData(
                 new Trip { TripId = 1 }

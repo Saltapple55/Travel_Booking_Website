@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.Serialization;
+using TravelGroupAssignment1.Areas.CarManagement.Models;
 using TravelGroupAssignment1.Areas.RoomManagement.Models;
 using TravelGroupAssignment1.Data;
 
@@ -74,6 +75,21 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
             return View(new RoomBooking { RoomId = roomId, TripId = 1 });
         }
 
+        // Create for admins
+        [HttpGet("Create/{roomId:int}")]
+        public async Task<IActionResult> Create(int roomId)
+        {
+            var room = await _context.Rooms.FindAsync(roomId);
+            if (room == null) return NotFound();
+            var hotel = await _context.Hotels.FindAsync(room.HotelId);
+            if (hotel == null) return NotFound();
+
+            ViewBag.Room = room;
+            ViewBag.Hotel = hotel;
+
+            return View(new RoomBooking { RoomId = roomId, TripId = 1, CheckInDate = DateTime.Now, CheckOutDate = DateTime.Now.AddDays(2)});
+        }
+
         // POST: RoomBookingController/CreateBooking
         [HttpPost("CreateBooking")]
         [ValidateAntiForgeryToken]
@@ -94,16 +110,17 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
                 if (await roomBookingExists(roomBooking))
                 {
                     ModelState.AddModelError("", "Room is not available for booking on given date range.");
-                    return View(roomBooking);
+                    return View("Create", roomBooking);
                 }
 
                 await _context.RoomBookings.AddAsync(roomBooking);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Trip");
+                if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                    return RedirectToAction("Index", "RoomBooking", new { roomId = roomBooking.RoomId});
+                else
+                    return RedirectToAction("Index", "Trip");
             }
-
-            //return RedirectToAction("Create", new { roomId = roomBooking.RoomId });
-            return View(roomBooking);
+            return View("Create", roomBooking);
         }
 
         // GET: RoomBookingController/Edit/5
@@ -174,16 +191,17 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
         // POST: RoomBookingController/DeleteConfirmed/5
         [HttpPost("DeleteConfirmed/{id:int}"), ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id, string? con = "RoomBooking")
+        public async Task<IActionResult> DeleteConfirmed(int id, string? con = "Trip")
         {
             var roomBooking = await _context.RoomBookings.FindAsync(id);
             if (roomBooking != null)
             {
                 _context.RoomBookings.Remove(roomBooking);
                 await _context.SaveChangesAsync();
-                if (string.Equals(con, "RoomBooking"))
-                    return RedirectToAction("Index", con);
-                return RedirectToAction("Index", new { roomId = roomBooking.RoomId });
+                if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                    return RedirectToAction("Index", "RoomBooking", new { roomId = roomBooking.RoomId });
+                else
+                    return RedirectToAction("Index", "Trip");
             }
             return NotFound();
         }
