@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TravelGroupAssignment1.Areas.HotelManagement.Models;
 using TravelGroupAssignment1.Data;
@@ -26,7 +27,8 @@ namespace TravelGroupAssignment1.Areas.HotelManagement.Controllers
                                 .Where(c => c.HotelId == hotelId)
                                 .OrderByDescending(c => c.DatePosted)
                                 .ToListAsync();
-
+            if (comments.Count == 0)
+                return Json(new { success = false, message = "no comments found" });
             return Json(comments); // return as JSON
         }
 

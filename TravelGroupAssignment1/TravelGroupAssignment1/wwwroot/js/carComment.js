@@ -1,14 +1,14 @@
-﻿function loadComments(roomId) {
+﻿function loadComments(carId) {
 
     $.ajax({
-        url: '/RoomComment/GetComments/'+ roomId,
+        url: '/CarComment/GetComments/'+ carId,
         method: 'GET',
         success: (data) => {
             var commentHtml = '';
             for (var i = 0; i < data.length; i++) {
                 console.log(data[i])
                 commentHtml += '<div class="comment container mt-2 card">'
-                commentHtml += '<span><b>Author</b>: ' + data[i].author + '&nbsp&nbsp <b>Rating</b>: ' + data[i].rating +'</span>'
+                commentHtml += '<span><b>Author</b>: ' + data[i].author + '&nbsp&nbsp <b>Rating</b>: ' + data[i].rating + '</span>'
                 commentHtml += '<p class="text-body">' + data[i].content + '</p>'
 
                 commentHtml += '<span class="text-secondary">Posted on: ' + new Date(data[i].datePosted).toLocaleString() + '</span>'
@@ -21,27 +21,26 @@
 }
 
 
-
 // on document ready run function
 $(() => {
 
-    var roomId = $('#roomComments input[name="RoomId"]').val();
-    var author = $('#roomComments input[name="Username"]').val();
+    var carId = $('#carComments input[name="CarId"]').val();
+    var author = $('#carComments input[name="Username"]').val();
 
-    loadComments(roomId);
+    loadComments(carId);
 
     $('#addCommentForm').on("submit", function (e) {
 
         e.preventDefault(); // prevent reload
         var formData = {
-            CarId: roomId,
+            CarId: carId,
             Author: author,
-            Content: $('#roomComments textarea[name="Content"]').val(),
-            Rating: $('#roomComments Select[name="Rating"]').val()
+            Content: $('#carComments textarea[name="Content"]').val(),
+            Rating: $('#carComments Select[name="Rating"]').val()
         };
 
         $.ajax({
-            url: '/RoomComment/AddComment',
+            url: '/CarComment/AddComment',
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(formData),
@@ -52,7 +51,7 @@ $(() => {
                     // reset form values
                     $('#carComments textarea[name="Content"]').val(''); 
                     $('#carComments select[name="Rating"]').val('5');
-                    loadComments(roomId);
+                    loadComments(carId);
                 } else {
                     alert(response.message)
                 }

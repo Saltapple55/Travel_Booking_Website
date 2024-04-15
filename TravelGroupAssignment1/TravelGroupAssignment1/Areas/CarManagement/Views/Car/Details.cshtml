@@ -90,13 +90,16 @@ else
         </div>
 
 
-
-        <div id="carComments">
+        
+         <div id="carComments">
             <h3>Comments</h3>
 
             <!-- load comments here -->
-            <div id="commentList" class="container"></div>
+            <div id="commentList" class="container">
+                <p>Please login to comment and review</p>
+            </div>
             <br />
+
             <!-- add comments here -->
             @if (SignInManager.IsSignedIn(User))
             {
@@ -105,7 +108,7 @@ else
                     <div class="card-header">
                         <h5>Post a Comment</h5>
                     </div>
-
+                
                     <div class="card-body">
                         <form id="addCommentForm" class="mt-3">
                             <input type="hidden" name="CarId" value="@Model.CarId" />
@@ -139,10 +142,14 @@ else
                 </div>
             }
         </div>
+        
     </div>
 }
 @section Scripts {
-    <script src="~/js/carComment.js"></script>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <script src="~/js/carComment.js"></script>  
+    }  
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }

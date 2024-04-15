@@ -103,7 +103,9 @@ else
                 <div class="accordion-body">
 
                     <!-- load comments here -->
-                    <div id="commentList" class="container"></div>
+                    <div id="commentList" class="container">
+                        <p>Please login to comment and review</p>
+                    </div>
                     <br />
                     <!-- add comments here -->
                     @if (SignInManager.IsSignedIn(User))
@@ -220,7 +222,10 @@ else
     }
     @section Scripts {
     <script src="~/js/roomSearch.js"></script>
-    <script src="~/js/hotelComment.js"></script>
+    @if (SignInManager.IsSignedIn(User))
+        {
+            <script src="~/js/hotelComment.js"></script>
+        }
     }
 }
 

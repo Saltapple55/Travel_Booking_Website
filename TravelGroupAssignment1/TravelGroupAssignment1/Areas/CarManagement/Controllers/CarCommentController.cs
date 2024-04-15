@@ -6,7 +6,6 @@ using TravelGroupAssignment1.Data;
 
 namespace TravelGroupAssignWment1.Areas.CarManagement.Controllers
 {
-    [Authorize]
     [Area("CarManagement")]
     [Route("[controller]")]
     public class CarCommentController : Controller
@@ -27,7 +26,8 @@ namespace TravelGroupAssignWment1.Areas.CarManagement.Controllers
                                 .Where(c => c.CarId == carId)
                                 .OrderByDescending(c => c.DatePosted)
                                 .ToListAsync();
-
+            if (comments.Count == 0)
+                return Json(new { success = false, message = "no comments found" });
             return Json(comments); // return as JSON
         }
 
