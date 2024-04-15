@@ -51,10 +51,12 @@
     }
     else
     {
-        <p>No project available</p>
+        <p>No rooms available</p>
 
     }
     <a asp-controller="Room" asp-action="Create" asp-route-hotelId="@ViewBag.hotelId" class="btn btn-primary">Create new Room</a>
+    <a asp-area="HotelManagement" asp-controller="Hotel" asp-action="Index" class="btn btn-secondary">Return to Hotels</a>
+
 }
 else
 {

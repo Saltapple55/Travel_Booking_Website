@@ -3862,6 +3862,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
+          "Microsoft.AspNetCore.Components.Analyzers": "8.0.4",
           "Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter": "8.0.4",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.4",
           "Microsoft.AspNetCore.Identity.UI": "8.0.4",
@@ -10399,23 +10400,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\biradon\\.nuget\\packages\\": {},
+    "C:\\Users\\CM\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\biradon\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment-UnitTesting\\TravelGroupAssignment-UnitTesting.csproj",
+      "projectUniqueName": "C:\\Users\\CM\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment-UnitTesting\\TravelGroupAssignment-UnitTesting.csproj",
       "projectName": "TravelGroupAssignment-UnitTesting",
-      "projectPath": "C:\\Users\\biradon\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment-UnitTesting\\TravelGroupAssignment-UnitTesting.csproj",
-      "packagesPath": "C:\\Users\\biradon\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\biradon\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment-UnitTesting\\obj\\",
+      "projectPath": "C:\\Users\\CM\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment-UnitTesting\\TravelGroupAssignment-UnitTesting.csproj",
+      "packagesPath": "C:\\Users\\CM\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\CM\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment-UnitTesting\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\biradon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\CM\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -10430,8 +10431,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\biradon\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\TravelGroupAssignment1.csproj": {
-              "projectPath": "C:\\Users\\biradon\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\TravelGroupAssignment1.csproj"
+            "C:\\Users\\CM\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\TravelGroupAssignment1.csproj": {
+              "projectPath": "C:\\Users\\CM\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\TravelGroupAssignment1.csproj"
             }
           }
         }
@@ -10440,6 +10441,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -10491,7 +10497,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
