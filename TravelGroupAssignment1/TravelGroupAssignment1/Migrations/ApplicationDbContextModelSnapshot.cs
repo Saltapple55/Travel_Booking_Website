@@ -591,14 +591,23 @@ namespace TravelGroupAssignment1.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TripId"));
 
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("TripReference")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("TripId");
+
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Trips");
 
                     b.HasData(
                         new
                         {
-                            TripId = 1
+                            TripId = 1,
+                            TripReference = "2404142145d88fa0"
                         });
                 });
 
@@ -717,6 +726,15 @@ namespace TravelGroupAssignment1.Migrations
                         .IsRequired();
 
                     b.Navigation("Room");
+                });
+
+            modelBuilder.Entity("TravelGroupAssignment1.Models.Trip", b =>
+                {
+                    b.HasOne("TravelGroupAssignment1.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("TravelGroupAssignment1.Areas.CarManagement.Models.Car", b =>
