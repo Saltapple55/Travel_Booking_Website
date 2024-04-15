@@ -12,8 +12,8 @@ using TravelGroupAssignment1.Data;
 namespace TravelGroupAssignment1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240413061957_Identities")]
-    partial class Identities
+    [Migration("20240414044529_Everything")]
+    partial class Everything
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,7 +49,7 @@ namespace TravelGroupAssignment1.Migrations
                         .HasDatabaseName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.ToTable("AspNetRoles", (string)null);
+                    b.ToTable("Roles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -74,7 +74,7 @@ namespace TravelGroupAssignment1.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetRoleClaims", (string)null);
+                    b.ToTable("RoleClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -99,7 +99,7 @@ namespace TravelGroupAssignment1.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserClaims", (string)null);
+                    b.ToTable("UserClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -121,7 +121,7 @@ namespace TravelGroupAssignment1.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserLogins", (string)null);
+                    b.ToTable("UserLogins", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -136,7 +136,7 @@ namespace TravelGroupAssignment1.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetUserRoles", (string)null);
+                    b.ToTable("UserRoles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -156,6 +156,358 @@ namespace TravelGroupAssignment1.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("TravelGroupAssignment1.Areas.CarManagement.Models.Car", b =>
+                {
+                    b.Property<int>("CarId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CarId"));
+
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("HasAirConditioning")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HasUnlimitedMileage")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Make")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("MaxPassengers")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Model")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<double>("PricePerDay")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Transmission")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("CarId");
+
+                    b.HasIndex("CompanyId");
+
+                    b.ToTable("Cars");
+                });
+
+            modelBuilder.Entity("TravelGroupAssignment1.Areas.CarManagement.Models.CarBooking", b =>
+                {
+                    b.Property<int>("BookingId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingId"));
+
+                    b.Property<string>("BookingReference")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("EndDate")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("StartDate")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("TripId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BookingId");
+
+                    b.HasIndex("CarId");
+
+                    b.ToTable("CarBookings");
+                });
+
+            modelBuilder.Entity("TravelGroupAssignment1.Areas.CarManagement.Models.CarRentalCompany", b =>
+                {
+                    b.Property<int>("CarRentalCompanyId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CarRentalCompanyId"));
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<double>("Rating")
+                        .HasColumnType("float");
+
+                    b.HasKey("CarRentalCompanyId");
+
+                    b.ToTable("CarRentalCompanies");
+                });
+
+            modelBuilder.Entity("TravelGroupAssignment1.Areas.CustomerManagement.Models.Customer", b =>
+                {
+                    b.Property<int>("CustomerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerId"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CustomerId");
+
+                    b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("TravelGroupAssignment1.Areas.FlightManagement.Models.Flight", b =>
+                {
+                    b.Property<int>("FlightId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FlightId"));
+
+                    b.Property<string>("Airline")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<DateTime>("ArrivalTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DepartTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("From")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("MaxPassenger")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<string>("To")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("FlightId");
+
+                    b.ToTable("Flights");
+                });
+
+            modelBuilder.Entity("TravelGroupAssignment1.Areas.FlightManagement.Models.FlightBooking", b =>
+                {
+                    b.Property<int>("BookingId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingId"));
+
+                    b.Property<string>("BookingReference")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FlightClass")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("FlightId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Seat")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("TripId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BookingId");
+
+                    b.HasIndex("FlightId");
+
+                    b.ToTable("FlightBookings");
+                });
+
+            modelBuilder.Entity("TravelGroupAssignment1.Areas.FlightManagement.Models.Passenger", b =>
+                {
+                    b.Property<int>("PassengerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PassengerId"));
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int?>("FlightBookingBookingId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("FlightId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("PassportNo")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("PassengerId");
+
+                    b.HasIndex("FlightBookingBookingId");
+
+                    b.HasIndex("FlightId");
+
+                    b.ToTable("Passengers");
+                });
+
+            modelBuilder.Entity("TravelGroupAssignment1.Areas.HotelManagement.Models.Hotel", b =>
+                {
+                    b.Property<int>("HotelId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HotelId"));
+
+                    b.Property<string>("Amenities")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("HotelName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("HotelId");
+
+                    b.ToTable("Hotels");
+                });
+
+            modelBuilder.Entity("TravelGroupAssignment1.Areas.RoomManagement.Models.Room", b =>
+                {
+                    b.Property<int>("RoomId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoomId"));
+
+                    b.Property<string>("Amenities")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("BedDescription")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("Capacity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HotelId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<double>("PricePerNight")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("RoomSize")
+                        .HasColumnType("int");
+
+                    b.HasKey("RoomId");
+
+                    b.HasIndex("HotelId");
+
+                    b.ToTable("Rooms");
+                });
+
+            modelBuilder.Entity("TravelGroupAssignment1.Areas.RoomManagement.Models.RoomBooking", b =>
+                {
+                    b.Property<int>("BookingId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingId"));
+
+                    b.Property<string>("BookingReference")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CheckInDate")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("CheckOutDate")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TripId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BookingId");
+
+                    b.HasIndex("RoomId");
+
+                    b.ToTable("RoomBookings");
                 });
 
             modelBuilder.Entity("TravelGroupAssignment1.Models.ApplicationUser", b =>
@@ -231,354 +583,7 @@ namespace TravelGroupAssignment1.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("AspNetUsers", (string)null);
-                });
-
-            modelBuilder.Entity("TravelGroupAssignment1.Models.Car", b =>
-                {
-                    b.Property<int>("CarId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CarId"));
-
-                    b.Property<int>("CompanyId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("HasAirConditioning")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("HasUnlimitedMileage")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Make")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("MaxPassengers")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Model")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("PricePerDay")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Transmission")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CarId");
-
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("Cars");
-                });
-
-            modelBuilder.Entity("TravelGroupAssignment1.Models.CarBooking", b =>
-                {
-                    b.Property<int>("BookingId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingId"));
-
-                    b.Property<string>("BookingReference")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CarId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("EndDate")
-                        .IsRequired()
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("StartDate")
-                        .IsRequired()
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("TripId")
-                        .HasColumnType("int");
-
-                    b.HasKey("BookingId");
-
-                    b.HasIndex("CarId");
-
-                    b.ToTable("CarBookings");
-                });
-
-            modelBuilder.Entity("TravelGroupAssignment1.Models.CarRentalCompany", b =>
-                {
-                    b.Property<int>("CarRentalCompanyId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CarRentalCompanyId"));
-
-                    b.Property<string>("CompanyName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Location")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Rating")
-                        .HasColumnType("float");
-
-                    b.HasKey("CarRentalCompanyId");
-
-                    b.ToTable("CarRentalCompanies");
-                });
-
-            modelBuilder.Entity("TravelGroupAssignment1.Models.Customer", b =>
-                {
-                    b.Property<int>("CustomerId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerId"));
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Username")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CustomerId");
-
-                    b.ToTable("Customers");
-
-                    b.HasData(
-                        new
-                        {
-                            CustomerId = 1,
-                            Email = "Comp2319@gmail.com",
-                            FirstName = "Guest",
-                            LastName = "User",
-                            Password = "password",
-                            Username = "username"
-                        });
-                });
-
-            modelBuilder.Entity("TravelGroupAssignment1.Models.Flight", b =>
-                {
-                    b.Property<int>("FlightId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FlightId"));
-
-                    b.Property<string>("Airline")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ArrivalTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DepartTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("From")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("MaxPassenger")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.Property<string>("To")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("FlightId");
-
-                    b.ToTable("Flights");
-                });
-
-            modelBuilder.Entity("TravelGroupAssignment1.Models.FlightBooking", b =>
-                {
-                    b.Property<int>("BookingId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingId"));
-
-                    b.Property<string>("BookingReference")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FlightClass")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("FlightId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Seat")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TripId")
-                        .HasColumnType("int");
-
-                    b.HasKey("BookingId");
-
-                    b.HasIndex("FlightId");
-
-                    b.ToTable("FlightBookings");
-                });
-
-            modelBuilder.Entity("TravelGroupAssignment1.Models.Hotel", b =>
-                {
-                    b.Property<int>("HotelId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HotelId"));
-
-                    b.Property<string>("Amenities")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HotelName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Location")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("HotelId");
-
-                    b.ToTable("Hotels");
-                });
-
-            modelBuilder.Entity("TravelGroupAssignment1.Models.Passenger", b =>
-                {
-                    b.Property<int>("PassengerId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PassengerId"));
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("FlightBookingBookingId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("FlightId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PassportNo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("PassengerId");
-
-                    b.HasIndex("FlightBookingBookingId");
-
-                    b.HasIndex("FlightId");
-
-                    b.ToTable("Passengers");
-                });
-
-            modelBuilder.Entity("TravelGroupAssignment1.Models.Room", b =>
-                {
-                    b.Property<int>("RoomId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoomId"));
-
-                    b.Property<string>("Amenities")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BedDescription")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Capacity")
-                        .HasColumnType("int");
-
-                    b.Property<int>("HotelId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("PricePerNight")
-                        .HasColumnType("float");
-
-                    b.Property<int?>("RoomSize")
-                        .HasColumnType("int");
-
-                    b.HasKey("RoomId");
-
-                    b.HasIndex("HotelId");
-
-                    b.ToTable("Rooms");
-                });
-
-            modelBuilder.Entity("TravelGroupAssignment1.Models.RoomBooking", b =>
-                {
-                    b.Property<int>("BookingId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingId"));
-
-                    b.Property<string>("BookingReference")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CheckInDate")
-                        .IsRequired()
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("CheckOutDate")
-                        .IsRequired()
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("RoomId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TripId")
-                        .HasColumnType("int");
-
-                    b.HasKey("BookingId");
-
-                    b.HasIndex("RoomId");
-
-                    b.ToTable("RoomBookings");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("TravelGroupAssignment1.Models.Trip", b =>
@@ -600,7 +605,7 @@ namespace TravelGroupAssignment1.Migrations
                         new
                         {
                             TripId = 1,
-                            CustomerId = 1
+                            CustomerId = 0
                         });
                 });
 
@@ -655,9 +660,9 @@ namespace TravelGroupAssignment1.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TravelGroupAssignment1.Models.Car", b =>
+            modelBuilder.Entity("TravelGroupAssignment1.Areas.CarManagement.Models.Car", b =>
                 {
-                    b.HasOne("TravelGroupAssignment1.Models.CarRentalCompany", "Company")
+                    b.HasOne("TravelGroupAssignment1.Areas.CarManagement.Models.CarRentalCompany", "Company")
                         .WithMany("Cars")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -666,9 +671,9 @@ namespace TravelGroupAssignment1.Migrations
                     b.Navigation("Company");
                 });
 
-            modelBuilder.Entity("TravelGroupAssignment1.Models.CarBooking", b =>
+            modelBuilder.Entity("TravelGroupAssignment1.Areas.CarManagement.Models.CarBooking", b =>
                 {
-                    b.HasOne("TravelGroupAssignment1.Models.Car", "Car")
+                    b.HasOne("TravelGroupAssignment1.Areas.CarManagement.Models.Car", "Car")
                         .WithMany("Bookings")
                         .HasForeignKey("CarId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -677,9 +682,9 @@ namespace TravelGroupAssignment1.Migrations
                     b.Navigation("Car");
                 });
 
-            modelBuilder.Entity("TravelGroupAssignment1.Models.FlightBooking", b =>
+            modelBuilder.Entity("TravelGroupAssignment1.Areas.FlightManagement.Models.FlightBooking", b =>
                 {
-                    b.HasOne("TravelGroupAssignment1.Models.Flight", "Flight")
+                    b.HasOne("TravelGroupAssignment1.Areas.FlightManagement.Models.Flight", "Flight")
                         .WithMany()
                         .HasForeignKey("FlightId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -688,20 +693,20 @@ namespace TravelGroupAssignment1.Migrations
                     b.Navigation("Flight");
                 });
 
-            modelBuilder.Entity("TravelGroupAssignment1.Models.Passenger", b =>
+            modelBuilder.Entity("TravelGroupAssignment1.Areas.FlightManagement.Models.Passenger", b =>
                 {
-                    b.HasOne("TravelGroupAssignment1.Models.FlightBooking", null)
+                    b.HasOne("TravelGroupAssignment1.Areas.FlightManagement.Models.FlightBooking", null)
                         .WithMany("Passengers")
                         .HasForeignKey("FlightBookingBookingId");
 
-                    b.HasOne("TravelGroupAssignment1.Models.Flight", null)
+                    b.HasOne("TravelGroupAssignment1.Areas.FlightManagement.Models.Flight", null)
                         .WithMany("PassengerList")
                         .HasForeignKey("FlightId");
                 });
 
-            modelBuilder.Entity("TravelGroupAssignment1.Models.Room", b =>
+            modelBuilder.Entity("TravelGroupAssignment1.Areas.RoomManagement.Models.Room", b =>
                 {
-                    b.HasOne("TravelGroupAssignment1.Models.Hotel", "Hotel")
+                    b.HasOne("TravelGroupAssignment1.Areas.HotelManagement.Models.Hotel", "Hotel")
                         .WithMany("Rooms")
                         .HasForeignKey("HotelId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -710,9 +715,9 @@ namespace TravelGroupAssignment1.Migrations
                     b.Navigation("Hotel");
                 });
 
-            modelBuilder.Entity("TravelGroupAssignment1.Models.RoomBooking", b =>
+            modelBuilder.Entity("TravelGroupAssignment1.Areas.RoomManagement.Models.RoomBooking", b =>
                 {
-                    b.HasOne("TravelGroupAssignment1.Models.Room", "Room")
+                    b.HasOne("TravelGroupAssignment1.Areas.RoomManagement.Models.Room", "Room")
                         .WithMany("RoomBookings")
                         .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -721,32 +726,32 @@ namespace TravelGroupAssignment1.Migrations
                     b.Navigation("Room");
                 });
 
-            modelBuilder.Entity("TravelGroupAssignment1.Models.Car", b =>
+            modelBuilder.Entity("TravelGroupAssignment1.Areas.CarManagement.Models.Car", b =>
                 {
                     b.Navigation("Bookings");
                 });
 
-            modelBuilder.Entity("TravelGroupAssignment1.Models.CarRentalCompany", b =>
+            modelBuilder.Entity("TravelGroupAssignment1.Areas.CarManagement.Models.CarRentalCompany", b =>
                 {
                     b.Navigation("Cars");
                 });
 
-            modelBuilder.Entity("TravelGroupAssignment1.Models.Flight", b =>
+            modelBuilder.Entity("TravelGroupAssignment1.Areas.FlightManagement.Models.Flight", b =>
                 {
                     b.Navigation("PassengerList");
                 });
 
-            modelBuilder.Entity("TravelGroupAssignment1.Models.FlightBooking", b =>
+            modelBuilder.Entity("TravelGroupAssignment1.Areas.FlightManagement.Models.FlightBooking", b =>
                 {
                     b.Navigation("Passengers");
                 });
 
-            modelBuilder.Entity("TravelGroupAssignment1.Models.Hotel", b =>
+            modelBuilder.Entity("TravelGroupAssignment1.Areas.HotelManagement.Models.Hotel", b =>
                 {
                     b.Navigation("Rooms");
                 });
 
-            modelBuilder.Entity("TravelGroupAssignment1.Models.Room", b =>
+            modelBuilder.Entity("TravelGroupAssignment1.Areas.RoomManagement.Models.Room", b =>
                 {
                     b.Navigation("RoomBookings");
                 });

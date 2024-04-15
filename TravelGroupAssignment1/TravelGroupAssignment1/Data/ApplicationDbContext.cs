@@ -1,14 +1,11 @@
-﻿<<<<<<<<< Temporary merge branch 1
-﻿using Microsoft.EntityFrameworkCore;
-using TravelGroupAssignment1.Areas.CarManagement.Models;
-using TravelGroupAssignment1.Areas.DashboardManagement.Models.ViewModels;
-using TravelGroupAssignment1.Areas.HotelManagement.Models;
-using TravelGroupAssignment1.Areas.RoomManagement.Models;
-=========
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
->>>>>>>>> Temporary merge branch 2
+using TravelGroupAssignment1.Areas.CarManagement.Models;
+using TravelGroupAssignment1.Areas.CustomerManagement.Models;
+using TravelGroupAssignment1.Areas.FlightManagement.Models;
+using TravelGroupAssignment1.Areas.HotelManagement.Models;
+using TravelGroupAssignment1.Areas.RoomManagement.Models;
 using TravelGroupAssignment1.Models;
 namespace TravelGroupAssignment1.Data
 {
@@ -52,14 +49,41 @@ namespace TravelGroupAssignment1.Data
                 .WithOne(r => r.Room)
                 .HasForeignKey(rb => rb.RoomId);
 
-            modelBuilder.Entity<Customer>().HasData(
-               new Customer { CustomerId = 1, Username = "username", Password = "password", FirstName = "Guest", LastName = "User", Email = "Comp2319@gmail.com" }
-
-               );
 
             modelBuilder.Entity<Trip>().HasData(
-                new Trip { TripId = 1, CustomerId = 1 }
+                new Trip { TripId = 1 }
                  );
+            modelBuilder.Entity<ApplicationUser>(entity =>
+            {
+                entity.ToTable(name: "Users");
+            }
+                );
+            modelBuilder.Entity<IdentityRole>(entity =>
+            {
+                entity.ToTable(name: "Roles");
+            }
+               );
+            modelBuilder.Entity<IdentityUserRole<string>>(entity =>
+            {
+                entity.ToTable(name: "UserRoles");
+            }
+             );
+            modelBuilder.Entity<IdentityUserClaim<string>>(entity =>
+            {
+                entity.ToTable(name: "UserClaims");
+            }
+            );
+            modelBuilder.Entity<IdentityUserLogin<string>>(entity =>
+            {
+                entity.ToTable(name: "UserLogins");
+            }
+            );
+            modelBuilder.Entity<IdentityRoleClaim<string>>(entity =>
+            {
+                entity.ToTable(name: "RoleClaims");
+            }
+            );
         }
+
     }
 }

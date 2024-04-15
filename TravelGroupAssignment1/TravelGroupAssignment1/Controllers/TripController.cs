@@ -67,7 +67,7 @@ namespace TravelGroupAssignment1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TripId,CustomerId")] Trip trip)
+        public async Task<IActionResult> Create([Bind("TripId")] Trip trip)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +99,7 @@ namespace TravelGroupAssignment1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TripId,CustomerId")] Trip trip)
+        public async Task<IActionResult> Edit(int id, [Bind("TripId")] Trip trip)
         {
             if (id != trip.TripId)
             {
@@ -172,9 +172,9 @@ namespace TravelGroupAssignment1.Controllers
         {
             var trip = _context.Trips.Find(tripId);
             if (trip == null) return NotFound();
-            var cust = _context.Customers.Find(trip.CustomerId);
-            if (cust == null) return NotFound();
-            return View(cust);
+            //var cust = _context.Customers.Find(trip.CustomerId);
+            //if (cust == null) return NotFound();
+            return View();
         }
         /*[HttpPost]
         public async Task<IActionResult> Checkout([Bind("Email, FirstName, LastName")] Customer customer)

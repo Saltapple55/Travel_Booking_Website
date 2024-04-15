@@ -47,7 +47,10 @@
                             <a class="nav-link text-dark" asp-area="FlightManagement" asp-controller="Flight" asp-action="Index">Flight</a>
                         </li>
                 @if (SignInManager.IsSignedIn(User))
-                {         
+
+                {
+@*                      @await Component.InvokeAsync("UserRole")
+ *@                           
                     //profile
                     <li class="nav-item">
                         <a class="nav-link text-dark"
