@@ -1,5 +1,4 @@
-﻿// function to load project comments (details page)
-function loadComments(roomId) {
+﻿function loadComments(roomId) {
 
     $.ajax({
         url: '/RoomComment/GetComments/'+ roomId,
