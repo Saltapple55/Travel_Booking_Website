@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using TravelGroupAssignment1.Areas.CarManagement.Models;
 using TravelGroupAssignment1.Areas.FlightManagement.Models;
 using TravelGroupAssignment1.Data;
 
@@ -89,7 +90,10 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
                 }
                 await _context.FlightBookings.AddAsync(booking);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", new { flightId = booking.FlightId });
+                if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                    return RedirectToAction("Index", "FlightBooking", new { flightId = booking.FlightId });
+                else
+                    return RedirectToAction("Index", "Trip");
             }
 
 
