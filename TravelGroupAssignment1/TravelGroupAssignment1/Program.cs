@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Logging;
 using static System.Formats.Asn1.AsnWriter;
 using System;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,10 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddDefaultTokenProviders();
     
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
+
+builder.Host.UseSerilog((hostingContext, loggerConfiguration) =>
+    loggerConfiguration
+        .ReadFrom.Configuration(hostingContext.Configuration));
 
 var app = builder.Build();
 app.Logger.LogInformation("App building is running");
