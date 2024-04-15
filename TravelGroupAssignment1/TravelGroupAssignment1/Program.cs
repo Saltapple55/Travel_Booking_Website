@@ -26,7 +26,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
 
 var app = builder.Build();
-
+app.Logger.LogInformation("App building is running");
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -61,11 +61,43 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-app.UseAuthentication();
-app.UseAuthorization();
+try
+{
+    app.Logger.LogInformation("Run Authentication");
+    app.UseAuthentication();
+}
+catch (Exception e)
+{
+    var logger = loggerFactory.CreateLogger<Program>();
+    logger.LogError(e, "An error occurred when attempting to Run Authentication.");
+}
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-app.MapRazorPages();
-app.Run();
+try
+{
+    app.Logger.LogInformation("Run Authorization");
+    app.UseAuthorization();
+}
+catch (Exception e)
+{
+    var logger = loggerFactory.CreateLogger<Program>();
+    logger.LogError(e, "An error occurred when attempting to Run Authorization.");
+}
+
+try
+{
+    app.Logger.LogInformation("Run MapControlRoute");
+    app.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+    app.MapRazorPages();
+    app.Run();
+    app.Logger.LogInformation("Starting the app");
+}
+catch (Exception e)
+{
+    var logger = loggerFactory.CreateLogger<Program>();
+    logger.LogError(e, "An error occurred when attempting to Run MapControlRoute.");
+}
+
+
+
