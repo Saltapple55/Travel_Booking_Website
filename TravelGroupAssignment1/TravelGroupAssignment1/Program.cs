@@ -40,6 +40,12 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+app.UseStatusCodePagesWithRedirects("/StatusCode/{0}");
+
+
+
+
+
 using var scope = app.Services.CreateScope();
 var loggerFactory = scope.ServiceProvider.GetRequiredService<ILoggerFactory>();
 
@@ -62,10 +68,15 @@ catch (Exception e)
     logger.LogError(e, "An error occurred when attempting to seed the roles for the system.");
 };
 
+
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+
+
 app.UseRouting();
+
 try
 {
     app.Logger.LogInformation("Run Authentication");
@@ -91,9 +102,16 @@ catch (Exception e)
 try
 {
     app.Logger.LogInformation("Run MapControlRoute");
-    app.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}");
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapControllerRoute(
+            name: "default",
+            pattern: "{controller=Home}/{action=Index}/{id?}");
+        endpoints.MapControllerRoute(
+            name: "StatusCode",
+            pattern: "StatusCode/{code}",
+            defaults: new { controller = "StatusCode", action = "Index" });
+    });
     app.MapRazorPages();
     app.Run();
     app.Logger.LogInformation("Starting the app");
@@ -103,6 +121,8 @@ catch (Exception e)
     var logger = loggerFactory.CreateLogger<Program>();
     logger.LogError(e, "An error occurred when attempting to Run MapControlRoute.");
 }
+
+
 
 
 
