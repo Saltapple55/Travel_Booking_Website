@@ -10,7 +10,7 @@
 
 <h2>@ViewData["Title"]</h2>
 <h4>@roomName</h4>
-<a asp-action="Create" asp-route-roomId="@ViewBag.RoomId" class="btn btn-primary">Make Booking<i class="fa-solid fa-plus"></i></a>
+<a asp-action="Create" asp-route-roomId="@ViewBag.RoomId" class="btn btn-primary">Make Booking</i></a>
 
 @if (Model.Any()) // check if Model is null. 'Model' is reserved keyword to access the model
 {
@@ -53,4 +53,4 @@ else
 {
     <p>No room bookings available</p>
 }
-<a asp-controller="Room" asp-action="Index" asp-route-hotelId="@ViewBag.HotelId" class="btn btn-secondary">Return to Rooms<i class="fa-solid fa-plus"></i></a>
+<a asp-controller="Room" asp-action="Index" asp-route-hotelId="@ViewBag.HotelId" class="btn btn-secondary">Return to Rooms</a>

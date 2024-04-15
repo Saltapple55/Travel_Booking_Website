@@ -236,6 +236,39 @@ namespace TravelGroupAssignment1.Migrations
                     b.ToTable("CarBookings");
                 });
 
+            modelBuilder.Entity("TravelGroupAssignment1.Areas.CarManagement.Models.CarComment", b =>
+                {
+                    b.Property<int>("CommentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentId"));
+
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime>("DatePosted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("Rating")
+                        .HasColumnType("float");
+
+                    b.HasKey("CommentId");
+
+                    b.HasIndex("CarId");
+
+                    b.ToTable("CarComments");
+                });
+
             modelBuilder.Entity("TravelGroupAssignment1.Areas.CarManagement.Models.CarRentalCompany", b =>
                 {
                     b.Property<int>("CarRentalCompanyId")
@@ -435,6 +468,39 @@ namespace TravelGroupAssignment1.Migrations
                     b.ToTable("Hotels");
                 });
 
+            modelBuilder.Entity("TravelGroupAssignment1.Areas.HotelManagement.Models.HotelComment", b =>
+                {
+                    b.Property<int>("CommentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentId"));
+
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime>("DatePosted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("HotelId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Rating")
+                        .HasColumnType("float");
+
+                    b.HasKey("CommentId");
+
+                    b.HasIndex("HotelId");
+
+                    b.ToTable("HotelComments");
+                });
+
             modelBuilder.Entity("TravelGroupAssignment1.Areas.RoomManagement.Models.Room", b =>
                 {
                     b.Property<int>("RoomId")
@@ -505,6 +571,39 @@ namespace TravelGroupAssignment1.Migrations
                     b.HasIndex("RoomId");
 
                     b.ToTable("RoomBookings");
+                });
+
+            modelBuilder.Entity("TravelGroupAssignment1.Areas.RoomManagement.Models.RoomComment", b =>
+                {
+                    b.Property<int>("CommentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentId"));
+
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime>("DatePosted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("Rating")
+                        .HasColumnType("float");
+
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CommentId");
+
+                    b.HasIndex("RoomId");
+
+                    b.ToTable("RoomComments");
                 });
 
             modelBuilder.Entity("TravelGroupAssignment1.Models.ApplicationUser", b =>
@@ -607,7 +706,7 @@ namespace TravelGroupAssignment1.Migrations
                         new
                         {
                             TripId = 1,
-                            TripReference = "240414220325436c"
+                            TripReference = "2404151452a39dec"
                         });
                 });
 
@@ -684,6 +783,17 @@ namespace TravelGroupAssignment1.Migrations
                     b.Navigation("Car");
                 });
 
+            modelBuilder.Entity("TravelGroupAssignment1.Areas.CarManagement.Models.CarComment", b =>
+                {
+                    b.HasOne("TravelGroupAssignment1.Areas.CarManagement.Models.Car", "Car")
+                        .WithMany("CarComments")
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Car");
+                });
+
             modelBuilder.Entity("TravelGroupAssignment1.Areas.FlightManagement.Models.FlightBooking", b =>
                 {
                     b.HasOne("TravelGroupAssignment1.Areas.FlightManagement.Models.Flight", "Flight")
@@ -704,6 +814,17 @@ namespace TravelGroupAssignment1.Migrations
                     b.HasOne("TravelGroupAssignment1.Areas.FlightManagement.Models.Flight", null)
                         .WithMany("PassengerList")
                         .HasForeignKey("FlightId");
+                });
+
+            modelBuilder.Entity("TravelGroupAssignment1.Areas.HotelManagement.Models.HotelComment", b =>
+                {
+                    b.HasOne("TravelGroupAssignment1.Areas.HotelManagement.Models.Hotel", "Hotel")
+                        .WithMany("HotelComments")
+                        .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Hotel");
                 });
 
             modelBuilder.Entity("TravelGroupAssignment1.Areas.RoomManagement.Models.Room", b =>
@@ -728,6 +849,17 @@ namespace TravelGroupAssignment1.Migrations
                     b.Navigation("Room");
                 });
 
+            modelBuilder.Entity("TravelGroupAssignment1.Areas.RoomManagement.Models.RoomComment", b =>
+                {
+                    b.HasOne("TravelGroupAssignment1.Areas.RoomManagement.Models.Room", "Room")
+                        .WithMany("RoomComments")
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Room");
+                });
+
             modelBuilder.Entity("TravelGroupAssignment1.Models.Trip", b =>
                 {
                     b.HasOne("TravelGroupAssignment1.Models.ApplicationUser", "ApplicationUser")
@@ -740,6 +872,8 @@ namespace TravelGroupAssignment1.Migrations
             modelBuilder.Entity("TravelGroupAssignment1.Areas.CarManagement.Models.Car", b =>
                 {
                     b.Navigation("Bookings");
+
+                    b.Navigation("CarComments");
                 });
 
             modelBuilder.Entity("TravelGroupAssignment1.Areas.CarManagement.Models.CarRentalCompany", b =>
@@ -759,12 +893,16 @@ namespace TravelGroupAssignment1.Migrations
 
             modelBuilder.Entity("TravelGroupAssignment1.Areas.HotelManagement.Models.Hotel", b =>
                 {
+                    b.Navigation("HotelComments");
+
                     b.Navigation("Rooms");
                 });
 
             modelBuilder.Entity("TravelGroupAssignment1.Areas.RoomManagement.Models.Room", b =>
                 {
                     b.Navigation("RoomBookings");
+
+                    b.Navigation("RoomComments");
                 });
 #pragma warning restore 612, 618
         }
