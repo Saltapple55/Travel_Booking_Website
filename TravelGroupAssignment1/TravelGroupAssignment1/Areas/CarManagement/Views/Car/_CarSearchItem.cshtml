@@ -8,6 +8,10 @@
     string? capacity = ViewContext.HttpContext.Request.Query["capacity"].Count > 0 ? ViewContext.HttpContext.Request.Query["capacity"] : "2";
     string? tab = ViewContext.HttpContext.Request.Query["tab"].Count > 0 ? ViewContext.HttpContext.Request.Query["tab"] : "";
 }
+@using Microsoft.AspNetCore.Identity;
+@inject UserManager<ApplicationUser> UserManager
+
+@inject SignInManager<ApplicationUser> SignInManager
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,6 +35,12 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1 justify-content-end">
+                        @if (this.User.IsInRole("SuperAdmin") || this.User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="DashboardManagement" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+                            </li>
+                        }
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Trip" asp-action="Index">My Trip</a>
                         </li>
@@ -43,6 +53,30 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="FlightManagement" asp-controller="Flight" asp-action="Index">Flight</a>
                         </li>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            // @await Component.InvokeAsync("UserRole")
+
+                            //profile
+                            <li class="nav-item">
+                                <a class="nav-link text-dark"
+                                   asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage your account">
+                                    Hello @User.Identity?.Name
+                                </a>
+                            </li>
+                            //logout
+                            <li class="nav-item">
+
+                                <form asp-area="Identity" asp-page="/Account/Logout" method="post">
+                                    <button type="submit" class="nav-link btn btn-link text-dark" style="cursor:pointer"> Logout</button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <partial name="_LoginPartial" />
+
+                        }
                     </ul>
                 </div>
             </div>
