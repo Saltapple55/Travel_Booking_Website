@@ -1,11 +1,18 @@
+﻿
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
+using Microsoft.EntityFrameworkCore;
+using TravelGroupAssignment1.Areas.CarManagement.Models;
+using TravelGroupAssignment1.Areas.DashboardManagement.Models.ViewModels;
+using TravelGroupAssignment1.Areas.HotelManagement.Models;
+using TravelGroupAssignment1.Areas.RoomManagement.Models;
+=========
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using TravelGroupAssignment1.Areas.CarManagement.Models;
-using TravelGroupAssignment1.Areas.CustomerManagement.Models;
-using TravelGroupAssignment1.Areas.FlightManagement.Models;
-using TravelGroupAssignment1.Areas.HotelManagement.Models;
-using TravelGroupAssignment1.Areas.RoomManagement.Models;
+>>>>>>>>> Temporary merge branch 2
 using TravelGroupAssignment1.Models;
 namespace TravelGroupAssignment1.Data
 {
