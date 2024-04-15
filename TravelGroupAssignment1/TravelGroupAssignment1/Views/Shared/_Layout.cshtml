@@ -25,7 +25,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" enctype="multipart/form-data">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TravelGroupAssignment1</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -52,6 +52,11 @@
                     // @await Component.InvokeAsync("UserRole")
                             
                     //profile
+                        @if (UserManager.GetUserAsync(User).Result.ProfilePic != null)
+                        {
+                            <img id="profilepic" style="width: 50px; height: 50px; object-fit: cover"
+                                    src="data:image/*; base64, @(Convert.ToBase64String((UserManager.GetUserAsync(User)).Result.ProfilePic))" />
+                        }
                     <li class="nav-item">
                         <a class="nav-link text-dark"
                            asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage your account"> Hello @User.Identity?.Name

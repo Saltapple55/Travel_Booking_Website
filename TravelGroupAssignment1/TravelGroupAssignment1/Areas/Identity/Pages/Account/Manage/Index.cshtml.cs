@@ -67,8 +67,9 @@ namespace TravelGroupAssignment1.Areas.Identity.Pages.Account.Manage
             public string FirstName { get; set; }
             [Display(Name = "Last Name")]
             public string LastName { get; set; }
+
             [Display(Name = "Profile Picture")]
-            public byte[] ProfilePic { get; set; }
+            public byte[]? ProfilePic { get; set; }
 
         }
 
@@ -125,14 +126,12 @@ namespace TravelGroupAssignment1.Areas.Identity.Pages.Account.Manage
                     StatusMessage = "Unexpected error when trying to set phone number.";
                     return RedirectToPage();
                 }
-                else
-                {
-                    user.UserName = Input.Username;
-                    user.UsernameChange -= 1;
-                    await _userManager.UpdateAsync(user);
-
-                }
             }
+
+          
+            
+                                    
+            
             if (user.UsernameChange > 0)
             {
                 if (Input.Username != user.UserName)
@@ -147,20 +146,30 @@ namespace TravelGroupAssignment1.Areas.Identity.Pages.Account.Manage
                     if (setusername.Succeeded)
                     {
 
+                        StatusMessage = "Unexpected error when trying to set username";
+                        return RedirectToPage();
+                    }
+                    else
+                    {
+                        user.UserName = Input.Username;
+                        user.UsernameChange -= 1;
+                        await _userManager.UpdateAsync(user);
+
+
                     }
                 }
             }
             var firstName = user.FirstName;
             if (Input.FirstName != firstName)
             {
-                user.FirstName = firstName;
+                user.FirstName = Input.FirstName;
                 await _userManager.UpdateAsync(user);
             }
 
             var lastName = user.LastName;
             if (Input.LastName != lastName)
             {
-                user.LastName = lastName;
+                user.LastName = Input.LastName;
                 await _userManager.UpdateAsync(user);
             }
             if (Request.Form.Files.Count > 0)

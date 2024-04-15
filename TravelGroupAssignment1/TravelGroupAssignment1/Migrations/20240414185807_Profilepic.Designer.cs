@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TravelGroupAssignment1.Data;
 
@@ -11,9 +12,11 @@ using TravelGroupAssignment1.Data;
 namespace TravelGroupAssignment1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240414185807_Profilepic")]
+    partial class Profilepic
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -515,9 +518,6 @@ namespace TravelGroupAssignment1.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<DateOnly?>("Birthday")
-                        .HasColumnType("date");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -531,12 +531,6 @@ namespace TravelGroupAssignment1.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Gender")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HomeAirport")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
@@ -557,9 +551,6 @@ namespace TravelGroupAssignment1.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<string>("Passport")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
@@ -571,15 +562,6 @@ namespace TravelGroupAssignment1.Migrations
 
                     b.Property<byte[]>("ProfilePic")
                         .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("RewardProgramName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RewardProgramNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SeatPreference")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -631,7 +613,7 @@ namespace TravelGroupAssignment1.Migrations
                         new
                         {
                             TripId = 1,
-                            TripReference = "2404142153c2e988"
+                            TripReference = "2404141458897a88"
                         });
                 });
 

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TravelGroupAssignment1.Data;
 
@@ -11,9 +12,11 @@ using TravelGroupAssignment1.Data;
 namespace TravelGroupAssignment1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240414234650_ApplicationUserDetails")]
+    partial class ApplicationUserDetails
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -572,12 +575,6 @@ namespace TravelGroupAssignment1.Migrations
                     b.Property<byte[]>("ProfilePic")
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<string>("RewardProgramName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RewardProgramNumber")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("SeatPreference")
                         .HasColumnType("nvarchar(max)");
 
@@ -631,7 +628,7 @@ namespace TravelGroupAssignment1.Migrations
                         new
                         {
                             TripId = 1,
-                            TripReference = "2404142153c2e988"
+                            TripReference = "2404141946c2e038"
                         });
                 });
 
