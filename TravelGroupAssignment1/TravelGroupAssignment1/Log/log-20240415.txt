@@ -3438,3 +3438,739 @@ WHERE [u].[NormalizedEmail] = @__normalizedEmail_0
 2024-04-15 12:07:20.464 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
 2024-04-15 12:07:20.466 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 1.6219ms
 2024-04-15 12:07:20.479 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 20.8484ms
+2024-04-15 12:10:54.264 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/ - null null
+2024-04-15 12:10:54.281 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Controllers.HomeController.Index (TravelGroupAssignment1)'
+2024-04-15 12:10:54.284 -04:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TravelGroupAssignment1.Controllers.HomeController (TravelGroupAssignment1).
+2024-04-15 12:10:54.286 -04:00 [INF] Calling Home Index() Action
+2024-04-15 12:10:54.294 -04:00 [INF] Executing RedirectResult, redirecting to /DashboardManagement/Dashboard/Index.
+2024-04-15 12:10:54.298 -04:00 [INF] Executed action TravelGroupAssignment1.Controllers.HomeController.Index (TravelGroupAssignment1) in 12.7967ms
+2024-04-15 12:10:54.298 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Controllers.HomeController.Index (TravelGroupAssignment1)'
+2024-04-15 12:10:54.299 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/ - 302 null null 34.6414ms
+2024-04-15 12:10:54.308 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - null null
+2024-04-15 12:10:54.311 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-15 12:10:54.319 -04:00 [INF] Route matched with {area = "DashboardManagement", action = "Index", controller = "Dashboard", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController (TravelGroupAssignment1).
+2024-04-15 12:10:54.510 -04:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Hotels] AS [h]
+2024-04-15 12:10:54.517 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Rooms] AS [r]
+2024-04-15 12:10:54.526 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Flights] AS [f]
+2024-04-15 12:10:54.531 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [CarRentalCompanies] AS [c]
+2024-04-15 12:10:54.537 -04:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Cars] AS [c]
+2024-04-15 12:10:54.544 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-15 12:10:54.607 -04:00 [INF] Executed ViewResult - view Index executed in 64.7816ms.
+2024-04-15 12:10:54.608 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1) in 288.4428ms
+2024-04-15 12:10:54.609 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-15 12:10:54.615 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - 200 null text/html; charset=utf-8 307.6164ms
+2024-04-15 12:10:54.635 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 12:10:54.638 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 2.829ms
+2024-04-15 12:10:54.657 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-15 12:10:54.665 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 7.4422ms
+2024-04-15 12:10:57.852 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index123123 - null null
+2024-04-15 12:10:57.857 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index123123 - 302 null null 4.6105ms
+2024-04-15 12:10:57.858 -04:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:44378/DashboardManagement/Dashboard/Index123123, Response status code: 302
+2024-04-15 12:10:57.868 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/StatusCode/404 - null null
+2024-04-15 12:10:57.870 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1)'
+2024-04-15 12:10:57.870 -04:00 [INF] Route matched with {action = "Index", controller = "StatusCode", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(Int32) on controller TravelGroupAssignment1.Controllers.StatusCodeController (TravelGroupAssignment1).
+2024-04-15 12:10:57.872 -04:00 [INF] Executing ViewResult, running view 404.
+2024-04-15 12:10:57.880 -04:00 [INF] Executed ViewResult - view 404 executed in 9.1748ms.
+2024-04-15 12:10:57.880 -04:00 [INF] Executed action TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1) in 10.095ms
+2024-04-15 12:10:57.880 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1)'
+2024-04-15 12:10:57.881 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/StatusCode/404 - 200 null text/html; charset=utf-8 13.3421ms
+2024-04-15 12:10:57.906 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 12:10:57.906 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-15 12:10:57.906 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.7992ms
+2024-04-15 12:10:57.915 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 9.0071ms
+2024-04-15 12:11:01.059 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/StatusCode/500 - null null
+2024-04-15 12:11:01.063 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1)'
+2024-04-15 12:11:01.063 -04:00 [INF] Route matched with {action = "Index", controller = "StatusCode", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(Int32) on controller TravelGroupAssignment1.Controllers.StatusCodeController (TravelGroupAssignment1).
+2024-04-15 12:11:01.064 -04:00 [INF] Executing ViewResult, running view 500.
+2024-04-15 12:11:01.066 -04:00 [INF] Executed ViewResult - view 500 executed in 2.1277ms.
+2024-04-15 12:11:01.066 -04:00 [INF] Executed action TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1) in 3.1508ms
+2024-04-15 12:11:01.066 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1)'
+2024-04-15 12:11:01.067 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/StatusCode/500 - 200 null text/html; charset=utf-8 7.4617ms
+2024-04-15 12:11:01.097 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-15 12:11:01.102 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 12:11:01.103 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.8123ms
+2024-04-15 12:11:01.108 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 10.8153ms
+2024-04-15 12:11:12.006 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/StatusCode/502 - null null
+2024-04-15 12:11:12.009 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1)'
+2024-04-15 12:11:12.010 -04:00 [INF] Route matched with {action = "Index", controller = "StatusCode", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(Int32) on controller TravelGroupAssignment1.Controllers.StatusCodeController (TravelGroupAssignment1).
+2024-04-15 12:11:12.013 -04:00 [INF] Executing ViewResult, running view 502.
+2024-04-15 12:11:12.014 -04:00 [INF] Executed ViewResult - view 502 executed in 1.4001ms.
+2024-04-15 12:11:12.014 -04:00 [INF] Executed action TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1) in 3.3462ms
+2024-04-15 12:11:12.014 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1)'
+2024-04-15 12:11:12.015 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/StatusCode/502 - 200 null text/html; charset=utf-8 8.5669ms
+2024-04-15 12:11:12.045 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-15 12:11:12.046 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 12:11:12.047 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.7046ms
+2024-04-15 12:11:12.053 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 7.7685ms
+2024-04-15 12:11:23.986 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/StatusCode/156 - null null
+2024-04-15 12:11:23.989 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1)'
+2024-04-15 12:11:23.990 -04:00 [INF] Route matched with {action = "Index", controller = "StatusCode", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(Int32) on controller TravelGroupAssignment1.Controllers.StatusCodeController (TravelGroupAssignment1).
+2024-04-15 12:11:23.991 -04:00 [INF] Executing ViewResult, running view Error.
+2024-04-15 12:11:23.994 -04:00 [INF] Executed ViewResult - view Error executed in 3.715ms.
+2024-04-15 12:11:23.994 -04:00 [INF] Executed action TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1) in 4.897ms
+2024-04-15 12:11:23.995 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1)'
+2024-04-15 12:11:23.995 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/StatusCode/156 - 200 null text/html; charset=utf-8 9.0271ms
+2024-04-15 12:11:24.031 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-15 12:11:24.032 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 12:11:24.033 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.7409ms
+2024-04-15 12:11:24.039 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 8.4341ms
+2024-04-15 12:13:18.609 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/ - null null
+2024-04-15 12:13:18.614 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Controllers.HomeController.Index (TravelGroupAssignment1)'
+2024-04-15 12:13:18.615 -04:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TravelGroupAssignment1.Controllers.HomeController (TravelGroupAssignment1).
+2024-04-15 12:13:18.615 -04:00 [INF] Calling Home Index() Action
+2024-04-15 12:13:18.615 -04:00 [INF] Executing RedirectResult, redirecting to /DashboardManagement/Dashboard/Index.
+2024-04-15 12:13:18.616 -04:00 [INF] Executed action TravelGroupAssignment1.Controllers.HomeController.Index (TravelGroupAssignment1) in 1.27ms
+2024-04-15 12:13:18.616 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Controllers.HomeController.Index (TravelGroupAssignment1)'
+2024-04-15 12:13:18.616 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/ - 302 null null 7.0057ms
+2024-04-15 12:13:18.627 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - null null
+2024-04-15 12:13:18.630 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-15 12:13:18.630 -04:00 [INF] Route matched with {area = "DashboardManagement", action = "Index", controller = "Dashboard", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController (TravelGroupAssignment1).
+2024-04-15 12:13:18.645 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Hotels] AS [h]
+2024-04-15 12:13:18.647 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Rooms] AS [r]
+2024-04-15 12:13:18.648 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Flights] AS [f]
+2024-04-15 12:13:18.650 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [CarRentalCompanies] AS [c]
+2024-04-15 12:13:18.651 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Cars] AS [c]
+2024-04-15 12:13:18.651 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-15 12:13:18.655 -04:00 [INF] Executed ViewResult - view Index executed in 3.8192ms.
+2024-04-15 12:13:18.655 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1) in 25.4436ms
+2024-04-15 12:13:18.655 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-15 12:13:18.656 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - 200 null text/html; charset=utf-8 29.3198ms
+2024-04-15 12:13:18.688 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 12:13:18.688 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.7958ms
+2024-04-15 12:13:18.692 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-15 12:13:18.699 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 7.1469ms
+2024-04-15 12:13:33.875 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Car/Index - null null
+2024-04-15 12:13:33.879 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1)'
+2024-04-15 12:13:33.888 -04:00 [INF] Route matched with {area = "CarManagement", action = "Index", controller = "Car", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController (TravelGroupAssignment1).
+2024-04-15 12:13:33.980 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CarId], [c].[CompanyId], [c].[HasAirConditioning], [c].[HasUnlimitedMileage], [c].[Make], [c].[MaxPassengers], [c].[Model], [c].[PricePerDay], [c].[Transmission], [c].[Type], [c0].[CarRentalCompanyId], [c0].[CompanyName], [c0].[Location], [c0].[Rating]
+FROM [Cars] AS [c]
+INNER JOIN [CarRentalCompanies] AS [c0] ON [c].[CompanyId] = [c0].[CarRentalCompanyId]
+2024-04-15 12:13:33.982 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-15 12:13:34.158 -04:00 [INF] Executed ViewResult - view Index executed in 177.0076ms.
+2024-04-15 12:13:34.158 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1) in 269.6443ms
+2024-04-15 12:13:34.158 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1)'
+2024-04-15 12:13:34.159 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Car/Index - 200 null text/html; charset=utf-8 284.1908ms
+2024-04-15 12:13:34.188 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 12:13:34.188 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-15 12:13:34.189 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.7175ms
+2024-04-15 12:13:34.195 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 6.9581ms
+2024-04-15 12:13:36.143 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - null null
+2024-04-15 12:13:36.145 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-15 12:13:36.145 -04:00 [INF] Route matched with {area = "DashboardManagement", action = "Index", controller = "Dashboard", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController (TravelGroupAssignment1).
+2024-04-15 12:13:36.148 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Hotels] AS [h]
+2024-04-15 12:13:36.150 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Rooms] AS [r]
+2024-04-15 12:13:36.152 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Flights] AS [f]
+2024-04-15 12:13:36.156 -04:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [CarRentalCompanies] AS [c]
+2024-04-15 12:13:36.158 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Cars] AS [c]
+2024-04-15 12:13:36.158 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-15 12:13:36.160 -04:00 [INF] Executed ViewResult - view Index executed in 2.1199ms.
+2024-04-15 12:13:36.160 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1) in 15.5133ms
+2024-04-15 12:13:36.160 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-15 12:13:36.161 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - 200 null text/html; charset=utf-8 17.9693ms
+2024-04-15 12:13:36.188 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 12:13:36.189 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.6751ms
+2024-04-15 12:13:36.879 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Hotel/Index - null null
+2024-04-15 12:13:36.884 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Index (TravelGroupAssignment1)'
+2024-04-15 12:13:36.893 -04:00 [INF] Route matched with {area = "HotelManagement", action = "Index", controller = "Hotel", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController (TravelGroupAssignment1).
+2024-04-15 12:13:36.904 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [h].[HotelId], [h].[Amenities], [h].[Description], [h].[HotelName], [h].[Location]
+FROM [Hotels] AS [h]
+2024-04-15 12:13:36.929 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-15 12:13:37.005 -04:00 [INF] Executed ViewResult - view Index executed in 77.9536ms.
+2024-04-15 12:13:37.006 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Index (TravelGroupAssignment1) in 112.7321ms
+2024-04-15 12:13:37.006 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Index (TravelGroupAssignment1)'
+2024-04-15 12:13:37.006 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Hotel/Index - 200 null text/html; charset=utf-8 127.3806ms
+2024-04-15 12:13:37.050 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-15 12:13:37.050 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 12:13:37.051 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.6977ms
+2024-04-15 12:13:37.057 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 7.211ms
+2024-04-15 12:13:40.709 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - null null
+2024-04-15 12:13:40.714 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-15 12:13:40.715 -04:00 [INF] Route matched with {area = "DashboardManagement", action = "Index", controller = "Dashboard", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController (TravelGroupAssignment1).
+2024-04-15 12:13:40.716 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Hotels] AS [h]
+2024-04-15 12:13:40.718 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Rooms] AS [r]
+2024-04-15 12:13:40.719 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Flights] AS [f]
+2024-04-15 12:13:40.720 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [CarRentalCompanies] AS [c]
+2024-04-15 12:13:40.721 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Cars] AS [c]
+2024-04-15 12:13:40.721 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-15 12:13:40.724 -04:00 [INF] Executed ViewResult - view Index executed in 2.8912ms.
+2024-04-15 12:13:40.724 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1) in 9.2573ms
+2024-04-15 12:13:40.724 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-15 12:13:40.724 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - 200 null text/html; charset=utf-8 15.2258ms
+2024-04-15 12:13:40.760 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 12:13:40.761 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.9749ms
+2024-04-15 12:13:45.248 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Hotel/Index - null null
+2024-04-15 12:13:45.253 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Index (TravelGroupAssignment1)'
+2024-04-15 12:13:45.253 -04:00 [INF] Route matched with {area = "HotelManagement", action = "Index", controller = "Hotel", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController (TravelGroupAssignment1).
+2024-04-15 12:13:45.256 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [h].[HotelId], [h].[Amenities], [h].[Description], [h].[HotelName], [h].[Location]
+FROM [Hotels] AS [h]
+2024-04-15 12:13:45.256 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-15 12:13:45.258 -04:00 [INF] Executed ViewResult - view Index executed in 2.0062ms.
+2024-04-15 12:13:45.258 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Index (TravelGroupAssignment1) in 5.2013ms
+2024-04-15 12:13:45.258 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Index (TravelGroupAssignment1)'
+2024-04-15 12:13:45.259 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Hotel/Index - 200 null text/html; charset=utf-8 10.6691ms
+2024-04-15 12:13:45.296 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-15 12:13:45.298 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 12:13:45.299 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 1.0552ms
+2024-04-15 12:13:45.303 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 7.5115ms
+2024-04-15 12:13:46.453 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Hotel/Create - null null
+2024-04-15 12:13:46.457 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Create (TravelGroupAssignment1)'
+2024-04-15 12:13:46.460 -04:00 [INF] Route matched with {area = "HotelManagement", action = "Create", controller = "Hotel", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Create() on controller TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController (TravelGroupAssignment1).
+2024-04-15 12:13:46.463 -04:00 [INF] Executing ViewResult, running view Create.
+2024-04-15 12:13:46.529 -04:00 [INF] Executed ViewResult - view Create executed in 67.9604ms.
+2024-04-15 12:13:46.529 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Create (TravelGroupAssignment1) in 68.7621ms
+2024-04-15 12:13:46.529 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Create (TravelGroupAssignment1)'
+2024-04-15 12:13:46.530 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Hotel/Create - 200 null text/html; charset=utf-8 76.2909ms
+2024-04-15 12:13:46.558 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 12:13:46.559 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.8036ms
+2024-04-15 12:13:46.562 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-15 12:13:46.570 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 7.7224ms
+2024-04-15 12:13:51.238 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44378/Hotel/Create - application/x-www-form-urlencoded 432
+2024-04-15 12:13:51.240 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Create (TravelGroupAssignment1)'
+2024-04-15 12:13:51.254 -04:00 [INF] Route matched with {area = "HotelManagement", action = "Create", controller = "Hotel", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(TravelGroupAssignment1.Areas.HotelManagement.Models.Hotel) on controller TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController (TravelGroupAssignment1).
+2024-04-15 12:13:51.386 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (Size = 1000), @p1='?' (Size = 1000), @p2='?' (Size = 100), @p3='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Hotels] ([Amenities], [Description], [HotelName], [Location])
+OUTPUT INSERTED.[HotelId]
+VALUES (@p0, @p1, @p2, @p3);
+2024-04-15 12:13:51.404 -04:00 [INF] Executing RedirectResult, redirecting to /Hotel/Index.
+2024-04-15 12:13:51.404 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Create (TravelGroupAssignment1) in 149.4164ms
+2024-04-15 12:13:51.404 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Create (TravelGroupAssignment1)'
+2024-04-15 12:13:51.404 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44378/Hotel/Create - 302 null null 165.8792ms
+2024-04-15 12:13:51.410 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Hotel/Index - null null
+2024-04-15 12:13:51.411 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Index (TravelGroupAssignment1)'
+2024-04-15 12:13:51.411 -04:00 [INF] Route matched with {area = "HotelManagement", action = "Index", controller = "Hotel", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController (TravelGroupAssignment1).
+2024-04-15 12:13:51.413 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [h].[HotelId], [h].[Amenities], [h].[Description], [h].[HotelName], [h].[Location]
+FROM [Hotels] AS [h]
+2024-04-15 12:13:51.413 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-15 12:13:51.415 -04:00 [INF] Executed ViewResult - view Index executed in 2.0136ms.
+2024-04-15 12:13:51.415 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Index (TravelGroupAssignment1) in 3.8314ms
+2024-04-15 12:13:51.415 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Index (TravelGroupAssignment1)'
+2024-04-15 12:13:51.415 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Hotel/Index - 200 null text/html; charset=utf-8 5.8157ms
+2024-04-15 12:13:51.448 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 12:13:51.449 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-15 12:13:51.449 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.8702ms
+2024-04-15 12:13:51.456 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 7.6774ms
+2024-04-15 12:13:53.586 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - null null
+2024-04-15 12:13:53.588 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-15 12:13:53.588 -04:00 [INF] Route matched with {area = "DashboardManagement", action = "Index", controller = "Dashboard", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController (TravelGroupAssignment1).
+2024-04-15 12:13:53.590 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Hotels] AS [h]
+2024-04-15 12:13:53.591 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Rooms] AS [r]
+2024-04-15 12:13:53.593 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Flights] AS [f]
+2024-04-15 12:13:53.594 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [CarRentalCompanies] AS [c]
+2024-04-15 12:13:53.594 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Cars] AS [c]
+2024-04-15 12:13:53.594 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-15 12:13:53.595 -04:00 [INF] Executed ViewResult - view Index executed in 1.0056ms.
+2024-04-15 12:13:53.595 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1) in 7.4793ms
+2024-04-15 12:13:53.595 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-15 12:13:53.596 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - 200 null text/html; charset=utf-8 9.8736ms
+2024-04-15 12:13:53.624 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-15 12:13:53.628 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 12:13:53.629 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.6092ms
+2024-04-15 12:13:53.633 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 9.295ms
+2024-04-15 12:13:56.836 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Identity/Account/Manage - null null
+2024-04-15 12:13:56.849 -04:00 [INF] Executing endpoint '/Account/Manage/Index'
+2024-04-15 12:13:56.862 -04:00 [INF] Route matched with {page = "/Account/Manage/Index", area = "Identity", action = "", controller = ""}. Executing page /Account/Manage/Index
+2024-04-15 12:13:56.873 -04:00 [INF] Executing handler method TravelGroupAssignment1.Areas.Identity.Pages.Account.Manage.IndexModel.OnGetAsync - ModelState is "Valid"
+2024-04-15 12:13:56.886 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__p_0
+2024-04-15 12:13:56.893 -04:00 [INF] Executed handler method OnGetAsync, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2024-04-15 12:13:56.957 -04:00 [INF] Executed page /Account/Manage/Index in 94.5864ms
+2024-04-15 12:13:56.957 -04:00 [INF] Executed endpoint '/Account/Manage/Index'
+2024-04-15 12:13:56.957 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Identity/Account/Manage - 200 null text/html; charset=utf-8 121.6757ms
+2024-04-15 12:13:56.987 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 12:13:56.988 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.6857ms
+2024-04-15 12:13:56.990 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-15 12:13:56.996 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 6.0943ms
+2024-04-15 12:13:58.199 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - null null
+2024-04-15 12:13:58.201 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-15 12:13:58.201 -04:00 [INF] Route matched with {area = "DashboardManagement", action = "Index", controller = "Dashboard", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController (TravelGroupAssignment1).
+2024-04-15 12:13:58.202 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Hotels] AS [h]
+2024-04-15 12:13:58.203 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Rooms] AS [r]
+2024-04-15 12:13:58.203 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Flights] AS [f]
+2024-04-15 12:13:58.208 -04:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [CarRentalCompanies] AS [c]
+2024-04-15 12:13:58.210 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Cars] AS [c]
+2024-04-15 12:13:58.211 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-15 12:13:58.212 -04:00 [INF] Executed ViewResult - view Index executed in 1.272ms.
+2024-04-15 12:13:58.212 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1) in 10.9474ms
+2024-04-15 12:13:58.212 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-15 12:13:58.212 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - 200 null text/html; charset=utf-8 13.1738ms
+2024-04-15 12:13:58.243 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 12:13:58.244 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.6306ms
+2024-04-15 12:14:02.375 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index456 - null null
+2024-04-15 12:14:02.379 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index456 - 302 null null 4.3196ms
+2024-04-15 12:14:02.380 -04:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:44378/DashboardManagement/Dashboard/Index456, Response status code: 302
+2024-04-15 12:14:02.386 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/StatusCode/404 - null null
+2024-04-15 12:14:02.388 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1)'
+2024-04-15 12:14:02.388 -04:00 [INF] Route matched with {action = "Index", controller = "StatusCode", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(Int32) on controller TravelGroupAssignment1.Controllers.StatusCodeController (TravelGroupAssignment1).
+2024-04-15 12:14:02.389 -04:00 [INF] Executing ViewResult, running view 404.
+2024-04-15 12:14:02.389 -04:00 [INF] Executed ViewResult - view 404 executed in 0.6937ms.
+2024-04-15 12:14:02.389 -04:00 [INF] Executed action TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1) in 0.9557ms
+2024-04-15 12:14:02.389 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1)'
+2024-04-15 12:14:02.390 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/StatusCode/404 - 200 null text/html; charset=utf-8 3.2643ms
+2024-04-15 12:14:02.420 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-15 12:14:02.427 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 12:14:02.428 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.932ms
+2024-04-15 12:14:02.430 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 9.9961ms
+2024-04-15 12:14:07.704 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/StatusCode/500 - null null
+2024-04-15 12:14:07.707 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1)'
+2024-04-15 12:14:07.707 -04:00 [INF] Route matched with {action = "Index", controller = "StatusCode", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(Int32) on controller TravelGroupAssignment1.Controllers.StatusCodeController (TravelGroupAssignment1).
+2024-04-15 12:14:07.707 -04:00 [INF] Executing ViewResult, running view 500.
+2024-04-15 12:14:07.710 -04:00 [INF] Executed ViewResult - view 500 executed in 2.5147ms.
+2024-04-15 12:14:07.710 -04:00 [INF] Executed action TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1) in 3.2042ms
+2024-04-15 12:14:07.710 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1)'
+2024-04-15 12:14:07.711 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/StatusCode/500 - 200 null text/html; charset=utf-8 6.7314ms
+2024-04-15 12:14:07.748 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-15 12:14:07.751 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 12:14:07.752 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.6471ms
+2024-04-15 12:14:07.756 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 7.5038ms
+2024-04-15 12:14:10.833 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/StatusCode/502 - null null
+2024-04-15 12:14:10.835 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1)'
+2024-04-15 12:14:10.835 -04:00 [INF] Route matched with {action = "Index", controller = "StatusCode", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(Int32) on controller TravelGroupAssignment1.Controllers.StatusCodeController (TravelGroupAssignment1).
+2024-04-15 12:14:10.836 -04:00 [INF] Executing ViewResult, running view 502.
+2024-04-15 12:14:10.838 -04:00 [INF] Executed ViewResult - view 502 executed in 2.4544ms.
+2024-04-15 12:14:10.838 -04:00 [INF] Executed action TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1) in 2.9913ms
+2024-04-15 12:14:10.838 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1)'
+2024-04-15 12:14:10.839 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/StatusCode/502 - 200 null text/html; charset=utf-8 5.5704ms
+2024-04-15 12:14:10.867 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-15 12:14:10.871 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 12:14:10.872 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.6987ms
+2024-04-15 12:14:10.876 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 8.7562ms
+2024-04-15 12:14:13.892 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/StatusCode/41561 - null null
+2024-04-15 12:14:13.894 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1)'
+2024-04-15 12:14:13.894 -04:00 [INF] Route matched with {action = "Index", controller = "StatusCode", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(Int32) on controller TravelGroupAssignment1.Controllers.StatusCodeController (TravelGroupAssignment1).
+2024-04-15 12:14:13.894 -04:00 [INF] Executing ViewResult, running view Error.
+2024-04-15 12:14:13.895 -04:00 [INF] Executed ViewResult - view Error executed in 0.759ms.
+2024-04-15 12:14:13.895 -04:00 [INF] Executed action TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1) in 1.0659ms
+2024-04-15 12:14:13.895 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1)'
+2024-04-15 12:14:13.895 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/StatusCode/41561 - 200 null text/html; charset=utf-8 2.8801ms
+2024-04-15 12:14:13.933 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-15 12:14:13.933 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 12:14:13.933 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.7719ms
+2024-04-15 12:14:13.945 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 11.9887ms
+2024-04-15 12:14:18.258 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/ - null null
+2024-04-15 12:14:18.260 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Controllers.HomeController.Index (TravelGroupAssignment1)'
+2024-04-15 12:14:18.260 -04:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TravelGroupAssignment1.Controllers.HomeController (TravelGroupAssignment1).
+2024-04-15 12:14:18.260 -04:00 [INF] Calling Home Index() Action
+2024-04-15 12:14:18.261 -04:00 [INF] Executing RedirectResult, redirecting to /DashboardManagement/Dashboard/Index.
+2024-04-15 12:14:18.261 -04:00 [INF] Executed action TravelGroupAssignment1.Controllers.HomeController.Index (TravelGroupAssignment1) in 0.5937ms
+2024-04-15 12:14:18.261 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Controllers.HomeController.Index (TravelGroupAssignment1)'
+2024-04-15 12:14:18.261 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/ - 302 null null 2.8939ms
+2024-04-15 12:14:18.272 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - null null
+2024-04-15 12:14:18.274 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-15 12:14:18.274 -04:00 [INF] Route matched with {area = "DashboardManagement", action = "Index", controller = "Dashboard", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController (TravelGroupAssignment1).
+2024-04-15 12:14:18.276 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Hotels] AS [h]
+2024-04-15 12:14:18.276 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Rooms] AS [r]
+2024-04-15 12:14:18.277 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Flights] AS [f]
+2024-04-15 12:14:18.278 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [CarRentalCompanies] AS [c]
+2024-04-15 12:14:18.279 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Cars] AS [c]
+2024-04-15 12:14:18.279 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-15 12:14:18.280 -04:00 [INF] Executed ViewResult - view Index executed in 1.0809ms.
+2024-04-15 12:14:18.280 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1) in 5.6928ms
+2024-04-15 12:14:18.280 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-15 12:14:18.280 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - 200 null text/html; charset=utf-8 8.5249ms
+2024-04-15 12:14:18.309 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-15 12:14:18.314 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 12:14:18.315 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.9417ms
+2024-04-15 12:14:18.321 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 11.3638ms
+2024-04-15 12:14:20.200 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44378/Identity/Account/Logout - application/x-www-form-urlencoded 225
+2024-04-15 12:14:20.211 -04:00 [INF] Executing endpoint '/Account/Logout'
+2024-04-15 12:14:20.213 -04:00 [INF] Route matched with {page = "/Account/Logout", area = "Identity", action = "", controller = ""}. Executing page /Account/Logout
+2024-04-15 12:14:20.215 -04:00 [INF] Executing handler method TravelGroupAssignment1.Areas.Identity.Pages.Account.LogoutModel.OnPost - ModelState is "Valid"
+2024-04-15 12:14:20.216 -04:00 [INF] AuthenticationScheme: Identity.Application signed out.
+2024-04-15 12:14:20.218 -04:00 [INF] AuthenticationScheme: Identity.External signed out.
+2024-04-15 12:14:20.218 -04:00 [INF] AuthenticationScheme: Identity.TwoFactorUserId signed out.
+2024-04-15 12:14:20.218 -04:00 [INF] User logged out.
+2024-04-15 12:14:20.219 -04:00 [INF] Executed handler method OnPost, returned result Microsoft.AspNetCore.Mvc.RedirectToPageResult.
+2024-04-15 12:14:20.219 -04:00 [INF] Executing RedirectToPageResult, redirecting to null.
+2024-04-15 12:14:20.220 -04:00 [INF] Executed page /Account/Logout in 6.0446ms
+2024-04-15 12:14:20.220 -04:00 [INF] Executed endpoint '/Account/Logout'
+2024-04-15 12:14:20.220 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44378/Identity/Account/Logout - 302 null null 19.4678ms
+2024-04-15 12:14:20.230 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Identity/Account/Logout - null null
+2024-04-15 12:14:20.232 -04:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2024-04-15 12:14:20.233 -04:00 [INF] AuthenticationScheme: Identity.Application was challenged.
+2024-04-15 12:14:20.234 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Identity/Account/Logout - 302 null null 3.9131ms
+2024-04-15 12:14:20.238 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Identity/Account/Login?ReturnUrl=%2FIdentity%2FAccount%2FLogout - null null
+2024-04-15 12:14:20.240 -04:00 [INF] Executing endpoint '/Account/Login'
+2024-04-15 12:14:20.244 -04:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2024-04-15 12:14:20.247 -04:00 [INF] Executing handler method TravelGroupAssignment1.Areas.Identity.Pages.Account.LoginModel.OnGetAsync - ModelState is "Valid"
+2024-04-15 12:14:20.248 -04:00 [INF] AuthenticationScheme: Identity.External signed out.
+2024-04-15 12:14:20.249 -04:00 [INF] Executed handler method OnGetAsync, returned result .
+2024-04-15 12:14:20.250 -04:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2024-04-15 12:14:20.250 -04:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2024-04-15 12:14:20.279 -04:00 [INF] Executed page /Account/Login in 34.4197ms
+2024-04-15 12:14:20.279 -04:00 [INF] Executed endpoint '/Account/Login'
+2024-04-15 12:14:20.279 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Identity/Account/Login?ReturnUrl=%2FIdentity%2FAccount%2FLogout - 200 null text/html; charset=utf-8 40.6497ms
+2024-04-15 12:14:20.310 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-15 12:14:20.311 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 12:14:20.311 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.6571ms
+2024-04-15 12:14:20.317 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 7.3506ms
+2024-04-15 12:14:25.431 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44378/Identity/Account/Login?ReturnUrl=%2FIdentity%2FAccount%2FLogout - application/x-www-form-urlencoded 257
+2024-04-15 12:14:25.433 -04:00 [INF] Executing endpoint '/Account/Login'
+2024-04-15 12:14:25.435 -04:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2024-04-15 12:14:25.440 -04:00 [INF] Executing handler method TravelGroupAssignment1.Areas.Identity.Pages.Account.LoginModel.OnPostAsync - ModelState is "Valid"
+2024-04-15 12:14:25.515 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0
+2024-04-15 12:14:25.660 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[Id], [u].[ClaimType], [u].[ClaimValue], [u].[UserId]
+FROM [UserClaims] AS [u]
+WHERE [u].[UserId] = @__user_Id_0
+2024-04-15 12:14:25.674 -04:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[Name]
+FROM [UserRoles] AS [u]
+INNER JOIN [Roles] AS [r] ON [u].[RoleId] = [r].[Id]
+WHERE [u].[UserId] = @__userId_0
+2024-04-15 12:14:25.681 -04:00 [INF] Executed DbCommand (4ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-15 12:14:25.687 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ClaimType], [r].[ClaimValue]
+FROM [RoleClaims] AS [r]
+WHERE [r].[RoleId] = @__role_Id_0
+2024-04-15 12:14:25.689 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-15 12:14:25.690 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ClaimType], [r].[ClaimValue]
+FROM [RoleClaims] AS [r]
+WHERE [r].[RoleId] = @__role_Id_0
+2024-04-15 12:14:25.691 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-15 12:14:25.692 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ClaimType], [r].[ClaimValue]
+FROM [RoleClaims] AS [r]
+WHERE [r].[RoleId] = @__role_Id_0
+2024-04-15 12:14:25.696 -04:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2024-04-15 12:14:25.697 -04:00 [INF] User logged in.
+2024-04-15 12:14:25.697 -04:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.LocalRedirectResult.
+2024-04-15 12:14:25.698 -04:00 [INF] Executing LocalRedirectResult, redirecting to /Identity/Account/Logout.
+2024-04-15 12:14:25.698 -04:00 [INF] Executed page /Account/Login in 263.3182ms
+2024-04-15 12:14:25.698 -04:00 [INF] Executed endpoint '/Account/Login'
+2024-04-15 12:14:25.698 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44378/Identity/Account/Login?ReturnUrl=%2FIdentity%2FAccount%2FLogout - 302 null null 267.0111ms
+2024-04-15 12:14:25.703 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Identity/Account/Logout - null null
+2024-04-15 12:14:25.705 -04:00 [INF] Executing endpoint '/Account/Logout'
+2024-04-15 12:14:25.705 -04:00 [INF] Route matched with {page = "/Account/Logout", area = "Identity", action = "", controller = ""}. Executing page /Account/Logout
+2024-04-15 12:14:25.705 -04:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2024-04-15 12:14:25.705 -04:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2024-04-15 12:14:25.710 -04:00 [INF] Executed page /Account/Logout in 5.1468ms
+2024-04-15 12:14:25.710 -04:00 [INF] Executed endpoint '/Account/Logout'
+2024-04-15 12:14:25.710 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Identity/Account/Logout - 200 null text/html; charset=utf-8 6.8686ms
+2024-04-15 12:14:25.736 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-15 12:14:25.744 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 8.2779ms
+2024-04-15 12:14:25.746 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 12:14:25.747 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.9436ms
+2024-04-15 12:14:28.178 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - null null
+2024-04-15 12:14:28.180 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-15 12:14:28.180 -04:00 [INF] Route matched with {area = "DashboardManagement", action = "Index", controller = "Dashboard", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController (TravelGroupAssignment1).
+2024-04-15 12:14:28.185 -04:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Hotels] AS [h]
+2024-04-15 12:14:28.186 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Rooms] AS [r]
+2024-04-15 12:14:28.188 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Flights] AS [f]
+2024-04-15 12:14:28.189 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [CarRentalCompanies] AS [c]
+2024-04-15 12:14:28.190 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Cars] AS [c]
+2024-04-15 12:14:28.191 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-15 12:14:28.192 -04:00 [INF] Executed ViewResult - view Index executed in 1.0932ms.
+2024-04-15 12:14:28.192 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1) in 11.6225ms
+2024-04-15 12:14:28.192 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-15 12:14:28.192 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - 200 null text/html; charset=utf-8 14.3545ms
+2024-04-15 12:14:28.229 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-15 12:14:28.229 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 12:14:28.229 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.7825ms
+2024-04-15 12:14:28.236 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 7.4998ms
+2024-04-15 12:14:35.020 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44378/Identity/Account/Logout - application/x-www-form-urlencoded 225
+2024-04-15 12:14:35.021 -04:00 [INF] Executing endpoint '/Account/Logout'
+2024-04-15 12:14:35.021 -04:00 [INF] Route matched with {page = "/Account/Logout", area = "Identity", action = "", controller = ""}. Executing page /Account/Logout
+2024-04-15 12:14:35.022 -04:00 [INF] Executing handler method TravelGroupAssignment1.Areas.Identity.Pages.Account.LogoutModel.OnPost - ModelState is "Valid"
+2024-04-15 12:14:35.022 -04:00 [INF] AuthenticationScheme: Identity.Application signed out.
+2024-04-15 12:14:35.022 -04:00 [INF] AuthenticationScheme: Identity.External signed out.
+2024-04-15 12:14:35.022 -04:00 [INF] AuthenticationScheme: Identity.TwoFactorUserId signed out.
+2024-04-15 12:14:35.022 -04:00 [INF] User logged out.
+2024-04-15 12:14:35.022 -04:00 [INF] Executed handler method OnPost, returned result Microsoft.AspNetCore.Mvc.RedirectToPageResult.
+2024-04-15 12:14:35.023 -04:00 [INF] Executing RedirectToPageResult, redirecting to null.
+2024-04-15 12:14:35.023 -04:00 [INF] Executed page /Account/Logout in 1.3938ms
+2024-04-15 12:14:35.023 -04:00 [INF] Executed endpoint '/Account/Logout'
+2024-04-15 12:14:35.023 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44378/Identity/Account/Logout - 302 null null 3.3423ms
+2024-04-15 12:14:35.030 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Identity/Account/Logout - null null
+2024-04-15 12:14:35.032 -04:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2024-04-15 12:14:35.033 -04:00 [INF] AuthenticationScheme: Identity.Application was challenged.
+2024-04-15 12:14:35.033 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Identity/Account/Logout - 302 null null 3.0125ms
+2024-04-15 12:14:35.043 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Identity/Account/Login?ReturnUrl=%2FIdentity%2FAccount%2FLogout - null null
+2024-04-15 12:14:35.044 -04:00 [INF] Executing endpoint '/Account/Login'
+2024-04-15 12:14:35.044 -04:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2024-04-15 12:14:35.045 -04:00 [INF] Executing handler method TravelGroupAssignment1.Areas.Identity.Pages.Account.LoginModel.OnGetAsync - ModelState is "Valid"
+2024-04-15 12:14:35.045 -04:00 [INF] AuthenticationScheme: Identity.External signed out.
+2024-04-15 12:14:35.045 -04:00 [INF] Executed handler method OnGetAsync, returned result .
+2024-04-15 12:14:35.045 -04:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2024-04-15 12:14:35.045 -04:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2024-04-15 12:14:35.048 -04:00 [INF] Executed page /Account/Login in 3.3079ms
+2024-04-15 12:14:35.048 -04:00 [INF] Executed endpoint '/Account/Login'
+2024-04-15 12:14:35.048 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Identity/Account/Login?ReturnUrl=%2FIdentity%2FAccount%2FLogout - 200 null text/html; charset=utf-8 4.7699ms
+2024-04-15 12:14:35.079 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-15 12:14:35.081 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 12:14:35.081 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.5769ms
+2024-04-15 12:14:35.087 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 8.4513ms
+2024-04-15 12:14:38.488 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44378/Identity/Account/Login?ReturnUrl=%2FIdentity%2FAccount%2FLogout - application/x-www-form-urlencoded 277
+2024-04-15 12:14:38.490 -04:00 [INF] Executing endpoint '/Account/Login'
+2024-04-15 12:14:38.490 -04:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2024-04-15 12:14:38.492 -04:00 [INF] Executing handler method TravelGroupAssignment1.Areas.Identity.Pages.Account.LoginModel.OnPostAsync - ModelState is "Valid"
+2024-04-15 12:14:38.496 -04:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0
+2024-04-15 12:14:38.497 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0
+2024-04-15 12:14:38.498 -04:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2024-04-15 12:14:38.500 -04:00 [INF] Executed page /Account/Login in 10.0744ms
+2024-04-15 12:14:38.500 -04:00 [INF] Executed endpoint '/Account/Login'
+2024-04-15 12:14:38.501 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44378/Identity/Account/Login?ReturnUrl=%2FIdentity%2FAccount%2FLogout - 200 null text/html; charset=utf-8 12.165ms
+2024-04-15 12:14:38.543 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 12:14:38.544 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.8722ms
+2024-04-15 12:14:38.544 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-15 12:14:38.551 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 6.6226ms
+2024-04-15 12:14:43.783 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44378/Identity/Account/Login?ReturnUrl=%2FIdentity%2FAccount%2FLogout - application/x-www-form-urlencoded 257
+2024-04-15 12:14:43.785 -04:00 [INF] Executing endpoint '/Account/Login'
+2024-04-15 12:14:43.785 -04:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2024-04-15 12:14:43.788 -04:00 [INF] Executing handler method TravelGroupAssignment1.Areas.Identity.Pages.Account.LoginModel.OnPostAsync - ModelState is "Valid"
+2024-04-15 12:14:43.790 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0
+2024-04-15 12:14:43.869 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[Id], [u].[ClaimType], [u].[ClaimValue], [u].[UserId]
+FROM [UserClaims] AS [u]
+WHERE [u].[UserId] = @__user_Id_0
+2024-04-15 12:14:43.871 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[Name]
+FROM [UserRoles] AS [u]
+INNER JOIN [Roles] AS [r] ON [u].[RoleId] = [r].[Id]
+WHERE [u].[UserId] = @__userId_0
+2024-04-15 12:14:43.872 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-15 12:14:43.872 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ClaimType], [r].[ClaimValue]
+FROM [RoleClaims] AS [r]
+WHERE [r].[RoleId] = @__role_Id_0
+2024-04-15 12:14:43.873 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-15 12:14:43.877 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ClaimType], [r].[ClaimValue]
+FROM [RoleClaims] AS [r]
+WHERE [r].[RoleId] = @__role_Id_0
+2024-04-15 12:14:43.878 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-15 12:14:43.880 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ClaimType], [r].[ClaimValue]
+FROM [RoleClaims] AS [r]
+WHERE [r].[RoleId] = @__role_Id_0
+2024-04-15 12:14:43.880 -04:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2024-04-15 12:14:43.880 -04:00 [INF] User logged in.
+2024-04-15 12:14:43.880 -04:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.LocalRedirectResult.
+2024-04-15 12:14:43.881 -04:00 [INF] Executing LocalRedirectResult, redirecting to /Identity/Account/Logout.
+2024-04-15 12:14:43.881 -04:00 [INF] Executed page /Account/Login in 95.2611ms
+2024-04-15 12:14:43.881 -04:00 [INF] Executed endpoint '/Account/Login'
+2024-04-15 12:14:43.881 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44378/Identity/Account/Login?ReturnUrl=%2FIdentity%2FAccount%2FLogout - 302 null null 98.0598ms
+2024-04-15 12:14:43.886 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Identity/Account/Logout - null null
+2024-04-15 12:14:43.888 -04:00 [INF] Executing endpoint '/Account/Logout'
+2024-04-15 12:14:43.888 -04:00 [INF] Route matched with {page = "/Account/Logout", area = "Identity", action = "", controller = ""}. Executing page /Account/Logout
+2024-04-15 12:14:43.888 -04:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2024-04-15 12:14:43.888 -04:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2024-04-15 12:14:43.889 -04:00 [INF] Executed page /Account/Logout in 1.4785ms
+2024-04-15 12:14:43.889 -04:00 [INF] Executed endpoint '/Account/Logout'
+2024-04-15 12:14:43.889 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Identity/Account/Logout - 200 null text/html; charset=utf-8 2.9367ms
+2024-04-15 12:14:43.921 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-15 12:14:43.930 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 8.1394ms
+2024-04-15 12:14:43.930 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 12:14:43.931 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.6819ms
+2024-04-15 12:14:46.445 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - null null
+2024-04-15 12:14:46.447 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-15 12:14:46.447 -04:00 [INF] Route matched with {area = "DashboardManagement", action = "Index", controller = "Dashboard", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController (TravelGroupAssignment1).
+2024-04-15 12:14:46.449 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Hotels] AS [h]
+2024-04-15 12:14:46.450 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Rooms] AS [r]
+2024-04-15 12:14:46.451 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Flights] AS [f]
+2024-04-15 12:14:46.451 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [CarRentalCompanies] AS [c]
+2024-04-15 12:14:46.452 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Cars] AS [c]
+2024-04-15 12:14:46.452 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-15 12:14:46.453 -04:00 [INF] Executed ViewResult - view Index executed in 1.1797ms.
+2024-04-15 12:14:46.453 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1) in 6.0908ms
+2024-04-15 12:14:46.453 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-15 12:14:46.454 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - 200 null text/html; charset=utf-8 8.3332ms
+2024-04-15 12:14:46.488 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-15 12:14:46.492 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 12:14:46.493 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.7023ms
+2024-04-15 12:14:46.495 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 7.6036ms
+2024-04-15 12:21:33.181 -04:00 [INF] App building is running
+2024-04-15 12:21:33.398 -04:00 [INF] User profile is available. Using 'C:\Users\biradon\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-04-15 12:21:34.726 -04:00 [INF] Executed DbCommand (30ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-15 12:21:34.783 -04:00 [WRN] Role b626d392-1af7-4094-b4f4-4c4ac696ef63 validation failed: DuplicateRoleName.
+2024-04-15 12:21:34.787 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-15 12:21:34.788 -04:00 [WRN] Role 21e4c8f8-4ffd-4d92-98df-4c2fef1d157c validation failed: DuplicateRoleName.
+2024-04-15 12:21:34.789 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-15 12:21:34.789 -04:00 [WRN] Role 266d917a-03d5-46fd-8942-66679eab02fc validation failed: DuplicateRoleName.
+2024-04-15 12:21:34.810 -04:00 [INF] Executed DbCommand (3ms) [Parameters=[@__superUser_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN NOT EXISTS (
+        SELECT 1
+        FROM [Users] AS [u]
+        WHERE [u].[Id] = @__superUser_Id_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-04-15 12:21:34.825 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0
+2024-04-15 12:21:34.861 -04:00 [INF] Run Authentication
+2024-04-15 12:21:34.862 -04:00 [INF] Run Authorization
+2024-04-15 12:21:34.862 -04:00 [INF] Run MapControlRoute
+2024-04-15 12:21:35.316 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-04-15 12:21:35.316 -04:00 [INF] Hosting environment: Development
+2024-04-15 12:21:35.316 -04:00 [INF] Content root path: C:\Users\biradon\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment1
+2024-04-15 12:21:35.337 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index123123 - null null
+2024-04-15 12:21:35.337 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index123123 - null null
+2024-04-15 12:21:35.476 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index123123 - 499 null null 140.0189ms
+2024-04-15 12:21:35.479 -04:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:44378/DashboardManagement/Dashboard/Index123123, Response status code: 499
+2024-04-15 12:21:35.480 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index123123 - 302 null null 143.9684ms
+2024-04-15 12:21:35.480 -04:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:44378/DashboardManagement/Dashboard/Index123123, Response status code: 302
+2024-04-15 12:21:35.483 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/StatusCode/404 - null null
+2024-04-15 12:21:35.509 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1)'
+2024-04-15 12:21:35.523 -04:00 [INF] Route matched with {action = "Index", controller = "StatusCode", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(Int32) on controller TravelGroupAssignment1.Controllers.StatusCodeController (TravelGroupAssignment1).
+2024-04-15 12:21:35.536 -04:00 [INF] Executing ViewResult, running view 404.
+2024-04-15 12:21:35.603 -04:00 [INF] Executed ViewResult - view 404 executed in 67.2004ms.
+2024-04-15 12:21:35.603 -04:00 [INF] Executed action TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1) in 79.5242ms
+2024-04-15 12:21:35.604 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1)'
+2024-04-15 12:21:35.606 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/StatusCode/404 - 200 null text/html; charset=utf-8 122.8229ms
+2024-04-15 12:21:35.641 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 12:21:35.645 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 3.2024ms
+2024-04-15 12:21:35.666 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-15 12:21:35.704 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 38.5175ms
+2024-04-15 12:21:38.587 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/StatusCode/502 - null null
+2024-04-15 12:21:38.590 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1)'
+2024-04-15 12:21:38.591 -04:00 [INF] Route matched with {action = "Index", controller = "StatusCode", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(Int32) on controller TravelGroupAssignment1.Controllers.StatusCodeController (TravelGroupAssignment1).
+2024-04-15 12:21:38.593 -04:00 [INF] Executing ViewResult, running view 502.
+2024-04-15 12:21:38.608 -04:00 [INF] Executed ViewResult - view 502 executed in 16.09ms.
+2024-04-15 12:21:38.608 -04:00 [INF] Executed action TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1) in 17.6231ms
+2024-04-15 12:21:38.608 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1)'
+2024-04-15 12:21:38.609 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/StatusCode/502 - 200 null text/html; charset=utf-8 21.458ms
+2024-04-15 12:21:38.634 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-15 12:21:38.636 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 12:21:38.637 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 1.031ms
+2024-04-15 12:21:38.644 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 10.1409ms
