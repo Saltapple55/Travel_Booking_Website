@@ -45,6 +45,7 @@
                         <td>@hotel.HotelName</td>
                         <td>@hotel.Description</td>
                         <td>
+                            <a asp-area="RoomManagement" asp-controller="Room" asp-action="Index" asp-route-id="@hotel.HotelId" class="btn btn-success">Rooms</a>
                             <a asp-controller="Hotel" asp-action="Details" asp-route-id="@hotel.HotelId" class="btn btn-info">Details</a>
                             <a asp-controller="Hotel" asp-action="Edit" asp-route-id="@hotel.HotelId" class="btn btn-warning">Edit</a>
                             <a asp-controller="Hotel" asp-action="Delete" asp-route-id="@hotel.HotelId" class="btn btn-danger">Delete</a>
