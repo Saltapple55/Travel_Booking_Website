@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TravelGroupAssignment1.Areas.CarManagement.Models;
 using TravelGroupAssignment1.Areas.RoomManagement.Models;
@@ -27,7 +28,8 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
                                 .Where(c => c.RoomId == roomId)
                                 .OrderByDescending(c => c.DatePosted)
                                 .ToListAsync();
-
+            if (comments.Count == 0)
+                return Json(new { success = false, message = "no comments found" });
             return Json(comments); // return as JSON
         }
 
