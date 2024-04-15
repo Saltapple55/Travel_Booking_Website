@@ -12,8 +12,13 @@ using TravelGroupAssignment1.Data;
 namespace TravelGroupAssignment1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240414202909_car-comments1")]
-    partial class carcomments1
+<<<<<<<< HEAD:TravelGroupAssignment1/TravelGroupAssignment1/Migrations/20240414192646_post-identity-merge.Designer.cs
+    [Migration("20240414192646_post-identity-merge")]
+    partial class postidentitymerge
+========
+    [Migration("20240415020338_UpdateNewCode")]
+    partial class UpdateNewCode
+>>>>>>>> ba98eccf3775f178ff869ac067b6d9fc356cc365:TravelGroupAssignment1/TravelGroupAssignment1/Migrations/20240415020338_UpdateNewCode.Designer.cs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -237,35 +242,6 @@ namespace TravelGroupAssignment1.Migrations
                     b.HasIndex("CarId");
 
                     b.ToTable("CarBookings");
-                });
-
-            modelBuilder.Entity("TravelGroupAssignment1.Areas.CarManagement.Models.CarComment", b =>
-                {
-                    b.Property<int>("ProjectCommentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProjectCommentId"));
-
-                    b.Property<int>("CarId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<DateTime>("DatePosted")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double>("Rating")
-                        .HasColumnType("float");
-
-                    b.HasKey("ProjectCommentId");
-
-                    b.HasIndex("CarId");
-
-                    b.ToTable("CarComments");
                 });
 
             modelBuilder.Entity("TravelGroupAssignment1.Areas.CarManagement.Models.CarRentalCompany", b =>
@@ -639,7 +615,11 @@ namespace TravelGroupAssignment1.Migrations
                         new
                         {
                             TripId = 1,
-                            TripReference = "240414162941f56d"
+<<<<<<<< HEAD:TravelGroupAssignment1/TravelGroupAssignment1/Migrations/20240414192646_post-identity-merge.Designer.cs
+                            TripReference = "2404141526ba9d46"
+========
+                            TripReference = "240414220325436c"
+>>>>>>>> ba98eccf3775f178ff869ac067b6d9fc356cc365:TravelGroupAssignment1/TravelGroupAssignment1/Migrations/20240415020338_UpdateNewCode.Designer.cs
                         });
                 });
 
@@ -716,17 +696,6 @@ namespace TravelGroupAssignment1.Migrations
                     b.Navigation("Car");
                 });
 
-            modelBuilder.Entity("TravelGroupAssignment1.Areas.CarManagement.Models.CarComment", b =>
-                {
-                    b.HasOne("TravelGroupAssignment1.Areas.CarManagement.Models.Car", "Car")
-                        .WithMany("Comments")
-                        .HasForeignKey("CarId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Car");
-                });
-
             modelBuilder.Entity("TravelGroupAssignment1.Areas.FlightManagement.Models.FlightBooking", b =>
                 {
                     b.HasOne("TravelGroupAssignment1.Areas.FlightManagement.Models.Flight", "Flight")
@@ -783,8 +752,6 @@ namespace TravelGroupAssignment1.Migrations
             modelBuilder.Entity("TravelGroupAssignment1.Areas.CarManagement.Models.Car", b =>
                 {
                     b.Navigation("Bookings");
-
-                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("TravelGroupAssignment1.Areas.CarManagement.Models.CarRentalCompany", b =>
