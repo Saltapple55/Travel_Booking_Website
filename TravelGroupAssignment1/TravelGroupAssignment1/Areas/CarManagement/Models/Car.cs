@@ -45,6 +45,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Models
         public int CompanyId { get; set; }
         public CarRentalCompany? Company { get; set; }
         public ICollection<CarBooking>? Bookings { get; set; }
+        public ICollection<CarComment>? CarComments { get; set; }
     }
 
     public enum CarType

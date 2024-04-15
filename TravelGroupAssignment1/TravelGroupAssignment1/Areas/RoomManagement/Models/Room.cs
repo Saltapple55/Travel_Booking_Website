@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using TravelGroupAssignment1.Areas.CarManagement.Models;
 using TravelGroupAssignment1.Areas.HotelManagement.Models;
 
 namespace TravelGroupAssignment1.Areas.RoomManagement.Models
@@ -42,6 +43,7 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Models
         public Hotel? Hotel { get; set; }
 
         public ICollection<RoomBooking>? RoomBookings { get; set; }
+        public ICollection<RoomComment>? RoomComments { get; set; }
 
     }
 }

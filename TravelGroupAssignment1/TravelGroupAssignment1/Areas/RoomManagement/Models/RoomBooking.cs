@@ -17,9 +17,9 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Models
         public DateTime? CheckInDate { get; set; }
         
         [Required]
-        [ValidEndDate("CheckInDate", ErrorMessage = "End date must be after start date")]
         [Display(Name = "Check Out Date")]
         [DataType(DataType.DateTime)]
+        [ValidEndDate("CheckInDate")]
         public DateTime? CheckOutDate { get; set; } // validate end date >= start date
     }
 }

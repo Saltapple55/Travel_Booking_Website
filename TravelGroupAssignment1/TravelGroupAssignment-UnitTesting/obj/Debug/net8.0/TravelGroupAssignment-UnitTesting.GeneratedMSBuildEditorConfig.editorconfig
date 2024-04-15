@@ -16,6 +16,6 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = TravelGroupAssignment_UnitTesting
-build_property.ProjectDir = C:\Users\biradon\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment-UnitTesting\
+build_property.ProjectDir = C:\Users\CM\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment-UnitTesting\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

@@ -50,7 +50,6 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
             return View(booking);
         }
 
-        // GET: CarBookingController/Create/5
         [HttpGet("Create/{carId:int}/{startDate:datetime}/{endDate:datetime}")]
         public async Task<IActionResult> Create(int carId, DateTime? startDate, DateTime? endDate)
         {
@@ -63,6 +62,19 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
             ViewBag.Company = company;
             ViewBag.StartDate = startDate;
             ViewBag.EndDate = endDate;
+            return View(new CarBooking { CarId = car.CarId, TripId = 1 });
+        }
+
+        [HttpGet("Create/{carId:int}")]
+        public async Task<IActionResult> Create(int carId)
+        {
+            var car = await _context.Cars.FindAsync(carId);
+            if (car == null) return NotFound();
+            var company = await _context.CarRentalCompanies.FindAsync(car.CompanyId);
+            ViewBag.CarName = car.Make + " " + car.Model;
+            ViewBag.CarType = car.Type;
+            ViewBag.Car = car;
+            ViewBag.Company = company;
             return View(new CarBooking { CarId = car.CarId, TripId = 1 });
         }
 
@@ -91,7 +103,10 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
                 }
                 await _context.CarBookings.AddAsync(carBooking);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Trip");
+                if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                    return RedirectToAction("Index", "CarBooking", new { carId = carBooking.CarId });
+                else
+                    return RedirectToAction("Index", "Trip");
             }
             return View(carBooking);
         }
@@ -169,7 +184,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
             {
                 _context.CarBookings.Remove(carBooking);
                 await _context.SaveChangesAsync();
-                if (string.Equals(con, "CarBooking"))
+                if (string.Equals(con, "Trip"))
                     return RedirectToAction("Index", con);
                 return RedirectToAction("Index", new { carId = carBooking.CarId });
             }
