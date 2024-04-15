@@ -5295,3 +5295,144 @@ FROM [Cars] AS [c]
 2024-04-15 14:49:06.981 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
 2024-04-15 14:49:06.982 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.5661ms
 2024-04-15 14:49:06.987 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 7.5622ms
+2024-04-15 15:00:51.706 -04:00 [INF] App building is running
+2024-04-15 15:00:51.930 -04:00 [INF] User profile is available. Using 'C:\Users\biradon\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-04-15 15:00:53.390 -04:00 [INF] Executed DbCommand (55ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-15 15:00:53.450 -04:00 [WRN] Role d6da8a58-3ed2-4aee-8719-30ac59b979ce validation failed: DuplicateRoleName.
+2024-04-15 15:00:53.454 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-15 15:00:53.455 -04:00 [WRN] Role 15096abf-ef8a-4bc4-9781-ff9947fa98c7 validation failed: DuplicateRoleName.
+2024-04-15 15:00:53.456 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-15 15:00:53.457 -04:00 [WRN] Role 95eeb367-bcff-4fa7-a543-df27497716b0 validation failed: DuplicateRoleName.
+2024-04-15 15:00:53.477 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__superUser_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN NOT EXISTS (
+        SELECT 1
+        FROM [Users] AS [u]
+        WHERE [u].[Id] = @__superUser_Id_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-04-15 15:00:53.488 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0
+2024-04-15 15:00:53.522 -04:00 [INF] Run Authentication
+2024-04-15 15:00:53.522 -04:00 [INF] Run Authorization
+2024-04-15 15:00:53.523 -04:00 [INF] Run MapControlRoute
+2024-04-15 15:00:53.760 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-04-15 15:00:53.760 -04:00 [INF] Hosting environment: Development
+2024-04-15 15:00:53.760 -04:00 [INF] Content root path: C:\Users\biradon\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment1
+2024-04-15 15:00:53.777 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - null null
+2024-04-15 15:00:53.891 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-15 15:00:53.904 -04:00 [INF] Route matched with {area = "DashboardManagement", action = "Index", controller = "Dashboard", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController (TravelGroupAssignment1).
+2024-04-15 15:00:53.908 -04:00 [INF] Calling Dashboard Index() Action
+2024-04-15 15:00:53.989 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Hotels] AS [h]
+2024-04-15 15:00:53.995 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Rooms] AS [r]
+2024-04-15 15:00:54.000 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Flights] AS [f]
+2024-04-15 15:00:54.005 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [CarRentalCompanies] AS [c]
+2024-04-15 15:00:54.008 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Cars] AS [c]
+2024-04-15 15:00:54.013 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Users] AS [u]
+2024-04-15 15:00:54.021 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-15 15:00:54.143 -04:00 [INF] Executed ViewResult - view Index executed in 122.0488ms.
+2024-04-15 15:00:54.146 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1) in 241.3288ms
+2024-04-15 15:00:54.147 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-15 15:00:54.160 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - 200 null text/html; charset=utf-8 383.9788ms
+2024-04-15 15:00:54.168 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/TravelGroupAssignment1.styles.css?v=U1K_Tuq8vy2ggEhSQIROEZwbdVkqFz4EOlq9qfle-E8 - null null
+2024-04-15 15:00:54.173 -04:00 [INF] The file /TravelGroupAssignment1.styles.css was not modified
+2024-04-15 15:00:54.175 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/TravelGroupAssignment1.styles.css?v=U1K_Tuq8vy2ggEhSQIROEZwbdVkqFz4EOlq9qfle-E8 - 304 null text/css 7.5695ms
+2024-04-15 15:00:54.202 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-15 15:00:54.202 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 15:00:54.204 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 1.9534ms
+2024-04-15 15:00:54.234 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 31.8926ms
+2024-04-15 15:01:25.750 -04:00 [INF] App building is running
+2024-04-15 15:01:25.915 -04:00 [INF] User profile is available. Using 'C:\Users\biradon\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-04-15 15:01:27.168 -04:00 [INF] Executed DbCommand (31ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-15 15:01:27.226 -04:00 [WRN] Role b1195c72-34d5-40cb-853f-d7d839d22015 validation failed: DuplicateRoleName.
+2024-04-15 15:01:27.231 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-15 15:01:27.232 -04:00 [WRN] Role 9a674461-f67e-414a-af61-3d2789438bc9 validation failed: DuplicateRoleName.
+2024-04-15 15:01:27.233 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-15 15:01:27.233 -04:00 [WRN] Role 07b3104e-e72d-4465-8e17-4a8cc6629ea8 validation failed: DuplicateRoleName.
+2024-04-15 15:01:27.253 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__superUser_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN NOT EXISTS (
+        SELECT 1
+        FROM [Users] AS [u]
+        WHERE [u].[Id] = @__superUser_Id_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-04-15 15:01:27.264 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0
+2024-04-15 15:01:27.302 -04:00 [INF] Run Authentication
+2024-04-15 15:01:27.302 -04:00 [INF] Run Authorization
+2024-04-15 15:01:27.303 -04:00 [INF] Run MapControlRoute
+2024-04-15 15:01:27.540 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-04-15 15:01:27.541 -04:00 [INF] Hosting environment: Development
+2024-04-15 15:01:27.541 -04:00 [INF] Content root path: C:\Users\biradon\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment1
+2024-04-15 15:01:27.568 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - null null
+2024-04-15 15:01:27.742 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-15 15:01:27.760 -04:00 [INF] Route matched with {area = "DashboardManagement", action = "Index", controller = "Dashboard", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController (TravelGroupAssignment1).
+2024-04-15 15:01:27.763 -04:00 [INF] Calling Dashboard Index() Action
+2024-04-15 15:01:27.872 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Hotels] AS [h]
+2024-04-15 15:01:27.879 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Rooms] AS [r]
+2024-04-15 15:01:27.883 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Flights] AS [f]
+2024-04-15 15:01:27.887 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [CarRentalCompanies] AS [c]
+2024-04-15 15:01:27.890 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Cars] AS [c]
+2024-04-15 15:01:27.895 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Users] AS [u]
+2024-04-15 15:01:27.905 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-15 15:01:28.017 -04:00 [INF] Executed ViewResult - view Index executed in 114.308ms.
+2024-04-15 15:01:28.019 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1) in 258.6114ms
+2024-04-15 15:01:28.020 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-15 15:01:28.037 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - 200 null text/html; charset=utf-8 470.6161ms
+2024-04-15 15:01:28.047 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/css/site.css?v=oJct5s4wtm5FkTHLUemfM-fGH3qNRWMoqYUXhe-I5ps - null null
+2024-04-15 15:01:28.055 -04:00 [INF] The file /css/site.css was not modified
+2024-04-15 15:01:28.058 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/css/site.css?v=oJct5s4wtm5FkTHLUemfM-fGH3qNRWMoqYUXhe-I5ps - 304 null text/css 11.1881ms
+2024-04-15 15:01:28.066 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/js/formValidation.js - null null
+2024-04-15 15:01:28.067 -04:00 [INF] The file /js/formValidation.js was not modified
+2024-04-15 15:01:28.068 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/js/formValidation.js - 304 null text/javascript 1.8892ms
+2024-04-15 15:01:28.069 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-15 15:01:28.073 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-15 15:01:28.076 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 6.2711ms
+2024-04-15 15:01:28.111 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 38.5072ms
