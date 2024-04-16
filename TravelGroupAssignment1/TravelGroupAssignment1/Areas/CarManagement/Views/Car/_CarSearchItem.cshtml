@@ -55,9 +55,12 @@
                         </li>
                         @if (SignInManager.IsSignedIn(User))
                         {
-                            // @await Component.InvokeAsync("UserRole")
-
                             //profile
+                            @if (UserManager.GetUserAsync(User).Result.ProfilePic != null)
+                            {
+                                <img id="profilepic" style="width: 35px; height: 35px; border-radius:20px; object-fit: cover"
+                                     src="data:image/*; base64, @(Convert.ToBase64String((UserManager.GetUserAsync(User)).Result.ProfilePic))" />
+                            }
                             <li class="nav-item">
                                 <a class="nav-link text-dark"
                                    asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage your account">
