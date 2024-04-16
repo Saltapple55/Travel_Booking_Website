@@ -19,6 +19,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // see appsettings.json for default connection string
+
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
     options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -27,6 +28,13 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
     
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
 
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<ISessionService, SessionService>();
+builder.Services.AddScoped<ICookieService, CookieService>();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddSession();
+
+var app = builder.Build();
 builder.Host.UseSerilog((hostingContext, loggerConfiguration) =>
     loggerConfiguration
         .ReadFrom.Configuration(hostingContext.Configuration));
@@ -78,6 +86,12 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseSession();
+
+
 try
 {
     app.Logger.LogInformation("Run Authentication");
@@ -127,3 +141,4 @@ catch (Exception e)
 
 
 
+\

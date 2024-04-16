@@ -1,14 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using TravelGroupAssignment1.Areas.CarManagement.Controllers;
 using TravelGroupAssignment1.Areas.CarManagement.Models;
 using TravelGroupAssignment1.Data;
+using TravelGroupAssignment1.Models;
 
 namespace TravelGroupAssignment_UnitTesting.Controllers
 {
@@ -208,7 +213,7 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
         }
 
         [Fact]
-        public async Task CreatePost_ReturnsViewResult_AndCarBookingCreated()
+        public async Task CreatePost_AdminReturnsViewResultToTrip_AndCarBookingCreated()
         {
 
             using (var context = GetApplicationDbContext())
@@ -217,7 +222,24 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
                 SetupCarsAndRentalCompanyAsync(context);
                 var mockCarBooking = new CarBooking { BookingId = 4, CarId = 2, TripId = 2, StartDate = new DateTime(2020, 1, 10), EndDate = new DateTime(2020, 1, 11) };
 
-                var controller = new CarBookingController(context);
+                var mockContext = new Mock<ApplicationDbContext>();
+                var userStore = new Mock<IUserStore<ApplicationUser>>();
+                var userManager = new Mock<UserManager<ApplicationUser>>(userStore.Object, null, null, null, null, null, null, null, null);
+                var mockHttpContext = new Mock<HttpContext>();
+                var mockUser = new Mock<ClaimsPrincipal>();
+
+                mockUser.Setup(user => user.IsInRole("Admin")).Returns(true);
+                mockUser.Setup(user => user.IsInRole("SuperAdmin")).Returns(true);
+                mockHttpContext.Setup(context => context.User).Returns(mockUser.Object);
+
+                var controller = new CarBookingController(context)
+                {
+                    ControllerContext = new ControllerContext
+                    {
+                        HttpContext = mockHttpContext.Object
+                    }
+                };
+
 
                 // Action
                 var result = await controller.CreateBooking(mockCarBooking);
@@ -225,6 +247,52 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
                 // Assert
                 var viewResult = Assert.IsType<RedirectToActionResult>(result);
                 Assert.Equal("Index", viewResult.ActionName); 
+                Assert.Equal("CarBooking", viewResult.ControllerName);
+
+                var model = await context.CarBookings.FindAsync(4);
+                Assert.Equal(4, model.BookingId);
+                Assert.Equal(2, model.CarId);
+                Assert.Equal(2, model.TripId);
+
+                context.Database.EnsureDeleted();
+            }
+        }
+
+        [Fact]
+        public async Task CreatePost_BasicUserReturnsViewResultToTrip_AndCarBookingCreated()
+        {
+
+            using (var context = GetApplicationDbContext())
+            {
+                // Arrange
+                SetupCarsAndRentalCompanyAsync(context);
+                var mockCarBooking = new CarBooking { BookingId = 4, CarId = 2, TripId = 2, StartDate = new DateTime(2020, 1, 10), EndDate = new DateTime(2020, 1, 11) };
+
+                var mockContext = new Mock<ApplicationDbContext>();
+                var userStore = new Mock<IUserStore<ApplicationUser>>();
+                var userManager = new Mock<UserManager<ApplicationUser>>(userStore.Object, null, null, null, null, null, null, null, null);
+                var mockHttpContext = new Mock<HttpContext>();
+                var mockUser = new Mock<ClaimsPrincipal>();
+
+                mockUser.Setup(user => user.IsInRole("Admin")).Returns(false);
+                mockUser.Setup(user => user.IsInRole("SuperAdmin")).Returns(false);
+                mockHttpContext.Setup(context => context.User).Returns(mockUser.Object);
+
+                var controller = new CarBookingController(context)
+                {
+                    ControllerContext = new ControllerContext
+                    {
+                        HttpContext = mockHttpContext.Object
+                    }
+                };
+
+
+                // Action
+                var result = await controller.CreateBooking(mockCarBooking);
+
+                // Assert
+                var viewResult = Assert.IsType<RedirectToActionResult>(result);
+                Assert.Equal("Index", viewResult.ActionName);
                 Assert.Equal("Trip", viewResult.ControllerName);
 
                 var model = await context.CarBookings.FindAsync(4);
@@ -254,7 +322,7 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
 
                 // Assert
                 var viewResult = Assert.IsType<ViewResult>(result);
-                Assert.Null(viewResult.ViewName); // returns default view i.e. Create
+                Assert.Equal("Create", viewResult.ViewName); // returns default view i.e. Create
                 Assert.IsAssignableFrom<CarBooking>(viewResult.Model); // returns incomplete carBooking obj
                 var modelState = viewResult.ViewData.ModelState;
 
@@ -547,7 +615,7 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
                 // Assert
                 var viewResult = Assert.IsType<RedirectToActionResult>(result);
                 Assert.Equal("Index", viewResult.ActionName);
-                Assert.Equal("CarBooking", viewResult.ControllerName);
+                Assert.Equal("Trip", viewResult.ControllerName);
 
                 context.Database.EnsureDeleted();
             }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using TravelGroupAssignment1.Areas.FlightManagement.Models;
 using TravelGroupAssignment1.Models;
 using TravelGroupAssignment1.Validation;
 
@@ -18,5 +19,11 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Models
         [DataType(DataType.DateTime)]
         [ValidEndDate("StartDate")] // custom validation tag
         public DateTime? EndDate { get; set; } // validate end date >= start date
+        public override string ToEmail()
+        {
+            string s = base.ToEmail() + "<br>";
+            s += $"Company: {Car.Company.CompanyName} <br>Details\nMake: {Car.Make} Model: {Car.Model} Capacity: {Car.MaxPassengers} People <br>Price: {Car.PricePerDay} <br>Duration: From {StartDate} to {EndDate}";
+            return s;
+        }
     }
 }

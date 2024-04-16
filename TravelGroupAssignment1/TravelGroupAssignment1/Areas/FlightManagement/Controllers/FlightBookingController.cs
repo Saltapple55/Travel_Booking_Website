@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using TravelGroupAssignment1.Areas.CarManagement.Models;
 using TravelGroupAssignment1.Areas.FlightManagement.Models;
 using TravelGroupAssignment1.Data;
+using TravelGroupAssignment1.Services;
 
 namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
 {
@@ -12,10 +13,13 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
     public class FlightBookingController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ISessionService _sessionService;
 
-        public FlightBookingController(ApplicationDbContext context)
+
+        public FlightBookingController(ApplicationDbContext context, ISessionService sessionService)
         {
             _context = context;
+            _sessionService = sessionService;
         }
         [HttpGet("Index/{flightId:int}")]
         public async Task<IActionResult> Index(int flightId)
@@ -44,7 +48,6 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
             var flightbooking = new FlightBooking
             {
                 FlightId = flightId,
-                TripId = 1
             };
 
 
@@ -60,16 +63,17 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
         [HttpPost("CreateBooking")]
         [ValidateAntiForgeryToken]
 
-        public async Task<IActionResult> CreateBooking([Bind("BookingId, BookingReference, TripId, FlightClass, Flight, Seat, FlightId, Passengers")] FlightBooking booking)
+        public async Task<IActionResult> CreateBooking([Bind("BookingId, BookingReference, FlightClass, Flight, Seat, FlightId, Passengers")] FlightBooking booking)
         {
             int count = _context.FlightBookings.Where(f => f.FlightId == booking.FlightId).ToList().Count;
+            List<int> visitList = _sessionService.GetSessionData<List<int>>("BookingIds");
+
 
             if (count >= _context.Flights.Find(booking.FlightId).MaxPassenger)
             {
                 return NotFound();
             }
             if (booking.TripId == 0) return View(booking);
-            System.Diagnostics.Debug.WriteLine(booking.TripId);
             if (ModelState.IsValid)
             {
                 int flightId = booking.FlightId;
@@ -90,6 +94,8 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
                 }
                 await _context.FlightBookings.AddAsync(booking);
                 await _context.SaveChangesAsync();
+                visitList.Add(booking.BookingId);
+                _sessionService.SetSessionData<List<int>>("BookingIds", visitList);
                 if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
                     return RedirectToAction("Index", "FlightBooking", new { flightId = booking.FlightId });
                 else
