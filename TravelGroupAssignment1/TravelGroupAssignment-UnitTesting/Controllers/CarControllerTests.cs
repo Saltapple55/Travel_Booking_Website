@@ -6,6 +6,8 @@ using TravelGroupAssignment1.Areas.CarManagement.Models;
 using TravelGroupAssignment1.Areas.CarManagement.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Logging;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace TravelGroupAssignment_UnitTesting.Controllers
 {
@@ -20,7 +22,7 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
                 .Options;
             return new ApplicationDbContext(options);
         }
-
+                
         public Car GetFakeCarWithoutCompanyReference()
         {
             return new Car
@@ -56,7 +58,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
                 );
                 await context.SaveChangesAsync();
 
-                var controller = new CarController(context);
+                var mockLogger = new Mock<ILogger<CarController>>();
+                var controller = new CarController(context, mockLogger.Object);
 
                 // Action: call Index()
                 var result = await controller.Index();
@@ -93,8 +96,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
                 );
                 await context.SaveChangesAsync();
 
-                var controller = new CarController(context);
-
+                var mockLogger = new Mock<ILogger<CarController>>();
+                var controller = new CarController(context, mockLogger.Object);
                 // Action: call Details
                 var result = await controller.Details(3);
 
@@ -118,8 +121,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
             using (var context = GetApplicationDbContext())
             {
                 // Arrange: empty context
-                var controller = new CarController(context);
-
+                var mockLogger = new Mock<ILogger<CarController>>();
+                var controller = new CarController(context, mockLogger.Object);
                 // Action
                 var result = await controller.Details(1);
 
@@ -143,8 +146,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
 
                 await context.SaveChangesAsync();
 
-                var controller = new CarController(context);
-
+                var mockLogger = new Mock<ILogger<CarController>>();
+                var controller = new CarController(context, mockLogger.Object);
                 // Action: call create
                 var result = await controller.Create();
 
@@ -171,8 +174,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
             using (var context = GetApplicationDbContext())
             {
                 // Arrange: Cars, Company and Controller
-                var controller = new CarController(context);
-
+                var mockLogger = new Mock<ILogger<CarController>>();
+                var controller = new CarController(context, mockLogger.Object);
                 // Action: call create
                 var result = await controller.Create();
 
@@ -209,8 +212,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
 
                 var mockCar = GetFakeCarWithoutCompanyReference();
 
-                var controller = new CarController(context);
-
+                var mockLogger = new Mock<ILogger<CarController>>();
+                var controller = new CarController(context, mockLogger.Object);
                 // Action: call create
                 var result = await controller.Create(mockCar);
 
@@ -243,8 +246,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
 
                 await context.SaveChangesAsync();
 
-                var controller = new CarController(context);
-
+                var mockLogger = new Mock<ILogger<CarController>>();
+                var controller = new CarController(context, mockLogger.Object);
                 // Action: call create
                 var result = await controller.Edit(1);
 
@@ -280,8 +283,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
 
                 await context.SaveChangesAsync();
 
-                var controller = new CarController(context);
-
+                var mockLogger = new Mock<ILogger<CarController>>();
+                var controller = new CarController(context, mockLogger.Object);
                 // Action: call create
                 var result = await controller.Edit(1);
 
@@ -320,8 +323,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
 
                 await context.SaveChangesAsync();
 
-                var controller = new CarController(context);
-
+                var mockLogger = new Mock<ILogger<CarController>>();
+                var controller = new CarController(context, mockLogger.Object);
                 // update car with new values
 
                 mockCar.Make = "test make 2";
@@ -371,8 +374,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
 
                 await context.SaveChangesAsync();
 
-                var controller = new CarController(context);
-
+                var mockLogger = new Mock<ILogger<CarController>>();
+                var controller = new CarController(context, mockLogger.Object);
                 var updatedMockCar = new Car
                 {
                     CarId = 1,
@@ -415,8 +418,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
                 );
                 await context.SaveChangesAsync();
 
-                var controller = new CarController(context);
-
+                var mockLogger = new Mock<ILogger<CarController>>();
+                var controller = new CarController(context, mockLogger.Object);
                 // Action: call Details
                 var result = await controller.Delete(3);
 
@@ -439,8 +442,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
             using (var context = GetApplicationDbContext())
             {
                 // Arrange: empty context
-                var controller = new CarController(context);
-
+                var mockLogger = new Mock<ILogger<CarController>>();
+                var controller = new CarController(context, mockLogger.Object);
                 // Action
                 var result = await controller.Delete(3);
 
@@ -465,8 +468,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
                 );
                 await context.SaveChangesAsync();
 
-                var controller = new CarController(context);
-
+                var mockLogger = new Mock<ILogger<CarController>>();
+                var controller = new CarController(context, mockLogger.Object);
                 // Action: call Details
                 var result = await controller.DeleteConfirmed(3);
 
@@ -489,8 +492,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
             using (var context = GetApplicationDbContext())
             {
                 // Arrange: empty context
-                var controller = new CarController(context);
-
+                var mockLogger = new Mock<ILogger<CarController>>();
+                var controller = new CarController(context, mockLogger.Object);
                 // Action
                 var result = await controller.DeleteConfirmed(3);
 
@@ -534,8 +537,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
                 );
                 await context.SaveChangesAsync();
 
-                var controller = new CarController(context);
-
+                var mockLogger = new Mock<ILogger<CarController>>();
+                var controller = new CarController(context, mockLogger.Object);
                 // Action: call Details
                 var result = await controller.Search("stubLocation", new DateTime(2020, 1, 1), new DateTime(2020, 1, 3)); 
 
@@ -559,8 +562,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
 
             using (var context = GetApplicationDbContext())
             {
-                var controller = new CarController(context);
-
+                var mockLogger = new Mock<ILogger<CarController>>();
+                var controller = new CarController(context, mockLogger.Object);
                 // Action: call Details
                 var result = await controller.Search("stubLocation", new DateTime(2020, 1, 1), new DateTime(2020, 1, 3));
 
@@ -581,8 +584,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
 
             using (var context = GetApplicationDbContext())
             {
-                var controller = new CarController(context);
-
+                var mockLogger = new Mock<ILogger<CarController>>();
+                var controller = new CarController(context, mockLogger.Object);
                 // Action: call Details
                 var result = await controller.Search("", new DateTime(2020, 1, 1), new DateTime(2020, 1, 3));
 
@@ -602,18 +605,16 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
             {
                 // Arrange: Cars, Company and Controller
                 var stubCompany = new CarRentalCompany { CarRentalCompanyId = 1, CompanyName = "stubCompany", Location = "stubLocation" };
-
-                await context.Cars.AddRangeAsync(
-                    new Car { CarId = 1, Make = "Toyota", Model = "Corolla", Type = "Sedan", CompanyId = 1, Company = stubCompany },
-                    new Car
-                    {
-                        CarId = 2,
-                        Make = "Toyota",
-                        Model = "Yaris",
-                        Type = "Hatchback",
-                        CompanyId = 1,
-                        Company = stubCompany,
-                        Bookings = new List<CarBooking> {
+                var mockCar1 = new Car { CarId = 1, Make = "Toyota", Model = "Corolla", Type = "Sedan", CompanyId = 1, Company = stubCompany };
+                var mockCar2 = new Car
+                {
+                    CarId = 2,
+                    Make = "Toyota",
+                    Model = "Yaris",
+                    Type = "Hatchback",
+                    CompanyId = 1,
+                    Company = stubCompany,
+                    Bookings = new List<CarBooking> {
                             new CarBooking {
                                 BookingId = 1,
                                 TripId = 1,
@@ -622,12 +623,12 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
                                 EndDate = new DateTime(2020, 1, 10)
                             }
                         }
-                    }
-                );
+                };
+                await context.Cars.AddRangeAsync(mockCar1, mockCar2);
                 await context.SaveChangesAsync();
 
-                var controller = new CarController(context);
-
+                var mockLogger = new Mock<ILogger<CarController>>();
+                var controller = new CarController(context, mockLogger.Object);
                 // Action: call Details
                 var result = await controller.SearchAjax("stubLocation", new DateTime(2020, 1, 1), new DateTime(2020, 1, 3));
 

@@ -99,7 +99,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
                 if (await carBookingExists(carBooking))
                 {
                     ModelState.AddModelError("", "Car is not available for booking on given date range.");
-                    return View(carBooking);
+                    return View("Create", carBooking);
                 }
                 await _context.CarBookings.AddAsync(carBooking);
                 await _context.SaveChangesAsync();
@@ -108,7 +108,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
                 else
                     return RedirectToAction("Index", "Trip");
             }
-            return View(carBooking);
+            return View("Create", carBooking);
         }
 
         // GET: CarBookingController/Edit/5
@@ -176,7 +176,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         // POST: CarBookingController/DeleteConfirmed/5
         [HttpPost("DeleteConfirmed/{id:int}"), ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id, string? con = "CarBooking")
+        public async Task<IActionResult> DeleteConfirmed(int id, string? con = "Trip")
         {
             var carBooking = await _context.CarBookings.FindAsync(id);
 
