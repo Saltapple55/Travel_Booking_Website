@@ -11,9 +11,9 @@ using TravelGroupAssignment1.Data;
 
 namespace TravelGroupAssignment1.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240416041417_PullCode")]
-    partial class PullCode
+
+    partial class triprework2
+
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -733,7 +733,8 @@ namespace TravelGroupAssignment1.Migrations
                         new
                         {
                             TripId = 1,
-                            TripReference = "24041600149bef05"
+                            TripReference = "2404160042a7cc82"
+
                         });
                 });
 

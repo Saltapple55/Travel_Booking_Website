@@ -5,8 +5,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TravelGroupAssignment1.Migrations
 {
-    /// <inheritdoc />
-    public partial class PullCode : Migration
+
+    public partial class triprework2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -472,7 +472,7 @@ namespace TravelGroupAssignment1.Migrations
             migrationBuilder.InsertData(
                 table: "Trips",
                 columns: new[] { "TripId", "ApplicationUserId", "TripReference" },
-                values: new object[] { 1, null, "24041600149bef05" });
+                values: new object[] { 1, null, "2404160042a7cc82" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_CarBookings_CarId",
