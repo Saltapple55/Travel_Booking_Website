@@ -2689,3 +2689,599 @@ WHERE [u].[Id] = @__p_0
 2024-04-16 18:26:57.075 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
 2024-04-16 18:26:57.075 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 3.1181ms
 2024-04-16 18:26:57.085 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 10.6345ms
+2024-04-16 18:29:46.232 -04:00 [INF] App building is running
+2024-04-16 18:29:46.475 -04:00 [INF] User profile is available. Using 'C:\Users\tjand\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-04-16 18:29:47.291 -04:00 [INF] Executed DbCommand (32ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-16 18:29:47.328 -04:00 [WRN] Role de798bbd-3c45-429a-9519-7c4864b5535c validation failed: DuplicateRoleName.
+2024-04-16 18:29:47.332 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-16 18:29:47.336 -04:00 [WRN] Role aa4427a2-8053-4f92-92c7-4df68e2c38b7 validation failed: DuplicateRoleName.
+2024-04-16 18:29:47.338 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-16 18:29:47.338 -04:00 [WRN] Role 4e9e3832-6cbf-454a-8d14-fdc42f4eeba5 validation failed: DuplicateRoleName.
+2024-04-16 18:29:47.356 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__superUser_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN NOT EXISTS (
+        SELECT 1
+        FROM [Users] AS [u]
+        WHERE [u].[Id] = @__superUser_Id_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-04-16 18:29:47.373 -04:00 [INF] Executed DbCommand (4ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0
+2024-04-16 18:29:47.640 -04:00 [INF] Run Authentication
+2024-04-16 18:29:47.640 -04:00 [INF] Run Authorization
+2024-04-16 18:29:47.640 -04:00 [INF] Run MapControlRoute
+2024-04-16 18:29:47.751 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/ - null null
+2024-04-16 18:29:47.757 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-04-16 18:29:47.757 -04:00 [INF] Hosting environment: Development
+2024-04-16 18:29:47.757 -04:00 [INF] Content root path: C:\Users\tjand\source\repos\COMP2139\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment1
+2024-04-16 18:29:47.856 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Controllers.HomeController.Index (TravelGroupAssignment1)'
+2024-04-16 18:29:47.863 -04:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TravelGroupAssignment1.Controllers.HomeController (TravelGroupAssignment1).
+2024-04-16 18:29:47.865 -04:00 [INF] Accessing expired session, Key:48a0b7a0-b0ff-63b1-933d-46f70b76e980
+2024-04-16 18:29:47.866 -04:00 [INF] Calling Home Index() Action
+2024-04-16 18:29:47.870 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 18:29:47.950 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__p_0
+2024-04-16 18:29:47.973 -04:00 [INF] Executed ViewResult - view Index executed in 104.147ms.
+2024-04-16 18:29:47.974 -04:00 [INF] Executed action TravelGroupAssignment1.Controllers.HomeController.Index (TravelGroupAssignment1) in 111.193ms
+2024-04-16 18:29:47.974 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Controllers.HomeController.Index (TravelGroupAssignment1)'
+2024-04-16 18:29:47.977 -04:00 [INF] Session started; Key:48a0b7a0-b0ff-63b1-933d-46f70b76e980, Id:45556b06-b0e4-b5ce-4d12-bcf23253dd6b
+2024-04-16 18:29:47.990 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/ - 200 null text/html; charset=utf-8 241.2831ms
+2024-04-16 18:29:48.108 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 18:29:48.111 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 2.0574ms
+2024-04-16 18:29:48.124 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 18:29:48.154 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 30.2426ms
+2024-04-16 18:29:56.345 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Flight/Index - null null
+2024-04-16 18:29:56.356 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.FlightManagement.Controllers.FlightController.Index (TravelGroupAssignment1)'
+2024-04-16 18:29:56.360 -04:00 [INF] Route matched with {area = "FlightManagement", action = "Index", controller = "Flight", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.FlightManagement.Controllers.FlightController (TravelGroupAssignment1).
+2024-04-16 18:29:56.362 -04:00 [INF] Calling Flight Index() Action
+2024-04-16 18:29:56.375 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [f].[FlightId], [f].[Airline], [f].[ArrivalTime], [f].[DepartTime], [f].[From], [f].[MaxPassenger], [f].[Price], [f].[To]
+FROM [Flights] AS [f]
+2024-04-16 18:29:56.395 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 18:29:56.408 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__p_0
+2024-04-16 18:29:56.411 -04:00 [INF] Executed ViewResult - view Index executed in 16.7141ms.
+2024-04-16 18:29:56.412 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.FlightManagement.Controllers.FlightController.Index (TravelGroupAssignment1) in 51.4507ms
+2024-04-16 18:29:56.412 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.FlightManagement.Controllers.FlightController.Index (TravelGroupAssignment1)'
+2024-04-16 18:29:56.422 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Flight/Index - 200 null text/html; charset=utf-8 77.7604ms
+2024-04-16 18:29:56.514 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 18:29:56.515 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 1.4016ms
+2024-04-16 18:29:56.520 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 18:29:56.536 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 16.3254ms
+2024-04-16 18:30:07.116 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Hotel/Index - null null
+2024-04-16 18:30:07.141 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Index (TravelGroupAssignment1)'
+2024-04-16 18:30:07.145 -04:00 [INF] Route matched with {area = "HotelManagement", action = "Index", controller = "Hotel", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController (TravelGroupAssignment1).
+2024-04-16 18:30:07.147 -04:00 [INF] Calling Hotel Index() Action
+2024-04-16 18:30:07.156 -04:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [h].[HotelId], [h].[Amenities], [h].[Description], [h].[HotelName], [h].[Location]
+FROM [Hotels] AS [h]
+2024-04-16 18:30:07.172 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 18:30:07.251 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__p_0
+2024-04-16 18:30:07.258 -04:00 [INF] Executed ViewResult - view Index executed in 86.6274ms.
+2024-04-16 18:30:07.259 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Index (TravelGroupAssignment1) in 113.8486ms
+2024-04-16 18:30:07.259 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Index (TravelGroupAssignment1)'
+2024-04-16 18:30:07.261 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Hotel/Index - 200 null text/html; charset=utf-8 145.2588ms
+2024-04-16 18:30:07.391 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 18:30:07.391 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 18:30:07.393 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.8046ms
+2024-04-16 18:30:07.403 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/js/hotelSearch.js - null null
+2024-04-16 18:30:07.404 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 13.1961ms
+2024-04-16 18:30:07.407 -04:00 [INF] The file /js/hotelSearch.js was not modified
+2024-04-16 18:30:07.408 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/js/hotelSearch.js - 304 null text/javascript 5.2707ms
+2024-04-16 18:30:10.670 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Car/Index - null null
+2024-04-16 18:30:10.675 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1)'
+2024-04-16 18:30:10.678 -04:00 [INF] Route matched with {area = "CarManagement", action = "Index", controller = "Car", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController (TravelGroupAssignment1).
+2024-04-16 18:30:10.680 -04:00 [INF] Calling Car Index() Action
+2024-04-16 18:30:10.734 -04:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CarId], [c].[CompanyId], [c].[HasAirConditioning], [c].[HasUnlimitedMileage], [c].[Make], [c].[MaxPassengers], [c].[Model], [c].[PricePerDay], [c].[Transmission], [c].[Type], [c0].[CarRentalCompanyId], [c0].[CompanyName], [c0].[Location], [c0].[Rating]
+FROM [Cars] AS [c]
+INNER JOIN [CarRentalCompanies] AS [c0] ON [c].[CompanyId] = [c0].[CarRentalCompanyId]
+2024-04-16 18:30:10.763 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 18:30:10.807 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__p_0
+2024-04-16 18:30:10.813 -04:00 [INF] Executed ViewResult - view Index executed in 50.946ms.
+2024-04-16 18:30:10.813 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1) in 134.8378ms
+2024-04-16 18:30:10.813 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1)'
+2024-04-16 18:30:10.815 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Car/Index - 200 null text/html; charset=utf-8 144.5957ms
+2024-04-16 18:30:11.080 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 18:30:11.080 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 18:30:11.081 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.7502ms
+2024-04-16 18:30:11.087 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 6.7356ms
+2024-04-16 18:30:11.089 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/js/carSearch.js - null null
+2024-04-16 18:30:11.098 -04:00 [INF] Sending file. Request path: '/js/carSearch.js'. Physical path: 'C:\Users\tjand\source\repos\COMP2139\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment1\wwwroot\js\carSearch.js'
+2024-04-16 18:30:11.098 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/js/carSearch.js - 200 4786 text/javascript 8.5131ms
+2024-04-16 18:30:38.275 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Identity/Account/Manage - null null
+2024-04-16 18:30:38.290 -04:00 [INF] Executing endpoint '/Account/Manage/Index'
+2024-04-16 18:30:38.299 -04:00 [INF] Route matched with {page = "/Account/Manage/Index", area = "Identity", action = "", controller = ""}. Executing page /Account/Manage/Index
+2024-04-16 18:30:38.307 -04:00 [INF] Executing handler method TravelGroupAssignment1.Areas.Identity.Pages.Account.Manage.IndexModel.OnGetAsync - ModelState is "Valid"
+2024-04-16 18:30:38.311 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__p_0
+2024-04-16 18:30:38.322 -04:00 [INF] Executed handler method OnGetAsync, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2024-04-16 18:30:38.363 -04:00 [INF] Executed page /Account/Manage/Index in 62.9228ms
+2024-04-16 18:30:38.363 -04:00 [INF] Executed endpoint '/Account/Manage/Index'
+2024-04-16 18:30:38.364 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Identity/Account/Manage - 200 null text/html; charset=utf-8 88.9945ms
+2024-04-16 18:30:38.602 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 18:30:38.603 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 18:30:38.603 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.5871ms
+2024-04-16 18:30:38.611 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 8.9422ms
+2024-04-16 18:30:40.537 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Identity/Account/Manage/ChangePassword - null null
+2024-04-16 18:30:40.549 -04:00 [INF] Executing endpoint '/Account/Manage/ChangePassword'
+2024-04-16 18:30:40.553 -04:00 [INF] Route matched with {page = "/Account/Manage/ChangePassword", area = "Identity", action = "", controller = ""}. Executing page /Account/Manage/ChangePassword
+2024-04-16 18:30:40.554 -04:00 [INF] Executing handler method Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Manage.Internal.ChangePasswordModel.OnGetAsync - ModelState is "Valid"
+2024-04-16 18:30:40.558 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__p_0
+2024-04-16 18:30:40.563 -04:00 [INF] Executed handler method OnGetAsync, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2024-04-16 18:30:40.575 -04:00 [INF] Executed page /Account/Manage/ChangePassword in 22.3553ms
+2024-04-16 18:30:40.575 -04:00 [INF] Executed endpoint '/Account/Manage/ChangePassword'
+2024-04-16 18:30:40.577 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Identity/Account/Manage/ChangePassword - 200 null text/html; charset=utf-8 39.9337ms
+2024-04-16 18:30:40.884 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 18:30:40.884 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 18:30:40.885 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.93ms
+2024-04-16 18:30:40.891 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 6.1362ms
+2024-04-16 18:30:58.873 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44378/Identity/Account/Manage/ChangePassword - application/x-www-form-urlencoded 325
+2024-04-16 18:30:58.879 -04:00 [INF] Executing endpoint '/Account/Manage/ChangePassword'
+2024-04-16 18:30:58.880 -04:00 [INF] Route matched with {page = "/Account/Manage/ChangePassword", area = "Identity", action = "", controller = ""}. Executing page /Account/Manage/ChangePassword
+2024-04-16 18:30:58.895 -04:00 [INF] Executing handler method Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Manage.Internal.ChangePasswordModel.OnPostAsync - ModelState is "Valid"
+2024-04-16 18:30:58.900 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__p_0
+2024-04-16 18:30:59.018 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0
+2024-04-16 18:30:59.080 -04:00 [INF] Executed DbCommand (6ms) [Parameters=[@p25='?' (Size = 450), @p0='?' (DbType = Int32), @p1='?' (DbType = Date), @p2='?' (Size = 4000), @p26='?' (Size = 4000), @p3='?' (Size = 256), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Boolean), @p10='?' (DbType = DateTimeOffset), @p11='?' (Size = 256), @p12='?' (Size = 256), @p13='?' (Size = 4000), @p14='?' (Size = 4000), @p15='?' (Size = 4000), @p16='?' (DbType = Boolean), @p17='?' (Size = -1) (DbType = Binary), @p18='?' (Size = 4000), @p19='?' (Size = 4000), @p20='?' (Size = 4000), @p21='?' (Size = 4000), @p22='?' (DbType = Boolean), @p23='?' (Size = 256), @p24='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [AccessFailedCount] = @p0, [Birthday] = @p1, [ConcurrencyStamp] = @p2, [Email] = @p3, [EmailConfirmed] = @p4, [FirstName] = @p5, [Gender] = @p6, [HomeAirport] = @p7, [LastName] = @p8, [LockoutEnabled] = @p9, [LockoutEnd] = @p10, [NormalizedEmail] = @p11, [NormalizedUserName] = @p12, [Passport] = @p13, [PasswordHash] = @p14, [PhoneNumber] = @p15, [PhoneNumberConfirmed] = @p16, [ProfilePic] = @p17, [RewardProgramName] = @p18, [RewardProgramNumber] = @p19, [SeatPreference] = @p20, [SecurityStamp] = @p21, [TwoFactorEnabled] = @p22, [UserName] = @p23, [UsernameChange] = @p24
+OUTPUT 1
+WHERE [Id] = @p25 AND [ConcurrencyStamp] = @p26;
+2024-04-16 18:30:59.100 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[Id], [u].[ClaimType], [u].[ClaimValue], [u].[UserId]
+FROM [UserClaims] AS [u]
+WHERE [u].[UserId] = @__user_Id_0
+2024-04-16 18:30:59.111 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[Name]
+FROM [UserRoles] AS [u]
+INNER JOIN [Roles] AS [r] ON [u].[RoleId] = [r].[Id]
+WHERE [u].[UserId] = @__userId_0
+2024-04-16 18:30:59.113 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-16 18:30:59.118 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ClaimType], [r].[ClaimValue]
+FROM [RoleClaims] AS [r]
+WHERE [r].[RoleId] = @__role_Id_0
+2024-04-16 18:30:59.121 -04:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2024-04-16 18:30:59.122 -04:00 [INF] User changed their password successfully.
+2024-04-16 18:30:59.122 -04:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.RedirectToPageResult.
+2024-04-16 18:30:59.122 -04:00 [INF] Executing RedirectToPageResult, redirecting to null.
+2024-04-16 18:30:59.123 -04:00 [INF] Executed page /Account/Manage/ChangePassword in 243.2206ms
+2024-04-16 18:30:59.123 -04:00 [INF] Executed endpoint '/Account/Manage/ChangePassword'
+2024-04-16 18:30:59.124 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44378/Identity/Account/Manage/ChangePassword - 302 null null 251.2496ms
+2024-04-16 18:30:59.130 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Identity/Account/Manage/ChangePassword - null null
+2024-04-16 18:30:59.133 -04:00 [INF] Executing endpoint '/Account/Manage/ChangePassword'
+2024-04-16 18:30:59.133 -04:00 [INF] Route matched with {page = "/Account/Manage/ChangePassword", area = "Identity", action = "", controller = ""}. Executing page /Account/Manage/ChangePassword
+2024-04-16 18:30:59.133 -04:00 [INF] Executing handler method Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Manage.Internal.ChangePasswordModel.OnGetAsync - ModelState is "Valid"
+2024-04-16 18:30:59.136 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__p_0
+2024-04-16 18:30:59.137 -04:00 [INF] Executed handler method OnGetAsync, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2024-04-16 18:30:59.140 -04:00 [INF] Executed page /Account/Manage/ChangePassword in 7.4982ms
+2024-04-16 18:30:59.140 -04:00 [INF] Executed endpoint '/Account/Manage/ChangePassword'
+2024-04-16 18:30:59.141 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Identity/Account/Manage/ChangePassword - 200 null text/html; charset=utf-8 10.474ms
+2024-04-16 18:30:59.221 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 18:30:59.221 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 18:30:59.223 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 1.6247ms
+2024-04-16 18:30:59.227 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 5.7955ms
+2024-04-16 18:40:16.714 -04:00 [INF] App building is running
+2024-04-16 18:40:16.963 -04:00 [INF] User profile is available. Using 'C:\Users\tjand\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-04-16 18:40:18.526 -04:00 [INF] Executed DbCommand (37ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-16 18:40:18.576 -04:00 [WRN] Role 7cd575ba-5e18-441d-b866-214153dc7c14 validation failed: DuplicateRoleName.
+2024-04-16 18:40:18.594 -04:00 [INF] Executed DbCommand (14ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-16 18:40:18.594 -04:00 [WRN] Role db5cecb3-fa0f-42b7-9e1b-033fc460d376 validation failed: DuplicateRoleName.
+2024-04-16 18:40:18.596 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-16 18:40:18.596 -04:00 [WRN] Role 2afab8b2-8255-4878-b99d-776b38a51f5b validation failed: DuplicateRoleName.
+2024-04-16 18:40:18.622 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__superUser_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN NOT EXISTS (
+        SELECT 1
+        FROM [Users] AS [u]
+        WHERE [u].[Id] = @__superUser_Id_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-04-16 18:40:18.635 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0
+2024-04-16 18:40:19.208 -04:00 [INF] Run Authentication
+2024-04-16 18:40:19.208 -04:00 [INF] Run Authorization
+2024-04-16 18:40:19.209 -04:00 [INF] Run MapControlRoute
+2024-04-16 18:40:19.377 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/ - null null
+2024-04-16 18:40:19.394 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-04-16 18:40:19.394 -04:00 [INF] Hosting environment: Development
+2024-04-16 18:40:19.394 -04:00 [INF] Content root path: C:\Users\tjand\source\repos\COMP2139\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment1
+2024-04-16 18:40:19.598 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Controllers.HomeController.Index (TravelGroupAssignment1)'
+2024-04-16 18:40:19.607 -04:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TravelGroupAssignment1.Controllers.HomeController (TravelGroupAssignment1).
+2024-04-16 18:40:19.612 -04:00 [INF] Accessing expired session, Key:48a0b7a0-b0ff-63b1-933d-46f70b76e980
+2024-04-16 18:40:19.613 -04:00 [INF] Calling Home Index() Action
+2024-04-16 18:40:19.620 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 18:40:19.726 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__p_0
+2024-04-16 18:40:19.749 -04:00 [INF] Executed ViewResult - view Index executed in 132.8634ms.
+2024-04-16 18:40:19.751 -04:00 [INF] Executed action TravelGroupAssignment1.Controllers.HomeController.Index (TravelGroupAssignment1) in 143.3128ms
+2024-04-16 18:40:19.751 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Controllers.HomeController.Index (TravelGroupAssignment1)'
+2024-04-16 18:40:19.753 -04:00 [INF] Session started; Key:48a0b7a0-b0ff-63b1-933d-46f70b76e980, Id:c77ea3ac-f828-69be-4322-7a6ff6df966d
+2024-04-16 18:40:19.769 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/ - 200 null text/html; charset=utf-8 395.8749ms
+2024-04-16 18:40:19.857 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 18:40:19.857 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/lib/bootstrap/dist/css/bootstrap.min.css - null null
+2024-04-16 18:40:19.861 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 3.3028ms
+2024-04-16 18:40:19.865 -04:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\tjand\source\repos\COMP2139\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment1\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+2024-04-16 18:40:19.865 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/lib/bootstrap/dist/css/bootstrap.min.css - 499 162726 text/css 8.5154ms
+2024-04-16 18:40:19.884 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 18:40:19.949 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 65.195ms
+2024-04-16 18:40:20.002 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_content/Microsoft.AspNetCore.Components.QuickGrid/Microsoft.AspNetCore.Components.QuickGrid.bundle.scp.css - null null
+2024-04-16 18:40:20.004 -04:00 [INF] Sending file. Request path: '/_content/Microsoft.AspNetCore.Components.QuickGrid/Microsoft.AspNetCore.Components.QuickGrid.bundle.scp.css'. Physical path: 'C:\Users\tjand\.nuget\packages\microsoft.aspnetcore.components.quickgrid\8.0.4\staticwebassets\Microsoft.AspNetCore.Components.QuickGrid.bundle.scp.css'
+2024-04-16 18:40:20.004 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_content/Microsoft.AspNetCore.Components.QuickGrid/Microsoft.AspNetCore.Components.QuickGrid.bundle.scp.css - 499 8251 text/css 2.3122ms
+2024-04-16 18:40:24.759 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44378/Identity/Account/Logout - application/x-www-form-urlencoded 225
+2024-04-16 18:40:24.779 -04:00 [INF] Executing endpoint '/Account/Logout'
+2024-04-16 18:40:24.787 -04:00 [INF] Route matched with {page = "/Account/Logout", area = "Identity", action = "", controller = ""}. Executing page /Account/Logout
+2024-04-16 18:40:24.807 -04:00 [INF] Executing handler method TravelGroupAssignment1.Areas.Identity.Pages.Account.LogoutModel.OnPost - ModelState is "Valid"
+2024-04-16 18:40:24.812 -04:00 [INF] AuthenticationScheme: Identity.Application signed out.
+2024-04-16 18:40:24.813 -04:00 [INF] AuthenticationScheme: Identity.External signed out.
+2024-04-16 18:40:24.813 -04:00 [INF] AuthenticationScheme: Identity.TwoFactorUserId signed out.
+2024-04-16 18:40:24.814 -04:00 [INF] User logged out.
+2024-04-16 18:40:24.814 -04:00 [INF] Executed handler method OnPost, returned result Microsoft.AspNetCore.Mvc.RedirectToPageResult.
+2024-04-16 18:40:24.815 -04:00 [INF] Executing RedirectToPageResult, redirecting to null.
+2024-04-16 18:40:24.815 -04:00 [INF] Executed page /Account/Logout in 28.0402ms
+2024-04-16 18:40:24.815 -04:00 [INF] Executed endpoint '/Account/Logout'
+2024-04-16 18:40:24.816 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44378/Identity/Account/Logout - 302 null null 57.3018ms
+2024-04-16 18:40:24.829 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Identity/Account/Logout - null null
+2024-04-16 18:40:24.838 -04:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2024-04-16 18:40:24.840 -04:00 [INF] AuthenticationScheme: Identity.Application was challenged.
+2024-04-16 18:40:24.841 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Identity/Account/Logout - 302 null null 11.2506ms
+2024-04-16 18:40:24.856 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Identity/Account/Login?ReturnUrl=%2FIdentity%2FAccount%2FLogout - null null
+2024-04-16 18:40:24.860 -04:00 [INF] Executing endpoint '/Account/Login'
+2024-04-16 18:40:24.868 -04:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2024-04-16 18:40:24.881 -04:00 [INF] Executing handler method TravelGroupAssignment1.Areas.Identity.Pages.Account.LoginModel.OnGetAsync - ModelState is "Valid"
+2024-04-16 18:40:24.882 -04:00 [INF] AuthenticationScheme: Identity.External signed out.
+2024-04-16 18:40:24.883 -04:00 [INF] Executed handler method OnGetAsync, returned result .
+2024-04-16 18:40:24.884 -04:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2024-04-16 18:40:24.884 -04:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2024-04-16 18:40:24.927 -04:00 [INF] Executed page /Account/Login in 59.3477ms
+2024-04-16 18:40:24.927 -04:00 [INF] Executed endpoint '/Account/Login'
+2024-04-16 18:40:24.928 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Identity/Account/Login?ReturnUrl=%2FIdentity%2FAccount%2FLogout - 200 null text/html; charset=utf-8 71.2513ms
+2024-04-16 18:40:25.248 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 18:40:25.249 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 18:40:25.253 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 3.6107ms
+2024-04-16 18:40:25.264 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 15.8853ms
+2024-04-16 18:40:30.805 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44378/Identity/Account/Login?ReturnUrl=%2FIdentity%2FAccount%2FLogout - application/x-www-form-urlencoded 279
+2024-04-16 18:40:30.807 -04:00 [INF] Executing endpoint '/Account/Login'
+2024-04-16 18:40:30.807 -04:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2024-04-16 18:40:30.814 -04:00 [INF] Executing handler method TravelGroupAssignment1.Areas.Identity.Pages.Account.LoginModel.OnPostAsync - ModelState is "Valid"
+2024-04-16 18:40:30.877 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0
+2024-04-16 18:40:30.983 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[Id], [u].[ClaimType], [u].[ClaimValue], [u].[UserId]
+FROM [UserClaims] AS [u]
+WHERE [u].[UserId] = @__user_Id_0
+2024-04-16 18:40:31.002 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[Name]
+FROM [UserRoles] AS [u]
+INNER JOIN [Roles] AS [r] ON [u].[RoleId] = [r].[Id]
+WHERE [u].[UserId] = @__userId_0
+2024-04-16 18:40:31.004 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-16 18:40:31.009 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ClaimType], [r].[ClaimValue]
+FROM [RoleClaims] AS [r]
+WHERE [r].[RoleId] = @__role_Id_0
+2024-04-16 18:40:31.011 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-16 18:40:31.012 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ClaimType], [r].[ClaimValue]
+FROM [RoleClaims] AS [r]
+WHERE [r].[RoleId] = @__role_Id_0
+2024-04-16 18:40:31.013 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-16 18:40:31.014 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ClaimType], [r].[ClaimValue]
+FROM [RoleClaims] AS [r]
+WHERE [r].[RoleId] = @__role_Id_0
+2024-04-16 18:40:31.017 -04:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2024-04-16 18:40:31.020 -04:00 [INF] User logged in.
+2024-04-16 18:40:31.021 -04:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.LocalRedirectResult.
+2024-04-16 18:40:31.022 -04:00 [INF] Executing LocalRedirectResult, redirecting to /Identity/Account/Logout.
+2024-04-16 18:40:31.022 -04:00 [INF] Executed page /Account/Login in 215.0288ms
+2024-04-16 18:40:31.023 -04:00 [INF] Executed endpoint '/Account/Login'
+2024-04-16 18:40:31.024 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44378/Identity/Account/Login?ReturnUrl=%2FIdentity%2FAccount%2FLogout - 302 null null 219.1594ms
+2024-04-16 18:40:31.031 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Identity/Account/Logout - null null
+2024-04-16 18:40:31.035 -04:00 [INF] Executing endpoint '/Account/Logout'
+2024-04-16 18:40:31.035 -04:00 [INF] Route matched with {page = "/Account/Logout", area = "Identity", action = "", controller = ""}. Executing page /Account/Logout
+2024-04-16 18:40:31.036 -04:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2024-04-16 18:40:31.036 -04:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2024-04-16 18:40:31.042 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__p_0
+2024-04-16 18:40:31.044 -04:00 [INF] Executed page /Account/Logout in 8.7571ms
+2024-04-16 18:40:31.044 -04:00 [INF] Executed endpoint '/Account/Logout'
+2024-04-16 18:40:31.047 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Identity/Account/Logout - 200 null text/html; charset=utf-8 15.9739ms
+2024-04-16 18:40:31.125 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 18:40:31.126 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 18:40:31.126 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.6732ms
+2024-04-16 18:40:31.137 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 11.2747ms
+2024-04-16 18:40:32.921 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Identity/Account/Manage - null null
+2024-04-16 18:40:32.926 -04:00 [INF] Executing endpoint '/Account/Manage/Index'
+2024-04-16 18:40:32.935 -04:00 [INF] Route matched with {page = "/Account/Manage/Index", area = "Identity", action = "", controller = ""}. Executing page /Account/Manage/Index
+2024-04-16 18:40:32.937 -04:00 [INF] Executing handler method TravelGroupAssignment1.Areas.Identity.Pages.Account.Manage.IndexModel.OnGetAsync - ModelState is "Valid"
+2024-04-16 18:40:32.944 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__p_0
+2024-04-16 18:40:32.951 -04:00 [INF] Executed handler method OnGetAsync, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2024-04-16 18:40:32.998 -04:00 [INF] Executed page /Account/Manage/Index in 63.1946ms
+2024-04-16 18:40:32.998 -04:00 [INF] Executed endpoint '/Account/Manage/Index'
+2024-04-16 18:40:33.001 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Identity/Account/Manage - 200 null text/html; charset=utf-8 80.6361ms
+2024-04-16 18:40:33.451 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 18:40:33.451 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 18:40:33.452 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.6978ms
+2024-04-16 18:40:33.461 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 10.0893ms
+2024-04-16 18:40:39.795 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44378/Identity/Account/Manage - multipart/form-data; boundary=---------------------------10444546515301203903305456180 22780
+2024-04-16 18:40:39.798 -04:00 [INF] Executing endpoint '/Account/Manage/Index'
+2024-04-16 18:40:39.798 -04:00 [INF] Route matched with {page = "/Account/Manage/Index", area = "Identity", action = "", controller = ""}. Executing page /Account/Manage/Index
+2024-04-16 18:40:39.807 -04:00 [INF] Executing handler method TravelGroupAssignment1.Areas.Identity.Pages.Account.Manage.IndexModel.OnPostAsync - ModelState is "Valid"
+2024-04-16 18:40:39.812 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__p_0
+2024-04-16 18:40:39.824 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0
+2024-04-16 18:40:39.897 -04:00 [INF] Executed DbCommand (7ms) [Parameters=[@p25='?' (Size = 450), @p0='?' (DbType = Int32), @p1='?' (DbType = Date), @p2='?' (Size = 4000), @p26='?' (Size = 4000), @p3='?' (Size = 256), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Boolean), @p10='?' (DbType = DateTimeOffset), @p11='?' (Size = 256), @p12='?' (Size = 256), @p13='?' (Size = 4000), @p14='?' (Size = 4000), @p15='?' (Size = 4000), @p16='?' (DbType = Boolean), @p17='?' (Size = -1) (DbType = Binary), @p18='?' (Size = 4000), @p19='?' (Size = 4000), @p20='?' (Size = 4000), @p21='?' (Size = 4000), @p22='?' (DbType = Boolean), @p23='?' (Size = 256), @p24='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [AccessFailedCount] = @p0, [Birthday] = @p1, [ConcurrencyStamp] = @p2, [Email] = @p3, [EmailConfirmed] = @p4, [FirstName] = @p5, [Gender] = @p6, [HomeAirport] = @p7, [LastName] = @p8, [LockoutEnabled] = @p9, [LockoutEnd] = @p10, [NormalizedEmail] = @p11, [NormalizedUserName] = @p12, [Passport] = @p13, [PasswordHash] = @p14, [PhoneNumber] = @p15, [PhoneNumberConfirmed] = @p16, [ProfilePic] = @p17, [RewardProgramName] = @p18, [RewardProgramNumber] = @p19, [SeatPreference] = @p20, [SecurityStamp] = @p21, [TwoFactorEnabled] = @p22, [UserName] = @p23, [UsernameChange] = @p24
+OUTPUT 1
+WHERE [Id] = @p25 AND [ConcurrencyStamp] = @p26;
+2024-04-16 18:40:39.909 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0
+2024-04-16 18:40:39.913 -04:00 [INF] Executed DbCommand (3ms) [Parameters=[@p25='?' (Size = 450), @p0='?' (DbType = Int32), @p1='?' (DbType = Date), @p2='?' (Size = 4000), @p26='?' (Size = 4000), @p3='?' (Size = 256), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Boolean), @p10='?' (DbType = DateTimeOffset), @p11='?' (Size = 256), @p12='?' (Size = 256), @p13='?' (Size = 4000), @p14='?' (Size = 4000), @p15='?' (Size = 4000), @p16='?' (DbType = Boolean), @p17='?' (Size = -1) (DbType = Binary), @p18='?' (Size = 4000), @p19='?' (Size = 4000), @p20='?' (Size = 4000), @p21='?' (Size = 4000), @p22='?' (DbType = Boolean), @p23='?' (Size = 256), @p24='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [AccessFailedCount] = @p0, [Birthday] = @p1, [ConcurrencyStamp] = @p2, [Email] = @p3, [EmailConfirmed] = @p4, [FirstName] = @p5, [Gender] = @p6, [HomeAirport] = @p7, [LastName] = @p8, [LockoutEnabled] = @p9, [LockoutEnd] = @p10, [NormalizedEmail] = @p11, [NormalizedUserName] = @p12, [Passport] = @p13, [PasswordHash] = @p14, [PhoneNumber] = @p15, [PhoneNumberConfirmed] = @p16, [ProfilePic] = @p17, [RewardProgramName] = @p18, [RewardProgramNumber] = @p19, [SeatPreference] = @p20, [SecurityStamp] = @p21, [TwoFactorEnabled] = @p22, [UserName] = @p23, [UsernameChange] = @p24
+OUTPUT 1
+WHERE [Id] = @p25 AND [ConcurrencyStamp] = @p26;
+2024-04-16 18:40:39.917 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[Id], [u].[ClaimType], [u].[ClaimValue], [u].[UserId]
+FROM [UserClaims] AS [u]
+WHERE [u].[UserId] = @__user_Id_0
+2024-04-16 18:40:39.919 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[Name]
+FROM [UserRoles] AS [u]
+INNER JOIN [Roles] AS [r] ON [u].[RoleId] = [r].[Id]
+WHERE [u].[UserId] = @__userId_0
+2024-04-16 18:40:39.920 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-16 18:40:39.922 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ClaimType], [r].[ClaimValue]
+FROM [RoleClaims] AS [r]
+WHERE [r].[RoleId] = @__role_Id_0
+2024-04-16 18:40:39.923 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-16 18:40:39.924 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ClaimType], [r].[ClaimValue]
+FROM [RoleClaims] AS [r]
+WHERE [r].[RoleId] = @__role_Id_0
+2024-04-16 18:40:39.925 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-16 18:40:39.927 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ClaimType], [r].[ClaimValue]
+FROM [RoleClaims] AS [r]
+WHERE [r].[RoleId] = @__role_Id_0
+2024-04-16 18:40:39.927 -04:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2024-04-16 18:40:39.928 -04:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.RedirectToPageResult.
+2024-04-16 18:40:39.929 -04:00 [INF] Executing RedirectToPageResult, redirecting to null.
+2024-04-16 18:40:39.929 -04:00 [INF] Executed page /Account/Manage/Index in 131.0665ms
+2024-04-16 18:40:39.929 -04:00 [INF] Executed endpoint '/Account/Manage/Index'
+2024-04-16 18:40:39.930 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44378/Identity/Account/Manage - 302 null null 135.25ms
+2024-04-16 18:40:40.042 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Identity/Account/Manage - null null
+2024-04-16 18:40:40.044 -04:00 [INF] Executing endpoint '/Account/Manage/Index'
+2024-04-16 18:40:40.044 -04:00 [INF] Route matched with {page = "/Account/Manage/Index", area = "Identity", action = "", controller = ""}. Executing page /Account/Manage/Index
+2024-04-16 18:40:40.045 -04:00 [INF] Executing handler method TravelGroupAssignment1.Areas.Identity.Pages.Account.Manage.IndexModel.OnGetAsync - ModelState is "Valid"
+2024-04-16 18:40:40.048 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__p_0
+2024-04-16 18:40:40.050 -04:00 [INF] Executed handler method OnGetAsync, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2024-04-16 18:40:40.052 -04:00 [INF] Executed page /Account/Manage/Index in 8.1117ms
+2024-04-16 18:40:40.052 -04:00 [INF] Executed endpoint '/Account/Manage/Index'
+2024-04-16 18:40:40.054 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Identity/Account/Manage - 200 null text/html; charset=utf-8 11.9414ms
+2024-04-16 18:40:40.144 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 18:40:40.144 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 18:40:40.146 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 1.607ms
+2024-04-16 18:40:40.156 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 12.4763ms
+2024-04-16 18:41:18.112 -04:00 [INF] App building is running
+2024-04-16 18:41:18.330 -04:00 [INF] User profile is available. Using 'C:\Users\tjand\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-04-16 18:41:19.223 -04:00 [INF] Executed DbCommand (34ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-16 18:41:19.263 -04:00 [WRN] Role 80fba912-2ac2-42a3-82e6-74be6251845f validation failed: DuplicateRoleName.
+2024-04-16 18:41:19.272 -04:00 [INF] Executed DbCommand (6ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-16 18:41:19.272 -04:00 [WRN] Role a5a7142d-bf88-4c4b-aacc-513b39837fee validation failed: DuplicateRoleName.
+2024-04-16 18:41:19.273 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-16 18:41:19.273 -04:00 [WRN] Role 26a92d14-a38f-49a2-814e-d4de01edad12 validation failed: DuplicateRoleName.
+2024-04-16 18:41:19.289 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__superUser_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN NOT EXISTS (
+        SELECT 1
+        FROM [Users] AS [u]
+        WHERE [u].[Id] = @__superUser_Id_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-04-16 18:41:19.299 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0
+2024-04-16 18:41:19.565 -04:00 [INF] Run Authentication
+2024-04-16 18:41:19.566 -04:00 [INF] Run Authorization
+2024-04-16 18:41:19.566 -04:00 [INF] Run MapControlRoute
+2024-04-16 18:41:19.708 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/ - null null
+2024-04-16 18:41:19.723 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-04-16 18:41:19.723 -04:00 [INF] Hosting environment: Development
+2024-04-16 18:41:19.723 -04:00 [INF] Content root path: C:\Users\tjand\source\repos\COMP2139\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment1
+2024-04-16 18:41:19.835 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Controllers.HomeController.Index (TravelGroupAssignment1)'
+2024-04-16 18:41:19.845 -04:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TravelGroupAssignment1.Controllers.HomeController (TravelGroupAssignment1).
+2024-04-16 18:41:19.848 -04:00 [INF] Accessing expired session, Key:48a0b7a0-b0ff-63b1-933d-46f70b76e980
+2024-04-16 18:41:19.849 -04:00 [INF] Calling Home Index() Action
+2024-04-16 18:41:19.863 -04:00 [INF] Executing RedirectResult, redirecting to /DashboardManagement/Dashboard/Index.
+2024-04-16 18:41:19.865 -04:00 [INF] Executed action TravelGroupAssignment1.Controllers.HomeController.Index (TravelGroupAssignment1) in 18.2239ms
+2024-04-16 18:41:19.866 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Controllers.HomeController.Index (TravelGroupAssignment1)'
+2024-04-16 18:41:19.868 -04:00 [INF] Session started; Key:48a0b7a0-b0ff-63b1-933d-46f70b76e980, Id:d2bc91c1-abcd-da30-a74d-9660839be4b1
+2024-04-16 18:41:19.882 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/ - 302 null null 180.4235ms
+2024-04-16 18:41:19.910 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - null null
+2024-04-16 18:41:19.917 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-16 18:41:19.920 -04:00 [INF] Route matched with {area = "DashboardManagement", action = "Index", controller = "Dashboard", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController (TravelGroupAssignment1).
+2024-04-16 18:41:19.922 -04:00 [INF] Calling Dashboard Index() Action
+2024-04-16 18:41:19.974 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Hotels] AS [h]
+2024-04-16 18:41:19.979 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Rooms] AS [r]
+2024-04-16 18:41:19.983 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Flights] AS [f]
+2024-04-16 18:41:19.986 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [CarRentalCompanies] AS [c]
+2024-04-16 18:41:19.989 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Cars] AS [c]
+2024-04-16 18:41:19.991 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Users] AS [u]
+2024-04-16 18:41:19.997 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 18:41:20.047 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__p_0
+2024-04-16 18:41:20.069 -04:00 [INF] Executed ViewResult - view Index executed in 75.1861ms.
+2024-04-16 18:41:20.070 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1) in 149.4211ms
+2024-04-16 18:41:20.070 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-16 18:41:20.085 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - 200 null text/html; charset=utf-8 175.2947ms
+2024-04-16 18:41:20.165 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 18:41:20.169 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 2.0486ms
+2024-04-16 18:41:20.179 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 18:41:20.210 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 30.6281ms
+2024-04-16 18:41:22.677 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44378/Identity/Account/Logout - application/x-www-form-urlencoded 225
+2024-04-16 18:41:22.698 -04:00 [INF] Executing endpoint '/Account/Logout'
+2024-04-16 18:41:22.707 -04:00 [INF] Route matched with {page = "/Account/Logout", area = "Identity", action = "", controller = ""}. Executing page /Account/Logout
+2024-04-16 18:41:22.719 -04:00 [INF] Executing handler method TravelGroupAssignment1.Areas.Identity.Pages.Account.LogoutModel.OnPost - ModelState is "Valid"
+2024-04-16 18:41:22.722 -04:00 [INF] AuthenticationScheme: Identity.Application signed out.
+2024-04-16 18:41:22.723 -04:00 [INF] AuthenticationScheme: Identity.External signed out.
+2024-04-16 18:41:22.723 -04:00 [INF] AuthenticationScheme: Identity.TwoFactorUserId signed out.
+2024-04-16 18:41:22.723 -04:00 [INF] User logged out.
+2024-04-16 18:41:22.723 -04:00 [INF] Executed handler method OnPost, returned result Microsoft.AspNetCore.Mvc.RedirectToPageResult.
+2024-04-16 18:41:22.724 -04:00 [INF] Executing RedirectToPageResult, redirecting to null.
+2024-04-16 18:41:22.724 -04:00 [INF] Executed page /Account/Logout in 17.4123ms
+2024-04-16 18:41:22.724 -04:00 [INF] Executed endpoint '/Account/Logout'
+2024-04-16 18:41:22.725 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44378/Identity/Account/Logout - 302 null null 48.0716ms
+2024-04-16 18:41:22.733 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Identity/Account/Logout - null null
+2024-04-16 18:41:22.738 -04:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2024-04-16 18:41:22.739 -04:00 [INF] AuthenticationScheme: Identity.Application was challenged.
+2024-04-16 18:41:22.740 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Identity/Account/Logout - 302 null null 7.4084ms
+2024-04-16 18:41:22.751 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Identity/Account/Login?ReturnUrl=%2FIdentity%2FAccount%2FLogout - null null
+2024-04-16 18:41:22.753 -04:00 [INF] Executing endpoint '/Account/Login'
+2024-04-16 18:41:22.758 -04:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2024-04-16 18:41:22.763 -04:00 [INF] Executing handler method TravelGroupAssignment1.Areas.Identity.Pages.Account.LoginModel.OnGetAsync - ModelState is "Valid"
+2024-04-16 18:41:22.764 -04:00 [INF] AuthenticationScheme: Identity.External signed out.
+2024-04-16 18:41:22.764 -04:00 [INF] Executed handler method OnGetAsync, returned result .
+2024-04-16 18:41:22.766 -04:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2024-04-16 18:41:22.766 -04:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2024-04-16 18:41:22.806 -04:00 [INF] Executed page /Account/Login in 48.3534ms
+2024-04-16 18:41:22.806 -04:00 [INF] Executed endpoint '/Account/Login'
+2024-04-16 18:41:22.807 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Identity/Account/Login?ReturnUrl=%2FIdentity%2FAccount%2FLogout - 200 null text/html; charset=utf-8 55.9346ms
+2024-04-16 18:41:22.948 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 18:41:22.948 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 18:41:22.949 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.7634ms
+2024-04-16 18:41:22.961 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 12.5322ms
+2024-04-16 18:41:25.105 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Flight/Index - null null
+2024-04-16 18:41:25.110 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.FlightManagement.Controllers.FlightController.Index (TravelGroupAssignment1)'
+2024-04-16 18:41:25.115 -04:00 [INF] Route matched with {area = "FlightManagement", action = "Index", controller = "Flight", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.FlightManagement.Controllers.FlightController (TravelGroupAssignment1).
+2024-04-16 18:41:25.117 -04:00 [INF] Calling Flight Index() Action
+2024-04-16 18:41:25.145 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [f].[FlightId], [f].[Airline], [f].[ArrivalTime], [f].[DepartTime], [f].[From], [f].[MaxPassenger], [f].[Price], [f].[To]
+FROM [Flights] AS [f]
+2024-04-16 18:41:25.194 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 18:41:25.220 -04:00 [INF] Executed ViewResult - view Index executed in 26.7402ms.
+2024-04-16 18:41:25.220 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.FlightManagement.Controllers.FlightController.Index (TravelGroupAssignment1) in 105.2264ms
+2024-04-16 18:41:25.220 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.FlightManagement.Controllers.FlightController.Index (TravelGroupAssignment1)'
+2024-04-16 18:41:25.222 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Flight/Index - 200 null text/html; charset=utf-8 115.4667ms
+2024-04-16 18:41:25.343 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 18:41:25.344 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 18:41:25.346 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 1.8172ms
+2024-04-16 18:41:25.355 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 11.8923ms
