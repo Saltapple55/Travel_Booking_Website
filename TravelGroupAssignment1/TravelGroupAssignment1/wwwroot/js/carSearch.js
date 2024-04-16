@@ -3,13 +3,13 @@
 
 // function to call controller to retrieve data in JSON format
 function loadCarSearch(carLocation, startDate, endDate) {
-
     $.ajax({
-        url: 'Car/SearchAjax?location=' + carLocation + '&startDate=' + startDate + '&endDate=' + endDate + '&tab=car',
+        url: '/Car/SearchAjax?location=' + carLocation + '&startDate=' + startDate + '&endDate=' + endDate + '&tab=car',
         method: 'GET',
         // on successfully retrieving data, generate cards for each item
         success: (data) => {
             var carsListHtml = '';
+            console.log(data)
             for (var i = 0; i < data.length; i++) {
                 car = data[i];
                 carsListHtml += '<div class="col-12 col-sm-4" >'

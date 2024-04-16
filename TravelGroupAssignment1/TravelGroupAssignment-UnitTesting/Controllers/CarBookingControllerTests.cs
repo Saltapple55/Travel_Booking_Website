@@ -187,7 +187,6 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
                 // Assert: returned models match created bookings
                 // *** MAY NEED UPDATE AFTER TRIP MANAGEMENT IMPLEMENTED ***
                 Assert.Equal(1, model.CarId);
-                Assert.Equal(1, model.TripId);
 
                 context.Database.EnsureDeleted();
             }

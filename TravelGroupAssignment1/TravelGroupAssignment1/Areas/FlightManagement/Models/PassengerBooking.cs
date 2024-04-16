@@ -6,7 +6,7 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Models
     {
 
         public FlightBooking FBooking { get; set; }
-        public List<Passenger>? Passengers { get; set; }
+        public Passenger Passenger { get; set; }
 
 
     }
