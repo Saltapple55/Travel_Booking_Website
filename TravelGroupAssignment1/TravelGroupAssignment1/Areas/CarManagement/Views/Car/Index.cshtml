@@ -18,7 +18,7 @@
     Layout = "_CarSearchItem";
     <br />
     <a asp-controller="CarRentalCompany" asp-action="Index" class="btn btn-primary">Rental Companies<i class="fa-solid fa-plus"></i></a>
-    <a asp-controller="Dashboard" asp-action="Create" class="btn btn-primary">Create new Car</a>
+    <a asp-controller="Car" asp-action="Create" class="btn btn-primary">Create new Car</a>
     <br />
     @if (Model.Any())
     {
@@ -55,7 +55,7 @@
     }
     else
     {
-	    <p>No project available</p>
+	    <p>No cars available</p>
 
     }
 }

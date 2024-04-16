@@ -1,4 +1,7 @@
-﻿@using TravelGroupAssignment1.Areas.RoomManagement.Models;
+﻿@using Microsoft.AspNetCore.Identity
+@using TravelGroupAssignment1.Areas.RoomManagement.Models;
+@inject SignInManager<ApplicationUser> SignInManager // @* inject sign in manager *@
+@inject UserManager<ApplicationUser> UserManager // @* inject sign in manager *@
 
 @model Room
 @{
@@ -13,7 +16,6 @@
 
     <div class="card">
 
-        <!-- basic layout of project details -->
         <div class="card-body">
             <h3 class="card-title">@Model.Name</h3>
 
@@ -42,17 +44,21 @@
 
         </div>
 
+    
+        <a asp-controller="Room" asp-action="Edit" asp-route-id="@Model.RoomId" class="btn btn-warning">Edit</a>
+        <a asp-controller="Room" asp-action="Index" asp-route-hotelId="@Model.HotelId" class="btn btn-secondary">Cancel</a>
     </div>
-    <a asp-controller="Room" asp-action="Edit" asp-route-id="@Model.RoomId" class="btn btn-warning">Edit</a>
-    <a asp-controller="Room" asp-action="Index" asp-route-hotelId="@Model.HotelId" class="btn btn-secondary">Cancel</a>
 }
 else
 {
     <div class="container">
+
         <div class="row">
+
             <div class="col-md-6">
                 <img src="https://assets-global.website-files.com/5c6d6c45eaa55f57c6367749/65045f093c166fdddb4a94a5_x-65045f0266217.webp" class="img-fluid shadow" alt="Hotel Room">
             </div>
+
             <div class="col-md-6">
                 <div class="card shadow">
                     <div class="card-body">
@@ -84,9 +90,69 @@ else
                 </div>
             </div>
         </div>
-    </div>
+
+        <div id="roomComments">
+            <h3>Comments</h3>
+
+            <div id="commentList" class="container">
+                <p>Please login to comment and review</p>
+            </div>
+        
+            <br />
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <div class="card">
+
+                    <div class="card-header">
+                        <h5>Post a Comment</h5>
+                    </div>
+
+                    <div class="card-body">
+
+                        <form id="addCommentForm" class="mt-3">
+                            <input type="hidden" name="RoomId" value="@Model.RoomId" />
+                            <input type="hidden" name="Username" value="@UserManager.GetUserName(User)" />
+
+                            <div class="form-group">
+                                <label for="Rating">Rating</label>
+                                <select name="Rating">
+                                    <option value="0">0</option>
+                                    <option value="0.5">0.5</option>
+                                    <option value="1.5">1.5</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="2.5">2.5</option>
+                                    <option value="3">3</option>
+                                    <option value="3.5">3.5</option>
+                                    <option value="4">4</option>
+                                    <option value="4.5">4.5</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <textarea name="Content" class="form-control" placeholder="Add a comment ..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-success">Post Comment</button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+            }
+        </div>
+   </div>
+    
+}
+@section Scripts {
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <script src="~/js/roomComment.js"></script>
+    }
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
 }
 
-
-
-<!--Admin View-->

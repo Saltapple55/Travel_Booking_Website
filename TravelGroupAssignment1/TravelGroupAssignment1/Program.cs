@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Logging;
 using static System.Formats.Asn1.AsnWriter;
 using System;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,8 +19,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // see appsettings.json for default connection string
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options=>
-    options.SignIn.RequireConfirmedAccount=true)
+
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+    options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultUI()
     .AddDefaultTokenProviders();
@@ -33,7 +35,12 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddSession();
 
 var app = builder.Build();
+builder.Host.UseSerilog((hostingContext, loggerConfiguration) =>
+    loggerConfiguration
+        .ReadFrom.Configuration(hostingContext.Configuration));
 
+var app = builder.Build();
+app.Logger.LogInformation("App building is running");
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -42,6 +49,12 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+app.UseStatusCodePagesWithRedirects("/StatusCode/{0}");
+
+
+
+
+
 using var scope = app.Services.CreateScope();
 var loggerFactory = scope.ServiceProvider.GetRequiredService<ILoggerFactory>();
 
@@ -64,17 +77,68 @@ catch (Exception e)
     logger.LogError(e, "An error occurred when attempting to seed the roles for the system.");
 };
 
+
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+
+
 app.UseRouting();
-app.UseAuthentication();
-app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-app.MapRazorPages();
 app.UseSession();
 
-app.Run();
+
+try
+{
+    app.Logger.LogInformation("Run Authentication");
+    app.UseAuthentication();
+}
+catch (Exception e)
+{
+    var logger = loggerFactory.CreateLogger<Program>();
+    logger.LogError(e, "An error occurred when attempting to Run Authentication.");
+}
+
+try
+{
+    app.Logger.LogInformation("Run Authorization");
+    app.UseAuthorization();
+}
+catch (Exception e)
+{
+    var logger = loggerFactory.CreateLogger<Program>();
+    logger.LogError(e, "An error occurred when attempting to Run Authorization.");
+}
+
+try
+{
+    app.Logger.LogInformation("Run MapControlRoute");
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapControllerRoute(
+            name: "default",
+            pattern: "{controller=Home}/{action=Index}/{id?}");
+        endpoints.MapControllerRoute(
+            name: "StatusCode",
+            pattern: "StatusCode/{code}",
+            defaults: new { controller = "StatusCode", action = "Index" });
+    });
+    app.MapRazorPages();
+    app.Run();
+    app.Logger.LogInformation("Starting the app");
+}
+catch (Exception e)
+{
+    var logger = loggerFactory.CreateLogger<Program>();
+    logger.LogError(e, "An error occurred when attempting to Run MapControlRoute.");
+}
+
+
+
+
+
+\

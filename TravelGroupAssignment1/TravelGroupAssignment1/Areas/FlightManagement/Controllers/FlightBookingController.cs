@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using TravelGroupAssignment1.Areas.CarManagement.Models;
 using TravelGroupAssignment1.Areas.FlightManagement.Models;
 using TravelGroupAssignment1.Data;
 using TravelGroupAssignment1.Services;
@@ -95,8 +96,10 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
                 await _context.SaveChangesAsync();
                 visitList.Add(booking.BookingId);
                 _sessionService.SetSessionData<List<int>>("BookingIds", visitList);
-                System.Diagnostics.Debug.WriteLine($"Booking Id{booking.BookingId}");
-                return RedirectToAction("Index", new { flightId = booking.FlightId, tripId=1 });
+                if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                    return RedirectToAction("Index", "FlightBooking", new { flightId = booking.FlightId });
+                else
+                    return RedirectToAction("Index", "Trip");
             }
 
 

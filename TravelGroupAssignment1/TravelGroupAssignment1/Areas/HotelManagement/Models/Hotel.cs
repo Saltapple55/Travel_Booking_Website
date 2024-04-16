@@ -29,5 +29,6 @@ namespace TravelGroupAssignment1.Areas.HotelManagement.Models
         public string? Amenities { get; set; }
 
         public ICollection<Room>? Rooms { get; set; }
+        public ICollection<HotelComment>? HotelComments { get; set; }
     }
 }

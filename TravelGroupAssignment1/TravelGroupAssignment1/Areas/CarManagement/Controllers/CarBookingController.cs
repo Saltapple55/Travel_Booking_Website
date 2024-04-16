@@ -45,11 +45,11 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
                         .Include(cb => cb.Car)
                         .ThenInclude(c => c.Company)
                         .FirstOrDefaultAsync(cb => cb.BookingId == id);
+            if (booking == null) return NotFound();
             ViewBag.Controller = con;
             return View(booking);
         }
 
-        // GET: CarBookingController/Create/5
         [HttpGet("Create/{carId:int}/{startDate:datetime}/{endDate:datetime}")]
         public async Task<IActionResult> Create(int carId, DateTime? startDate, DateTime? endDate)
         {
@@ -62,8 +62,20 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
             ViewBag.Company = company;
             ViewBag.StartDate = startDate;
             ViewBag.EndDate = endDate;
+
             return View(new CarBooking { CarId = car.CarId });
 
+        [HttpGet("Create/{carId:int}")]
+        public async Task<IActionResult> Create(int carId)
+        {
+            var car = await _context.Cars.FindAsync(carId);
+            if (car == null) return NotFound();
+            var company = await _context.CarRentalCompanies.FindAsync(car.CompanyId);
+            ViewBag.CarName = car.Make + " " + car.Model;
+            ViewBag.CarType = car.Type;
+            ViewBag.Car = car;
+            ViewBag.Company = company;
+            return View(new CarBooking { CarId = car.CarId, TripId = 1 });
         }
 
         // POST: CarBookingController/Create
@@ -87,13 +99,16 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
                 if (await carBookingExists(carBooking))
                 {
                     ModelState.AddModelError("", "Car is not available for booking on given date range.");
-                    return View(carBooking);
+                    return View("Create", carBooking);
                 }
                 await _context.CarBookings.AddAsync(carBooking);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Trip");
+                if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                    return RedirectToAction("Index", "CarBooking", new { carId = carBooking.CarId });
+                else
+                    return RedirectToAction("Index", "Trip");
             }
-            return View(carBooking);
+            return View("Create", carBooking);
         }
 
         // GET: CarBookingController/Edit/5
@@ -161,7 +176,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         // POST: CarBookingController/DeleteConfirmed/5
         [HttpPost("DeleteConfirmed/{id:int}"), ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id, string? con = "CarBooking")
+        public async Task<IActionResult> DeleteConfirmed(int id, string? con = "Trip")
         {
             var carBooking = await _context.CarBookings.FindAsync(id);
 
@@ -169,10 +184,9 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
             {
                 _context.CarBookings.Remove(carBooking);
                 await _context.SaveChangesAsync();
-                if (string.Equals(con, "CarBooking"))
+                if (string.Equals(con, "Trip"))
                     return RedirectToAction("Index", con);
                 return RedirectToAction("Index", new { carId = carBooking.CarId });
-
             }
             return NotFound();
         }

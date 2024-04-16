@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TravelGroupAssignment1.Migrations
 {
     /// <inheritdoc />
-    public partial class Everything : Migration
+    public partial class postmergemigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -91,19 +91,6 @@ namespace TravelGroupAssignment1.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Trips",
-                columns: table => new
-                {
-                    TripId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CustomerId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Trips", x => x.TripId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -182,6 +169,29 @@ namespace TravelGroupAssignment1.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "HotelComments",
+                columns: table => new
+                {
+                    CommentId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    HotelId = table.Column<int>(type: "int", nullable: false),
+                    Author = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Content = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    Rating = table.Column<double>(type: "float", nullable: false),
+                    DatePosted = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HotelComments", x => x.CommentId);
+                    table.ForeignKey(
+                        name: "FK_HotelComments_Hotels_HotelId",
+                        column: x => x.HotelId,
+                        principalTable: "Hotels",
+                        principalColumn: "HotelId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Rooms",
                 columns: table => new
                 {
@@ -245,6 +255,25 @@ namespace TravelGroupAssignment1.Migrations
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Trips",
+                columns: table => new
+                {
+                    TripId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    TripReference = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Trips", x => x.TripId);
+                    table.ForeignKey(
+                        name: "FK_Trips_Users_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "Users",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -336,6 +365,29 @@ namespace TravelGroupAssignment1.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CarComments",
+                columns: table => new
+                {
+                    CommentId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CarId = table.Column<int>(type: "int", nullable: false),
+                    Author = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Content = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    Rating = table.Column<double>(type: "float", nullable: false),
+                    DatePosted = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CarComments", x => x.CommentId);
+                    table.ForeignKey(
+                        name: "FK_CarComments_Cars_CarId",
+                        column: x => x.CarId,
+                        principalTable: "Cars",
+                        principalColumn: "CarId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Passengers",
                 columns: table => new
                 {
@@ -386,14 +438,42 @@ namespace TravelGroupAssignment1.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "RoomComments",
+                columns: table => new
+                {
+                    CommentId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoomId = table.Column<int>(type: "int", nullable: false),
+                    Author = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Content = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    Rating = table.Column<double>(type: "float", nullable: false),
+                    DatePosted = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RoomComments", x => x.CommentId);
+                    table.ForeignKey(
+                        name: "FK_RoomComments_Rooms_RoomId",
+                        column: x => x.RoomId,
+                        principalTable: "Rooms",
+                        principalColumn: "RoomId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Trips",
-                columns: new[] { "TripId", "CustomerId" },
-                values: new object[] { 1, 0 });
+                columns: new[] { "TripId", "ApplicationUserId", "TripReference" },
+                values: new object[] { 1, null, "2404151452a39dec" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_CarBookings_CarId",
                 table: "CarBookings",
+                column: "CarId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CarComments_CarId",
+                table: "CarComments",
                 column: "CarId");
 
             migrationBuilder.CreateIndex(
@@ -405,6 +485,11 @@ namespace TravelGroupAssignment1.Migrations
                 name: "IX_FlightBookings_FlightId",
                 table: "FlightBookings",
                 column: "FlightId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HotelComments_HotelId",
+                table: "HotelComments",
+                column: "HotelId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Passengers_FlightBookingBookingId",
@@ -434,9 +519,19 @@ namespace TravelGroupAssignment1.Migrations
                 column: "RoomId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_RoomComments_RoomId",
+                table: "RoomComments",
+                column: "RoomId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Rooms_HotelId",
                 table: "Rooms",
                 column: "HotelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Trips_ApplicationUserId",
+                table: "Trips",
+                column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserClaims_UserId",
@@ -476,7 +571,13 @@ namespace TravelGroupAssignment1.Migrations
                 name: "CarBookings");
 
             migrationBuilder.DropTable(
+                name: "CarComments");
+
+            migrationBuilder.DropTable(
                 name: "Customers");
+
+            migrationBuilder.DropTable(
+                name: "HotelComments");
 
             migrationBuilder.DropTable(
                 name: "Passengers");
@@ -486,6 +587,9 @@ namespace TravelGroupAssignment1.Migrations
 
             migrationBuilder.DropTable(
                 name: "RoomBookings");
+
+            migrationBuilder.DropTable(
+                name: "RoomComments");
 
             migrationBuilder.DropTable(
                 name: "Trips");

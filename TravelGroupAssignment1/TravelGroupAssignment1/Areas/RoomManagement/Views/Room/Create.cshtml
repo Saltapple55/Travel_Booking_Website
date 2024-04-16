@@ -59,7 +59,7 @@
     <div class="form-group">
         @Html.HiddenFor(r => r.HotelId)
         <input type="submit" value="Create" class="btn btn-primary" />
-        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        <a asp-action="Index" asp-route-hotelId="@Model.HotelId" class="btn btn-secondary">Cancel</a>
     </div>
 
 
