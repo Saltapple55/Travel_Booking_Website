@@ -4,8 +4,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TravelGroupAssignment1.Areas.CarManagement.Models;
 using TravelGroupAssignment1.Data;
-using TravelGroupAssignment1.Models;
-using TravelGroupAssignment1.Services;
 
 namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
 {
@@ -15,14 +13,11 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
     {
         // required
         private readonly ApplicationDbContext _context;
-        private readonly ISessionService _sessionService;
-
 
         // required for DI 
-        public CarBookingController(ApplicationDbContext context,ISessionService sessionservice)
+        public CarBookingController(ApplicationDbContext context)
         {
             _context = context;
-            _sessionService = sessionservice;
         }
 
         // GET: CarBookingController/5
@@ -74,7 +69,6 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         [HttpGet("Create/{carId:int}")]
         public async Task<IActionResult> Create(int carId)
         {
-
             var car = await _context.Cars.FindAsync(carId);
             if (car == null) return NotFound();
             var company = await _context.CarRentalCompanies.FindAsync(car.CompanyId);
@@ -91,8 +85,6 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         public async Task<IActionResult> CreateBooking([Bind("BookingReference",
             "CarId", "Car", "StartDate", "EndDate")] CarBooking carBooking)
         {
-            List<int> visitList = _sessionService.GetSessionData<List<int>>("CarBookingIds");
-
             // View bag components to be show in page
             var car = await _context.Cars.FindAsync(carBooking.CarId);
             if (car == null) return NotFound();
@@ -112,15 +104,12 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
                 }
                 await _context.CarBookings.AddAsync(carBooking);
                 await _context.SaveChangesAsync();
-                visitList.Add(carBooking.BookingId);
-                _sessionService.SetSessionData<List<int>>("CarBookingIds", visitList);
-
                 if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
                     return RedirectToAction("Index", "CarBooking", new { carId = carBooking.CarId });
                 else
                     return RedirectToAction("Index", "Trip");
             }
-                      return View("Create", carBooking);
+            return View("Create", carBooking);
         }
 
         // GET: CarBookingController/Edit/5
@@ -190,18 +179,12 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id, string? con = "Trip")
         {
-            List<int> visitList = _sessionService.GetSessionData<List<int>>("CarBookingIds");
-
             var carBooking = await _context.CarBookings.FindAsync(id);
-
 
             if (carBooking != null)
             {
                 _context.CarBookings.Remove(carBooking);
                 await _context.SaveChangesAsync();
-                visitList.Remove(carBooking.BookingId);
-                _sessionService.SetSessionData<List<int>>("CarBookingIds", visitList);
-
                 if (string.Equals(con, "Trip"))
                     return RedirectToAction("Index", con);
                 return RedirectToAction("Index", new { carId = carBooking.CarId });

@@ -22,7 +22,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Models
         public override string ToEmail()
         {
             string s = base.ToEmail() + "<br>";
-            s += $"Make: {Car.Make} Model: {Car.Model} Capacity: {Car.MaxPassengers} People <br>Price: {Car.PricePerDay} <br>Duration: From {StartDate} to {EndDate}";
+            s += $"Company: {Car.Company.CompanyName} <br>Details\nMake: {Car.Make} Model: {Car.Model} Capacity: {Car.MaxPassengers} People <br>Price: {Car.PricePerDay} <br>Duration: From {StartDate} to {EndDate}";
             return s;
         }
     }

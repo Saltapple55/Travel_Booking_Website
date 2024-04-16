@@ -17,9 +17,7 @@ namespace TravelGroupAssignment1.Controllers
             _logger = logger;
             _context = context;
             _sessionService = sessionService;
-            _sessionService.SetSessionData<List<int>>("FlightBookingIds", new List<int>());
-            _sessionService.SetSessionData<List<int>>("CarBookingIds", new List<int>());
-            _sessionService.SetSessionData<List<int>>("RoomBookingIds", new List<int>());
+            _sessionService.SetSessionData<List<int>>("BookingIds", new List<int>());
 
         }
 

@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using TravelGroupAssignment1.Areas.CarManagement.Models;
 using TravelGroupAssignment1.Areas.FlightManagement.Models;
 using TravelGroupAssignment1.Data;
-using TravelGroupAssignment1.Models;
 using TravelGroupAssignment1.Services;
 
 namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
@@ -67,7 +66,7 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
         public async Task<IActionResult> CreateBooking([Bind("BookingId, BookingReference, FlightClass, Flight, Seat, FlightId, Passengers")] FlightBooking booking)
         {
             int count = _context.FlightBookings.Where(f => f.FlightId == booking.FlightId).ToList().Count;
-            List<int> visitList = _sessionService.GetSessionData<List<int>>("FlightBookingIds");
+            List<int> visitList = _sessionService.GetSessionData<List<int>>("BookingIds");
 
 
             if (count >= _context.Flights.Find(booking.FlightId).MaxPassenger)
@@ -96,7 +95,7 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
                 await _context.FlightBookings.AddAsync(booking);
                 await _context.SaveChangesAsync();
                 visitList.Add(booking.BookingId);
-                _sessionService.SetSessionData<List<int>>("FlightBookingIds", visitList);
+                _sessionService.SetSessionData<List<int>>("BookingIds", visitList);
                 if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
                     return RedirectToAction("Index", "FlightBooking", new { flightId = booking.FlightId });
                 else
@@ -126,49 +125,36 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
         {
             var booking = await _context.FlightBookings.Include(f => f.Flight).Include(p => p.Passengers).FirstOrDefaultAsync(b => b.BookingId == id);
             if (booking == null) return NotFound();
-            var passenger = booking.Passengers[0];
-
             ViewBag.BookingsList = new SelectList(_context.Flights, "FlightId", "From", booking.FlightId.ToString());
 
-            PassengerBooking passengerBooking = new PassengerBooking
-            {
-                FBooking = booking,
-                Passenger = passenger
-            };
-
-            return View(passengerBooking);
+            return View(booking);
 
 
         }
         [HttpPost("Edit/{id:int}")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, PassengerBooking pbooking)
+        public async Task<IActionResult> Edit(int id, [Bind("BookingId,FlightId, FlightClass, Seat, Passengers")] FlightBooking flightbooking)
         {
-            Passenger passenger = pbooking.Passenger;
-            FlightBooking flightbooking = pbooking.FBooking;
-            pbooking.FBooking.Passengers = new List<Passenger> { passenger };
-           // System.Diagnostics.Debug.WriteLine("passenger Id is: "+passenger.PassengerId);
-
             if (id != flightbooking.FlightId)
             {
                 return NotFound();
 
             }
-            /*if (ModelState.IsValid)
-            {*/
+            if (ModelState.IsValid)
+            {
                 try
                 {
-                    System.Diagnostics.Debug.WriteLine("Model valid ");
 
-                    _context.Passengers.Update(passenger);
+                    foreach (Passenger p in flightbooking.Passengers)
+                    {
+                        _context.Passengers.Update(p);
 
+                    }
+                    await _context.SaveChangesAsync();
                     _context.FlightBookings.Update(flightbooking);                 //add new project - only in memory, nothing in database yet
                     await _context.SaveChangesAsync(); //commits changes to memory
-                if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
-                    return RedirectToAction("Index", "FlightBooking", new { flightId = flightbooking.FlightId });
-                else
-                    return RedirectToAction("Index", "Trip");
-            }
+                    return RedirectToAction("Index", new { flightId = flightbooking.FlightId });
+                }
                 catch (DbUpdateConcurrencyException ex)
                 { //for when two updates at the same time-rarely will happen with our form
                     if (!FlightBookingExists(flightbooking.BookingId))
@@ -178,20 +164,9 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
 
                     throw;
                 }
-            //}
-            /*System.Diagnostics.Debug.WriteLine(ModelState.ErrorCount);
 
-            foreach (var modelStateEntry in ModelState.Values)
-            {
-                foreach (var error in modelStateEntry.Errors)
-                {
-                    var errorMessage = error.ErrorMessage;
-                    System.Diagnostics.Debug.WriteLine(errorMessage);
-
-                    // Log or handle the error message as needed
-                }
-            }*/
-            return View(pbooking);
+            }
+            return View(flightbooking);
 
         }
 
@@ -210,14 +185,9 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int bookingId, string? con = "FlightBooking")
         {
-            List<int> visitList = _sessionService.GetSessionData<List<int>>("FlightBookingIds");
-
             var booking = _context.FlightBookings.Include(p => p.Passengers).FirstOrDefault(b => b.BookingId == bookingId);
             if (booking != null)
             {
-                visitList.Remove(bookingId);
-                _sessionService.SetSessionData<List<int>>("FlightBookingIds", visitList);
-
                 _context.Passengers.Remove(booking.Passengers[0]);
                 _context.FlightBookings.Remove(booking);
                 _context.SaveChanges();

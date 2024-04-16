@@ -25,10 +25,10 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Models
         public IList<Passenger> Passengers { get; set; }
 
         // public Passenger[]? Passengers { get; set; } = null;
-        public override string ToEmail()
+        public override string ToString()
         {
-            string s = base.ToEmail() + "<br>";
-            s += $"From: {Flight.From}  To: {Flight.To} <br>Departure: {Flight.DepartTime} Arrival: {Flight.ArrivalTime} <br>Seat Class: {FlightClass}   Seat: {Seat}";
+            string s = base.ToString() + "\n";
+            s += $"From: {Flight.From}  To: {Flight.To} \nDeparture: {Flight.DepartTime} Arrival: {Flight.ArrivalTime} \nSeat Class: {FlightClass}   Seat: {Seat}";
             return s;
         }
     }
