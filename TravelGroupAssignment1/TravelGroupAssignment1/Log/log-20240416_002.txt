@@ -564,3 +564,1219 @@ SELECT @@ROWCOUNT;
 2024-04-16 00:22:10.956 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
 VALUES (N'20240416042118_mssql_migration_920', N'8.0.4');
+2024-04-16 15:07:00.367 -04:00 [INF] App building is running
+2024-04-16 15:07:00.804 -04:00 [INF] User profile is available. Using 'C:\Users\CM\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-04-16 15:07:03.653 -04:00 [INF] Executed DbCommand (123ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-16 15:07:03.724 -04:00 [WRN] Role dc26a885-7243-498b-a003-105f56a0f0f8 validation failed: DuplicateRoleName.
+2024-04-16 15:07:03.739 -04:00 [INF] Executed DbCommand (7ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-16 15:07:03.740 -04:00 [WRN] Role 86598602-fbc9-4c2a-b4f3-555d9e2fa5ea validation failed: DuplicateRoleName.
+2024-04-16 15:07:03.744 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-16 15:07:03.745 -04:00 [WRN] Role 0405b00a-5e55-4c8f-b261-8fb0e27df0cd validation failed: DuplicateRoleName.
+2024-04-16 15:07:03.819 -04:00 [INF] Executed DbCommand (19ms) [Parameters=[@__superUser_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN NOT EXISTS (
+        SELECT 1
+        FROM [Users] AS [u]
+        WHERE [u].[Id] = @__superUser_Id_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-04-16 15:07:03.863 -04:00 [INF] Executed DbCommand (11ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0
+2024-04-16 15:07:04.286 -04:00 [INF] Run Authentication
+2024-04-16 15:07:04.287 -04:00 [INF] Run Authorization
+2024-04-16 15:07:04.287 -04:00 [INF] Run MapControlRoute
+2024-04-16 15:07:04.564 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-04-16 15:07:04.565 -04:00 [INF] Hosting environment: Development
+2024-04-16 15:07:04.565 -04:00 [INF] Content root path: C:\Users\CM\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment1
+2024-04-16 15:07:04.580 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/ - null null
+2024-04-16 15:07:04.876 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__p_0
+2024-04-16 15:07:04.940 -04:00 [INF] Executed DbCommand (3ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[Id], [u].[ClaimType], [u].[ClaimValue], [u].[UserId]
+FROM [UserClaims] AS [u]
+WHERE [u].[UserId] = @__user_Id_0
+2024-04-16 15:07:04.970 -04:00 [INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[Name]
+FROM [UserRoles] AS [u]
+INNER JOIN [Roles] AS [r] ON [u].[RoleId] = [r].[Id]
+WHERE [u].[UserId] = @__userId_0
+2024-04-16 15:07:04.973 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-16 15:07:04.983 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ClaimType], [r].[ClaimValue]
+FROM [RoleClaims] AS [r]
+WHERE [r].[RoleId] = @__role_Id_0
+2024-04-16 15:07:04.985 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-16 15:07:04.988 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ClaimType], [r].[ClaimValue]
+FROM [RoleClaims] AS [r]
+WHERE [r].[RoleId] = @__role_Id_0
+2024-04-16 15:07:04.990 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-16 15:07:04.991 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ClaimType], [r].[ClaimValue]
+FROM [RoleClaims] AS [r]
+WHERE [r].[RoleId] = @__role_Id_0
+2024-04-16 15:07:05.001 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Controllers.HomeController.Index (TravelGroupAssignment1)'
+2024-04-16 15:07:05.015 -04:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TravelGroupAssignment1.Controllers.HomeController (TravelGroupAssignment1).
+2024-04-16 15:07:05.024 -04:00 [INF] Calling Home Index() Action
+2024-04-16 15:07:05.047 -04:00 [INF] Executing RedirectResult, redirecting to /DashboardManagement/Dashboard/Index.
+2024-04-16 15:07:05.056 -04:00 [INF] Executed action TravelGroupAssignment1.Controllers.HomeController.Index (TravelGroupAssignment1) in 36.9546ms
+2024-04-16 15:07:05.058 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Controllers.HomeController.Index (TravelGroupAssignment1)'
+2024-04-16 15:07:05.062 -04:00 [INF] Session started; Key:c5fca207-fde3-3437-ecb0-a731e85821b5, Id:55799a1a-f10a-773a-4761-b889039f93f9
+2024-04-16 15:07:05.101 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - null null
+2024-04-16 15:07:05.102 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/ - 302 null null 535.6781ms
+2024-04-16 15:07:05.115 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-16 15:07:05.120 -04:00 [INF] Route matched with {area = "DashboardManagement", action = "Index", controller = "Dashboard", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController (TravelGroupAssignment1).
+2024-04-16 15:07:05.123 -04:00 [INF] Calling Dashboard Index() Action
+2024-04-16 15:07:05.171 -04:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Hotels] AS [h]
+2024-04-16 15:07:05.182 -04:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Rooms] AS [r]
+2024-04-16 15:07:05.199 -04:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Flights] AS [f]
+2024-04-16 15:07:05.207 -04:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [CarRentalCompanies] AS [c]
+2024-04-16 15:07:05.214 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Cars] AS [c]
+2024-04-16 15:07:05.221 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Users] AS [u]
+2024-04-16 15:07:05.238 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 15:07:05.426 -04:00 [INF] Executed ViewResult - view Index executed in 197.1397ms.
+2024-04-16 15:07:05.427 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1) in 307.0776ms
+2024-04-16 15:07:05.428 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-16 15:07:05.436 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - 200 null text/html; charset=utf-8 335.6007ms
+2024-04-16 15:07:05.448 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:07:05.450 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/TravelGroupAssignment1.styles.css?v=U1K_Tuq8vy2ggEhSQIROEZwbdVkqFz4EOlq9qfle-E8 - null null
+2024-04-16 15:07:05.453 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 4.3601ms
+2024-04-16 15:07:05.461 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:07:05.463 -04:00 [INF] The file /TravelGroupAssignment1.styles.css was not modified
+2024-04-16 15:07:05.464 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/TravelGroupAssignment1.styles.css?v=U1K_Tuq8vy2ggEhSQIROEZwbdVkqFz4EOlq9qfle-E8 - 304 null text/css 13.8631ms
+2024-04-16 15:07:05.517 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 55.2622ms
+2024-04-16 15:07:10.545 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Hotel/Index - null null
+2024-04-16 15:07:10.565 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Index (TravelGroupAssignment1)'
+2024-04-16 15:07:10.568 -04:00 [INF] Route matched with {area = "HotelManagement", action = "Index", controller = "Hotel", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController (TravelGroupAssignment1).
+2024-04-16 15:07:10.569 -04:00 [INF] Calling Hotel Index() Action
+2024-04-16 15:07:10.577 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [h].[HotelId], [h].[Amenities], [h].[Description], [h].[HotelName], [h].[Location]
+FROM [Hotels] AS [h]
+2024-04-16 15:07:10.581 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 15:07:10.687 -04:00 [INF] Executed ViewResult - view Index executed in 106.9893ms.
+2024-04-16 15:07:10.687 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Index (TravelGroupAssignment1) in 118.7974ms
+2024-04-16 15:07:10.687 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Index (TravelGroupAssignment1)'
+2024-04-16 15:07:10.687 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Hotel/Index - 200 null text/html; charset=utf-8 143.5488ms
+2024-04-16 15:07:10.708 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:07:10.708 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:07:10.709 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 1.0191ms
+2024-04-16 15:07:10.732 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 24.0122ms
+2024-04-16 15:07:11.910 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - null null
+2024-04-16 15:07:11.915 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-16 15:07:11.915 -04:00 [INF] Route matched with {area = "DashboardManagement", action = "Index", controller = "Dashboard", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController (TravelGroupAssignment1).
+2024-04-16 15:07:11.915 -04:00 [INF] Calling Dashboard Index() Action
+2024-04-16 15:07:11.917 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Hotels] AS [h]
+2024-04-16 15:07:11.919 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Rooms] AS [r]
+2024-04-16 15:07:11.920 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Flights] AS [f]
+2024-04-16 15:07:11.921 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [CarRentalCompanies] AS [c]
+2024-04-16 15:07:11.922 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Cars] AS [c]
+2024-04-16 15:07:11.923 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Users] AS [u]
+2024-04-16 15:07:11.924 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 15:07:11.926 -04:00 [INF] Executed ViewResult - view Index executed in 3.0187ms.
+2024-04-16 15:07:11.926 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1) in 10.9611ms
+2024-04-16 15:07:11.926 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-16 15:07:11.927 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - 200 null text/html; charset=utf-8 16.6224ms
+2024-04-16 15:07:11.945 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:07:11.946 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 1.2611ms
+2024-04-16 15:07:12.499 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Car/Index - null null
+2024-04-16 15:07:12.503 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1)'
+2024-04-16 15:07:12.508 -04:00 [INF] Route matched with {area = "CarManagement", action = "Index", controller = "Car", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController (TravelGroupAssignment1).
+2024-04-16 15:07:12.510 -04:00 [INF] Calling Car Index() Action
+2024-04-16 15:07:12.543 -04:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CarId], [c].[CompanyId], [c].[HasAirConditioning], [c].[HasUnlimitedMileage], [c].[Make], [c].[MaxPassengers], [c].[Model], [c].[PricePerDay], [c].[Transmission], [c].[Type], [c0].[CarRentalCompanyId], [c0].[CompanyName], [c0].[Location], [c0].[Rating]
+FROM [Cars] AS [c]
+INNER JOIN [CarRentalCompanies] AS [c0] ON [c].[CompanyId] = [c0].[CarRentalCompanyId]
+2024-04-16 15:07:12.587 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 15:07:12.618 -04:00 [INF] Executed ViewResult - view Index executed in 32.0577ms.
+2024-04-16 15:07:12.618 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1) in 110.0903ms
+2024-04-16 15:07:12.618 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1)'
+2024-04-16 15:07:12.619 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Car/Index - 200 null text/html; charset=utf-8 119.5842ms
+2024-04-16 15:07:12.639 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:07:12.639 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/js/carSearch.js - null null
+2024-04-16 15:07:12.639 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:07:12.640 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.8214ms
+2024-04-16 15:07:12.668 -04:00 [INF] Sending file. Request path: '/js/carSearch.js'. Physical path: 'C:\Users\CM\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment1\wwwroot\js\carSearch.js'
+2024-04-16 15:07:12.668 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/js/carSearch.js - 200 4786 text/javascript 29.1813ms
+2024-04-16 15:07:12.668 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 32.3725ms
+2024-04-16 15:07:15.286 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/CarBooking/Index/1 - null null
+2024-04-16 15:07:15.291 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarBookingController.Index (TravelGroupAssignment1)'
+2024-04-16 15:07:15.304 -04:00 [INF] Route matched with {area = "CarManagement", action = "Index", controller = "CarBooking", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32) on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarBookingController (TravelGroupAssignment1).
+2024-04-16 15:07:15.329 -04:00 [INF] Executed DbCommand (4ms) [Parameters=[@__carId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[BookingId], [c].[BookingReference], [c].[CarId], [c].[EndDate], [c].[StartDate], [c].[TripId], [c0].[CarId], [c0].[CompanyId], [c0].[HasAirConditioning], [c0].[HasUnlimitedMileage], [c0].[Make], [c0].[MaxPassengers], [c0].[Model], [c0].[PricePerDay], [c0].[Transmission], [c0].[Type]
+FROM [CarBookings] AS [c]
+INNER JOIN [Cars] AS [c0] ON [c].[CarId] = [c0].[CarId]
+WHERE [c].[CarId] = @__carId_0
+2024-04-16 15:07:15.335 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CarId], [c].[CompanyId], [c].[HasAirConditioning], [c].[HasUnlimitedMileage], [c].[Make], [c].[MaxPassengers], [c].[Model], [c].[PricePerDay], [c].[Transmission], [c].[Type]
+FROM [Cars] AS [c]
+WHERE [c].[CarId] = @__p_0
+2024-04-16 15:07:15.342 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 15:07:15.371 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__p_0
+2024-04-16 15:07:15.400 -04:00 [INF] Executed ViewResult - view Index executed in 58.7816ms.
+2024-04-16 15:07:15.400 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarBookingController.Index (TravelGroupAssignment1) in 95.845ms
+2024-04-16 15:07:15.400 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarBookingController.Index (TravelGroupAssignment1)'
+2024-04-16 15:07:15.456 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/CarBooking/Index/1 - 200 null text/html; charset=utf-8 169.6552ms
+2024-04-16 15:07:15.491 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:07:15.491 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:07:15.492 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 1.2768ms
+2024-04-16 15:07:15.507 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 16.3204ms
+2024-04-16 15:07:16.326 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Car/Index - null null
+2024-04-16 15:07:16.330 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1)'
+2024-04-16 15:07:16.330 -04:00 [INF] Route matched with {area = "CarManagement", action = "Index", controller = "Car", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController (TravelGroupAssignment1).
+2024-04-16 15:07:16.330 -04:00 [INF] Calling Car Index() Action
+2024-04-16 15:07:16.332 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CarId], [c].[CompanyId], [c].[HasAirConditioning], [c].[HasUnlimitedMileage], [c].[Make], [c].[MaxPassengers], [c].[Model], [c].[PricePerDay], [c].[Transmission], [c].[Type], [c0].[CarRentalCompanyId], [c0].[CompanyName], [c0].[Location], [c0].[Rating]
+FROM [Cars] AS [c]
+INNER JOIN [CarRentalCompanies] AS [c0] ON [c].[CompanyId] = [c0].[CarRentalCompanyId]
+2024-04-16 15:07:16.334 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 15:07:16.336 -04:00 [INF] Executed ViewResult - view Index executed in 2.0486ms.
+2024-04-16 15:07:16.336 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1) in 5.9068ms
+2024-04-16 15:07:16.336 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1)'
+2024-04-16 15:07:16.336 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Car/Index - 200 null text/html; charset=utf-8 10.0224ms
+2024-04-16 15:07:16.352 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:07:16.353 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.9813ms
+2024-04-16 15:07:17.286 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Car/Edit/1 - null null
+2024-04-16 15:07:17.297 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Edit (TravelGroupAssignment1)'
+2024-04-16 15:07:17.300 -04:00 [INF] Route matched with {area = "CarManagement", action = "Edit", controller = "Car", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Edit(Int32) on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController (TravelGroupAssignment1).
+2024-04-16 15:07:17.301 -04:00 [INF] Calling Car Edit() Get Action
+2024-04-16 15:07:17.310 -04:00 [INF] Executed DbCommand (3ms) [Parameters=[@__carId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CarId], [c].[CompanyId], [c].[HasAirConditioning], [c].[HasUnlimitedMileage], [c].[Make], [c].[MaxPassengers], [c].[Model], [c].[PricePerDay], [c].[Transmission], [c].[Type], [c0].[CarRentalCompanyId], [c0].[CompanyName], [c0].[Location], [c0].[Rating]
+FROM [Cars] AS [c]
+INNER JOIN [CarRentalCompanies] AS [c0] ON [c].[CompanyId] = [c0].[CarRentalCompanyId]
+WHERE [c].[CarId] = @__carId_0
+2024-04-16 15:07:17.316 -04:00 [INF] Executing ViewResult, running view Edit.
+2024-04-16 15:07:17.376 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CarRentalCompanyId], [c].[CompanyName], [c].[Location], [c].[Rating]
+FROM [CarRentalCompanies] AS [c]
+2024-04-16 15:07:17.399 -04:00 [INF] Executed ViewResult - view Edit executed in 83.185ms.
+2024-04-16 15:07:17.399 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Edit (TravelGroupAssignment1) in 98.8058ms
+2024-04-16 15:07:17.399 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Edit (TravelGroupAssignment1)'
+2024-04-16 15:07:17.399 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Car/Edit/1 - 200 null text/html; charset=utf-8 113.0551ms
+2024-04-16 15:07:17.412 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:07:17.413 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:07:17.413 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 1.298ms
+2024-04-16 15:07:17.429 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 15.7876ms
+2024-04-16 15:07:22.530 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44378/Car/Edit/1 - application/x-www-form-urlencoded 444
+2024-04-16 15:07:22.538 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Edit (TravelGroupAssignment1)'
+2024-04-16 15:07:22.551 -04:00 [INF] Route matched with {area = "CarManagement", action = "Edit", controller = "Car", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Edit(Int32, TravelGroupAssignment1.Areas.CarManagement.Models.Car) on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController (TravelGroupAssignment1).
+2024-04-16 15:07:22.580 -04:00 [INF] Calling Car Edit() Post Action
+2024-04-16 15:07:22.659 -04:00 [INF] Executed DbCommand (6ms) [Parameters=[@p9='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = Boolean), @p2='?' (DbType = Boolean), @p3='?' (Size = 100), @p4='?' (DbType = Int32), @p5='?' (Size = 100), @p6='?' (DbType = Double), @p7='?' (Size = 100), @p8='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Cars] SET [CompanyId] = @p0, [HasAirConditioning] = @p1, [HasUnlimitedMileage] = @p2, [Make] = @p3, [MaxPassengers] = @p4, [Model] = @p5, [PricePerDay] = @p6, [Transmission] = @p7, [Type] = @p8
+OUTPUT 1
+WHERE [CarId] = @p9;
+2024-04-16 15:07:22.669 -04:00 [INF] Executing RedirectResult, redirecting to /Car/Index.
+2024-04-16 15:07:22.669 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Edit (TravelGroupAssignment1) in 118.0002ms
+2024-04-16 15:07:22.669 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Edit (TravelGroupAssignment1)'
+2024-04-16 15:07:22.670 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44378/Car/Edit/1 - 302 null null 139.9935ms
+2024-04-16 15:07:22.674 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Car/Index - null null
+2024-04-16 15:07:22.676 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1)'
+2024-04-16 15:07:22.677 -04:00 [INF] Route matched with {area = "CarManagement", action = "Index", controller = "Car", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController (TravelGroupAssignment1).
+2024-04-16 15:07:22.677 -04:00 [INF] Calling Car Index() Action
+2024-04-16 15:07:22.679 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CarId], [c].[CompanyId], [c].[HasAirConditioning], [c].[HasUnlimitedMileage], [c].[Make], [c].[MaxPassengers], [c].[Model], [c].[PricePerDay], [c].[Transmission], [c].[Type], [c0].[CarRentalCompanyId], [c0].[CompanyName], [c0].[Location], [c0].[Rating]
+FROM [Cars] AS [c]
+INNER JOIN [CarRentalCompanies] AS [c0] ON [c].[CompanyId] = [c0].[CarRentalCompanyId]
+2024-04-16 15:07:22.680 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 15:07:22.682 -04:00 [INF] Executed ViewResult - view Index executed in 1.7131ms.
+2024-04-16 15:07:22.682 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1) in 5.5147ms
+2024-04-16 15:07:22.682 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1)'
+2024-04-16 15:07:22.682 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Car/Index - 200 null text/html; charset=utf-8 8.527ms
+2024-04-16 15:07:22.694 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:07:22.697 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:07:22.701 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 4.2817ms
+2024-04-16 15:07:22.714 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 19.6121ms
+2024-04-16 15:07:23.827 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Car/Edit/1 - null null
+2024-04-16 15:07:23.832 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Edit (TravelGroupAssignment1)'
+2024-04-16 15:07:23.833 -04:00 [INF] Route matched with {area = "CarManagement", action = "Edit", controller = "Car", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Edit(Int32) on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController (TravelGroupAssignment1).
+2024-04-16 15:07:23.833 -04:00 [INF] Calling Car Edit() Get Action
+2024-04-16 15:07:23.836 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__carId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CarId], [c].[CompanyId], [c].[HasAirConditioning], [c].[HasUnlimitedMileage], [c].[Make], [c].[MaxPassengers], [c].[Model], [c].[PricePerDay], [c].[Transmission], [c].[Type], [c0].[CarRentalCompanyId], [c0].[CompanyName], [c0].[Location], [c0].[Rating]
+FROM [Cars] AS [c]
+INNER JOIN [CarRentalCompanies] AS [c0] ON [c].[CompanyId] = [c0].[CarRentalCompanyId]
+WHERE [c].[CarId] = @__carId_0
+2024-04-16 15:07:23.837 -04:00 [INF] Executing ViewResult, running view Edit.
+2024-04-16 15:07:23.841 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CarRentalCompanyId], [c].[CompanyName], [c].[Location], [c].[Rating]
+FROM [CarRentalCompanies] AS [c]
+2024-04-16 15:07:23.842 -04:00 [INF] Executed ViewResult - view Edit executed in 5.1126ms.
+2024-04-16 15:07:23.842 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Edit (TravelGroupAssignment1) in 9.7194ms
+2024-04-16 15:07:23.842 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Edit (TravelGroupAssignment1)'
+2024-04-16 15:07:23.843 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Car/Edit/1 - 200 null text/html; charset=utf-8 15.95ms
+2024-04-16 15:07:23.856 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:07:23.857 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.6545ms
+2024-04-16 15:07:25.757 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44378/Car/Edit/1 - application/x-www-form-urlencoded 438
+2024-04-16 15:07:25.761 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Edit (TravelGroupAssignment1)'
+2024-04-16 15:07:25.761 -04:00 [INF] Route matched with {area = "CarManagement", action = "Edit", controller = "Car", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Edit(Int32, TravelGroupAssignment1.Areas.CarManagement.Models.Car) on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController (TravelGroupAssignment1).
+2024-04-16 15:07:25.762 -04:00 [INF] Calling Car Edit() Post Action
+2024-04-16 15:07:25.766 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@p9='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = Boolean), @p2='?' (DbType = Boolean), @p3='?' (Size = 100), @p4='?' (DbType = Int32), @p5='?' (Size = 100), @p6='?' (DbType = Double), @p7='?' (Size = 100), @p8='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Cars] SET [CompanyId] = @p0, [HasAirConditioning] = @p1, [HasUnlimitedMileage] = @p2, [Make] = @p3, [MaxPassengers] = @p4, [Model] = @p5, [PricePerDay] = @p6, [Transmission] = @p7, [Type] = @p8
+OUTPUT 1
+WHERE [CarId] = @p9;
+2024-04-16 15:07:25.767 -04:00 [INF] Executing RedirectResult, redirecting to /Car/Index.
+2024-04-16 15:07:25.767 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Edit (TravelGroupAssignment1) in 6.2963ms
+2024-04-16 15:07:25.767 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Edit (TravelGroupAssignment1)'
+2024-04-16 15:07:25.768 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44378/Car/Edit/1 - 302 null null 10.4973ms
+2024-04-16 15:07:25.771 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Car/Index - null null
+2024-04-16 15:07:25.774 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1)'
+2024-04-16 15:07:25.774 -04:00 [INF] Route matched with {area = "CarManagement", action = "Index", controller = "Car", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController (TravelGroupAssignment1).
+2024-04-16 15:07:25.774 -04:00 [INF] Calling Car Index() Action
+2024-04-16 15:07:25.776 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CarId], [c].[CompanyId], [c].[HasAirConditioning], [c].[HasUnlimitedMileage], [c].[Make], [c].[MaxPassengers], [c].[Model], [c].[PricePerDay], [c].[Transmission], [c].[Type], [c0].[CarRentalCompanyId], [c0].[CompanyName], [c0].[Location], [c0].[Rating]
+FROM [Cars] AS [c]
+INNER JOIN [CarRentalCompanies] AS [c0] ON [c].[CompanyId] = [c0].[CarRentalCompanyId]
+2024-04-16 15:07:25.777 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 15:07:25.778 -04:00 [INF] Executed ViewResult - view Index executed in 1.3005ms.
+2024-04-16 15:07:25.779 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1) in 4.556ms
+2024-04-16 15:07:25.779 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1)'
+2024-04-16 15:07:25.779 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Car/Index - 200 null text/html; charset=utf-8 8.1008ms
+2024-04-16 15:07:25.794 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:07:25.794 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:07:25.795 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.8644ms
+2024-04-16 15:07:25.811 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 17.0415ms
+2024-04-16 15:07:26.963 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Car/Edit/1 - null null
+2024-04-16 15:07:26.968 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Edit (TravelGroupAssignment1)'
+2024-04-16 15:07:26.968 -04:00 [INF] Route matched with {area = "CarManagement", action = "Edit", controller = "Car", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Edit(Int32) on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController (TravelGroupAssignment1).
+2024-04-16 15:07:26.968 -04:00 [INF] Calling Car Edit() Get Action
+2024-04-16 15:07:26.971 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__carId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CarId], [c].[CompanyId], [c].[HasAirConditioning], [c].[HasUnlimitedMileage], [c].[Make], [c].[MaxPassengers], [c].[Model], [c].[PricePerDay], [c].[Transmission], [c].[Type], [c0].[CarRentalCompanyId], [c0].[CompanyName], [c0].[Location], [c0].[Rating]
+FROM [Cars] AS [c]
+INNER JOIN [CarRentalCompanies] AS [c0] ON [c].[CompanyId] = [c0].[CarRentalCompanyId]
+WHERE [c].[CarId] = @__carId_0
+2024-04-16 15:07:26.973 -04:00 [INF] Executing ViewResult, running view Edit.
+2024-04-16 15:07:26.975 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CarRentalCompanyId], [c].[CompanyName], [c].[Location], [c].[Rating]
+FROM [CarRentalCompanies] AS [c]
+2024-04-16 15:07:26.976 -04:00 [INF] Executed ViewResult - view Edit executed in 2.9697ms.
+2024-04-16 15:07:26.976 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Edit (TravelGroupAssignment1) in 8.4097ms
+2024-04-16 15:07:26.976 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Edit (TravelGroupAssignment1)'
+2024-04-16 15:07:26.977 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Car/Edit/1 - 200 null text/html; charset=utf-8 13.9273ms
+2024-04-16 15:07:26.989 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:07:26.990 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.9406ms
+2024-04-16 15:07:26.991 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:07:27.008 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 16.3907ms
+2024-04-16 15:07:34.462 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44378/Car/Edit/1 - application/x-www-form-urlencoded 438
+2024-04-16 15:07:34.467 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Edit (TravelGroupAssignment1)'
+2024-04-16 15:07:34.468 -04:00 [INF] Route matched with {area = "CarManagement", action = "Edit", controller = "Car", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Edit(Int32, TravelGroupAssignment1.Areas.CarManagement.Models.Car) on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController (TravelGroupAssignment1).
+2024-04-16 15:07:34.469 -04:00 [INF] Calling Car Edit() Post Action
+2024-04-16 15:07:34.474 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@p9='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = Boolean), @p2='?' (DbType = Boolean), @p3='?' (Size = 100), @p4='?' (DbType = Int32), @p5='?' (Size = 100), @p6='?' (DbType = Double), @p7='?' (Size = 100), @p8='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Cars] SET [CompanyId] = @p0, [HasAirConditioning] = @p1, [HasUnlimitedMileage] = @p2, [Make] = @p3, [MaxPassengers] = @p4, [Model] = @p5, [PricePerDay] = @p6, [Transmission] = @p7, [Type] = @p8
+OUTPUT 1
+WHERE [CarId] = @p9;
+2024-04-16 15:07:34.475 -04:00 [INF] Executing RedirectResult, redirecting to /Car/Index.
+2024-04-16 15:07:34.475 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Edit (TravelGroupAssignment1) in 7.3075ms
+2024-04-16 15:07:34.475 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Edit (TravelGroupAssignment1)'
+2024-04-16 15:07:34.475 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44378/Car/Edit/1 - 302 null null 13.0495ms
+2024-04-16 15:07:34.480 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Car/Index - null null
+2024-04-16 15:07:34.483 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1)'
+2024-04-16 15:07:34.483 -04:00 [INF] Route matched with {area = "CarManagement", action = "Index", controller = "Car", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController (TravelGroupAssignment1).
+2024-04-16 15:07:34.483 -04:00 [INF] Calling Car Index() Action
+2024-04-16 15:07:34.485 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CarId], [c].[CompanyId], [c].[HasAirConditioning], [c].[HasUnlimitedMileage], [c].[Make], [c].[MaxPassengers], [c].[Model], [c].[PricePerDay], [c].[Transmission], [c].[Type], [c0].[CarRentalCompanyId], [c0].[CompanyName], [c0].[Location], [c0].[Rating]
+FROM [Cars] AS [c]
+INNER JOIN [CarRentalCompanies] AS [c0] ON [c].[CompanyId] = [c0].[CarRentalCompanyId]
+2024-04-16 15:07:34.487 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 15:07:34.489 -04:00 [INF] Executed ViewResult - view Index executed in 1.8589ms.
+2024-04-16 15:07:34.489 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1) in 5.9928ms
+2024-04-16 15:07:34.489 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1)'
+2024-04-16 15:07:34.490 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Car/Index - 200 null text/html; charset=utf-8 9.6311ms
+2024-04-16 15:07:34.504 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:07:34.504 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:07:34.505 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.7752ms
+2024-04-16 15:07:34.524 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 19.2961ms
+2024-04-16 15:07:35.718 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Car/Details/1 - null null
+2024-04-16 15:07:35.723 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Details (TravelGroupAssignment1)'
+2024-04-16 15:07:35.725 -04:00 [INF] Route matched with {area = "CarManagement", action = "Details", controller = "Car", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Details(Int32) on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController (TravelGroupAssignment1).
+2024-04-16 15:07:35.726 -04:00 [INF] Calling Car Details() Action
+2024-04-16 15:07:35.729 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__carId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CarId], [c].[CompanyId], [c].[HasAirConditioning], [c].[HasUnlimitedMileage], [c].[Make], [c].[MaxPassengers], [c].[Model], [c].[PricePerDay], [c].[Transmission], [c].[Type], [c0].[CarRentalCompanyId], [c0].[CompanyName], [c0].[Location], [c0].[Rating]
+FROM [Cars] AS [c]
+INNER JOIN [CarRentalCompanies] AS [c0] ON [c].[CompanyId] = [c0].[CarRentalCompanyId]
+WHERE [c].[CarId] = @__carId_0
+2024-04-16 15:07:35.731 -04:00 [INF] Executing ViewResult, running view Details.
+2024-04-16 15:07:35.737 -04:00 [INF] Executed ViewResult - view Details executed in 6.4145ms.
+2024-04-16 15:07:35.737 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Details (TravelGroupAssignment1) in 12.0311ms
+2024-04-16 15:07:35.737 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Details (TravelGroupAssignment1)'
+2024-04-16 15:07:35.738 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Car/Details/1 - 200 null text/html; charset=utf-8 19.5028ms
+2024-04-16 15:07:35.753 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:07:35.753 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/js/carComment.js - null null
+2024-04-16 15:07:35.754 -04:00 [INF] The file /js/carComment.js was not modified
+2024-04-16 15:07:35.754 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:07:35.754 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.8483ms
+2024-04-16 15:07:35.754 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/js/carComment.js - 304 null text/javascript 0.8131ms
+2024-04-16 15:07:35.767 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 13.5305ms
+2024-04-16 15:07:35.774 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/CarComment/GetComments/undefined - null null
+2024-04-16 15:07:35.778 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/CarComment/GetComments/undefined - 302 null null 4.7347ms
+2024-04-16 15:07:35.779 -04:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:44378/CarComment/GetComments/undefined, Response status code: 302
+2024-04-16 15:07:35.819 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/StatusCode/404 - null null
+2024-04-16 15:07:35.821 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1)'
+2024-04-16 15:07:35.822 -04:00 [INF] Route matched with {action = "Index", controller = "StatusCode", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(Int32) on controller TravelGroupAssignment1.Controllers.StatusCodeController (TravelGroupAssignment1).
+2024-04-16 15:07:35.824 -04:00 [INF] Executing ViewResult, running view 404.
+2024-04-16 15:07:35.833 -04:00 [INF] Executed ViewResult - view 404 executed in 9.2768ms.
+2024-04-16 15:07:35.833 -04:00 [INF] Executed action TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1) in 10.567ms
+2024-04-16 15:07:35.834 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Controllers.StatusCodeController.Index (TravelGroupAssignment1)'
+2024-04-16 15:07:35.834 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/StatusCode/404 - 200 null text/html; charset=utf-8 15.0493ms
+2024-04-16 15:07:37.909 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Car/Edit/1 - null null
+2024-04-16 15:07:37.915 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Edit (TravelGroupAssignment1)'
+2024-04-16 15:07:37.915 -04:00 [INF] Route matched with {area = "CarManagement", action = "Edit", controller = "Car", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Edit(Int32) on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController (TravelGroupAssignment1).
+2024-04-16 15:07:37.915 -04:00 [INF] Calling Car Edit() Get Action
+2024-04-16 15:07:37.917 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__carId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CarId], [c].[CompanyId], [c].[HasAirConditioning], [c].[HasUnlimitedMileage], [c].[Make], [c].[MaxPassengers], [c].[Model], [c].[PricePerDay], [c].[Transmission], [c].[Type], [c0].[CarRentalCompanyId], [c0].[CompanyName], [c0].[Location], [c0].[Rating]
+FROM [Cars] AS [c]
+INNER JOIN [CarRentalCompanies] AS [c0] ON [c].[CompanyId] = [c0].[CarRentalCompanyId]
+WHERE [c].[CarId] = @__carId_0
+2024-04-16 15:07:37.919 -04:00 [INF] Executing ViewResult, running view Edit.
+2024-04-16 15:07:37.920 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CarRentalCompanyId], [c].[CompanyName], [c].[Location], [c].[Rating]
+FROM [CarRentalCompanies] AS [c]
+2024-04-16 15:07:37.923 -04:00 [INF] Executed ViewResult - view Edit executed in 3.4578ms.
+2024-04-16 15:07:37.923 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Edit (TravelGroupAssignment1) in 7.9571ms
+2024-04-16 15:07:37.923 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Edit (TravelGroupAssignment1)'
+2024-04-16 15:07:37.924 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Car/Edit/1 - 200 null text/html; charset=utf-8 14.1641ms
+2024-04-16 15:07:37.935 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:07:37.935 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:07:37.937 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 1.5916ms
+2024-04-16 15:07:37.954 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 18.1554ms
+2024-04-16 15:07:41.359 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44378/Car/Edit/1 - application/x-www-form-urlencoded 447
+2024-04-16 15:07:41.363 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Edit (TravelGroupAssignment1)'
+2024-04-16 15:07:41.363 -04:00 [INF] Route matched with {area = "CarManagement", action = "Edit", controller = "Car", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Edit(Int32, TravelGroupAssignment1.Areas.CarManagement.Models.Car) on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController (TravelGroupAssignment1).
+2024-04-16 15:07:41.365 -04:00 [INF] Calling Car Edit() Post Action
+2024-04-16 15:07:41.369 -04:00 [INF] Executed DbCommand (3ms) [Parameters=[@p9='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = Boolean), @p2='?' (DbType = Boolean), @p3='?' (Size = 100), @p4='?' (DbType = Int32), @p5='?' (Size = 100), @p6='?' (DbType = Double), @p7='?' (Size = 100), @p8='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Cars] SET [CompanyId] = @p0, [HasAirConditioning] = @p1, [HasUnlimitedMileage] = @p2, [Make] = @p3, [MaxPassengers] = @p4, [Model] = @p5, [PricePerDay] = @p6, [Transmission] = @p7, [Type] = @p8
+OUTPUT 1
+WHERE [CarId] = @p9;
+2024-04-16 15:07:41.369 -04:00 [INF] Executing RedirectResult, redirecting to /Car/Index.
+2024-04-16 15:07:41.369 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Edit (TravelGroupAssignment1) in 6.0609ms
+2024-04-16 15:07:41.369 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Edit (TravelGroupAssignment1)'
+2024-04-16 15:07:41.370 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44378/Car/Edit/1 - 302 null null 10.7922ms
+2024-04-16 15:07:41.375 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Car/Index - null null
+2024-04-16 15:07:41.377 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1)'
+2024-04-16 15:07:41.378 -04:00 [INF] Route matched with {area = "CarManagement", action = "Index", controller = "Car", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController (TravelGroupAssignment1).
+2024-04-16 15:07:41.378 -04:00 [INF] Calling Car Index() Action
+2024-04-16 15:07:41.380 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CarId], [c].[CompanyId], [c].[HasAirConditioning], [c].[HasUnlimitedMileage], [c].[Make], [c].[MaxPassengers], [c].[Model], [c].[PricePerDay], [c].[Transmission], [c].[Type], [c0].[CarRentalCompanyId], [c0].[CompanyName], [c0].[Location], [c0].[Rating]
+FROM [Cars] AS [c]
+INNER JOIN [CarRentalCompanies] AS [c0] ON [c].[CompanyId] = [c0].[CarRentalCompanyId]
+2024-04-16 15:07:41.381 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 15:07:41.382 -04:00 [INF] Executed ViewResult - view Index executed in 1.1375ms.
+2024-04-16 15:07:41.383 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1) in 4.7987ms
+2024-04-16 15:07:41.383 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1)'
+2024-04-16 15:07:41.383 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Car/Index - 200 null text/html; charset=utf-8 7.9914ms
+2024-04-16 15:07:41.398 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:07:41.399 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.7813ms
+2024-04-16 15:07:41.400 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:07:41.400 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/js/carSearch.js - null null
+2024-04-16 15:07:41.400 -04:00 [INF] The file /js/carSearch.js was not modified
+2024-04-16 15:07:41.400 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/js/carSearch.js - 304 null text/javascript 0.4688ms
+2024-04-16 15:07:41.413 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 12.9676ms
+2024-04-16 15:09:16.016 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Flight/Index - null null
+2024-04-16 15:09:16.033 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.FlightManagement.Controllers.FlightController.Index (TravelGroupAssignment1)'
+2024-04-16 15:09:16.036 -04:00 [INF] Route matched with {area = "FlightManagement", action = "Index", controller = "Flight", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.FlightManagement.Controllers.FlightController (TravelGroupAssignment1).
+2024-04-16 15:09:16.037 -04:00 [INF] Calling Flight Index() Action
+2024-04-16 15:09:16.042 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [f].[FlightId], [f].[Airline], [f].[ArrivalTime], [f].[DepartTime], [f].[From], [f].[MaxPassenger], [f].[Price], [f].[To]
+FROM [Flights] AS [f]
+2024-04-16 15:09:16.058 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 15:09:16.089 -04:00 [INF] Executed ViewResult - view Index executed in 32.3684ms.
+2024-04-16 15:09:16.090 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.FlightManagement.Controllers.FlightController.Index (TravelGroupAssignment1) in 53.8459ms
+2024-04-16 15:09:16.090 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.FlightManagement.Controllers.FlightController.Index (TravelGroupAssignment1)'
+2024-04-16 15:09:16.090 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Flight/Index - 200 null text/html; charset=utf-8 74.2582ms
+2024-04-16 15:09:16.110 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:09:16.111 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:09:16.111 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.8909ms
+2024-04-16 15:09:16.126 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 14.9803ms
+2024-04-16 15:09:18.152 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Flight/Details/1 - null null
+2024-04-16 15:09:18.156 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.FlightManagement.Controllers.FlightController.Details (TravelGroupAssignment1)'
+2024-04-16 15:09:18.159 -04:00 [INF] Route matched with {area = "FlightManagement", action = "Details", controller = "Flight", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Details(Int32) on controller TravelGroupAssignment1.Areas.FlightManagement.Controllers.FlightController (TravelGroupAssignment1).
+2024-04-16 15:09:18.160 -04:00 [INF] Calling Flight Details() Action
+2024-04-16 15:09:18.168 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [f].[FlightId], [f].[Airline], [f].[ArrivalTime], [f].[DepartTime], [f].[From], [f].[MaxPassenger], [f].[Price], [f].[To]
+FROM [Flights] AS [f]
+WHERE [f].[FlightId] = @__p_0
+2024-04-16 15:09:18.171 -04:00 [INF] Executing ViewResult, running view Details.
+2024-04-16 15:09:18.176 -04:00 [INF] Executed ViewResult - view Details executed in 5.7891ms.
+2024-04-16 15:09:18.177 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.FlightManagement.Controllers.FlightController.Details (TravelGroupAssignment1) in 17.4546ms
+2024-04-16 15:09:18.177 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.FlightManagement.Controllers.FlightController.Details (TravelGroupAssignment1)'
+2024-04-16 15:09:18.177 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Flight/Details/1 - 200 null text/html; charset=utf-8 25.2838ms
+2024-04-16 15:09:18.194 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:09:18.194 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:09:18.195 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 1.4209ms
+2024-04-16 15:09:18.210 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 16.1148ms
+2024-04-16 15:09:19.133 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Flight/Index - null null
+2024-04-16 15:09:19.136 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.FlightManagement.Controllers.FlightController.Index (TravelGroupAssignment1)'
+2024-04-16 15:09:19.136 -04:00 [INF] Route matched with {area = "FlightManagement", action = "Index", controller = "Flight", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.FlightManagement.Controllers.FlightController (TravelGroupAssignment1).
+2024-04-16 15:09:19.136 -04:00 [INF] Calling Flight Index() Action
+2024-04-16 15:09:19.138 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [f].[FlightId], [f].[Airline], [f].[ArrivalTime], [f].[DepartTime], [f].[From], [f].[MaxPassenger], [f].[Price], [f].[To]
+FROM [Flights] AS [f]
+2024-04-16 15:09:19.140 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 15:09:19.142 -04:00 [INF] Executed ViewResult - view Index executed in 1.9752ms.
+2024-04-16 15:09:19.142 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.FlightManagement.Controllers.FlightController.Index (TravelGroupAssignment1) in 5.79ms
+2024-04-16 15:09:19.142 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.FlightManagement.Controllers.FlightController.Index (TravelGroupAssignment1)'
+2024-04-16 15:09:19.142 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Flight/Index - 200 null text/html; charset=utf-8 8.7679ms
+2024-04-16 15:09:19.154 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:09:19.154 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.7148ms
+2024-04-16 15:09:19.984 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Car/Index - null null
+2024-04-16 15:09:19.987 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1)'
+2024-04-16 15:09:19.987 -04:00 [INF] Route matched with {area = "CarManagement", action = "Index", controller = "Car", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController (TravelGroupAssignment1).
+2024-04-16 15:09:19.988 -04:00 [INF] Calling Car Index() Action
+2024-04-16 15:09:19.990 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CarId], [c].[CompanyId], [c].[HasAirConditioning], [c].[HasUnlimitedMileage], [c].[Make], [c].[MaxPassengers], [c].[Model], [c].[PricePerDay], [c].[Transmission], [c].[Type], [c0].[CarRentalCompanyId], [c0].[CompanyName], [c0].[Location], [c0].[Rating]
+FROM [Cars] AS [c]
+INNER JOIN [CarRentalCompanies] AS [c0] ON [c].[CompanyId] = [c0].[CarRentalCompanyId]
+2024-04-16 15:09:19.992 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 15:09:19.993 -04:00 [INF] Executed ViewResult - view Index executed in 1.138ms.
+2024-04-16 15:09:19.993 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1) in 5.2844ms
+2024-04-16 15:09:19.993 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1)'
+2024-04-16 15:09:19.993 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Car/Index - 200 null text/html; charset=utf-8 9.4382ms
+2024-04-16 15:09:20.006 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/js/carSearch.js - null null
+2024-04-16 15:09:20.006 -04:00 [INF] The file /js/carSearch.js was not modified
+2024-04-16 15:09:20.007 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/js/carSearch.js - 304 null text/javascript 0.6519ms
+2024-04-16 15:09:20.009 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:09:20.009 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:09:20.010 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.8393ms
+2024-04-16 15:09:20.025 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 15.6759ms
+2024-04-16 15:09:21.713 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - null null
+2024-04-16 15:09:21.716 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-16 15:09:21.716 -04:00 [INF] Route matched with {area = "DashboardManagement", action = "Index", controller = "Dashboard", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController (TravelGroupAssignment1).
+2024-04-16 15:09:21.716 -04:00 [INF] Calling Dashboard Index() Action
+2024-04-16 15:09:21.718 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Hotels] AS [h]
+2024-04-16 15:09:21.720 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Rooms] AS [r]
+2024-04-16 15:09:21.721 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Flights] AS [f]
+2024-04-16 15:09:21.723 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [CarRentalCompanies] AS [c]
+2024-04-16 15:09:21.724 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Cars] AS [c]
+2024-04-16 15:09:21.725 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Users] AS [u]
+2024-04-16 15:09:21.725 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 15:09:21.726 -04:00 [INF] Executed ViewResult - view Index executed in 1.412ms.
+2024-04-16 15:09:21.727 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1) in 10.0792ms
+2024-04-16 15:09:21.727 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-16 15:09:21.727 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - 200 null text/html; charset=utf-8 13.3938ms
+2024-04-16 15:09:21.742 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:09:21.742 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:09:21.743 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.8337ms
+2024-04-16 15:09:21.758 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 15.1992ms
+2024-04-16 15:09:22.384 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Car/Index - null null
+2024-04-16 15:09:22.387 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1)'
+2024-04-16 15:09:22.387 -04:00 [INF] Route matched with {area = "CarManagement", action = "Index", controller = "Car", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController (TravelGroupAssignment1).
+2024-04-16 15:09:22.388 -04:00 [INF] Calling Car Index() Action
+2024-04-16 15:09:22.390 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CarId], [c].[CompanyId], [c].[HasAirConditioning], [c].[HasUnlimitedMileage], [c].[Make], [c].[MaxPassengers], [c].[Model], [c].[PricePerDay], [c].[Transmission], [c].[Type], [c0].[CarRentalCompanyId], [c0].[CompanyName], [c0].[Location], [c0].[Rating]
+FROM [Cars] AS [c]
+INNER JOIN [CarRentalCompanies] AS [c0] ON [c].[CompanyId] = [c0].[CarRentalCompanyId]
+2024-04-16 15:09:22.392 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 15:09:22.393 -04:00 [INF] Executed ViewResult - view Index executed in 1.4976ms.
+2024-04-16 15:09:22.393 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1) in 5.6914ms
+2024-04-16 15:09:22.393 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1)'
+2024-04-16 15:09:22.394 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Car/Index - 200 null text/html; charset=utf-8 9.8599ms
+2024-04-16 15:09:22.406 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:09:22.408 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:09:22.409 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.5782ms
+2024-04-16 15:09:22.420 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 14.2036ms
+2024-04-16 15:09:23.843 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Identity/Account/Manage - null null
+2024-04-16 15:09:23.848 -04:00 [INF] Executing endpoint '/Account/Manage/Index'
+2024-04-16 15:09:23.858 -04:00 [INF] Route matched with {page = "/Account/Manage/Index", area = "Identity", action = "", controller = ""}. Executing page /Account/Manage/Index
+2024-04-16 15:09:23.867 -04:00 [INF] Executing handler method TravelGroupAssignment1.Areas.Identity.Pages.Account.Manage.IndexModel.OnGetAsync - ModelState is "Valid"
+2024-04-16 15:09:23.870 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__p_0
+2024-04-16 15:09:23.890 -04:00 [INF] Executed handler method OnGetAsync, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2024-04-16 15:09:23.941 -04:00 [INF] Executed page /Account/Manage/Index in 82.4854ms
+2024-04-16 15:09:23.941 -04:00 [INF] Executed endpoint '/Account/Manage/Index'
+2024-04-16 15:09:24.057 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Identity/Account/Manage - 200 null text/html; charset=utf-8 214.324ms
+2024-04-16 15:09:24.109 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:09:24.110 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:09:24.110 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 1.112ms
+2024-04-16 15:09:24.125 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 15.2863ms
+2024-04-16 15:09:27.375 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Hotel/Index - null null
+2024-04-16 15:09:27.379 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Index (TravelGroupAssignment1)'
+2024-04-16 15:09:27.379 -04:00 [INF] Route matched with {area = "HotelManagement", action = "Index", controller = "Hotel", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController (TravelGroupAssignment1).
+2024-04-16 15:09:27.379 -04:00 [INF] Calling Hotel Index() Action
+2024-04-16 15:09:27.382 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [h].[HotelId], [h].[Amenities], [h].[Description], [h].[HotelName], [h].[Location]
+FROM [Hotels] AS [h]
+2024-04-16 15:09:27.383 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 15:09:27.385 -04:00 [INF] Executed ViewResult - view Index executed in 1.386ms.
+2024-04-16 15:09:27.385 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Index (TravelGroupAssignment1) in 5.6232ms
+2024-04-16 15:09:27.385 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Index (TravelGroupAssignment1)'
+2024-04-16 15:09:27.385 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Hotel/Index - 200 null text/html; charset=utf-8 10.4379ms
+2024-04-16 15:09:27.397 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:09:27.398 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.8427ms
+2024-04-16 15:09:27.399 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:09:27.412 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 12.9887ms
+2024-04-16 15:09:28.165 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Flight/Index - null null
+2024-04-16 15:09:28.168 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.FlightManagement.Controllers.FlightController.Index (TravelGroupAssignment1)'
+2024-04-16 15:09:28.169 -04:00 [INF] Route matched with {area = "FlightManagement", action = "Index", controller = "Flight", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.FlightManagement.Controllers.FlightController (TravelGroupAssignment1).
+2024-04-16 15:09:28.169 -04:00 [INF] Calling Flight Index() Action
+2024-04-16 15:09:28.170 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [f].[FlightId], [f].[Airline], [f].[ArrivalTime], [f].[DepartTime], [f].[From], [f].[MaxPassenger], [f].[Price], [f].[To]
+FROM [Flights] AS [f]
+2024-04-16 15:09:28.172 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 15:09:28.174 -04:00 [INF] Executed ViewResult - view Index executed in 1.8985ms.
+2024-04-16 15:09:28.174 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.FlightManagement.Controllers.FlightController.Index (TravelGroupAssignment1) in 5.1017ms
+2024-04-16 15:09:28.174 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.FlightManagement.Controllers.FlightController.Index (TravelGroupAssignment1)'
+2024-04-16 15:09:28.174 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Flight/Index - 200 null text/html; charset=utf-8 9.2464ms
+2024-04-16 15:09:28.186 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:09:28.186 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:09:28.187 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.7976ms
+2024-04-16 15:09:28.203 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 17.2771ms
+2024-04-16 15:09:28.546 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Identity/Account/Manage - null null
+2024-04-16 15:09:28.552 -04:00 [INF] Executing endpoint '/Account/Manage/Index'
+2024-04-16 15:09:28.553 -04:00 [INF] Route matched with {page = "/Account/Manage/Index", area = "Identity", action = "", controller = ""}. Executing page /Account/Manage/Index
+2024-04-16 15:09:28.553 -04:00 [INF] Executing handler method TravelGroupAssignment1.Areas.Identity.Pages.Account.Manage.IndexModel.OnGetAsync - ModelState is "Valid"
+2024-04-16 15:09:28.555 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__p_0
+2024-04-16 15:09:28.566 -04:00 [INF] Executed handler method OnGetAsync, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2024-04-16 15:09:28.583 -04:00 [INF] Executed page /Account/Manage/Index in 30.1902ms
+2024-04-16 15:09:28.583 -04:00 [INF] Executed endpoint '/Account/Manage/Index'
+2024-04-16 15:09:28.703 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Identity/Account/Manage - 200 null text/html; charset=utf-8 156.5666ms
+2024-04-16 15:09:28.722 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:09:28.722 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:09:28.722 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.8692ms
+2024-04-16 15:09:28.739 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 17.4584ms
+2024-04-16 15:09:29.934 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Identity/Account/Manage/Email - null null
+2024-04-16 15:09:29.938 -04:00 [INF] Executing endpoint '/Account/Manage/Email'
+2024-04-16 15:09:29.940 -04:00 [INF] Route matched with {page = "/Account/Manage/Email", area = "Identity", action = "", controller = ""}. Executing page /Account/Manage/Email
+2024-04-16 15:09:29.941 -04:00 [INF] Executing handler method TravelGroupAssignment1.Areas.Identity.Pages.Account.Manage.EmailModel.OnGetAsync - ModelState is "Valid"
+2024-04-16 15:09:29.943 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__p_0
+2024-04-16 15:09:29.955 -04:00 [INF] Executed handler method OnGetAsync, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2024-04-16 15:09:29.974 -04:00 [INF] Executed page /Account/Manage/Email in 34.0863ms
+2024-04-16 15:09:29.974 -04:00 [INF] Executed endpoint '/Account/Manage/Email'
+2024-04-16 15:09:30.031 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Identity/Account/Manage/Email - 200 null text/html; charset=utf-8 97.8129ms
+2024-04-16 15:09:30.048 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:09:30.048 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:09:30.048 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.5906ms
+2024-04-16 15:09:30.062 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 14.0816ms
+2024-04-16 15:09:31.201 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Identity/Account/Manage - null null
+2024-04-16 15:09:31.205 -04:00 [INF] Executing endpoint '/Account/Manage/Index'
+2024-04-16 15:09:31.205 -04:00 [INF] Route matched with {page = "/Account/Manage/Index", area = "Identity", action = "", controller = ""}. Executing page /Account/Manage/Index
+2024-04-16 15:09:31.205 -04:00 [INF] Executing handler method TravelGroupAssignment1.Areas.Identity.Pages.Account.Manage.IndexModel.OnGetAsync - ModelState is "Valid"
+2024-04-16 15:09:31.208 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__p_0
+2024-04-16 15:09:31.228 -04:00 [INF] Executed handler method OnGetAsync, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2024-04-16 15:09:31.242 -04:00 [INF] Executed page /Account/Manage/Index in 37.4686ms
+2024-04-16 15:09:31.242 -04:00 [INF] Executed endpoint '/Account/Manage/Index'
+2024-04-16 15:09:31.357 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Identity/Account/Manage - 200 null text/html; charset=utf-8 155.3654ms
+2024-04-16 15:09:31.374 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:09:31.374 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:09:31.374 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.7646ms
+2024-04-16 15:09:31.387 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 13.6227ms
+2024-04-16 15:09:47.174 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Hotel/Index - null null
+2024-04-16 15:09:47.178 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Index (TravelGroupAssignment1)'
+2024-04-16 15:09:47.178 -04:00 [INF] Route matched with {area = "HotelManagement", action = "Index", controller = "Hotel", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController (TravelGroupAssignment1).
+2024-04-16 15:09:47.178 -04:00 [INF] Calling Hotel Index() Action
+2024-04-16 15:09:47.181 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [h].[HotelId], [h].[Amenities], [h].[Description], [h].[HotelName], [h].[Location]
+FROM [Hotels] AS [h]
+2024-04-16 15:09:47.182 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 15:09:47.184 -04:00 [INF] Executed ViewResult - view Index executed in 1.8723ms.
+2024-04-16 15:09:47.184 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Index (TravelGroupAssignment1) in 6.1541ms
+2024-04-16 15:09:47.184 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Index (TravelGroupAssignment1)'
+2024-04-16 15:09:47.184 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Hotel/Index - 200 null text/html; charset=utf-8 10.1306ms
+2024-04-16 15:09:47.200 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:09:47.201 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:09:47.201 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.8618ms
+2024-04-16 15:09:47.218 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 17.2844ms
+2024-04-16 15:09:49.288 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Trip - null null
+2024-04-16 15:09:49.291 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Controllers.TripController.Index (TravelGroupAssignment1)'
+2024-04-16 15:09:49.293 -04:00 [INF] Route matched with {action = "Index", controller = "Trip", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Controllers.TripController (TravelGroupAssignment1).
+2024-04-16 15:09:49.298 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 15:09:49.309 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__p_0
+2024-04-16 15:09:49.329 -04:00 [INF] Executed ViewResult - view Index executed in 30.5104ms.
+2024-04-16 15:09:49.329 -04:00 [INF] Executed action TravelGroupAssignment1.Controllers.TripController.Index (TravelGroupAssignment1) in 35.2117ms
+2024-04-16 15:09:49.329 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Controllers.TripController.Index (TravelGroupAssignment1)'
+2024-04-16 15:09:49.383 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Trip - 200 null text/html; charset=utf-8 94.7306ms
+2024-04-16 15:09:49.403 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:09:49.403 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:09:49.404 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.8285ms
+2024-04-16 15:09:49.417 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 14.3513ms
+2024-04-16 15:10:22.482 -04:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-04-16 15:10:22.517 -04:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-04-16 15:10:22.518 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-04-16 15:10:22.519 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-04-16 15:10:22.528 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2024-04-16 15:10:22.538 -04:00 [INF] No migrations were applied. The database is already up to date.
+2024-04-16 15:11:00.982 -04:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-04-16 15:11:01.023 -04:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-04-16 15:11:01.025 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-04-16 15:11:01.025 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-04-16 15:11:01.034 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2024-04-16 15:11:01.043 -04:00 [INF] Applying migration '20240416191044_post-final-integration-merge'.
+2024-04-16 15:11:01.134 -04:00 [ERR] Failed executing DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CarRentalCompanies] (
+    [CarRentalCompanyId] int NOT NULL IDENTITY,
+    [CompanyName] nvarchar(200) NOT NULL,
+    [Location] nvarchar(200) NOT NULL,
+    [Rating] float NOT NULL,
+    CONSTRAINT [PK_CarRentalCompanies] PRIMARY KEY ([CarRentalCompanyId])
+);
+2024-04-16 15:20:20.356 -04:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-04-16 15:20:20.389 -04:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-04-16 15:20:20.390 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-04-16 15:20:20.391 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-04-16 15:20:20.399 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2024-04-16 15:20:20.408 -04:00 [INF] Applying migration '20240416041417_PullCode'.
+2024-04-16 15:20:20.498 -04:00 [ERR] Failed executing DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CarRentalCompanies] (
+    [CarRentalCompanyId] int NOT NULL IDENTITY,
+    [CompanyName] nvarchar(200) NOT NULL,
+    [Location] nvarchar(200) NOT NULL,
+    [Rating] float NOT NULL,
+    CONSTRAINT [PK_CarRentalCompanies] PRIMARY KEY ([CarRentalCompanyId])
+);
+2024-04-16 15:20:57.497 -04:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-04-16 15:20:57.526 -04:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-04-16 15:20:57.527 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-04-16 15:20:57.528 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-04-16 15:20:57.535 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2024-04-16 15:20:57.543 -04:00 [INF] Applying migration '20240416041417_PullCode'.
+2024-04-16 15:20:57.620 -04:00 [ERR] Failed executing DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CarRentalCompanies] (
+    [CarRentalCompanyId] int NOT NULL IDENTITY,
+    [CompanyName] nvarchar(200) NOT NULL,
+    [Location] nvarchar(200) NOT NULL,
+    [Rating] float NOT NULL,
+    CONSTRAINT [PK_CarRentalCompanies] PRIMARY KEY ([CarRentalCompanyId])
+);
+2024-04-16 15:28:00.454 -04:00 [INF] App building is running
+2024-04-16 15:28:00.684 -04:00 [INF] User profile is available. Using 'C:\Users\CM\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-04-16 15:28:01.879 -04:00 [INF] Executed DbCommand (48ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-16 15:28:01.940 -04:00 [WRN] Role dec7d8a1-307a-49e7-a4da-b7e0d3fe93a5 validation failed: DuplicateRoleName.
+2024-04-16 15:28:01.946 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-16 15:28:01.946 -04:00 [WRN] Role f7ddd582-ced6-4f1b-b80e-f226d95d9a1c validation failed: DuplicateRoleName.
+2024-04-16 15:28:01.948 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0
+2024-04-16 15:28:01.948 -04:00 [WRN] Role bb66adbf-81b0-4610-b49c-5e64663d5e95 validation failed: DuplicateRoleName.
+2024-04-16 15:28:01.972 -04:00 [INF] Executed DbCommand (4ms) [Parameters=[@__superUser_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN NOT EXISTS (
+        SELECT 1
+        FROM [Users] AS [u]
+        WHERE [u].[Id] = @__superUser_Id_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-04-16 15:28:01.991 -04:00 [INF] Executed DbCommand (4ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0
+2024-04-16 15:28:02.282 -04:00 [INF] Run Authentication
+2024-04-16 15:28:02.282 -04:00 [INF] Run Authorization
+2024-04-16 15:28:02.282 -04:00 [INF] Run MapControlRoute
+2024-04-16 15:28:02.423 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/ - null null
+2024-04-16 15:28:02.438 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-04-16 15:28:02.438 -04:00 [INF] Hosting environment: Development
+2024-04-16 15:28:02.438 -04:00 [INF] Content root path: C:\Users\CM\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment1
+2024-04-16 15:28:02.597 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Controllers.HomeController.Index (TravelGroupAssignment1)'
+2024-04-16 15:28:02.611 -04:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TravelGroupAssignment1.Controllers.HomeController (TravelGroupAssignment1).
+2024-04-16 15:28:02.619 -04:00 [INF] Calling Home Index() Action
+2024-04-16 15:28:02.648 -04:00 [INF] Executing RedirectResult, redirecting to /DashboardManagement/Dashboard/Index.
+2024-04-16 15:28:02.659 -04:00 [INF] Executed action TravelGroupAssignment1.Controllers.HomeController.Index (TravelGroupAssignment1) in 42.9556ms
+2024-04-16 15:28:02.660 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Controllers.HomeController.Index (TravelGroupAssignment1)'
+2024-04-16 15:28:02.664 -04:00 [INF] Session started; Key:f1ebce3b-82a7-182a-0771-e26d63773eb7, Id:41419341-837c-b8e5-1904-8a9f8c9290c6
+2024-04-16 15:28:02.689 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/ - 302 null null 273.5662ms
+2024-04-16 15:28:02.690 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - null null
+2024-04-16 15:28:02.701 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-16 15:28:02.706 -04:00 [INF] Route matched with {area = "DashboardManagement", action = "Index", controller = "Dashboard", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController (TravelGroupAssignment1).
+2024-04-16 15:28:02.709 -04:00 [INF] Calling Dashboard Index() Action
+2024-04-16 15:28:02.799 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Hotels] AS [h]
+2024-04-16 15:28:02.805 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Rooms] AS [r]
+2024-04-16 15:28:02.809 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Flights] AS [f]
+2024-04-16 15:28:02.813 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [CarRentalCompanies] AS [c]
+2024-04-16 15:28:02.816 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Cars] AS [c]
+2024-04-16 15:28:02.818 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Users] AS [u]
+2024-04-16 15:28:02.825 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 15:28:02.904 -04:00 [INF] Executed ViewResult - view Index executed in 83.1591ms.
+2024-04-16 15:28:02.905 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1) in 198.8547ms
+2024-04-16 15:28:02.906 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.DashboardManagement.Controllers.DashboardController.Index (TravelGroupAssignment1)'
+2024-04-16 15:28:02.915 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/DashboardManagement/Dashboard/Index - 200 null text/html; charset=utf-8 225.1975ms
+2024-04-16 15:28:02.958 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:28:02.961 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 2.6804ms
+2024-04-16 15:28:02.971 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:28:03.008 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 35.9737ms
+2024-04-16 15:29:15.131 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Car/Index - null null
+2024-04-16 15:29:15.152 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1)'
+2024-04-16 15:29:15.155 -04:00 [INF] Route matched with {area = "CarManagement", action = "Index", controller = "Car", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController (TravelGroupAssignment1).
+2024-04-16 15:29:15.156 -04:00 [INF] Calling Car Index() Action
+2024-04-16 15:29:15.208 -04:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CarId], [c].[CompanyId], [c].[HasAirConditioning], [c].[HasUnlimitedMileage], [c].[Make], [c].[MaxPassengers], [c].[Model], [c].[PricePerDay], [c].[Transmission], [c].[Type], [c0].[CarRentalCompanyId], [c0].[CompanyName], [c0].[Location], [c0].[Rating]
+FROM [Cars] AS [c]
+INNER JOIN [CarRentalCompanies] AS [c0] ON [c].[CompanyId] = [c0].[CarRentalCompanyId]
+2024-04-16 15:29:15.241 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 15:29:15.322 -04:00 [INF] Executed ViewResult - view Index executed in 82.1636ms.
+2024-04-16 15:29:15.323 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1) in 167.6485ms
+2024-04-16 15:29:15.323 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1)'
+2024-04-16 15:29:15.323 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Car/Index - 200 null text/html; charset=utf-8 193.103ms
+2024-04-16 15:29:15.347 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:29:15.347 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/js/carSearch.js - null null
+2024-04-16 15:29:15.347 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:29:15.349 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 2.1728ms
+2024-04-16 15:29:15.369 -04:00 [INF] The file /js/carSearch.js was not modified
+2024-04-16 15:29:15.371 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/js/carSearch.js - 304 null text/javascript 24.2309ms
+2024-04-16 15:29:15.375 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 26.4694ms
+2024-04-16 15:29:18.634 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Hotel/Index - null null
+2024-04-16 15:29:18.639 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Index (TravelGroupAssignment1)'
+2024-04-16 15:29:18.643 -04:00 [INF] Route matched with {area = "HotelManagement", action = "Index", controller = "Hotel", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController (TravelGroupAssignment1).
+2024-04-16 15:29:18.644 -04:00 [INF] Calling Hotel Index() Action
+2024-04-16 15:29:18.652 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [h].[HotelId], [h].[Amenities], [h].[Description], [h].[HotelName], [h].[Location]
+FROM [Hotels] AS [h]
+2024-04-16 15:29:18.655 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 15:29:18.685 -04:00 [INF] Executed ViewResult - view Index executed in 31.4362ms.
+2024-04-16 15:29:18.685 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Index (TravelGroupAssignment1) in 42.7457ms
+2024-04-16 15:29:18.686 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Index (TravelGroupAssignment1)'
+2024-04-16 15:29:18.686 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Hotel/Index - 200 null text/html; charset=utf-8 51.9023ms
+2024-04-16 15:29:18.700 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:29:18.700 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:29:18.701 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.8855ms
+2024-04-16 15:29:18.714 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 13.2449ms
+2024-04-16 15:29:20.338 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Hotel/Create - null null
+2024-04-16 15:29:20.344 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Create (TravelGroupAssignment1)'
+2024-04-16 15:29:20.345 -04:00 [INF] Route matched with {area = "HotelManagement", action = "Create", controller = "Hotel", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Create() on controller TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController (TravelGroupAssignment1).
+2024-04-16 15:29:20.347 -04:00 [INF] Calling Hotel Create() Get Action
+2024-04-16 15:29:20.348 -04:00 [INF] Executing ViewResult, running view Create.
+2024-04-16 15:29:20.382 -04:00 [INF] Executed ViewResult - view Create executed in 34.9174ms.
+2024-04-16 15:29:20.382 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Create (TravelGroupAssignment1) in 35.8812ms
+2024-04-16 15:29:20.382 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.HotelManagement.Controllers.HotelController.Create (TravelGroupAssignment1)'
+2024-04-16 15:29:20.383 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Hotel/Create - 200 null text/html; charset=utf-8 44.6395ms
+2024-04-16 15:29:20.396 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:29:20.397 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 1.2162ms
+2024-04-16 15:29:20.399 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:29:20.414 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 15.652ms
+2024-04-16 15:29:21.822 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Identity/Account/Manage - null null
+2024-04-16 15:29:21.831 -04:00 [INF] Executing endpoint '/Account/Manage/Index'
+2024-04-16 15:29:21.842 -04:00 [INF] Route matched with {page = "/Account/Manage/Index", area = "Identity", action = "", controller = ""}. Executing page /Account/Manage/Index
+2024-04-16 15:29:21.851 -04:00 [INF] Executing handler method TravelGroupAssignment1.Areas.Identity.Pages.Account.Manage.IndexModel.OnGetAsync - ModelState is "Valid"
+2024-04-16 15:29:21.865 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Birthday], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[Gender], [u].[HomeAirport], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[Passport], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[ProfilePic], [u].[RewardProgramName], [u].[RewardProgramNumber], [u].[SeatPreference], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[UsernameChange]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__p_0
+2024-04-16 15:29:21.885 -04:00 [INF] Executed handler method OnGetAsync, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2024-04-16 15:29:21.959 -04:00 [INF] Executed page /Account/Manage/Index in 116.9182ms
+2024-04-16 15:29:21.959 -04:00 [INF] Executed endpoint '/Account/Manage/Index'
+2024-04-16 15:29:22.073 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Identity/Account/Manage - 200 null text/html; charset=utf-8 250.9519ms
+2024-04-16 15:29:22.118 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:29:22.118 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:29:22.119 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.8031ms
+2024-04-16 15:29:22.132 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 14.2792ms
+2024-04-16 15:29:26.141 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44378/Identity/Account/Logout - application/x-www-form-urlencoded 225
+2024-04-16 15:29:26.148 -04:00 [INF] Executing endpoint '/Account/Logout'
+2024-04-16 15:29:26.150 -04:00 [INF] Route matched with {page = "/Account/Logout", area = "Identity", action = "", controller = ""}. Executing page /Account/Logout
+2024-04-16 15:29:26.159 -04:00 [INF] Executing handler method TravelGroupAssignment1.Areas.Identity.Pages.Account.LogoutModel.OnPost - ModelState is "Valid"
+2024-04-16 15:29:26.167 -04:00 [INF] AuthenticationScheme: Identity.Application signed out.
+2024-04-16 15:29:26.168 -04:00 [INF] AuthenticationScheme: Identity.External signed out.
+2024-04-16 15:29:26.168 -04:00 [INF] AuthenticationScheme: Identity.TwoFactorUserId signed out.
+2024-04-16 15:29:26.168 -04:00 [INF] User logged out.
+2024-04-16 15:29:26.169 -04:00 [INF] Executed handler method OnPost, returned result Microsoft.AspNetCore.Mvc.RedirectToPageResult.
+2024-04-16 15:29:26.169 -04:00 [INF] Executing RedirectToPageResult, redirecting to null.
+2024-04-16 15:29:26.170 -04:00 [INF] Executed page /Account/Logout in 19.3231ms
+2024-04-16 15:29:26.170 -04:00 [INF] Executed endpoint '/Account/Logout'
+2024-04-16 15:29:26.170 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44378/Identity/Account/Logout - 302 null null 30.0259ms
+2024-04-16 15:29:26.175 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Identity/Account/Logout - null null
+2024-04-16 15:29:26.179 -04:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2024-04-16 15:29:26.180 -04:00 [INF] AuthenticationScheme: Identity.Application was challenged.
+2024-04-16 15:29:26.181 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Identity/Account/Logout - 302 null null 6.1388ms
+2024-04-16 15:29:26.184 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Identity/Account/Login?ReturnUrl=%2FIdentity%2FAccount%2FLogout - null null
+2024-04-16 15:29:26.186 -04:00 [INF] Executing endpoint '/Account/Login'
+2024-04-16 15:29:26.190 -04:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2024-04-16 15:29:26.195 -04:00 [INF] Executing handler method TravelGroupAssignment1.Areas.Identity.Pages.Account.LoginModel.OnGetAsync - ModelState is "Valid"
+2024-04-16 15:29:26.196 -04:00 [INF] AuthenticationScheme: Identity.External signed out.
+2024-04-16 15:29:26.196 -04:00 [INF] Executed handler method OnGetAsync, returned result .
+2024-04-16 15:29:26.198 -04:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2024-04-16 15:29:26.198 -04:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2024-04-16 15:29:26.221 -04:00 [INF] Executed page /Account/Login in 31.6564ms
+2024-04-16 15:29:26.221 -04:00 [INF] Executed endpoint '/Account/Login'
+2024-04-16 15:29:26.222 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Identity/Account/Login?ReturnUrl=%2FIdentity%2FAccount%2FLogout - 200 null text/html; charset=utf-8 37.9953ms
+2024-04-16 15:29:26.240 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:29:26.240 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:29:26.241 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 1.4328ms
+2024-04-16 15:29:26.259 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 19.2322ms
+2024-04-16 15:29:27.320 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Car/Index - null null
+2024-04-16 15:29:27.324 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1)'
+2024-04-16 15:29:27.325 -04:00 [INF] Route matched with {area = "CarManagement", action = "Index", controller = "Car", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController (TravelGroupAssignment1).
+2024-04-16 15:29:27.325 -04:00 [INF] Calling Car Index() Action
+2024-04-16 15:29:27.328 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CarId], [c].[CompanyId], [c].[HasAirConditioning], [c].[HasUnlimitedMileage], [c].[Make], [c].[MaxPassengers], [c].[Model], [c].[PricePerDay], [c].[Transmission], [c].[Type], [c0].[CarRentalCompanyId], [c0].[CompanyName], [c0].[Location], [c0].[Rating]
+FROM [Cars] AS [c]
+INNER JOIN [CarRentalCompanies] AS [c0] ON [c].[CompanyId] = [c0].[CarRentalCompanyId]
+2024-04-16 15:29:27.329 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 15:29:27.340 -04:00 [INF] Executed ViewResult - view Index executed in 10.5882ms.
+2024-04-16 15:29:27.340 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1) in 15.5368ms
+2024-04-16 15:29:27.340 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1)'
+2024-04-16 15:29:27.341 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Car/Index - 200 null text/html; charset=utf-8 20.5425ms
+2024-04-16 15:29:27.360 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:29:27.360 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:29:27.360 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.8869ms
+2024-04-16 15:29:27.382 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 22.3073ms
+2024-04-16 15:29:36.539 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Car/SearchAjax?location=Toronto&startDate=2024-04-16&endDate=2024-04-18&tab=car - null null
+2024-04-16 15:29:36.540 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.SearchAjax (TravelGroupAssignment1)'
+2024-04-16 15:29:36.543 -04:00 [INF] Route matched with {area = "CarManagement", action = "SearchAjax", controller = "Car", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SearchAjax(System.String, System.DateTime, System.DateTime) on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController (TravelGroupAssignment1).
+2024-04-16 15:29:36.550 -04:00 [INF] Requested Search at for Toronto with "2024-04-16T00:00:00.0000000" and "2024-04-18T00:00:00.0000000"
+2024-04-16 15:29:36.581 -04:00 [INF] Executed DbCommand (7ms) [Parameters=[@__location_0_contains='?' (Size = 200), @__startDate_1='?' (DbType = DateTime2), @__endDate_2='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CarId] AS [carId], [c].[Make] AS [make], [c].[Model] AS [model], [c].[MaxPassengers] AS [maxPassengers], [c].[Transmission] AS [transmission], [c].[HasAirConditioning] AS [hasAirConditioning], [c].[HasUnlimitedMileage] AS [hasUnlimitedMileage], [c].[PricePerDay] AS [pricePerDay], [c0].[CompanyName] AS [companyName]
+FROM [Cars] AS [c]
+INNER JOIN [CarRentalCompanies] AS [c0] ON [c].[CompanyId] = [c0].[CarRentalCompanyId]
+WHERE [c0].[Location] LIKE @__location_0_contains ESCAPE N'\' AND NOT EXISTS (
+    SELECT 1
+    FROM [CarBookings] AS [c1]
+    WHERE [c].[CarId] = [c1].[CarId] AND (([c1].[EndDate] >= @__startDate_1 AND [c1].[EndDate] <= @__endDate_2) OR ([c1].[StartDate] >= @__startDate_1 AND [c1].[StartDate] <= @__endDate_2)))
+2024-04-16 15:29:36.583 -04:00 [INF] Executing JsonResult, writing value of type 'System.Collections.Generic.List`1[[<>f__AnonymousType3`9[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Double, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], TravelGroupAssignment1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-04-16 15:29:36.596 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.SearchAjax (TravelGroupAssignment1) in 52.7367ms
+2024-04-16 15:29:36.596 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.SearchAjax (TravelGroupAssignment1)'
+2024-04-16 15:29:36.597 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Car/SearchAjax?location=Toronto&startDate=2024-04-16&endDate=2024-04-18&tab=car - 200 null application/json; charset=utf-8 57.967ms
+2024-04-16 15:29:42.336 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Car/SearchAjax?location=Toronto&startDate=2024-04-28&endDate=2024-04-28&tab=car - null null
+2024-04-16 15:29:42.336 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.SearchAjax (TravelGroupAssignment1)'
+2024-04-16 15:29:42.337 -04:00 [INF] Route matched with {area = "CarManagement", action = "SearchAjax", controller = "Car", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SearchAjax(System.String, System.DateTime, System.DateTime) on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController (TravelGroupAssignment1).
+2024-04-16 15:29:42.338 -04:00 [INF] Requested Search at for Toronto with "2024-04-28T00:00:00.0000000" and "2024-04-28T00:00:00.0000000"
+2024-04-16 15:29:42.342 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__location_0_contains='?' (Size = 200), @__startDate_1='?' (DbType = DateTime2), @__endDate_2='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CarId] AS [carId], [c].[Make] AS [make], [c].[Model] AS [model], [c].[MaxPassengers] AS [maxPassengers], [c].[Transmission] AS [transmission], [c].[HasAirConditioning] AS [hasAirConditioning], [c].[HasUnlimitedMileage] AS [hasUnlimitedMileage], [c].[PricePerDay] AS [pricePerDay], [c0].[CompanyName] AS [companyName]
+FROM [Cars] AS [c]
+INNER JOIN [CarRentalCompanies] AS [c0] ON [c].[CompanyId] = [c0].[CarRentalCompanyId]
+WHERE [c0].[Location] LIKE @__location_0_contains ESCAPE N'\' AND NOT EXISTS (
+    SELECT 1
+    FROM [CarBookings] AS [c1]
+    WHERE [c].[CarId] = [c1].[CarId] AND (([c1].[EndDate] >= @__startDate_1 AND [c1].[EndDate] <= @__endDate_2) OR ([c1].[StartDate] >= @__startDate_1 AND [c1].[StartDate] <= @__endDate_2)))
+2024-04-16 15:29:42.343 -04:00 [INF] Executing JsonResult, writing value of type 'System.Collections.Generic.List`1[[<>f__AnonymousType3`9[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Double, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], TravelGroupAssignment1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-04-16 15:29:42.343 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.SearchAjax (TravelGroupAssignment1) in 6.5398ms
+2024-04-16 15:29:42.343 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.SearchAjax (TravelGroupAssignment1)'
+2024-04-16 15:29:42.344 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Car/SearchAjax?location=Toronto&startDate=2024-04-28&endDate=2024-04-28&tab=car - 200 null application/json; charset=utf-8 8.2187ms
+2024-04-16 15:29:52.290 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Car/Details/3 - null null
+2024-04-16 15:29:52.293 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Details (TravelGroupAssignment1)'
+2024-04-16 15:29:52.295 -04:00 [INF] Route matched with {area = "CarManagement", action = "Details", controller = "Car", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Details(Int32) on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController (TravelGroupAssignment1).
+2024-04-16 15:29:52.297 -04:00 [INF] Calling Car Details() Action
+2024-04-16 15:29:52.306 -04:00 [INF] Executed DbCommand (3ms) [Parameters=[@__carId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CarId], [c].[CompanyId], [c].[HasAirConditioning], [c].[HasUnlimitedMileage], [c].[Make], [c].[MaxPassengers], [c].[Model], [c].[PricePerDay], [c].[Transmission], [c].[Type], [c0].[CarRentalCompanyId], [c0].[CompanyName], [c0].[Location], [c0].[Rating]
+FROM [Cars] AS [c]
+INNER JOIN [CarRentalCompanies] AS [c0] ON [c].[CompanyId] = [c0].[CarRentalCompanyId]
+WHERE [c].[CarId] = @__carId_0
+2024-04-16 15:29:52.307 -04:00 [INF] Executing ViewResult, running view Details.
+2024-04-16 15:29:52.313 -04:00 [INF] Executed ViewResult - view Details executed in 6.1781ms.
+2024-04-16 15:29:52.313 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Details (TravelGroupAssignment1) in 17.6816ms
+2024-04-16 15:29:52.313 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Details (TravelGroupAssignment1)'
+2024-04-16 15:29:52.313 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Car/Details/3 - 200 null text/html; charset=utf-8 23.9217ms
+2024-04-16 15:29:52.327 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:29:52.327 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:29:52.327 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.715ms
+2024-04-16 15:29:52.345 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 18.2587ms
+2024-04-16 15:29:54.050 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Car/Index - null null
+2024-04-16 15:29:54.052 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1)'
+2024-04-16 15:29:54.053 -04:00 [INF] Route matched with {area = "CarManagement", action = "Index", controller = "Car", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController (TravelGroupAssignment1).
+2024-04-16 15:29:54.054 -04:00 [INF] Calling Car Index() Action
+2024-04-16 15:29:54.056 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CarId], [c].[CompanyId], [c].[HasAirConditioning], [c].[HasUnlimitedMileage], [c].[Make], [c].[MaxPassengers], [c].[Model], [c].[PricePerDay], [c].[Transmission], [c].[Type], [c0].[CarRentalCompanyId], [c0].[CompanyName], [c0].[Location], [c0].[Rating]
+FROM [Cars] AS [c]
+INNER JOIN [CarRentalCompanies] AS [c0] ON [c].[CompanyId] = [c0].[CarRentalCompanyId]
+2024-04-16 15:29:54.058 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 15:29:54.059 -04:00 [INF] Executed ViewResult - view Index executed in 1.7147ms.
+2024-04-16 15:29:54.060 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1) in 6.0033ms
+2024-04-16 15:29:54.060 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1)'
+2024-04-16 15:29:54.060 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Car/Index - 200 null text/html; charset=utf-8 10.1528ms
+2024-04-16 15:29:54.076 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:29:54.076 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:29:54.076 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.8599ms
+2024-04-16 15:29:54.091 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 15.0032ms
+2024-04-16 15:29:55.273 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/CarBooking/Create/2/2024-04-16/2024-04-18 - null null
+2024-04-16 15:29:55.276 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarBookingController.Create (TravelGroupAssignment1)'
+2024-04-16 15:29:55.280 -04:00 [INF] Route matched with {area = "CarManagement", action = "Create", controller = "CarBooking", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(Int32, System.Nullable`1[System.DateTime], System.Nullable`1[System.DateTime]) on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarBookingController (TravelGroupAssignment1).
+2024-04-16 15:29:55.286 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CarId], [c].[CompanyId], [c].[HasAirConditioning], [c].[HasUnlimitedMileage], [c].[Make], [c].[MaxPassengers], [c].[Model], [c].[PricePerDay], [c].[Transmission], [c].[Type]
+FROM [Cars] AS [c]
+WHERE [c].[CarId] = @__p_0
+2024-04-16 15:29:55.294 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CarRentalCompanyId], [c].[CompanyName], [c].[Location], [c].[Rating]
+FROM [CarRentalCompanies] AS [c]
+WHERE [c].[CarRentalCompanyId] = @__p_0
+2024-04-16 15:29:55.305 -04:00 [INF] Executing ViewResult, running view Create.
+2024-04-16 15:29:55.351 -04:00 [INF] Executed ViewResult - view Create executed in 46.4968ms.
+2024-04-16 15:29:55.352 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarBookingController.Create (TravelGroupAssignment1) in 71.754ms
+2024-04-16 15:29:55.352 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarBookingController.Create (TravelGroupAssignment1)'
+2024-04-16 15:29:55.352 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/CarBooking/Create/2/2024-04-16/2024-04-18 - 200 null text/html; charset=utf-8 79.4223ms
+2024-04-16 15:29:55.371 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:29:55.374 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:29:55.376 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 1.75ms
+2024-04-16 15:29:55.391 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 20.6401ms
+2024-04-16 15:29:57.415 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44378/CarBooking/CreateBooking - application/x-www-form-urlencoded 285
+2024-04-16 15:29:57.419 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarBookingController.CreateBooking (TravelGroupAssignment1)'
+2024-04-16 15:29:57.427 -04:00 [INF] Route matched with {area = "CarManagement", action = "CreateBooking", controller = "CarBooking", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateBooking(TravelGroupAssignment1.Areas.CarManagement.Models.CarBooking) on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarBookingController (TravelGroupAssignment1).
+2024-04-16 15:29:57.439 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CarId], [c].[CompanyId], [c].[HasAirConditioning], [c].[HasUnlimitedMileage], [c].[Make], [c].[MaxPassengers], [c].[Model], [c].[PricePerDay], [c].[Transmission], [c].[Type]
+FROM [Cars] AS [c]
+WHERE [c].[CarId] = @__p_0
+2024-04-16 15:29:57.441 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CarRentalCompanyId], [c].[CompanyName], [c].[Location], [c].[Rating]
+FROM [CarRentalCompanies] AS [c]
+WHERE [c].[CarRentalCompanyId] = @__p_0
+2024-04-16 15:29:57.476 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__carBooking_CarId_0='?' (DbType = Int32), @__carBooking_StartDate_1='?' (DbType = DateTime2), @__carBooking_EndDate_2='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[BookingId], [c].[BookingReference], [c].[CarId], [c].[EndDate], [c].[StartDate], [c].[TripId]
+FROM [CarBookings] AS [c]
+WHERE [c].[CarId] = @__carBooking_CarId_0 AND (([c].[StartDate] >= @__carBooking_StartDate_1 AND [c].[StartDate] <= @__carBooking_EndDate_2) OR ([c].[EndDate] >= @__carBooking_StartDate_1 AND [c].[EndDate] <= @__carBooking_EndDate_2))
+2024-04-16 15:29:57.491 -04:00 [INF] Executing ViewResult, running view Create.
+2024-04-16 15:29:57.495 -04:00 [INF] Executed ViewResult - view Create executed in 3.9997ms.
+2024-04-16 15:29:57.495 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarBookingController.CreateBooking (TravelGroupAssignment1) in 68.3054ms
+2024-04-16 15:29:57.495 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarBookingController.CreateBooking (TravelGroupAssignment1)'
+2024-04-16 15:29:57.496 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44378/CarBooking/CreateBooking - 200 null text/html; charset=utf-8 80.4892ms
+2024-04-16 15:29:57.511 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:29:57.511 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:29:57.512 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.7743ms
+2024-04-16 15:29:57.525 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 13.5792ms
+2024-04-16 15:30:05.653 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Car/Index - null null
+2024-04-16 15:30:05.660 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1)'
+2024-04-16 15:30:05.661 -04:00 [INF] Route matched with {area = "CarManagement", action = "Index", controller = "Car", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController (TravelGroupAssignment1).
+2024-04-16 15:30:05.661 -04:00 [INF] Calling Car Index() Action
+2024-04-16 15:30:05.663 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CarId], [c].[CompanyId], [c].[HasAirConditioning], [c].[HasUnlimitedMileage], [c].[Make], [c].[MaxPassengers], [c].[Model], [c].[PricePerDay], [c].[Transmission], [c].[Type], [c0].[CarRentalCompanyId], [c0].[CompanyName], [c0].[Location], [c0].[Rating]
+FROM [Cars] AS [c]
+INNER JOIN [CarRentalCompanies] AS [c0] ON [c].[CompanyId] = [c0].[CarRentalCompanyId]
+2024-04-16 15:30:05.665 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 15:30:05.666 -04:00 [INF] Executed ViewResult - view Index executed in 1.171ms.
+2024-04-16 15:30:05.666 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1) in 5.8347ms
+2024-04-16 15:30:05.666 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1)'
+2024-04-16 15:30:05.667 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Car/Index - 200 null text/html; charset=utf-8 13.9592ms
+2024-04-16 15:30:05.680 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:30:05.680 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:30:05.681 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.7117ms
+2024-04-16 15:30:05.697 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 16.3356ms
+2024-04-16 15:30:12.864 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Car/SearchAjax?location=Toronto&startDate=2024-04-16&endDate=2024-04-18&tab=car - null null
+2024-04-16 15:30:12.865 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.SearchAjax (TravelGroupAssignment1)'
+2024-04-16 15:30:12.865 -04:00 [INF] Route matched with {area = "CarManagement", action = "SearchAjax", controller = "Car", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SearchAjax(System.String, System.DateTime, System.DateTime) on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController (TravelGroupAssignment1).
+2024-04-16 15:30:12.866 -04:00 [INF] Requested Search at for Toronto with "2024-04-16T00:00:00.0000000" and "2024-04-18T00:00:00.0000000"
+2024-04-16 15:30:12.870 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__location_0_contains='?' (Size = 200), @__startDate_1='?' (DbType = DateTime2), @__endDate_2='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CarId] AS [carId], [c].[Make] AS [make], [c].[Model] AS [model], [c].[MaxPassengers] AS [maxPassengers], [c].[Transmission] AS [transmission], [c].[HasAirConditioning] AS [hasAirConditioning], [c].[HasUnlimitedMileage] AS [hasUnlimitedMileage], [c].[PricePerDay] AS [pricePerDay], [c0].[CompanyName] AS [companyName]
+FROM [Cars] AS [c]
+INNER JOIN [CarRentalCompanies] AS [c0] ON [c].[CompanyId] = [c0].[CarRentalCompanyId]
+WHERE [c0].[Location] LIKE @__location_0_contains ESCAPE N'\' AND NOT EXISTS (
+    SELECT 1
+    FROM [CarBookings] AS [c1]
+    WHERE [c].[CarId] = [c1].[CarId] AND (([c1].[EndDate] >= @__startDate_1 AND [c1].[EndDate] <= @__endDate_2) OR ([c1].[StartDate] >= @__startDate_1 AND [c1].[StartDate] <= @__endDate_2)))
+2024-04-16 15:30:12.871 -04:00 [INF] Executing JsonResult, writing value of type 'System.Collections.Generic.List`1[[<>f__AnonymousType3`9[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Double, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], TravelGroupAssignment1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-04-16 15:30:12.873 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.SearchAjax (TravelGroupAssignment1) in 7.2416ms
+2024-04-16 15:30:12.873 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.SearchAjax (TravelGroupAssignment1)'
+2024-04-16 15:30:12.873 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Car/SearchAjax?location=Toronto&startDate=2024-04-16&endDate=2024-04-18&tab=car - 200 null application/json; charset=utf-8 9.2683ms
+2024-04-16 15:30:14.168 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Car/SearchAjax?location=Toronto&startDate=2024-04-16&endDate=2024-04-18&tab=car - null null
+2024-04-16 15:30:14.169 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.SearchAjax (TravelGroupAssignment1)'
+2024-04-16 15:30:14.169 -04:00 [INF] Route matched with {area = "CarManagement", action = "SearchAjax", controller = "Car", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SearchAjax(System.String, System.DateTime, System.DateTime) on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController (TravelGroupAssignment1).
+2024-04-16 15:30:14.170 -04:00 [INF] Requested Search at for Toronto with "2024-04-16T00:00:00.0000000" and "2024-04-18T00:00:00.0000000"
+2024-04-16 15:30:14.173 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__location_0_contains='?' (Size = 200), @__startDate_1='?' (DbType = DateTime2), @__endDate_2='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CarId] AS [carId], [c].[Make] AS [make], [c].[Model] AS [model], [c].[MaxPassengers] AS [maxPassengers], [c].[Transmission] AS [transmission], [c].[HasAirConditioning] AS [hasAirConditioning], [c].[HasUnlimitedMileage] AS [hasUnlimitedMileage], [c].[PricePerDay] AS [pricePerDay], [c0].[CompanyName] AS [companyName]
+FROM [Cars] AS [c]
+INNER JOIN [CarRentalCompanies] AS [c0] ON [c].[CompanyId] = [c0].[CarRentalCompanyId]
+WHERE [c0].[Location] LIKE @__location_0_contains ESCAPE N'\' AND NOT EXISTS (
+    SELECT 1
+    FROM [CarBookings] AS [c1]
+    WHERE [c].[CarId] = [c1].[CarId] AND (([c1].[EndDate] >= @__startDate_1 AND [c1].[EndDate] <= @__endDate_2) OR ([c1].[StartDate] >= @__startDate_1 AND [c1].[StartDate] <= @__endDate_2)))
+2024-04-16 15:30:14.175 -04:00 [INF] Executing JsonResult, writing value of type 'System.Collections.Generic.List`1[[<>f__AnonymousType3`9[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Double, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], TravelGroupAssignment1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-04-16 15:30:14.175 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.SearchAjax (TravelGroupAssignment1) in 6.1337ms
+2024-04-16 15:30:14.175 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.SearchAjax (TravelGroupAssignment1)'
+2024-04-16 15:30:14.176 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Car/SearchAjax?location=Toronto&startDate=2024-04-16&endDate=2024-04-18&tab=car - 200 null application/json; charset=utf-8 7.2149ms
+2024-04-16 15:30:18.308 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/CarBooking/Create/3/2024-04-16/2024-04-18 - null null
+2024-04-16 15:30:18.312 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarBookingController.Create (TravelGroupAssignment1)'
+2024-04-16 15:30:18.312 -04:00 [INF] Route matched with {area = "CarManagement", action = "Create", controller = "CarBooking", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(Int32, System.Nullable`1[System.DateTime], System.Nullable`1[System.DateTime]) on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarBookingController (TravelGroupAssignment1).
+2024-04-16 15:30:18.316 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CarId], [c].[CompanyId], [c].[HasAirConditioning], [c].[HasUnlimitedMileage], [c].[Make], [c].[MaxPassengers], [c].[Model], [c].[PricePerDay], [c].[Transmission], [c].[Type]
+FROM [Cars] AS [c]
+WHERE [c].[CarId] = @__p_0
+2024-04-16 15:30:18.318 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CarRentalCompanyId], [c].[CompanyName], [c].[Location], [c].[Rating]
+FROM [CarRentalCompanies] AS [c]
+WHERE [c].[CarRentalCompanyId] = @__p_0
+2024-04-16 15:30:18.318 -04:00 [INF] Executing ViewResult, running view Create.
+2024-04-16 15:30:18.320 -04:00 [INF] Executed ViewResult - view Create executed in 2.1145ms.
+2024-04-16 15:30:18.321 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarBookingController.Create (TravelGroupAssignment1) in 8.5332ms
+2024-04-16 15:30:18.321 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarBookingController.Create (TravelGroupAssignment1)'
+2024-04-16 15:30:18.321 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/CarBooking/Create/3/2024-04-16/2024-04-18 - 200 null text/html; charset=utf-8 12.843ms
+2024-04-16 15:30:18.336 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:30:18.337 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:30:18.337 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.9425ms
+2024-04-16 15:30:18.352 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 15.872ms
+2024-04-16 15:30:19.464 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44378/CarBooking/CreateBooking - application/x-www-form-urlencoded 285
+2024-04-16 15:30:19.468 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarBookingController.CreateBooking (TravelGroupAssignment1)'
+2024-04-16 15:30:19.468 -04:00 [INF] Route matched with {area = "CarManagement", action = "CreateBooking", controller = "CarBooking", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateBooking(TravelGroupAssignment1.Areas.CarManagement.Models.CarBooking) on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarBookingController (TravelGroupAssignment1).
+2024-04-16 15:30:19.472 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CarId], [c].[CompanyId], [c].[HasAirConditioning], [c].[HasUnlimitedMileage], [c].[Make], [c].[MaxPassengers], [c].[Model], [c].[PricePerDay], [c].[Transmission], [c].[Type]
+FROM [Cars] AS [c]
+WHERE [c].[CarId] = @__p_0
+2024-04-16 15:30:19.474 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CarRentalCompanyId], [c].[CompanyName], [c].[Location], [c].[Rating]
+FROM [CarRentalCompanies] AS [c]
+WHERE [c].[CarRentalCompanyId] = @__p_0
+2024-04-16 15:30:19.475 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__carBooking_CarId_0='?' (DbType = Int32), @__carBooking_StartDate_1='?' (DbType = DateTime2), @__carBooking_EndDate_2='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[BookingId], [c].[BookingReference], [c].[CarId], [c].[EndDate], [c].[StartDate], [c].[TripId]
+FROM [CarBookings] AS [c]
+WHERE [c].[CarId] = @__carBooking_CarId_0 AND (([c].[StartDate] >= @__carBooking_StartDate_1 AND [c].[StartDate] <= @__carBooking_EndDate_2) OR ([c].[EndDate] >= @__carBooking_StartDate_1 AND [c].[EndDate] <= @__carBooking_EndDate_2))
+2024-04-16 15:30:19.578 -04:00 [INF] Executed DbCommand (5ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (DbType = Int32), @p2='?' (DbType = DateTime2), @p3='?' (DbType = DateTime2), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [CarBookings] ([BookingReference], [CarId], [EndDate], [StartDate], [TripId])
+OUTPUT INSERTED.[BookingId]
+VALUES (@p0, @p1, @p2, @p3, @p4);
+2024-04-16 15:30:19.594 -04:00 [INF] Executing RedirectResult, redirecting to /Trip.
+2024-04-16 15:30:19.594 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarBookingController.CreateBooking (TravelGroupAssignment1) in 126.1353ms
+2024-04-16 15:30:19.594 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarBookingController.CreateBooking (TravelGroupAssignment1)'
+2024-04-16 15:30:19.595 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44378/CarBooking/CreateBooking - 302 null null 130.7497ms
+2024-04-16 15:30:19.599 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Trip - null null
+2024-04-16 15:30:19.601 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Controllers.TripController.Index (TravelGroupAssignment1)'
+2024-04-16 15:30:19.604 -04:00 [INF] Route matched with {action = "Index", controller = "Trip", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Controllers.TripController (TravelGroupAssignment1).
+2024-04-16 15:30:19.609 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 15:30:19.619 -04:00 [INF] Executed ViewResult - view Index executed in 10.5856ms.
+2024-04-16 15:30:19.619 -04:00 [INF] Executed action TravelGroupAssignment1.Controllers.TripController.Index (TravelGroupAssignment1) in 15.2197ms
+2024-04-16 15:30:19.619 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Controllers.TripController.Index (TravelGroupAssignment1)'
+2024-04-16 15:30:19.619 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Trip - 200 null text/html; charset=utf-8 20.4ms
+2024-04-16 15:30:19.634 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:30:19.634 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:30:19.635 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.7651ms
+2024-04-16 15:30:19.647 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 12.3494ms
+2024-04-16 15:30:22.709 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Car/Index - null null
+2024-04-16 15:30:22.712 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1)'
+2024-04-16 15:30:22.713 -04:00 [INF] Route matched with {area = "CarManagement", action = "Index", controller = "Car", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController (TravelGroupAssignment1).
+2024-04-16 15:30:22.713 -04:00 [INF] Calling Car Index() Action
+2024-04-16 15:30:22.715 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CarId], [c].[CompanyId], [c].[HasAirConditioning], [c].[HasUnlimitedMileage], [c].[Make], [c].[MaxPassengers], [c].[Model], [c].[PricePerDay], [c].[Transmission], [c].[Type], [c0].[CarRentalCompanyId], [c0].[CompanyName], [c0].[Location], [c0].[Rating]
+FROM [Cars] AS [c]
+INNER JOIN [CarRentalCompanies] AS [c0] ON [c].[CompanyId] = [c0].[CarRentalCompanyId]
+2024-04-16 15:30:22.717 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 15:30:22.718 -04:00 [INF] Executed ViewResult - view Index executed in 1.2692ms.
+2024-04-16 15:30:22.718 -04:00 [INF] Executed action TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1) in 5.3136ms
+2024-04-16 15:30:22.718 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Areas.CarManagement.Controllers.CarController.Index (TravelGroupAssignment1)'
+2024-04-16 15:30:22.718 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Car/Index - 200 null text/html; charset=utf-8 10.0393ms
+2024-04-16 15:30:22.737 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:30:22.738 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:30:22.738 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 1.0434ms
+2024-04-16 15:30:22.752 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 14.2024ms
+2024-04-16 15:30:23.380 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/Trip - null null
+2024-04-16 15:30:23.383 -04:00 [INF] Executing endpoint 'TravelGroupAssignment1.Controllers.TripController.Index (TravelGroupAssignment1)'
+2024-04-16 15:30:23.384 -04:00 [INF] Route matched with {action = "Index", controller = "Trip", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller TravelGroupAssignment1.Controllers.TripController (TravelGroupAssignment1).
+2024-04-16 15:30:23.385 -04:00 [INF] Executing ViewResult, running view Index.
+2024-04-16 15:30:23.387 -04:00 [INF] Executed ViewResult - view Index executed in 1.7848ms.
+2024-04-16 15:30:23.387 -04:00 [INF] Executed action TravelGroupAssignment1.Controllers.TripController.Index (TravelGroupAssignment1) in 3.174ms
+2024-04-16 15:30:23.387 -04:00 [INF] Executed endpoint 'TravelGroupAssignment1.Controllers.TripController.Index (TravelGroupAssignment1)'
+2024-04-16 15:30:23.387 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/Trip - 200 null text/html; charset=utf-8 7.1911ms
+2024-04-16 15:30:23.399 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_vs/browserLink - null null
+2024-04-16 15:30:23.399 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-16 15:30:23.400 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 0.9231ms
+2024-04-16 15:30:23.411 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44378/_vs/browserLink - 200 null text/javascript; charset=UTF-8 11.6458ms

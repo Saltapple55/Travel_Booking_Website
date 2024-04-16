@@ -11,14 +11,9 @@ using TravelGroupAssignment1.Data;
 
 namespace TravelGroupAssignment1.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
-<<<<<<<< HEAD:TravelGroupAssignment1/TravelGroupAssignment1/Migrations/20240416044218_trip-rework-2.Designer.cs
-    [Migration("20240416044218_trip-rework-2")]
+
     partial class triprework2
-========
-    [Migration("20240416041417_PullCode")]
-    partial class PullCode
->>>>>>>> b1620e6db4e854eeb252a452069166ec6d4225b6:TravelGroupAssignment1/TravelGroupAssignment1/Migrations/20240416041417_PullCode.Designer.cs
+
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -738,11 +733,8 @@ namespace TravelGroupAssignment1.Migrations
                         new
                         {
                             TripId = 1,
-<<<<<<<< HEAD:TravelGroupAssignment1/TravelGroupAssignment1/Migrations/20240416044218_trip-rework-2.Designer.cs
                             TripReference = "2404160042a7cc82"
-========
-                            TripReference = "24041600149bef05"
->>>>>>>> b1620e6db4e854eeb252a452069166ec6d4225b6:TravelGroupAssignment1/TravelGroupAssignment1/Migrations/20240416041417_PullCode.Designer.cs
+
                         });
                 });
 
