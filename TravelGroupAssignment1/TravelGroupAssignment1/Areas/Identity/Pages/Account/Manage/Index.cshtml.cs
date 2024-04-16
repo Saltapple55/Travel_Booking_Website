@@ -136,8 +136,8 @@ namespace TravelGroupAssignment1.Areas.Identity.Pages.Account.Manage
 
             if (Input.Username != user.UserName)
             {
-                var userNameExists = _userManager.FindByNameAsync(Input.Username);
-                if (userNameExists == null)
+                var userNameExists = await _userManager.FindByNameAsync(Input.Username);
+                if (userNameExists != null)
                 {
                     StatusMessage = "Error: username not available. please enter a username";
                     return RedirectToPage();
