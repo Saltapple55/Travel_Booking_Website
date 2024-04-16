@@ -10400,23 +10400,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\CM\\.nuget\\packages\\": {},
+    "C:\\Users\\tjand\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\CM\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment-UnitTesting\\TravelGroupAssignment-UnitTesting.csproj",
+      "projectUniqueName": "C:\\Users\\tjand\\source\\repos\\COMP2139\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment-UnitTesting\\TravelGroupAssignment-UnitTesting.csproj",
       "projectName": "TravelGroupAssignment-UnitTesting",
-      "projectPath": "C:\\Users\\CM\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment-UnitTesting\\TravelGroupAssignment-UnitTesting.csproj",
-      "packagesPath": "C:\\Users\\CM\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\CM\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment-UnitTesting\\obj\\",
+      "projectPath": "C:\\Users\\tjand\\source\\repos\\COMP2139\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment-UnitTesting\\TravelGroupAssignment-UnitTesting.csproj",
+      "packagesPath": "C:\\Users\\tjand\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\tjand\\source\\repos\\COMP2139\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment-UnitTesting\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\CM\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\tjand\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -10425,14 +10425,15 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\CM\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\TravelGroupAssignment1.csproj": {
-              "projectPath": "C:\\Users\\CM\\source\\repos\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\TravelGroupAssignment1.csproj"
+            "C:\\Users\\tjand\\source\\repos\\COMP2139\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\TravelGroupAssignment1.csproj": {
+              "projectPath": "C:\\Users\\tjand\\source\\repos\\COMP2139\\COMP2139Project\\TravelGroupAssignment1\\TravelGroupAssignment1\\TravelGroupAssignment1.csproj"
             }
           }
         }
