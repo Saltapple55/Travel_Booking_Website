@@ -7,8 +7,7 @@ namespace TravelGroupAssignment1.Models
     {
         [Key]
         public int BookingId { get; set; }
-        [Required]
-        public int TripId { get; set; }
+        public int? TripId { get; set; }
 
         [Display(Name = "Booking Reference Number")]
         public string? BookingReference { get; set; }
@@ -23,6 +22,11 @@ namespace TravelGroupAssignment1.Models
             string date = DateTime.Now.ToString("yyMMddHHmm");
             string uniqueString = Guid.NewGuid().ToString("").Substring(0, 6);
             return date + uniqueString;
+        }
+
+        public virtual string ToEmail()
+        {
+            return $"Booking Reference: {BookingReference}";
         }
     }
 }

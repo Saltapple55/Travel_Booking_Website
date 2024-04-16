@@ -21,5 +21,13 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Models
         [Display(Name = "Check Out Date")]
         [DataType(DataType.DateTime)]
         public DateTime? CheckOutDate { get; set; } // validate end date >= start date
+
+        public override string ToString()
+        {
+            string s=base.ToEmail() + "<br>";
+            s += $"Hotel: {Room.Hotel.HotelName} <br>Price: {Room.PricePerNight} <br>Capacity: {Room.Capacity} <br>Check In: {CheckInDate} <br>Check Out: {CheckOutDate}";
+            return s;
+        }
     }
+
 }

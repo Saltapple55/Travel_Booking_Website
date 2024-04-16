@@ -26,6 +26,12 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options=>
     
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
 
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<ISessionService, SessionService>();
+builder.Services.AddScoped<ICookieService, CookieService>();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddSession();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -69,4 +75,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
+app.UseSession();
+
 app.Run();

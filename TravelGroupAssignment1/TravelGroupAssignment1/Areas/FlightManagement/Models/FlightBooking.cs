@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using TravelGroupAssignment1.Areas.FlightManagement.Models;
+using TravelGroupAssignment1.Areas.RoomManagement.Models;
 using TravelGroupAssignment1.Models;
 
 namespace TravelGroupAssignment1.Areas.FlightManagement.Models
@@ -23,7 +24,12 @@ namespace TravelGroupAssignment1.Areas.FlightManagement.Models
 
         public IList<Passenger> Passengers { get; set; }
 
-       // public Passenger[]? Passengers { get; set; } = null;
-
+        // public Passenger[]? Passengers { get; set; } = null;
+        public override string ToString()
+        {
+            string s = base.ToString() + "\n";
+            s += $"From: {Flight.From}  To: {Flight.To} \nDeparture: {Flight.DepartTime} Arrival: {Flight.ArrivalTime} \nSeat Class: {FlightClass}   Seat: {Seat}";
+            return s;
+        }
     }
 }
