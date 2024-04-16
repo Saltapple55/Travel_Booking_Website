@@ -37,7 +37,6 @@ builder.Services.AddSession();
 builder.Host.UseSerilog((hostingContext, loggerConfiguration) =>
     loggerConfiguration
         .ReadFrom.Configuration(hostingContext.Configuration));
-
 var app = builder.Build();
 
 app.Logger.LogInformation("App building is running");
