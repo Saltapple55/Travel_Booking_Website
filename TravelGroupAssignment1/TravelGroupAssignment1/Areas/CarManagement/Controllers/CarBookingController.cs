@@ -91,7 +91,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         public async Task<IActionResult> CreateBooking([Bind("BookingReference",
             "CarId", "Car", "StartDate", "EndDate")] CarBooking carBooking)
         {
-            List<int> visitList = _sessionService.GetSessionData<List<int>>("BookingIds");
+            List<int> visitList = _sessionService.GetSessionData<List<int>>("CarBookingIds");
 
             // View bag components to be show in page
             var car = await _context.Cars.FindAsync(carBooking.CarId);
@@ -113,7 +113,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
                 await _context.CarBookings.AddAsync(carBooking);
                 await _context.SaveChangesAsync();
                 visitList.Add(carBooking.BookingId);
-                _sessionService.SetSessionData<List<int>>("BookingIds", visitList);
+                _sessionService.SetSessionData<List<int>>("CarBookingIds", visitList);
 
                 if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
                     return RedirectToAction("Index", "CarBooking", new { carId = carBooking.CarId });
@@ -190,12 +190,18 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id, string? con = "Trip")
         {
+            List<int> visitList = _sessionService.GetSessionData<List<int>>("CarBookingIds");
+
             var carBooking = await _context.CarBookings.FindAsync(id);
+
 
             if (carBooking != null)
             {
                 _context.CarBookings.Remove(carBooking);
                 await _context.SaveChangesAsync();
+                visitList.Remove(carBooking.BookingId);
+                _sessionService.SetSessionData<List<int>>("CarBookingIds", visitList);
+
                 if (string.Equals(con, "Trip"))
                     return RedirectToAction("Index", con);
                 return RedirectToAction("Index", new { carId = carBooking.CarId });
