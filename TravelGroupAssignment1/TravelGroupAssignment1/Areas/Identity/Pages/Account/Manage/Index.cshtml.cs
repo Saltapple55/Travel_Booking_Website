@@ -129,37 +129,35 @@ namespace TravelGroupAssignment1.Areas.Identity.Pages.Account.Manage
                 }
             }
 
-          
-            
-                                    
-            
-            if (user.UsernameChange > 0)
+
+
+
+
+
+            if (Input.Username != user.UserName)
             {
-                if (Input.Username != user.UserName)
+                var userNameExists = _userManager.FindByNameAsync(Input.Username);
+                if (userNameExists == null)
                 {
-                    var userNameExists = _userManager.FindByNameAsync(Input.Username);
-                    if (userNameExists != null)
-                    {
-                        StatusMessage = "Error: username not available. please enter a username";
-                        return RedirectToPage();
-                    }
-                    var setusername = await _userManager.SetUserNameAsync(user, Input.Username);
-                    if (setusername.Succeeded)
-                    {
+                    StatusMessage = "Error: username not available. please enter a username";
+                    return RedirectToPage();
+                }
+                var setusername = await _userManager.SetUserNameAsync(user, Input.Username);
+                if (!setusername.Succeeded)
+                {
 
-                        StatusMessage = "Unexpected error when trying to set username";
-                        return RedirectToPage();
-                    }
-                    else
-                    {
-                        user.UserName = Input.Username;
-                        user.UsernameChange -= 1;
-                        await _userManager.UpdateAsync(user);
+                    StatusMessage = "Unexpected error when trying to set username";
+                    return RedirectToPage();
+                }
+                else
+                {
+                    user.UserName = Input.Username;
+                    await _userManager.UpdateAsync(user);
 
 
-                    }
                 }
             }
+
             var firstName = user.FirstName;
             if (Input.FirstName != firstName)
             {

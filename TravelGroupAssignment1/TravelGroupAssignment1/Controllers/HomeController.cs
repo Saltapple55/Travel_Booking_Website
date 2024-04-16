@@ -17,7 +17,9 @@ namespace TravelGroupAssignment1.Controllers
             _logger = logger;
             _context = context;
             _sessionService = sessionService;
-            _sessionService.SetSessionData<List<int>>("BookingIds", new List<int>());
+            _sessionService.SetSessionData<List<int>>("FlightBookingIds", new List<int>());
+            _sessionService.SetSessionData<List<int>>("CarBookingIds", new List<int>());
+            _sessionService.SetSessionData<List<int>>("RoomBookingIds", new List<int>());
 
         }
 
@@ -27,8 +29,7 @@ namespace TravelGroupAssignment1.Controllers
             _logger.LogInformation("Calling Home Index() Action");
             try
             {
-                TempData["flightbookings"] = new List<String>();
-                TempData["ha"] = "ha";
+
                 if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
                 {
                     // Redirect to specific page for SuperAdmin or Admin
