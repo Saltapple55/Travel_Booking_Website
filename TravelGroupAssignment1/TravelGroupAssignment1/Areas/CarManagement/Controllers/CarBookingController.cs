@@ -64,6 +64,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
             ViewBag.EndDate = endDate;
 
             return View(new CarBooking { CarId = car.CarId });
+        }
 
         [HttpGet("Create/{carId:int}")]
         public async Task<IActionResult> Create(int carId)

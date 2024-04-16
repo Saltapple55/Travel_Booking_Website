@@ -12,8 +12,8 @@ using TravelGroupAssignment1.Data;
 namespace TravelGroupAssignment1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240415212145_mssql_migration_620")]
-    partial class mssql_migration_620
+    [Migration("20240416043920_mssql_migration_787")]
+    partial class mssql_migration_787
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -229,7 +229,7 @@ namespace TravelGroupAssignment1.Migrations
                         .IsRequired()
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("TripId")
+                    b.Property<int?>("TripId")
                         .HasColumnType("int");
 
                     b.HasKey("BookingId");
@@ -387,7 +387,7 @@ namespace TravelGroupAssignment1.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("TripId")
+                    b.Property<int?>("TripId")
                         .HasColumnType("int");
 
                     b.HasKey("BookingId");
@@ -566,7 +566,7 @@ namespace TravelGroupAssignment1.Migrations
                     b.Property<int>("RoomId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TripId")
+                    b.Property<int?>("TripId")
                         .HasColumnType("int");
 
                     b.HasKey("BookingId");
@@ -617,6 +617,9 @@ namespace TravelGroupAssignment1.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<DateOnly?>("Birthday")
+                        .HasColumnType("date");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -630,6 +633,12 @@ namespace TravelGroupAssignment1.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HomeAirport")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
@@ -650,6 +659,9 @@ namespace TravelGroupAssignment1.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
+                    b.Property<string>("Passport")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
@@ -658,6 +670,18 @@ namespace TravelGroupAssignment1.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<byte[]>("ProfilePic")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("RewardProgramName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RewardProgramNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SeatPreference")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -709,7 +733,7 @@ namespace TravelGroupAssignment1.Migrations
                         new
                         {
                             TripId = 1,
-                            TripReference = "240415172188a1bf"
+                            TripReference = "24041600398c8716"
                         });
                 });
 

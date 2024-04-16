@@ -726,6 +726,12 @@ namespace TravelGroupAssignment1.Migrations
 
                     b.ToTable("Trips");
 
+                    b.HasData(
+                        new
+                        {
+                            TripId = 1,
+                            TripReference = "24041600398c8716"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -5,7 +5,7 @@
 namespace TravelGroupAssignment1.Migrations
 {
     /// <inheritdoc />
-    public partial class mssql_migration_620 : Migration
+    public partial class mssql_migration_787 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,7 +15,7 @@ namespace TravelGroupAssignment1.Migrations
                 keyColumn: "TripId",
                 keyValue: 1,
                 column: "TripReference",
-                value: "240415172188a1bf");
+                value: "24041600398c8716");
         }
 
         /// <inheritdoc />
@@ -26,7 +26,7 @@ namespace TravelGroupAssignment1.Migrations
                 keyColumn: "TripId",
                 keyValue: 1,
                 column: "TripReference",
-                value: "2404151716e46ad1");
+                value: "2404160021795eac");
         }
     }
 }
