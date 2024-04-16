@@ -730,7 +730,7 @@ namespace TravelGroupAssignment1.Migrations
                         new
                         {
                             TripId = 1,
-                            TripReference = "24041600398c8716"
+                            TripReference = "2404160042a7cc82"
                         });
                 });
 
