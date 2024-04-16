@@ -278,27 +278,29 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
                     carQuery = carQuery.Where(c => c.Company != null && c.Company.Location.Contains(location))
                                     .Where(c => !c.Bookings.Any(b => b.EndDate >= startDate && b.EndDate <= endDate
                                         || b.StartDate >= startDate && b.StartDate <= endDate));
+
+                    var cars = await carQuery.Include(c => c.Company).Select(c => new
+                    {
+                        carId = c.CarId,
+                        make = c.Make,
+                        model = c.Model,
+                        maxPassengers = c.MaxPassengers,
+                        transmission = c.Transmission,
+                        hasAirConditioning = c.HasAirConditioning,
+                        hasUnlimitedMileage = c.HasUnlimitedMileage,
+                        pricePerDay = c.PricePerDay,
+                        companyName = c.Company.CompanyName
+                    }).ToListAsync();
+
+
+                    return Json(cars);
                 }
                 else
                 {
                     return StatusCode(400, "Search invalid");
                 }
 
-                var cars = await carQuery.Include(c => c.Company).Select(c => new
-                {
-                    carId = c.CarId,
-                    make = c.Make,
-                    model = c.Model,
-                    maxPassengers = c.MaxPassengers,
-                    transmission = c.Transmission,
-                    hasAirConditioning = c.HasAirConditioning,
-                    hasUnlimitedMileage = c.HasUnlimitedMileage,
-                    pricePerDay = c.PricePerDay,
-                    companyName = c.Company.CompanyName
-                }).ToListAsync();
 
-
-                return Json(cars);
             }
             catch (Exception ex)
             {

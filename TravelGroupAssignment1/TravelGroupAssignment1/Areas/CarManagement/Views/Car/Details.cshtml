@@ -24,10 +24,13 @@
 
             <dl class="row">
                 <dt class="col-sm-3">Price/Day</dt>
-                <dd class="col-sm-9">$@Model.PricePerDay</dd>
+                <dd class="col-sm-9">$@Model.PricePerDay / Day</dd>
 
                 <dt class="col-sm-3">Max Passengers</dt>
                 <dd class="col-sm-9">@Model.MaxPassengers</dd>
+
+                <dt class="col-sm-3">Transmission</dt>
+                <dd class="col-sm-9">@Model.Transmission</dd>
 
                 <dt class="col-sm-3">Air Conditioning</dt>
                 <dd class="col-sm-9">@(Model.HasAirConditioning ? "Yes" : "No")</dd>
