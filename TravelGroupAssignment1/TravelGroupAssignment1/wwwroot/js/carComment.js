@@ -53,7 +53,7 @@ $(() => {
                     $('#carComments select[name="Rating"]').val('5');
                     loadComments(carId);
                 } else {
-                    alert(response.message)
+                    alert("Please write something for the comment!\n" + response.message)
                 }
 
             },

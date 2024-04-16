@@ -54,7 +54,7 @@ $(() => {
                     $('#roomComments select[name="Rating"]').val('5');
                     loadComments(roomId);
                 } else {
-                    alert(response.message)
+                    alert("Please write something for the comment!\n" + response.message)
                 }
 
             },
