@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TravelGroupAssignment1.Migrations
 {
     /// <inheritdoc />
-    public partial class postmergemigration : Migration
+    public partial class triprework2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -98,6 +98,14 @@ namespace TravelGroupAssignment1.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UsernameChange = table.Column<int>(type: "int", nullable: false),
+                    ProfilePic = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    Birthday = table.Column<DateOnly>(type: "date", nullable: true),
+                    Passport = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    HomeAirport = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SeatPreference = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RewardProgramName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RewardProgramNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -154,7 +162,7 @@ namespace TravelGroupAssignment1.Migrations
                     FlightId = table.Column<int>(type: "int", nullable: false),
                     FlightClass = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Seat = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    TripId = table.Column<int>(type: "int", nullable: false),
+                    TripId = table.Column<int>(type: "int", nullable: true),
                     BookingReference = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -350,7 +358,7 @@ namespace TravelGroupAssignment1.Migrations
                     CarId = table.Column<int>(type: "int", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TripId = table.Column<int>(type: "int", nullable: false),
+                    TripId = table.Column<int>(type: "int", nullable: true),
                     BookingReference = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -424,7 +432,7 @@ namespace TravelGroupAssignment1.Migrations
                     RoomId = table.Column<int>(type: "int", nullable: false),
                     CheckInDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CheckOutDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TripId = table.Column<int>(type: "int", nullable: false),
+                    TripId = table.Column<int>(type: "int", nullable: true),
                     BookingReference = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -464,7 +472,7 @@ namespace TravelGroupAssignment1.Migrations
             migrationBuilder.InsertData(
                 table: "Trips",
                 columns: new[] { "TripId", "ApplicationUserId", "TripReference" },
-                values: new object[] { 1, null, "2404151452a39dec" });
+                values: new object[] { 1, null, "2404160042a7cc82" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_CarBookings_CarId",

@@ -87,7 +87,8 @@ namespace TravelGroupAssignment1.Areas.Identity.Pages.Account.Manage
                 FirstName = firstName,
                 LastName = lastName,
                 PhoneNumber = phoneNumber,
-                Username = userName
+                Username = userName,
+                ProfilePic = profilePic
             };
         }
 

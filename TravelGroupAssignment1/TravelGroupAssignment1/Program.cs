@@ -34,12 +34,12 @@ builder.Services.AddScoped<ICookieService, CookieService>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddSession();
 
-var app = builder.Build();
 builder.Host.UseSerilog((hostingContext, loggerConfiguration) =>
     loggerConfiguration
         .ReadFrom.Configuration(hostingContext.Configuration));
 
 var app = builder.Build();
+
 app.Logger.LogInformation("App building is running");
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -140,5 +140,3 @@ catch (Exception e)
 
 
 
-
-\
