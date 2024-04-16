@@ -381,3 +381,10 @@ C:\Users\CM\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssig
 C:\Users\CM\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment-UnitTesting\obj\Debug\net8.0\TravelGroupAssignment-UnitTesting.pdb
 C:\Users\CM\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment-UnitTesting\obj\Debug\net8.0\TravelGroupAssignment-UnitTesting.genruntimeconfig.cache
 C:\Users\CM\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment-UnitTesting\obj\Debug\net8.0\ref\TravelGroupAssignment-UnitTesting.dll
+C:\Users\biradon\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment-UnitTesting\bin\Debug\net8.0\CoverletSourceRootsMapping_TravelGroupAssignment-UnitTesting
+C:\Users\biradon\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment-UnitTesting\obj\Debug\net8.0\TravelGroupAssignment-UnitTesting.csproj.AssemblyReference.cache
+C:\Users\biradon\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment-UnitTesting\obj\Debug\net8.0\TravelGroupAssignment-UnitTesting.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\biradon\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment-UnitTesting\obj\Debug\net8.0\TravelGroupAssignment-UnitTesting.AssemblyInfoInputs.cache
+C:\Users\biradon\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment-UnitTesting\obj\Debug\net8.0\TravelGroupAssignment-UnitTesting.AssemblyInfo.cs
+C:\Users\biradon\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment-UnitTesting\obj\Debug\net8.0\TravelGroupAssignment-UnitTesting.csproj.CoreCompileInputs.cache
+C:\Users\biradon\source\repos\COMP2139Project\TravelGroupAssignment1\TravelGroupAssignment-UnitTesting\obj\Debug\net8.0\TravelGroupAssignment-UnitTesting.sourcelink.json
