@@ -14,7 +14,7 @@ namespace TravelGroupAssignment1.Services
         public async Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
             var client=new SendGridClient(_sendGridKey);
-            var from = new EmailAddress("audrey.tjandra@georgebrown.ca", "Booking Confirmation");
+            var from = new EmailAddress("audrey.tjandra@georgebrown.ca", subject);
             var to = new EmailAddress(email);
             var msg = MailHelper.CreateSingleEmail(from, to, subject, "", htmlMessage);
             var response=await client.SendEmailAsync(msg);

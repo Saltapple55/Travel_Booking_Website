@@ -62,8 +62,8 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
             ViewBag.Company = company;
             ViewBag.StartDate = startDate;
             ViewBag.EndDate = endDate;
-            return View(new CarBooking { CarId = car.CarId, TripId = 1 });
-        }
+
+            return View(new CarBooking { CarId = car.CarId });
 
         [HttpGet("Create/{carId:int}")]
         public async Task<IActionResult> Create(int carId)
@@ -81,7 +81,7 @@ namespace TravelGroupAssignment1.Areas.CarManagement.Controllers
         // POST: CarBookingController/Create
         [HttpPost("CreateBooking")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateBooking([Bind("TripId", "BookingReference",
+        public async Task<IActionResult> CreateBooking([Bind("BookingReference",
             "CarId", "Car", "StartDate", "EndDate")] CarBooking carBooking)
         {
             // View bag components to be show in page

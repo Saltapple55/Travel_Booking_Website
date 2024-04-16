@@ -68,6 +68,9 @@ namespace TravelGroupAssignment1.Areas.Identity.Pages.Account.Manage
             [Display(Name = "Last Name")]
             public string LastName { get; set; }
 
+            [Display(Name = "Profile Picture")]
+            public byte[]? ProfilePic { get; set; }
+
         }
 
         private async Task LoadAsync(ApplicationUser user)
@@ -76,6 +79,7 @@ namespace TravelGroupAssignment1.Areas.Identity.Pages.Account.Manage
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
             var firstName = user.FirstName;
             var lastName = user.LastName;
+            var profilePic = user.ProfilePic;
             Username = userName;
 
             Input = new InputModel
@@ -122,14 +126,12 @@ namespace TravelGroupAssignment1.Areas.Identity.Pages.Account.Manage
                     StatusMessage = "Unexpected error when trying to set phone number.";
                     return RedirectToPage();
                 }
-                else
-                {
-                    user.UserName = Input.Username;
-                    user.UsernameChange -= 1;
-                    await _userManager.UpdateAsync(user);
-
-                }
             }
+
+          
+            
+                                    
+            
             if (user.UsernameChange > 0)
             {
                 if (Input.Username != user.UserName)
@@ -144,22 +146,43 @@ namespace TravelGroupAssignment1.Areas.Identity.Pages.Account.Manage
                     if (setusername.Succeeded)
                     {
 
+                        StatusMessage = "Unexpected error when trying to set username";
+                        return RedirectToPage();
+                    }
+                    else
+                    {
+                        user.UserName = Input.Username;
+                        user.UsernameChange -= 1;
+                        await _userManager.UpdateAsync(user);
+
+
                     }
                 }
             }
             var firstName = user.FirstName;
             if (Input.FirstName != firstName)
             {
-                user.FirstName = firstName;
+                user.FirstName = Input.FirstName;
                 await _userManager.UpdateAsync(user);
             }
 
             var lastName = user.LastName;
             if (Input.LastName != lastName)
             {
-                user.LastName = lastName;
+                user.LastName = Input.LastName;
                 await _userManager.UpdateAsync(user);
             }
+            if (Request.Form.Files.Count > 0)
+            {
+                IFormFile file = Request.Form.Files.FirstOrDefault();
+                using (var dataStream = new MemoryStream())
+                {
+                    await file.CopyToAsync(dataStream);
+                    user.ProfilePic = dataStream.ToArray();
+                }
+                await _userManager.UpdateAsync(user);
+            }
+
 
 
             await _signInManager.RefreshSignInAsync(user);

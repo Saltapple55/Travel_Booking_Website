@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using TravelGroupAssignment1.Data;
 using TravelGroupAssignment1.Models;
+using TravelGroupAssignment1.Services;
 
 namespace TravelGroupAssignment1.Controllers
 {
@@ -10,14 +11,19 @@ namespace TravelGroupAssignment1.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _context;
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
+        private readonly ISessionService _sessionService;
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context, ISessionService sessionService)
         {
             _logger = logger;
             _context = context;
+            _sessionService = sessionService;
+            _sessionService.SetSessionData<List<int>>("BookingIds", new List<int>());
+
         }
 
         public IActionResult Index()
         {
+
             _logger.LogInformation("Calling Home Index() Action");
             try
             {
