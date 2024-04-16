@@ -7,7 +7,6 @@ using System.Runtime.Serialization;
 using TravelGroupAssignment1.Areas.CarManagement.Models;
 using TravelGroupAssignment1.Areas.RoomManagement.Models;
 using TravelGroupAssignment1.Data;
-using TravelGroupAssignment1.Services;
 
 namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
 {
@@ -17,14 +16,11 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
     {
         // required
         private readonly ApplicationDbContext _context;
-        private readonly ISessionService _sessionService;
-
 
         // required for DI 
-        public RoomBookingController(ApplicationDbContext context, ISessionService sessionservice)
+        public RoomBookingController(ApplicationDbContext context)
         {
             _context = context;
-            _sessionService = sessionservice;
         }
 
         // GET: RoomBookingController/5
@@ -100,8 +96,6 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
         public async Task<IActionResult> CreateBooking([Bind("TripId", "BookingReference",
             "RoomId", "Room", "CheckInDate", "CheckOutDate")] RoomBooking roomBooking)
         {
-            List<int> visitList = _sessionService.GetSessionData<List<int>>("RoomBookingIds");
-
             // information needed if booking not successfull created
             var room = await _context.Rooms.FindAsync(roomBooking.RoomId);
             if (room == null) return NotFound();
@@ -121,9 +115,6 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
 
                 await _context.RoomBookings.AddAsync(roomBooking);
                 await _context.SaveChangesAsync();
-                visitList.Add(roomBooking.BookingId);
-                _sessionService.SetSessionData<List<int>>("RoomBookingIds", visitList);
-
                 if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
                     return RedirectToAction("Index", "RoomBooking", new { roomId = roomBooking.RoomId});
                 else
@@ -174,11 +165,7 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
                 }
                 _context.RoomBookings.Update(roomBooking);
                 await _context.SaveChangesAsync();
-
-                if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
-                    return RedirectToAction("Index", "RoomBooking", new { roomId = roomBooking.RoomId });
-                else
-                    return RedirectToAction("Index", "Trip");
+                return RedirectToAction("Index", new { roomId = roomBooking.RoomId });
             }
             return View(roomBooking);
         }
@@ -207,13 +194,8 @@ namespace TravelGroupAssignment1.Areas.RoomManagement.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id, string? con = "Trip")
         {
             var roomBooking = await _context.RoomBookings.FindAsync(id);
-            List<int> visitList = _sessionService.GetSessionData<List<int>>("RoomBookingIds");
-
             if (roomBooking != null)
             {
-                visitList.Remove(id);
-                _sessionService.SetSessionData<List<int>>("RoomBookingIds", visitList);
-
                 _context.RoomBookings.Remove(roomBooking);
                 await _context.SaveChangesAsync();
                 if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))

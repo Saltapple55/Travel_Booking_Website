@@ -13,10 +13,6 @@
     </div>
     <div class="card-body">
         <dl class="row shadow">
-            <dt class="col-sm-3">@Html.DisplayNameFor(model => Model.Seat) </dt>
-            <dd class=" col-sm-9">@Html.DisplayFor(model => Model.Seat)</dd>
-            <dt class="col-sm-3">@Html.DisplayNameFor(model => Model.FlightClass) </dt>
-            <dd class=" col-sm-9">@Html.DisplayFor(model => Model.FlightClass)</dd>
             @foreach (var pass in Model.Passengers){
                     <dt class="col-sm-3">@Html.DisplayNameFor(model => pass.FirstName) </dt>
                     <dd class=" col-sm-9">@Html.DisplayFor(model => pass.FirstName)</dd>
