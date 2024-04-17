@@ -109,8 +109,6 @@ namespace TravelGroupAssignment1.Controllers
 
                 _context.Trips.Add(trip);
                 _context.SaveChanges();
-                System.Diagnostics.Debug.WriteLine("Trip id: " + trip.TripId);
-                System.Diagnostics.Debug.WriteLine(email);
                 /*
                                 var fbookings = _context.FlightBookings.Include(f => f.Flight).Include(f => f.Passengers).ToList();
                                 var cbookings = _context.CarBookings.Include(c => c.Car).ToList();
@@ -165,7 +163,6 @@ namespace TravelGroupAssignment1.Controllers
 
                 _context.SaveChanges();
                 string s = MakeBookingsEmail(trip, rbookings, fbookings, cbookings);
-                System.Diagnostics.Debug.WriteLine(s);
 
 
                 await _emailSender.SendEmailAsync(email, "Booking Confirmation", s);
@@ -185,7 +182,6 @@ namespace TravelGroupAssignment1.Controllers
 
 
             }
-            System.Diagnostics.Debug.WriteLine("Trip not valid");
             return View();
 
         }
