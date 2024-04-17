@@ -63,9 +63,16 @@
 
 
                     </dl>
-
-                    <a asp-controller="RoomBooking" asp-action="Edit" asp-route-id="@Model.BookingId" class="btn btn-primary">Edit</a>
-                    <a asp-controller="@ViewBag.Controller" asp-action="Index" asp-route-roomId="@Model.RoomId" class="btn btn-secondary">Return</a>
+                    @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                    {
+                        <a asp-controller="RoomBooking" asp-action="Edit" asp-route-id="@Model.BookingId" class="btn btn-primary">Edit</a>
+                        <a asp-controller="@ViewBag.Controller" asp-action="Index" asp-route-roomId="@Model.RoomId" class="btn btn-secondary">Return</a>
+                    }
+                    else
+                    {
+                        <a asp-controller="Trip" asp-action="Index" class="btn btn-secondary">Return</a>
+                    }
+                    
 
                 </div>
 

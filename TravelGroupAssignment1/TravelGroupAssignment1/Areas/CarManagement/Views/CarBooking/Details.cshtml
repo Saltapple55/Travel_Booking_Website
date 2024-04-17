@@ -68,9 +68,15 @@
                         <dd class="col-sm-9">@Model.EndDate?.ToShortDateString()</dd>
                     </dl>
 
-                    <a asp-controller="CarBooking" asp-action="Edit" asp-route-Id="@Model.BookingId" class="btn btn-primary">Edit</a>
-                    <a asp-controller="CarBooking" asp-action="Index" asp-route-carId="@Model.CarId" class="btn btn-secondary">Return</a>
-
+                    @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                    {
+                        <a asp-controller="CarBooking" asp-action="Edit" asp-route-Id="@Model.BookingId" class="btn btn-primary">Edit</a>
+                        <a asp-controller="CarBooking" asp-action="Index" asp-route-carId="@Model.CarId" class="btn btn-secondary">Return</a>
+                    }
+                    else
+                    {
+                        <a asp-controller="Trip" asp-action="Index" class="btn btn-secondary">Return</a>
+                    }
                 </div>
 
             </div>
