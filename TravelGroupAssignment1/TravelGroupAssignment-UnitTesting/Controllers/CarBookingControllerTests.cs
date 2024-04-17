@@ -14,6 +14,7 @@ using TravelGroupAssignment1.Areas.CarManagement.Controllers;
 using TravelGroupAssignment1.Areas.CarManagement.Models;
 using TravelGroupAssignment1.Data;
 using TravelGroupAssignment1.Models;
+using TravelGroupAssignment1.Services;
 
 namespace TravelGroupAssignment_UnitTesting.Controllers
 {
@@ -54,7 +55,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
                 // Arrange
                 SetupCarsAndRentalCompanyAsync(context);
 
-                var controller = new CarBookingController(context);
+                Mock<ISessionService> mockSessionService = new Mock<ISessionService>();
+                var controller = new CarBookingController(context, mockSessionService.Object);
 
                 // Action
                 var result = await controller.Index(1);
@@ -93,7 +95,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
                 );
                 await context.SaveChangesAsync();
 
-                var controller = new CarBookingController(context);
+                Mock<ISessionService> mockSessionService = new Mock<ISessionService>();
+                var controller = new CarBookingController(context, mockSessionService.Object);
 
                 // Action
                 var result = await controller.Index(4);
@@ -127,7 +130,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
                 );
                 await context.SaveChangesAsync();
 
-                var controller = new CarBookingController(context);
+                Mock<ISessionService> mockSessionService = new Mock<ISessionService>();
+                var controller = new CarBookingController(context, mockSessionService.Object);
 
                 // Action: call Index()
                 var result = await controller.Details(1);
@@ -152,7 +156,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
             using (var context = GetApplicationDbContext())
             {
                 // Arrange
-                var controller = new CarBookingController(context);
+                                Mock<ISessionService> mockSessionService = new Mock<ISessionService>();
+                var controller = new CarBookingController(context, mockSessionService.Object);
 
                 // Action
                 var result = await controller.Details(1);
@@ -173,7 +178,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
                 // Arrange: Cars, Company and Controller
                 SetupCarsAndRentalCompanyAsync(context);
 
-                var controller = new CarBookingController(context);
+                Mock<ISessionService> mockSessionService = new Mock<ISessionService>();
+                var controller = new CarBookingController(context, mockSessionService.Object);
 
                 // Action: call Index()
                 var result = await controller.Create(1, new DateTime(2020, 1, 1), new DateTime(2020, 1, 5));
@@ -199,7 +205,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
             using (var context = GetApplicationDbContext())
             {
                 // Arrange
-                var controller = new CarBookingController(context);
+                Mock<ISessionService> mockSessionService = new Mock<ISessionService>();
+                var controller = new CarBookingController(context, mockSessionService.Object);
 
                 // Action
                 var result = await controller.Create(1, new DateTime(2020, 1, 1), new DateTime(2020, 1, 5));
@@ -226,12 +233,14 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
                 var userManager = new Mock<UserManager<ApplicationUser>>(userStore.Object, null, null, null, null, null, null, null, null);
                 var mockHttpContext = new Mock<HttpContext>();
                 var mockUser = new Mock<ClaimsPrincipal>();
+                var mockSessionService = new Mock<ISessionService>();
 
                 mockUser.Setup(user => user.IsInRole("Admin")).Returns(true);
                 mockUser.Setup(user => user.IsInRole("SuperAdmin")).Returns(true);
                 mockHttpContext.Setup(context => context.User).Returns(mockUser.Object);
+                mockSessionService.Setup(service => service.GetSessionData<List<int>>("CarBookingIds")).Returns(new List<int>());
 
-                var controller = new CarBookingController(context)
+                var controller = new CarBookingController(context, mockSessionService.Object)
                 {
                     ControllerContext = new ControllerContext
                     {
@@ -239,13 +248,12 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
                     }
                 };
 
-
                 // Action
                 var result = await controller.CreateBooking(mockCarBooking);
 
                 // Assert
                 var viewResult = Assert.IsType<RedirectToActionResult>(result);
-                Assert.Equal("Index", viewResult.ActionName); 
+                Assert.Equal("Index", viewResult.ActionName);
                 Assert.Equal("CarBooking", viewResult.ControllerName);
 
                 var model = await context.CarBookings.FindAsync(4);
@@ -272,12 +280,15 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
                 var userManager = new Mock<UserManager<ApplicationUser>>(userStore.Object, null, null, null, null, null, null, null, null);
                 var mockHttpContext = new Mock<HttpContext>();
                 var mockUser = new Mock<ClaimsPrincipal>();
+                var mockSessionService = new Mock<ISessionService>();
 
                 mockUser.Setup(user => user.IsInRole("Admin")).Returns(false);
                 mockUser.Setup(user => user.IsInRole("SuperAdmin")).Returns(false);
                 mockHttpContext.Setup(context => context.User).Returns(mockUser.Object);
+                mockSessionService.Setup(service => service.GetSessionData<List<int>>("CarBookingIds")).Returns(new List<int>());
 
-                var controller = new CarBookingController(context)
+
+                var controller = new CarBookingController(context, mockSessionService.Object)
                 {
                     ControllerContext = new ControllerContext
                     {
@@ -314,7 +325,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
                 // setup: car with CarId 1 already is booked on 2020-1-1 to 2020-1-3
                 var mockCarBooking = new CarBooking { BookingId = 4, CarId = 1, TripId = 1, StartDate = new DateTime(2020, 1, 1), EndDate = new DateTime(2020, 1, 10) };
 
-                var controller = new CarBookingController(context);
+                Mock<ISessionService> mockSessionService = new Mock<ISessionService>();
+                var controller = new CarBookingController(context, mockSessionService.Object);
 
                 // Action
                 var result = await controller.CreateBooking(mockCarBooking);
@@ -340,7 +352,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
             {
                 // Arrange
                 var stubCarBooking = new CarBooking { BookingId = 4, CarId = 99, TripId = 2, StartDate = new DateTime(2020, 1, 10), EndDate = new DateTime(2020, 1, 11) };
-                var controller = new CarBookingController(context);
+                Mock<ISessionService> mockSessionService = new Mock<ISessionService>();
+                var controller = new CarBookingController(context, mockSessionService.Object);
 
                 // Action
                 var result = await controller.CreateBooking(stubCarBooking);
@@ -374,7 +387,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
                 );
                 await context.SaveChangesAsync();
 
-                var controller = new CarBookingController(context);
+                Mock<ISessionService> mockSessionService = new Mock<ISessionService>();
+                var controller = new CarBookingController(context, mockSessionService.Object);
 
                 // Action: call Index()
                 var result = await controller.Edit(1);
@@ -399,7 +413,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
             using (var context = GetApplicationDbContext())
             {
                 // Arrange
-                var controller = new CarBookingController(context);
+                Mock<ISessionService> mockSessionService = new Mock<ISessionService>();
+                var controller = new CarBookingController(context, mockSessionService.Object);
 
                 // Action
                 var result = await controller.Edit(1);
@@ -421,7 +436,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
                 var stubCarBooking = new CarBooking { BookingId = 1, CarId = 99, TripId = 1, StartDate = new DateTime(2020, 1, 10), EndDate = new DateTime(2020, 1, 11) };
                 await context.CarBookings.AddAsync(stubCarBooking);
 
-                var controller = new CarBookingController(context);
+                Mock<ISessionService> mockSessionService = new Mock<ISessionService>();
+                var controller = new CarBookingController(context, mockSessionService.Object);
 
                 // Action
                 var result = await controller.Edit(1);
@@ -453,7 +469,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
                 mockCarBooking.StartDate = new DateTime(2050, 1, 1);
                 mockCarBooking.EndDate = new DateTime(2050, 1, 1);
 
-                var controller = new CarBookingController(context);
+                Mock<ISessionService> mockSessionService = new Mock<ISessionService>();
+                var controller = new CarBookingController(context, mockSessionService.Object);
 
                 // Action
                 var result = await controller.Edit(1, mockCarBooking);
@@ -484,7 +501,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
                 mockCarBooking.StartDate = new DateTime(2020, 1, 1);
                 mockCarBooking.EndDate = new DateTime(2020, 1, 10);
 
-                var controller = new CarBookingController(context);
+                                Mock<ISessionService> mockSessionService = new Mock<ISessionService>();
+                var controller = new CarBookingController(context, mockSessionService.Object);
 
                 // Action
                 var result = await controller.Edit(4, mockCarBooking);
@@ -508,7 +526,7 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
 
             using (var context = GetApplicationDbContext())
             {
-                // Arrange: Cars, Company and Controller
+                // Arrange
                 var stubCompany = new CarRentalCompany { CarRentalCompanyId = 1, CompanyName = "stubCompany", Location = "stubLocation" };
 
                 var stubCar = new Car { CarId = 1, Make = "Toyota", Model = "Corolla", Type = "Sedan", CompanyId = 1, Company = stubCompany };
@@ -519,9 +537,10 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
 
                 await context.SaveChangesAsync();
 
-                var controller = new CarBookingController(context);
+                                Mock<ISessionService> mockSessionService = new Mock<ISessionService>();
+                var controller = new CarBookingController(context, mockSessionService.Object);
 
-                // Action: call Index()
+                // Action
                 var result = await controller.Delete(1);
 
                 // Assert
@@ -544,7 +563,8 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
             using (var context = GetApplicationDbContext())
             {
                 // Arrange
-                var controller = new CarBookingController(context);
+                                Mock<ISessionService> mockSessionService = new Mock<ISessionService>();
+                var controller = new CarBookingController(context, mockSessionService.Object);
 
                 // Action
                 var result = await controller.Delete(1);
@@ -564,18 +584,19 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
             {
                 // Arrange: Cars, Company and Controller
                 var stubCompany = new CarRentalCompany { CarRentalCompanyId = 1, CompanyName = "stubCompany", Location = "stubLocation" };
-
                 var stubCar = new Car { CarId = 1, Make = "Toyota", Model = "Corolla", Type = "Sedan", CompanyId = 1, Company = stubCompany };
                 var mockCarBooking = new CarBooking { BookingId = 1, CarId = 1, Car = stubCar, TripId = 1, StartDate = new DateTime(2020, 1, 1), EndDate = new DateTime(2020, 1, 2) };
 
                 await context.Cars.AddRangeAsync(stubCar);
                 await context.CarBookings.AddRangeAsync(mockCarBooking);
-
                 await context.SaveChangesAsync();
 
-                var controller = new CarBookingController(context);
+                Mock<ISessionService> mockSessionService = new Mock<ISessionService>();
+                mockSessionService.Setup(service => service.GetSessionData<List<int>>("CarBookingIds")).Returns(new List<int>());
 
-                // Action: call Index()
+                var controller = new CarBookingController(context, mockSessionService.Object);
+
+                // Action
                 var result = await controller.DeleteConfirmed(1, "");
 
                 // Assert
@@ -597,18 +618,18 @@ namespace TravelGroupAssignment_UnitTesting.Controllers
             {
                 // Arrange: Cars, Company and Controller
                 var stubCompany = new CarRentalCompany { CarRentalCompanyId = 1, CompanyName = "stubCompany", Location = "stubLocation" };
-
                 var stubCar = new Car { CarId = 1, Make = "Toyota", Model = "Corolla", Type = "Sedan", CompanyId = 1, Company = stubCompany };
                 var mockCarBooking = new CarBooking { BookingId = 1, CarId = 1, Car = stubCar, TripId = 1, StartDate = new DateTime(2020, 1, 1), EndDate = new DateTime(2020, 1, 2) };
 
                 await context.Cars.AddRangeAsync(stubCar);
                 await context.CarBookings.AddRangeAsync(mockCarBooking);
-
                 await context.SaveChangesAsync();
 
-                var controller = new CarBookingController(context);
+                Mock<ISessionService> mockSessionService = new Mock<ISessionService>();
+                mockSessionService.Setup(service => service.GetSessionData<List<int>>("CarBookingIds")).Returns(new List<int>());
+                var controller = new CarBookingController(context, mockSessionService.Object);
 
-                // Action: call Index()
+                // Action
                 var result = await controller.DeleteConfirmed(1);
 
                 // Assert
