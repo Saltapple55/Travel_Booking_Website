@@ -5,7 +5,7 @@
 function loadFlightSearch(flightFrom, flightTo, flightStartDate, flightEndDate, passengerCount) {
 
     $.ajax({
-        url: 'Flight/SearchAjax?locationFrom=' + flightFrom + '&location=' + flightTo + '&startDate=' + flightStartDate + '&endDate=' + flightEndDate + '&capacity=' + passengerCount + '&tab=flight',
+        url: '/Flight/SearchAjax?locationFrom=' + flightFrom + '&location=' + flightTo + '&startDate=' + flightStartDate + '&endDate=' + flightEndDate + '&capacity=' + passengerCount + '&tab=flight',
         method: 'GET',
         // on successfully retrieving data, generate cards for each item
         success: (data) => {
